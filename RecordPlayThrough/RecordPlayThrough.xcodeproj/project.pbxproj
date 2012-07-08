@@ -15,6 +15,9 @@
 		D22FA52115A9B3E3009E2600 /* TOAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D22FA52015A9B3E3009E2600 /* TOAppDelegate.m */; };
 		D22FA52415A9B3E3009E2600 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D22FA52215A9B3E3009E2600 /* MainStoryboard.storyboard */; };
 		D22FA52715A9B3E3009E2600 /* TOViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D22FA52615A9B3E3009E2600 /* TOViewController.m */; };
+		D22FA53015A9B4D6009E2600 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D22FA52D15A9B4D6009E2600 /* AudioToolbox.framework */; };
+		D22FA53115A9B4D6009E2600 /* AudioUnit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D22FA52E15A9B4D6009E2600 /* AudioUnit.framework */; };
+		D22FA53215A9B4D6009E2600 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D22FA52F15A9B4D6009E2600 /* CoreAudio.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +34,9 @@
 		D22FA52315A9B3E3009E2600 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		D22FA52515A9B3E3009E2600 /* TOViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TOViewController.h; sourceTree = "<group>"; };
 		D22FA52615A9B3E3009E2600 /* TOViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TOViewController.m; sourceTree = "<group>"; };
+		D22FA52D15A9B4D6009E2600 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		D22FA52E15A9B4D6009E2600 /* AudioUnit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioUnit.framework; path = System/Library/Frameworks/AudioUnit.framework; sourceTree = SDKROOT; };
+		D22FA52F15A9B4D6009E2600 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -38,6 +44,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D22FA53015A9B4D6009E2600 /* AudioToolbox.framework in Frameworks */,
+				D22FA53115A9B4D6009E2600 /* AudioUnit.framework in Frameworks */,
+				D22FA53215A9B4D6009E2600 /* CoreAudio.framework in Frameworks */,
 				D22FA51115A9B3E3009E2600 /* UIKit.framework in Frameworks */,
 				D22FA51315A9B3E3009E2600 /* Foundation.framework in Frameworks */,
 				D22FA51515A9B3E3009E2600 /* CoreGraphics.framework in Frameworks */,
@@ -67,6 +76,9 @@
 		D22FA50F15A9B3E3009E2600 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D22FA52D15A9B4D6009E2600 /* AudioToolbox.framework */,
+				D22FA52E15A9B4D6009E2600 /* AudioUnit.framework */,
+				D22FA52F15A9B4D6009E2600 /* CoreAudio.framework */,
 				D22FA51015A9B3E3009E2600 /* UIKit.framework */,
 				D22FA51215A9B3E3009E2600 /* Foundation.framework */,
 				D22FA51415A9B3E3009E2600 /* CoreGraphics.framework */,
