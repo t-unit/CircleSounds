@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D20AE64D15AA2CC6002EEF89 /* TOCAShortcuts.m in Sources */ = {isa = PBXBuildFile; fileRef = D20AE64C15AA2CC6002EEF89 /* TOCAShortcuts.m */; };
+		D20AE65815AA375F002EEF89 /* NSString+OSStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = D20AE65715AA375F002EEF89 /* NSString+OSStatus.m */; };
 		D22FA51115A9B3E3009E2600 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D22FA51015A9B3E3009E2600 /* UIKit.framework */; };
 		D22FA51315A9B3E3009E2600 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D22FA51215A9B3E3009E2600 /* Foundation.framework */; };
 		D22FA51515A9B3E3009E2600 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D22FA51415A9B3E3009E2600 /* CoreGraphics.framework */; };
@@ -16,11 +18,17 @@
 		D22FA52415A9B3E3009E2600 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D22FA52215A9B3E3009E2600 /* MainStoryboard.storyboard */; };
 		D22FA52715A9B3E3009E2600 /* TOViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D22FA52615A9B3E3009E2600 /* TOViewController.m */; };
 		D22FA53015A9B4D6009E2600 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D22FA52D15A9B4D6009E2600 /* AudioToolbox.framework */; };
-		D22FA53115A9B4D6009E2600 /* AudioUnit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D22FA52E15A9B4D6009E2600 /* AudioUnit.framework */; };
 		D22FA53215A9B4D6009E2600 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D22FA52F15A9B4D6009E2600 /* CoreAudio.framework */; };
+		D22FA54015A9CD8F009E2600 /* TORecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = D22FA53F15A9CD8F009E2600 /* TORecorder.m */; };
+		D269CFBB15A9E91D00B94F6C /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D269CFBA15A9E91D00B94F6C /* AVFoundation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D20AE64515AA2826002EEF89 /* AudioUnit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioUnit.framework; path = System/Library/Frameworks/AudioUnit.framework; sourceTree = SDKROOT; };
+		D20AE64B15AA2CC6002EEF89 /* TOCAShortcuts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TOCAShortcuts.h; sourceTree = "<group>"; };
+		D20AE64C15AA2CC6002EEF89 /* TOCAShortcuts.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TOCAShortcuts.m; sourceTree = "<group>"; };
+		D20AE65615AA375F002EEF89 /* NSString+OSStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+OSStatus.h"; sourceTree = "<group>"; };
+		D20AE65715AA375F002EEF89 /* NSString+OSStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+OSStatus.m"; sourceTree = "<group>"; };
 		D22FA50C15A9B3E3009E2600 /* RecordPlayThrough.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RecordPlayThrough.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D22FA51015A9B3E3009E2600 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		D22FA51215A9B3E3009E2600 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -35,8 +43,10 @@
 		D22FA52515A9B3E3009E2600 /* TOViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TOViewController.h; sourceTree = "<group>"; };
 		D22FA52615A9B3E3009E2600 /* TOViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TOViewController.m; sourceTree = "<group>"; };
 		D22FA52D15A9B4D6009E2600 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
-		D22FA52E15A9B4D6009E2600 /* AudioUnit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioUnit.framework; path = System/Library/Frameworks/AudioUnit.framework; sourceTree = SDKROOT; };
 		D22FA52F15A9B4D6009E2600 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
+		D22FA53E15A9CD8F009E2600 /* TORecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TORecorder.h; sourceTree = "<group>"; };
+		D22FA53F15A9CD8F009E2600 /* TORecorder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TORecorder.m; sourceTree = "<group>"; };
+		D269CFBA15A9E91D00B94F6C /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -44,8 +54,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D269CFBB15A9E91D00B94F6C /* AVFoundation.framework in Frameworks */,
 				D22FA53015A9B4D6009E2600 /* AudioToolbox.framework in Frameworks */,
-				D22FA53115A9B4D6009E2600 /* AudioUnit.framework in Frameworks */,
 				D22FA53215A9B4D6009E2600 /* CoreAudio.framework in Frameworks */,
 				D22FA51115A9B3E3009E2600 /* UIKit.framework in Frameworks */,
 				D22FA51315A9B3E3009E2600 /* Foundation.framework in Frameworks */,
@@ -76,8 +86,9 @@
 		D22FA50F15A9B3E3009E2600 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D20AE64515AA2826002EEF89 /* AudioUnit.framework */,
+				D269CFBA15A9E91D00B94F6C /* AVFoundation.framework */,
 				D22FA52D15A9B4D6009E2600 /* AudioToolbox.framework */,
-				D22FA52E15A9B4D6009E2600 /* AudioUnit.framework */,
 				D22FA52F15A9B4D6009E2600 /* CoreAudio.framework */,
 				D22FA51015A9B3E3009E2600 /* UIKit.framework */,
 				D22FA51215A9B3E3009E2600 /* Foundation.framework */,
@@ -89,6 +100,12 @@
 		D22FA51615A9B3E3009E2600 /* RecordPlayThrough */ = {
 			isa = PBXGroup;
 			children = (
+				D20AE64B15AA2CC6002EEF89 /* TOCAShortcuts.h */,
+				D20AE64C15AA2CC6002EEF89 /* TOCAShortcuts.m */,
+				D20AE65615AA375F002EEF89 /* NSString+OSStatus.h */,
+				D20AE65715AA375F002EEF89 /* NSString+OSStatus.m */,
+				D22FA53E15A9CD8F009E2600 /* TORecorder.h */,
+				D22FA53F15A9CD8F009E2600 /* TORecorder.m */,
 				D22FA51F15A9B3E3009E2600 /* TOAppDelegate.h */,
 				D22FA52015A9B3E3009E2600 /* TOAppDelegate.m */,
 				D22FA52215A9B3E3009E2600 /* MainStoryboard.storyboard */,
@@ -177,6 +194,9 @@
 				D22FA51D15A9B3E3009E2600 /* main.m in Sources */,
 				D22FA52115A9B3E3009E2600 /* TOAppDelegate.m in Sources */,
 				D22FA52715A9B3E3009E2600 /* TOViewController.m in Sources */,
+				D22FA54015A9CD8F009E2600 /* TORecorder.m in Sources */,
+				D20AE64D15AA2CC6002EEF89 /* TOCAShortcuts.m in Sources */,
+				D20AE65815AA375F002EEF89 /* NSString+OSStatus.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -290,6 +310,7 @@
 				D22FA52C15A9B3E3009E2600 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

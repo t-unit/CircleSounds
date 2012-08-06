@@ -8,11 +8,36 @@
 
 #import "TOAppDelegate.h"
 
+#import <AVFoundation/AVAudioSession.h>
+
 @implementation TOAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Override point for customization after application launch.
+    AVAudioSession *session = [AVAudioSession sharedInstance];
+    
+//    [[NSNotificationCenter defaultCenter] addObserver: myObject
+//                                             selector: @selector(handleInterruption:)
+//                                                 name: AVAudioSessionInterruptionNotification
+//                                               object: session];
+    
+    NSError *error;
+    [session setCategory:AVAudioSessionCategoryMultiRoute error:&error];
+    
+    if (error) {
+        NSLog(@"%@", error);
+        return NO;
+    }
+    
+    [session setActive:YES error:&error];
+    
+    if (error) {
+        NSLog(@"%@", error);
+        return NO;
+    }
+    
+    NSLog(@"%@", [session currentRoute]);
+    
     return YES;
 }
 							
