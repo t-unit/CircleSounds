@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <AudioToolbox/AudioToolbox.h>
-#import "TOAUShortcuts.h"
+#import "TOCAShortcuts.h"
 
 @protocol TORecorderDelegate;
 
