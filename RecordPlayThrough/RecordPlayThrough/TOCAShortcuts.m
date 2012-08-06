@@ -9,10 +9,17 @@
 #import "TOCAShortcuts.h"
 #import "NSString+OSStatus.h"
 
+NSString *kTOErrorInfoStringKey = @"kTOErrorInfoStringKey";
+NSString *kTOErrorStatusStringKey = @"kTOErrorStatusStringKey";
+
 
 void TOErrorHandler(OSStatus status, NSError *__autoreleasing *error, NSString *errorInfo)
 {
-    NSParameterAssert(error);
+    if (!error) {
+        @throw [NSException exceptionWithName:NSInternalInconsistencyException
+                                       reason:@"point to error is nil"
+                                     userInfo:nil];
+    }
     
     if (status == noErr) {
         return;
