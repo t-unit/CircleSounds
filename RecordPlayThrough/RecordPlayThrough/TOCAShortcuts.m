@@ -58,3 +58,40 @@ AudioStreamBasicDescription TOCanonicalLPCM()
 
     return asbd;
 }
+
+
+AudioComponentDescription TOAudioComponentDescription(OSType componentType, OSType componentSubType)
+{
+    AudioComponentDescription desc;
+	desc.componentType = componentType;
+	desc.componentSubType = componentSubType;
+	desc.componentFlags = 0;
+	desc.componentFlagsMask = 0;
+	desc.componentManufacturer = kAudioUnitManufacturer_Apple;
+    
+    return desc;
+}
+
+
+OSStatus TOAudioUnitNewInstanceWithDescription(AudioComponentDescription inComponentDesc, AudioComponent *outComponent, AudioUnit *outAudioUnit)
+{
+    // Get component
+	AudioComponent component = AudioComponentFindNext(NULL, &inComponentDesc);
+	
+	// Get audio unit
+	OSStatus status = AudioComponentInstanceNew(component, outAudioUnit);
+    
+    if (outComponent) {
+        outComponent = &component;
+    }
+
+    return status;
+}
+
+
+OSStatus TOAudioUnitNewInstance(OSType inComponentType, OSType inComponentSubType, AudioUnit *outAudioUnit)
+{
+    AudioComponentDescription desc = TOAudioComponentDescription(inComponentType, inComponentSubType);
+    return TOAudioUnitNewInstanceWithDescription(desc, NULL, outAudioUnit);
+}
+

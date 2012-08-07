@@ -23,7 +23,8 @@ extern NSString *kTOErrorStatusStringKey;
  The function will create an NSError object if 'status' is anything else but 'noErr'.
  
  @param status The status which should be checked for any error.
- @param error A pointer of pointer of a NSError object. The error object should be nil 
+ 
+ @param error A pointer of pointer of a NSError object. The error object should be nil
         when supplied. If status is not 'noErr' an NSError will be created contain two 
         value pairs inside the 'userInfo' dictionary:
  
@@ -59,10 +60,35 @@ void TOThrowOnError(OSStatus status);
 ///---------------------------------------------------------------------------------------
 
 
-/*!
-    @function   TOCanonicalLPCM
-    @abstract   Convenience function returning an ASBD filled with an easy to handle 
-                linear PCM format. The canonical PCM format for this project.
+/**
+ @function   TOCanonicalLPCM
+ 
+ @abstract   Convenience function returning an ASBD filled with an easy to handle
+             linear PCM format. The canonical PCM format for this project.
 */
 
 AudioStreamBasicDescription TOCanonicalLPCM();
+
+
+
+/**
+ @function TOAudioComponentDescription
+ 
+ @abstract Creates a AudioComponentDescription based on 'componentType' and 'componentSubType'.
+           'componentManufacturer' will be assumed to be 'kAudioUnitManufacturer_Apple'. Both
+           'componentFlagsMask' and 'componentFlags' will be assumed '0'.
+*/
+AudioComponentDescription TOAudioComponentDescription(OSType componentType, OSType componentSubType);
+
+
+
+
+OSStatus TOAudioUnitNewInstanceWithDescription(AudioComponentDescription inComponentDesc, AudioComponent *outComponent, AudioUnit *outAudioUnit);
+
+
+OSStatus TOAudioUnitNewInstance(OSType inComponentType, OSType inComponentSubType, AudioUnit *outAudioUnit);
+
+
+
+
+
