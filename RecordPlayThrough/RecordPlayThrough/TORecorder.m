@@ -49,6 +49,10 @@ static OSStatus inputCallback(void                       *inRefCon,
             free(recorderState->inputBufferList.mBuffers[0].mData);
         }
         
+#if DEBUG
+        printf("TORecorder: need to allocate more memory for audio buffer (new size: %ld | old size %ld)", necessaryBufferSize, recorderState->actualBufferSize);
+#endif
+        
         recorderState->inputBufferList.mBuffers[0].mData = malloc(necessaryBufferSize);
         recorderState->actualBufferSize = necessaryBufferSize;
     }
