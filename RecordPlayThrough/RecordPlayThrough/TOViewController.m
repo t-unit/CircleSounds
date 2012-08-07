@@ -18,6 +18,10 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    
+    
+    self.recoder = [[TORecorder alloc] init];
+//    self.recoder.monitorInput = YES;
 }
 
 - (void)didReceiveMemoryWarning

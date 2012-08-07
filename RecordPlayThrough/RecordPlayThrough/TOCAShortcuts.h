@@ -12,6 +12,9 @@
 extern NSString *kTOErrorInfoStringKey;
 extern NSString *kTOErrorStatusStringKey;
 
+#define kOutputBus 0
+#define kInputBus 1
+
 
 ///---------------------------------------------------------------------------------------
 /// @name Error Handling
@@ -74,9 +77,10 @@ AudioStreamBasicDescription TOCanonicalLPCM();
 /**
  @function TOAudioComponentDescription
  
- @abstract Creates a AudioComponentDescription based on 'componentType' and 'componentSubType'.
-           'componentManufacturer' will be assumed to be 'kAudioUnitManufacturer_Apple'. Both
-           'componentFlagsMask' and 'componentFlags' will be assumed '0'.
+ @abstract Creates a AudioComponentDescription based on 'componentType' and 
+           'componentSubType'. 'componentManufacturer' will be assumed to 
+           be 'kAudioUnitManufacturer_Apple'. Both 'componentFlagsMask' and 
+           'componentFlags' will be assumed '0'.
 */
 AudioComponentDescription TOAudioComponentDescription(OSType componentType, OSType componentSubType);
 

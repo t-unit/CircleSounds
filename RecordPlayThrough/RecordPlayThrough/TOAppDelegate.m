@@ -21,22 +21,22 @@
 //                                                 name: AVAudioSessionInterruptionNotification
 //                                               object: session];
     
-    NSError *error;
-    [session setCategory:AVAudioSessionCategoryMultiRoute error:&error];
-    
-    if (error) {
-        NSLog(@"%@", error);
-        return NO;
-    }
-    
-    [session setActive:YES error:&error];
-    
-    if (error) {
-        NSLog(@"%@", error);
-        return NO;
-    }
-    
-    NSLog(@"%@", [session currentRoute]);
+//    NSError *error;
+//    [session setCategory:AVAudioSessionCategoryMultiRoute error:&error];
+//    
+//    if (error) {
+//        NSLog(@"%@", error);
+//        return NO;
+//    }
+//    
+//    [session setActive:YES error:&error];
+//    
+//    if (error) {
+//        NSLog(@"%@", error);
+//        return NO;
+//    }
+//    
+//    NSLog(@"%@", [session currentRoute]);
     
     return YES;
 }

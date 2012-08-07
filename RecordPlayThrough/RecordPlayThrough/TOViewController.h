@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TORecorder.h"
 
 @interface TOViewController : UIViewController
+
+@property (strong, nonatomic) TORecorder *recoder;
 
 @end

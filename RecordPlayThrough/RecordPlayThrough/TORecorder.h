@@ -17,16 +17,14 @@
 /** 
  * Boolean defining wether current signals from the input should be played via output.
  */
-@property (readwrite, atomic) BOOL monitorInput;
+@property (readwrite, nonatomic, setter = setMonitorInput:) BOOL monitorInput;
 @property (weak, nonatomic) id<TORecorderDelegate> delegate;
 @property (readonly, nonatomic) NSURL *url;
+@property (readonly, nonatomic) BOOL isRecording;
 
-- (void)prepareForRecordingWithFileURL:(NSURL *)url;
+- (BOOL)prepareForRecordingWithFileURL:(NSURL *)url;
 
-- (void)startRecording;
+- (BOOL)startRecording;
 - (void)stopRecording;
-
-- (void)setUp;
-- (void)tearDown;
 
 @end
