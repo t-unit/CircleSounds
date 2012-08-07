@@ -8,7 +8,6 @@
 
 #import <Foundation/Foundation.h>
 #import <AudioToolbox/AudioToolbox.h>
-#import "TOCAShortcuts.h"
 
 @protocol TORecorderDelegate;
 
@@ -19,13 +18,15 @@
  * Boolean defining wether current signals from the input should be played via output.
  */
 @property (readwrite, atomic) BOOL monitorInput;
-
-//@property (assign, atomic) <some_type> monitorVolume;
-//@property (assign, atomic) <some_type> recordingVolume;
+@property (weak, nonatomic) id<TORecorderDelegate> delegate;
+@property (readonly, nonatomic) NSURL *url;
 
 - (void)prepareForRecordingWithFileURL:(NSURL *)url;
 
 - (void)startRecording;
 - (void)stopRecording;
+
+- (void)setUp;
+- (void)tearDown;
 
 @end

@@ -7,6 +7,7 @@
 //
 
 #import "TORecorder.h"
+#import "TOCAShortcuts.h"
 
 typedef struct {
     AudioUnit rioUnit;
@@ -18,8 +19,11 @@ typedef struct {
 @interface TORecorder ()
 
 @property (assign, readwrite) TORecorderState state;
+@property (assign, readwrite) BOOL readyForRecording;
+@property (assign, readwrite) BOOL isSetUp;
 
 @end
+
 
 @implementation TORecorder
 
@@ -38,7 +42,7 @@ typedef struct {
 
 - (void)prepareForRecordingWithFileURL:(NSURL *)url
 {
-    
+    self->_url = url;
 }
 
 
@@ -52,5 +56,18 @@ typedef struct {
 {
     
 }
+
+
+- (void)setUp
+{
+    
+}
+
+
+- (void)tearDown
+{
+    
+}
+
 
 @end
