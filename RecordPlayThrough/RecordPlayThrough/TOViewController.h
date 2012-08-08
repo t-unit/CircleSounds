@@ -13,4 +13,15 @@
 
 @property (strong, nonatomic) TORecorder *recoder;
 
+@property (weak, nonatomic) IBOutlet UIButton *monitorButton;
+@property (weak, nonatomic) IBOutlet UITextField *filenameField;
+
+
+- (IBAction)changeMonitorSetting:(id)sender;
+- (IBAction)prepareRecorder:(id)sender;
+- (IBAction)recordPressed:(id)sender;
+
+
+
+
 @end

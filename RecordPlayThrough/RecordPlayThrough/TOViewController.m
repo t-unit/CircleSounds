@@ -21,7 +21,9 @@
     
     
     self.recoder = [[TORecorder alloc] init];
-//    self.recoder.monitorInput = YES;
+    [self.recoder setUp];
+    
+    self.recoder.isMonitoringInput = YES;
 }
 
 - (void)didReceiveMemoryWarning
@@ -33,6 +35,42 @@
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     return YES;
+}
+
+
+- (IBAction)changeMonitorSetting:(id)sender
+{
+    self.recoder.isMonitoringInput = !self.recoder.isMonitoringInput;
+    self.monitorButton.selected = !self.monitorButton.selected;
+}
+
+
+- (IBAction)prepareRecorder:(id)sender
+{
+    NSString *filename = self.filenameField.text;
+    NSURL *documentDirectory = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
+    
+    NSURL *fileURL = [documentDirectory URLByAppendingPathComponent:filename];
+    
+    NSError *error;
+    
+    [self.recoder prepareForRecordingWithFileURL:fileURL error:&error];
+    
+    if (error) {
+        NSLog(@"%@", error);
+    }
+}
+
+
+- (IBAction)recordPressed:(id)sender
+{
+    if (self.recoder.isRecording) {
+        [self.recoder stopRecording];
+    }
+    else {
+        [self.recoder startRecording];
+    }
+    
 }
 
 @end
