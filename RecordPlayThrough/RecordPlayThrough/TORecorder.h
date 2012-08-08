@@ -20,7 +20,7 @@
 
 @property (weak, nonatomic) id<TORecorderDelegate> delegate;
 @property (readonly, nonatomic) NSURL *url;
-@property (readonly, atomic) BOOL isRecording;
+@property (readonly, nonatomic) BOOL isRecording;
 
 - (BOOL)prepareForRecordingWithFileURL:(NSURL *)url error:(NSError **)error;
 

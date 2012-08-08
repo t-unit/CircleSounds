@@ -9,7 +9,9 @@
 #import "TORecorder.h"
 
 #import "TOCAShortcuts.h"
+
 #import <AudioToolbox/AudioToolbox.h>
+#import <AVFoundation/AVAudioSession.h>
 
 
 @interface TORecorder ()
@@ -53,7 +55,7 @@ static OSStatus inputCallback(void                       *inRefCon,
         }
         
 #if DEBUG
-        printf("TORecorder: need to allocate more memory for audio buffer (new size: %ld | old size %ld)", necessaryBufferSize, recorder.actualBufferSize);
+        printf("TORecorder: need to allocate more memory for audio buffer (new size: %ld | old size %ld)\n", necessaryBufferSize, recorder.actualBufferSize);
 #endif
         
         recorder.inputBufferList->mBuffers[0].mData = malloc(necessaryBufferSize);
@@ -273,19 +275,22 @@ static OSStatus outputCallback(void                       *inRefCon,
     self.rioUnit = rioUnit;
     self.asbd = asbd;
     
+    
     // prepare buffers
     AudioBuffer buffer;
     AudioBufferList *bufferList = malloc(sizeof(bufferList));
-	
+    	
 	buffer.mNumberChannels = 2;
-	buffer.mDataByteSize = 0; // the size is unknown at this point (number of frames per callback is unknown)
-	buffer.mData = NULL;
+    
+    // double the actual buffer size. this prevents allocating more memory inside the callback most of the times
+	buffer.mDataByteSize = asbd.mSampleRate * [[AVAudioSession sharedInstance] IOBufferDuration] * buffer.mNumberChannels * asbd.mFramesPerPacket * asbd.mBytesPerPacket * 2;
+	buffer.mData = malloc(buffer.mDataByteSize);
     
 	bufferList->mNumberBuffers = 1;
 	bufferList->mBuffers[0] = buffer;
     
     self.inputBufferList = bufferList;
-    self.actualBufferSize = 0;
+    self.actualBufferSize = buffer.mDataByteSize;
     
     TOThrowOnError(AudioUnitInitialize(rioUnit));
     TOThrowOnError(AudioOutputUnitStart(rioUnit));

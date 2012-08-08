@@ -19,11 +19,7 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     
-    
     self.recoder = [[TORecorder alloc] init];
-    [self.recoder setUp];
-    
-    self.recoder.isMonitoringInput = YES;
 }
 
 - (void)didReceiveMemoryWarning
@@ -35,6 +31,15 @@
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     return YES;
+}
+
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    [self.recoder setUp];
+    self.recoder.isMonitoringInput = YES;
 }
 
 
@@ -66,9 +71,11 @@
 {
     if (self.recoder.isRecording) {
         [self.recoder stopRecording];
+        self.recordButton.selected = NO;
     }
     else {
         [self.recoder startRecording];
+        self.recordButton.selected = YES;
     }
     
 }

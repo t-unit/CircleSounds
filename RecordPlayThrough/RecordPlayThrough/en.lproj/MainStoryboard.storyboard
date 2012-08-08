@@ -35,7 +35,7 @@
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             </textField>
-                            <label translatesAutoresizingMaskIntoConstraints="NO" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" text="filname" adjustsFontSizeToFit="NO" autoshrinkMode="none" id="ujq-hf-Vif">
+                            <label translatesAutoresizingMaskIntoConstraints="NO" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" text="filename" adjustsFontSizeToFit="NO" autoshrinkMode="none" id="ujq-hf-Vif">
                                 <nil key="highlightedColor"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -78,7 +78,6 @@
                             <constraint firstItem="ujq-hf-Vif" firstAttribute="leading" secondItem="5" secondAttribute="leading" constant="66" id="N66-kg-ihh"/>
                             <constraint firstItem="bul-cI-iOp" firstAttribute="leading" secondItem="AsJ-nX-DcT" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="NDT-vC-8gS"/>
                             <constraint firstItem="bul-cI-iOp" firstAttribute="baseline" secondItem="AsJ-nX-DcT" secondAttribute="baseline" type="default" id="O6J-qK-YOe"/>
-                            <constraint firstItem="bul-cI-iOp" firstAttribute="top" secondItem="AsJ-nX-DcT" secondAttribute="top" type="default" id="ar2-Yr-F6I"/>
                             <constraint firstItem="ujq-hf-Vif" firstAttribute="top" secondItem="5" secondAttribute="top" constant="62" id="bRs-jE-m2A"/>
                             <constraint firstItem="ujq-hf-Vif" firstAttribute="leading" secondItem="cG0-2D-SRs" secondAttribute="leading" type="default" id="fJR-NB-QJP"/>
                             <constraint firstItem="AsJ-nX-DcT" firstAttribute="leading" secondItem="cG0-2D-SRs" secondAttribute="leading" type="default" id="lMZ-ER-T74"/>
@@ -91,6 +90,7 @@
                     <connections>
                         <outlet property="filenameField" destination="cG0-2D-SRs" id="KGi-d2-WoS"/>
                         <outlet property="monitorButton" destination="AsJ-nX-DcT" id="7E7-r1-XeT"/>
+                        <outlet property="recordButton" destination="bul-cI-iOp" id="e7C-Ag-YXL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3" sceneMemberID="firstResponder"/>

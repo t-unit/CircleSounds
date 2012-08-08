@@ -15,6 +15,7 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *monitorButton;
 @property (weak, nonatomic) IBOutlet UITextField *filenameField;
+@property (weak, nonatomic) IBOutlet UIButton *recordButton;
 
 
 - (IBAction)changeMonitorSetting:(id)sender;
