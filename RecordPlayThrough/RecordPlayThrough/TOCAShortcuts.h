@@ -50,9 +50,7 @@ void TOErrorHandler(OSStatus status, NSError *__autoreleasing *error, NSString *
  The function will throw an NSException if status is anything else then noErr.
  
  @param status The status which should be checked for any error.
- @exception NSException Thrown if the given status is not 'noErr'. The user info 
-            dictionary will contain a single key value pair:
- - 'kTOErrorStatusStringKey' a string representation of the error code
+ @exception NSException Thrown if the given status is not 'noErr'.
 */
 void TOThrowOnError(OSStatus status);
 
