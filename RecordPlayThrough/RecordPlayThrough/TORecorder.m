@@ -7,29 +7,32 @@
 //
 
 #import "TORecorder.h"
+
 #import "TOCAShortcuts.h"
-
-
-typedef struct {
-    AudioUnit rioUnit;
-    AudioStreamBasicDescription asbd;
-    AudioBufferList inputBufferList;
-    UInt32 actualBufferSize;
-} TORecorderState;
+#import <AudioToolbox/AudioToolbox.h>
 
 
 @interface TORecorder ()
 
-@property (assign, readwrite) BOOL readyForRecording;
-@property (assign, readwrite) BOOL isSetUp;
-@property (assign, readwrite) TORecorderState state;
+@property (assign, atomic) BOOL isReadyForRecording;
+@property (assign, atomic) BOOL isSetUp;
+
+@property (assign, nonatomic) AudioUnit rioUnit;
+@property (assign, nonatomic) AudioStreamBasicDescription asbd;
+
+@property (assign, nonatomic) AudioBufferList *inputBufferList;
+@property (assign, nonatomic) UInt32 actualBufferSize;
+
+@property (assign, nonatomic) AudioFileID audioFile;
+@property (assign, nonatomic) SInt64 numPacketsWritten;
 
 @end
 
 
 /**
  This callback is called when new audio data from the microphone is
- available.
+ available. It will temporary store the new data and write it to disk
+ if the recorder is currently recording.
  */
 static OSStatus inputCallback(void                       *inRefCon,
                               AudioUnitRenderActionFlags *ioActionFlags,
@@ -38,35 +41,52 @@ static OSStatus inputCallback(void                       *inRefCon,
                               UInt32                      inNumberFrames,
                               AudioBufferList            *ioData)
 {
-	TORecorderState *recorderState = (TORecorderState *)inRefCon;
+	TORecorder *recorder = (__bridge TORecorder *)inRefCon;
 	
 	// prepare buffer
-    UInt32 necessaryBufferSize = inNumberFrames * recorderState->asbd.mBytesPerFrame;
+    UInt32 necessaryBufferSize = inNumberFrames * recorder.asbd.mBytesPerFrame;
     
     // try not to allocate new buffers all the time
-    if (recorderState->actualBufferSize < necessaryBufferSize) {
-        if (recorderState->actualBufferSize > 0) {
-            free(recorderState->inputBufferList.mBuffers[0].mData);
+    if (recorder.actualBufferSize < necessaryBufferSize) {
+        if (recorder.actualBufferSize > 0) {
+            free(recorder.inputBufferList->mBuffers[0].mData);
         }
         
 #if DEBUG
-        printf("TORecorder: need to allocate more memory for audio buffer (new size: %ld | old size %ld)", necessaryBufferSize, recorderState->actualBufferSize);
+        printf("TORecorder: need to allocate more memory for audio buffer (new size: %ld | old size %ld)", necessaryBufferSize, recorder.actualBufferSize);
 #endif
         
-        recorderState->inputBufferList.mBuffers[0].mData = malloc(necessaryBufferSize);
-        recorderState->actualBufferSize = necessaryBufferSize;
+        recorder.inputBufferList->mBuffers[0].mData = malloc(necessaryBufferSize);
+        recorder.actualBufferSize = necessaryBufferSize;
     }
     
-    recorderState->inputBufferList.mBuffers[0].mDataByteSize = necessaryBufferSize;
+    recorder.inputBufferList->mBuffers[0].mDataByteSize = necessaryBufferSize;
     
 
     // render audio and but the new data into the buffer
-    TOThrowOnError(AudioUnitRender(recorderState->rioUnit,
+    TOThrowOnError(AudioUnitRender(recorder.rioUnit,
                                    ioActionFlags,
                                    inTimeStamp,
                                    inBusNumber,
                                    inNumberFrames,
-                                   &recorderState->inputBufferList));
+                                   recorder.inputBufferList));
+    
+    
+    
+    // write the rendered audio into a file
+    if (recorder.isRecording) {
+        UInt32 numPackets = recorder.inputBufferList->mBuffers[0].mDataByteSize / recorder.asbd.mBytesPerPacket;
+        
+        TOThrowOnError(AudioFileWritePackets(recorder.audioFile,
+                                             false,
+                                             recorder.inputBufferList->mBuffers[0].mDataByteSize,
+                                             NULL,
+                                             recorder.numPacketsWritten,
+                                             &numPackets,
+                                             recorder.inputBufferList->mBuffers[0].mData));
+        
+        recorder.numPacketsWritten += numPackets;
+    }
 	
     return noErr;
 }
@@ -74,7 +94,7 @@ static OSStatus inputCallback(void                       *inRefCon,
 
 /**
  This callback is called when the audioUnit needs new data to play through the
- speakers. If you don't have any, just don't write anything in the buffers
+ speakers. 
  */
 static OSStatus outputCallback(void                       *inRefCon,
                                AudioUnitRenderActionFlags *ioActionFlags,
@@ -83,35 +103,27 @@ static OSStatus outputCallback(void                       *inRefCon,
                                UInt32                      inNumberFrames,
                                AudioBufferList            *ioData)
 {
-    TORecorderState *recorderState = (TORecorderState *)inRefCon;
+    TORecorder *recorder = (__bridge TORecorder *)inRefCon;
     
-    // Notes: ioData contains buffers (may be more than one!)
-    // Fill them up as much as you can. Remember to set the size value in each buffer to match how
-    // much data is in the buffer.
-	
-	for (int i=0; i < ioData->mNumberBuffers; i++) { // in practice we will only ever have 1 buffer, since audio format is mono
-		AudioBuffer buffer = ioData->mBuffers[i];
-		
-        //		NSLog(@"  Buffer %d has %d channels and wants %d bytes of data.", i, buffer.mNumberChannels, buffer.mDataByteSize);
-		
-		// copy temporary buffer data to output buffer
-		UInt32 size = MIN(buffer.mDataByteSize, recorderState->inputBufferList.mBuffers[0].mDataByteSize); // dont copy more data then we have, or then fits
-		memcpy(buffer.mData, recorderState->inputBufferList.mBuffers[0].mData, size);
-		buffer.mDataByteSize = size; // indicate how much data we wrote in the buffer
-		
-		// uncomment to hear random noise
-		/*
-         UInt16 *frameBuffer = buffer.mData;
-         for (int j = 0; j < inNumberFrames; j++) {
-         frameBuffer[j] = rand();
-         }
-         */
-		
-	}
+    if (!recorder.isMonitoringInput || !recorder.inputBufferList->mBuffers[0].mDataByteSize) {
+        for (int i=0; i < ioData->mNumberBuffers; i++) {
+            AudioBuffer buffer = ioData->mBuffers[i];
+            memset(buffer.mData, 0, buffer.mDataByteSize); // fill in zeros
+        }
+    }
+    else {
+        for (int i=0; i < ioData->mNumberBuffers; i++) {
+            AudioBuffer buffer = ioData->mBuffers[i];
+
+            UInt32 size = MIN(buffer.mDataByteSize, recorder.inputBufferList->mBuffers[0].mDataByteSize); // cpoy as much data as possible
+            memcpy(buffer.mData, recorder.inputBufferList->mBuffers[0].mData, size);
+            buffer.mDataByteSize = size; // indicate how much data we wrote into the buffer
+            
+        }
+    }
 	
     return noErr;
 }
-
 
 
 
@@ -123,55 +135,45 @@ static OSStatus outputCallback(void                       *inRefCon,
     self = [super init];
     
     if (self) {
-        [self setUp];
     }
     
     return self;
 }
 
 
-- (void)setMonitorInput:(BOOL)monitorInput
+- (void)setIsRecording:(BOOL)isRecording
 {
-    self->_monitorInput = monitorInput;
-    
-    if (self.isSetUp) {
-        // enable/disable playback
-        UInt32 flag = monitorInput;
-        
-        TOThrowOnError(AudioUnitSetProperty(self.state.rioUnit,
-                                            kAudioOutputUnitProperty_EnableIO,
-                                            kAudioUnitScope_Output,
-                                            kOutputBus,
-                                            &flag,
-                                            sizeof(flag)));
+    @synchronized(self)
+    {
+        _isRecording = isRecording;
     }
 }
 
 
-
-- (BOOL)prepareForRecordingWithFileURL:(NSURL *)url
+- (BOOL)prepareForRecordingWithFileURL:(NSURL *)url error:(NSError *__autoreleasing *)error
 {
-//    if (!self.isSetUp) {
-//        return NO;
-//    }
+    if (!self.isSetUp) {
+        if (error) {
+            *error = [NSError errorWithDomain:@"TORecorderErrorDomain" code:0 userInfo:nil];
+        }
+        
+        return NO;
+    }
+    
+    NSError *intError;
+    
+    // set up output file
+    TOErrorHandler(AudioFileCreateWithURL((__bridge CFURLRef)url,
+                                           kAudioFileWAVEType,
+                                           &_asbd,
+                                           kAudioFileWritePermission,
+                                           &_audioFile),
+                   &intError,
+                   @"Setting up output audio file failed!");
+    
     
     self->_url = url;
-    
-    
-    // prepare buffers
-    AudioBuffer buffer;
-    AudioBufferList bufferList;
-	
-	buffer.mNumberChannels = 2;
-	buffer.mDataByteSize = 0; // the size is unknown at this point (number of frames per callback is unknown)
-	buffer.mData = NULL;
-
-	bufferList.mNumberBuffers = 1;
-	bufferList.mBuffers[0] = buffer;
-    
-    self->_state.inputBufferList = bufferList;
-    self->_state.actualBufferSize = 0;
-    
+    self.isReadyForRecording = YES;
     
     return YES;
 }
@@ -179,26 +181,23 @@ static OSStatus outputCallback(void                       *inRefCon,
 
 - (BOOL)startRecording
 {
-    if (!self.readyForRecording) {
+    if (!self.isReadyForRecording) {
         return NO;
     }
-//    
-//    TOThrowOnError(AudioOutputUnitStart(rioUnit));
-//    
+
+    self.isRecording = YES;
+    
     return YES;
 }
 
 
 - (void)stopRecording
 {
-//    TOThrowOnError(AudioOutputUnitStop(rioUnit));
-    self.readyForRecording = NO;
-    
-    
-    if (self.state.actualBufferSize) {
-        free(self.state.inputBufferList.mBuffers[0].mData);
-        self->_state.actualBufferSize = 0;
-        self->_state.inputBufferList.mBuffers[0].mData = NULL;
+    if (self.isRecording) {
+        self.isRecording = NO;
+        self.isReadyForRecording = NO;
+        
+        TOThrowOnError(AudioFileClose(self.audioFile));
     }
 }
 
@@ -221,15 +220,12 @@ static OSStatus outputCallback(void                       *inRefCon,
 
 	
 	// Enable IO for playback
-    if (!self.monitorInput) {
-        TOThrowOnError(AudioUnitSetProperty(rioUnit,
-                                            kAudioOutputUnitProperty_EnableIO,
-                                            kAudioUnitScope_Output,
-                                            kOutputBus,
-                                            &flag,
-                                            sizeof(flag)));
-    }
-    
+    TOThrowOnError(AudioUnitSetProperty(rioUnit,
+                                        kAudioOutputUnitProperty_EnableIO,
+                                        kAudioUnitScope_Output,
+                                        kOutputBus,
+                                        &flag,
+                                        sizeof(flag)));
 
     
     // Set recording/playback format
@@ -253,7 +249,7 @@ static OSStatus outputCallback(void                       *inRefCon,
     // Set input callback
 	AURenderCallbackStruct callbackStruct;
 	callbackStruct.inputProc = inputCallback;
-	callbackStruct.inputProcRefCon = &self->_state;
+	callbackStruct.inputProcRefCon = (__bridge void *)(self);
     
 	TOThrowOnError(AudioUnitSetProperty(rioUnit,
                                         kAudioOutputUnitProperty_SetInputCallback,
@@ -264,7 +260,7 @@ static OSStatus outputCallback(void                       *inRefCon,
 	
 	// Set output callback
 	callbackStruct.inputProc = outputCallback;
-    callbackStruct.inputProcRefCon = &self->_state;
+    callbackStruct.inputProcRefCon = (__bridge void *)(self);
     
 	TOThrowOnError(AudioUnitSetProperty(rioUnit,
                                         kAudioUnitProperty_SetRenderCallback,
@@ -272,26 +268,28 @@ static OSStatus outputCallback(void                       *inRefCon,
                                         kOutputBus,
                                         &callbackStruct,
                                         sizeof(callbackStruct)));
+
     
+    self.rioUnit = rioUnit;
+    self.asbd = asbd;
     
-    flag = 0;
-	TOThrowOnError(AudioUnitSetProperty(rioUnit,
-                                        kAudioUnitProperty_ShouldAllocateBuffer,
-                                        kAudioUnitScope_Output,
-                                        kInputBus,
-								  &flag,
-								  sizeof(flag)));
+    // prepare buffers
+    AudioBuffer buffer;
+    AudioBufferList *bufferList = malloc(sizeof(bufferList));
+	
+	buffer.mNumberChannels = 2;
+	buffer.mDataByteSize = 0; // the size is unknown at this point (number of frames per callback is unknown)
+	buffer.mData = NULL;
     
+	bufferList->mNumberBuffers = 1;
+	bufferList->mBuffers[0] = buffer;
     
-    
-    self->_state.rioUnit = rioUnit;
-    self->_state.asbd = asbd;
-    
+    self.inputBufferList = bufferList;
+    self.actualBufferSize = 0;
     
     TOThrowOnError(AudioUnitInitialize(rioUnit));
-    
-    [self prepareForRecordingWithFileURL:nil];
     TOThrowOnError(AudioOutputUnitStart(rioUnit));
+    
     
     self.isSetUp = YES;
 }
@@ -299,7 +297,19 @@ static OSStatus outputCallback(void                       *inRefCon,
 
 - (void)tearDown
 {
-    
+    if (self.isSetUp) {
+        [self stopRecording];
+        self.isSetUp = NO;
+        
+        TOThrowOnError(AudioOutputUnitStop(self.rioUnit));
+        TOThrowOnError(AudioUnitUninitialize(self.rioUnit));
+        
+        if (self.actualBufferSize) {
+            free(self.inputBufferList->mBuffers[0].mData);
+        }
+        
+        free(self.inputBufferList);
+    }
 }
 
 

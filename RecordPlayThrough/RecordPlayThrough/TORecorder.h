@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <AudioToolbox/AudioToolbox.h>
 
 @protocol TORecorderDelegate;
 
@@ -17,14 +16,18 @@
 /** 
  * Boolean defining wether current signals from the input should be played via output.
  */
-@property (readwrite, nonatomic, setter = setMonitorInput:) BOOL monitorInput;
+@property (readwrite, atomic) BOOL isMonitoringInput;
+
 @property (weak, nonatomic) id<TORecorderDelegate> delegate;
 @property (readonly, nonatomic) NSURL *url;
-@property (readonly, nonatomic) BOOL isRecording;
+@property (readonly, atomic) BOOL isRecording;
 
-- (BOOL)prepareForRecordingWithFileURL:(NSURL *)url;
+- (BOOL)prepareForRecordingWithFileURL:(NSURL *)url error:(NSError **)error;
 
 - (BOOL)startRecording;
 - (void)stopRecording;
+
+- (void)setUp;
+- (void)tearDown;
 
 @end
