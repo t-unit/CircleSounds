@@ -11,6 +11,7 @@
 #import "TOCAShortcuts.h"
 
 #import <AudioToolbox/AudioToolbox.h>
+#import <AVFoundation/AVAudioSession.h>
 
 
 @interface TORecorder ()
@@ -21,6 +22,9 @@
 @property (assign, nonatomic) AudioUnit rioUnit;
 @property (assign, nonatomic) AudioStreamBasicDescription asbd;
 
+@property (assign, nonatomic) AudioBufferList *inputBufferList;
+@property (assign, nonatomic) UInt32 actualBufferSize;
+
 @property (assign, nonatomic) AudioFileID audioFile;
 @property (assign, nonatomic) SInt64 numPacketsWritten;
 
@@ -28,10 +32,73 @@
 
 
 /**
+ This callback is called when new audio data from the microphone is
+ available. It will temporary store the new data and write it to disk
+ if the recorder is currently recording.
+ */
+static OSStatus inputCallback(void                       *inRefCon,
+                              AudioUnitRenderActionFlags *ioActionFlags,
+                              const AudioTimeStamp       *inTimeStamp,
+                              UInt32                      inBusNumber,
+                              UInt32                      inNumberFrames,
+                              AudioBufferList            *ioData)
+{
+	TORecorder *recorder = (__bridge TORecorder *)inRefCon;
+	
+	// prepare buffer
+    UInt32 necessaryBufferSize = inNumberFrames * recorder.asbd.mBytesPerFrame;
+    
+    // try not to allocate new buffers all the time
+    if (recorder.actualBufferSize < necessaryBufferSize) {
+        if (recorder.actualBufferSize > 0) {
+            free(recorder.inputBufferList->mBuffers[0].mData);
+        }
+        
+#if DEBUG
+        printf("TORecorder: need to allocate more memory for audio buffer (new size: %ld | old size %ld)\n", necessaryBufferSize, recorder.actualBufferSize);
+#endif
+        
+        recorder.inputBufferList->mBuffers[0].mData = malloc(necessaryBufferSize);
+        recorder.actualBufferSize = necessaryBufferSize;
+    }
+    
+    recorder.inputBufferList->mBuffers[0].mDataByteSize = necessaryBufferSize;
+    
+
+    // render audio and but the new data into the buffer
+    TOThrowOnError(AudioUnitRender(recorder.rioUnit,
+                                   ioActionFlags,
+                                   inTimeStamp,
+                                   inBusNumber,
+                                   inNumberFrames,
+                                   recorder.inputBufferList));
+    
+    
+    
+    // write the rendered audio into a file
+    if (recorder.isRecording) {
+        UInt32 numPackets = recorder.inputBufferList->mBuffers[0].mDataByteSize / recorder.asbd.mBytesPerPacket;
+        
+        TOThrowOnError(AudioFileWritePackets(recorder.audioFile,
+                                             false,
+                                             recorder.inputBufferList->mBuffers[0].mDataByteSize,
+                                             NULL,
+                                             recorder.numPacketsWritten,
+                                             &numPackets,
+                                             recorder.inputBufferList->mBuffers[0].mData));
+        
+        recorder.numPacketsWritten += numPackets;
+    }
+	
+    return noErr;
+}
+
+
+/**
  This callback is called when the audioUnit needs new data to play through the
  speakers. 
  */
-static OSStatus recorderCallback(void                     *inRefCon,
+static OSStatus outputCallback(void                       *inRefCon,
                                AudioUnitRenderActionFlags *ioActionFlags,
                                const AudioTimeStamp       *inTimeStamp,
                                UInt32                      inBusNumber,
@@ -40,36 +107,20 @@ static OSStatus recorderCallback(void                     *inRefCon,
 {
     TORecorder *recorder = (__bridge TORecorder *)inRefCon;
     
-    // get the data from the rio's input bus
-    TOThrowOnError(AudioUnitRender(recorder.rioUnit,
-                                   ioActionFlags,
-                                   inTimeStamp,
-                                   kInputBus,
-                                   inNumberFrames,
-                                   ioData));
-    
-    
-    // write the rendered audio into a file
-    if (recorder.isRecording) {
-        UInt32 numPackets = ioData->mBuffers[0].mDataByteSize / recorder.asbd.mBytesPerPacket;
-        
-        TOThrowOnError(AudioFileWritePackets(recorder.audioFile,
-                                             false,
-                                             ioData->mBuffers[0].mDataByteSize,
-                                             NULL,
-                                             recorder.numPacketsWritten,
-                                             &numPackets,
-                                             ioData->mBuffers[0].mData));
-        
-        recorder.numPacketsWritten += numPackets;
-    }
-    
-    
-    // silence output
-    if (!recorder.isMonitoringInput) {
-        for (UInt32 i=0; i < ioData->mNumberBuffers; i++) {
+    if (!recorder.isMonitoringInput || !recorder.inputBufferList->mBuffers[0].mDataByteSize) {
+        for (int i=0; i < ioData->mNumberBuffers; i++) {
             AudioBuffer buffer = ioData->mBuffers[i];
             memset(buffer.mData, 0, buffer.mDataByteSize); // fill in zeros
+        }
+    }
+    else {
+        for (int i=0; i < ioData->mNumberBuffers; i++) {
+            AudioBuffer buffer = ioData->mBuffers[i];
+
+            UInt32 size = MIN(buffer.mDataByteSize, recorder.inputBufferList->mBuffers[0].mDataByteSize); // cpoy as much data as possible
+            memcpy(buffer.mData, recorder.inputBufferList->mBuffers[0].mData, size);
+            buffer.mDataByteSize = size; // indicate how much data we wrote into the buffer
+            
         }
     }
 	
@@ -80,9 +131,15 @@ static OSStatus recorderCallback(void                     *inRefCon,
 
 @implementation TORecorder
 
-- (void)dealloc
+
+- (id)init
 {
-    [self tearDown];
+    self = [super init];
+    
+    if (self) {
+    }
+    
+    return self;
 }
 
 
@@ -109,10 +166,10 @@ static OSStatus recorderCallback(void                     *inRefCon,
     
     // set up output file
     TOErrorHandler(AudioFileCreateWithURL((__bridge CFURLRef)url,
-                                          kAudioFileWAVEType,
-                                          &_asbd,
-                                          kAudioFileWritePermission,
-                                          &_audioFile),
+                                           kAudioFileWAVEType,
+                                           &_asbd,
+                                           kAudioFileWritePermission,
+                                           &_audioFile),
                    &intError,
                    @"Setting up output audio file failed!");
     
@@ -189,10 +246,22 @@ static OSStatus recorderCallback(void                     *inRefCon,
                                         kOutputBus,
                                         &asbd,
                                         sizeof(asbd)));
-
-	// Set up callback
-    AURenderCallbackStruct callbackStruct;
-	callbackStruct.inputProc = recorderCallback;
+    
+    
+    // Set input callback
+	AURenderCallbackStruct callbackStruct;
+	callbackStruct.inputProc = inputCallback;
+	callbackStruct.inputProcRefCon = (__bridge void *)(self);
+    
+	TOThrowOnError(AudioUnitSetProperty(rioUnit,
+                                        kAudioOutputUnitProperty_SetInputCallback,
+                                        kAudioUnitScope_Global,
+                                        kInputBus,
+                                        &callbackStruct,
+                                        sizeof(callbackStruct)));
+	
+	// Set output callback
+	callbackStruct.inputProc = outputCallback;
     callbackStruct.inputProcRefCon = (__bridge void *)(self);
     
 	TOThrowOnError(AudioUnitSetProperty(rioUnit,
@@ -205,6 +274,23 @@ static OSStatus recorderCallback(void                     *inRefCon,
     
     self.rioUnit = rioUnit;
     self.asbd = asbd;
+    
+    
+    // prepare buffers
+    AudioBuffer buffer;
+    AudioBufferList *bufferList = malloc(sizeof(bufferList));
+    	
+	buffer.mNumberChannels = 2;
+    
+    // double the actual buffer size. this prevents allocating more memory inside the callback most of the times
+	buffer.mDataByteSize = asbd.mSampleRate * [[AVAudioSession sharedInstance] IOBufferDuration] * buffer.mNumberChannels * asbd.mFramesPerPacket * asbd.mBytesPerPacket * 2;
+	buffer.mData = malloc(buffer.mDataByteSize);
+    
+	bufferList->mNumberBuffers = 1;
+	bufferList->mBuffers[0] = buffer;
+    
+    self.inputBufferList = bufferList;
+    self.actualBufferSize = buffer.mDataByteSize;
     
     TOThrowOnError(AudioUnitInitialize(rioUnit));
     TOThrowOnError(AudioOutputUnitStart(rioUnit));
@@ -222,7 +308,14 @@ static OSStatus recorderCallback(void                     *inRefCon,
         
         TOThrowOnError(AudioOutputUnitStop(self.rioUnit));
         TOThrowOnError(AudioUnitUninitialize(self.rioUnit));
+        
+        if (self.actualBufferSize) {
+            free(self.inputBufferList->mBuffers[0].mData);
+        }
+        
+        free(self.inputBufferList);
     }
 }
+
 
 @end
