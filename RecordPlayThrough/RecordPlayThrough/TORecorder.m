@@ -39,11 +39,11 @@
  speakers.
  */
 static OSStatus recorderCallback(void                       *inRefCon,
-                              AudioUnitRenderActionFlags *ioActionFlags,
-                              const AudioTimeStamp       *inTimeStamp,
-                              UInt32                      inBusNumber,
-                              UInt32                      inNumberFrames,
-                              AudioBufferList            *ioData)
+                                 AudioUnitRenderActionFlags *ioActionFlags,
+                                 const AudioTimeStamp       *inTimeStamp,
+                                 UInt32                      inBusNumber,
+                                 UInt32                      inNumberFrames,
+                                 AudioBufferList            *ioData)
 {
 	TORecorder *recorder = (__bridge TORecorder *)inRefCon;
 	
@@ -84,23 +84,22 @@ static OSStatus recorderCallback(void                       *inRefCon,
 }
 
 
-
-
-
 - (void)dealloc
 {
     [self tearDown];
-    }
+}
     
 
 - (void)setIsRecording:(BOOL)isRecording
 {
         _isRecording = isRecording;
-    }
+}
 
 
 - (BOOL)prepareForRecordingWithFileURL:(NSURL *)url error:(NSError *__autoreleasing *)error
 {
+    NSParameterAssert(url);
+    
     if (!self.isSetUp) {
         if (error) {
             *error = [NSError errorWithDomain:@"TORecorderErrorDomain" code:0 userInfo:nil];
@@ -222,7 +221,7 @@ static OSStatus recorderCallback(void                       *inRefCon,
         
         TOThrowOnError(AudioOutputUnitStop(_rioUnit));
         TOThrowOnError(AudioUnitUninitialize(_rioUnit));
-        }
     }
+}
 
 @end

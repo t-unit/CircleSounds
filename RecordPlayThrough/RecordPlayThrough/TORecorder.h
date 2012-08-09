@@ -33,6 +33,7 @@
 /**
  Needs to be called before 'startRecording'. Returns 'YES' on success.
  Return 'NO' if recorder has not been 'setup' or some other error has occured.
+ An exception will be thrown if 'url' is 'nil'.
  */
 - (BOOL)prepareForRecordingWithFileURL:(NSURL *)url error:(NSError **)error;
 
