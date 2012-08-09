@@ -17,7 +17,7 @@
 {
     AudioUnit _rioUnit;
     AudioStreamBasicDescription _asbd;
-    
+
     AudioFileID _audioFile;
     SInt64 _numPacketsWritten;
     
@@ -39,14 +39,14 @@
  speakers.
  */
 static OSStatus recorderCallback(void                       *inRefCon,
-                                 AudioUnitRenderActionFlags *ioActionFlags,
-                                 const AudioTimeStamp       *inTimeStamp,
-                                 UInt32                      inBusNumber,
-                                 UInt32                      inNumberFrames,
-                                 AudioBufferList            *ioData)
+                              AudioUnitRenderActionFlags *ioActionFlags,
+                              const AudioTimeStamp       *inTimeStamp,
+                              UInt32                      inBusNumber,
+                              UInt32                      inNumberFrames,
+                              AudioBufferList            *ioData)
 {
-    TORecorder *recorder = (__bridge TORecorder *)inRefCon;
-    
+	TORecorder *recorder = (__bridge TORecorder *)inRefCon;
+	
     // get the data from the rio's input bus
     TOThrowOnError(AudioUnitRender(recorder->_rioUnit,
                                    ioActionFlags,
@@ -70,8 +70,8 @@ static OSStatus recorderCallback(void                       *inRefCon,
         
         recorder->_numPacketsWritten += numPackets;
     }
-    
-    
+	
+
     // silence output
     if (!recorder->_isMonitoringInput) {
         for (UInt32 i=0; i < ioData->mNumberBuffers; i++) {
@@ -79,7 +79,7 @@ static OSStatus recorderCallback(void                       *inRefCon,
             memset(buffer.mData, 0, buffer.mDataByteSize); // fill in zeros
         }
     }
-	
+
     return noErr;
 }
 
@@ -90,13 +90,13 @@ static OSStatus recorderCallback(void                       *inRefCon,
 - (void)dealloc
 {
     [self tearDown];
-}
-
+    }
+    
 
 - (void)setIsRecording:(BOOL)isRecording
 {
-    _isRecording = isRecording;
-}
+        _isRecording = isRecording;
+    }
 
 
 - (BOOL)prepareForRecordingWithFileURL:(NSURL *)url error:(NSError *__autoreleasing *)error
@@ -113,10 +113,10 @@ static OSStatus recorderCallback(void                       *inRefCon,
     
     // set up output file
     TOErrorHandler(AudioFileCreateWithURL((__bridge CFURLRef)url,
-                                          kAudioFileWAVEType,
-                                          &_asbd,
-                                          kAudioFileWritePermission,
-                                          &_audioFile),
+                                           kAudioFileWAVEType,
+                                           &_asbd,
+                                           kAudioFileWritePermission,
+                                           &_audioFile),
                    &intError,
                    @"Setting up output audio file failed!");
     
@@ -192,11 +192,11 @@ static OSStatus recorderCallback(void                       *inRefCon,
                                         kOutputBus,
                                         &_asbd,
                                         sizeof(_asbd)));
-
+    
 	// Set up callback
-    AURenderCallbackStruct callbackStruct;
+	AURenderCallbackStruct callbackStruct;
 	callbackStruct.inputProc = recorderCallback;
-    callbackStruct.inputProcRefCon = (__bridge void *)(self);
+	callbackStruct.inputProcRefCon = (__bridge void *)(self);
     
 	TOThrowOnError(AudioUnitSetProperty(_rioUnit,
                                         kAudioUnitProperty_SetRenderCallback,
@@ -222,7 +222,7 @@ static OSStatus recorderCallback(void                       *inRefCon,
         
         TOThrowOnError(AudioOutputUnitStop(_rioUnit));
         TOThrowOnError(AudioUnitUninitialize(_rioUnit));
+        }
     }
-}
 
 @end

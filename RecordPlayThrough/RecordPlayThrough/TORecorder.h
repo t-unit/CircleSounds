@@ -13,20 +13,20 @@
 
 @interface TORecorder : NSObject
 
-/** 
+/**
  Boolean defining wether current signals from the input should be played via output.
  */
-@property (readwrite, atomic) BOOL isMonitoringInput;
+@property (readwrite, nonatomic) BOOL isMonitoringInput;
 
 
 /**
  Returns the url set via 'prepareForRecordingWithURL:error:'. Does return garbage
- value before 'prepareForRecordingWithURL:error:' and after 'stopRecording' was 
+ value before 'prepareForRecordingWithURL:error:' and after 'stopRecording' was
  called.
  */
 @property (readonly, nonatomic) NSURL *url;
 
-@property (readonly, atomic) BOOL isRecording;
+@property (readonly, nonatomic) BOOL isRecording;
 @property (weak, nonatomic) id<TORecorderDelegate> delegate;
 
 
@@ -38,7 +38,7 @@
 
 
 /**
- Starts recording. Will return 'NO' and will not start recording if 
+ Starts recording. Will return 'NO' and will not start recording if
  'prepareForRecordingWithFileURL:error:' has not been called before.
  */
 - (BOOL)startRecording;
