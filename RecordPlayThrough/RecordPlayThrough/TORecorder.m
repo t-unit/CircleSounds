@@ -14,34 +14,41 @@
 
 
 @interface TORecorder ()
+{
+    AudioUnit _rioUnit;
+    AudioStreamBasicDescription _asbd;
+    
+    AudioFileID _audioFile;
+    SInt64 _numPacketsWritten;
+    
+    BOOL _isRecording;
+    BOOL _isMonitoringInput;
+}
 
 @property (assign, atomic) BOOL isReadyForRecording;
 @property (assign, atomic) BOOL isSetUp;
 
-@property (assign, nonatomic) AudioUnit rioUnit;
-@property (assign, nonatomic) AudioStreamBasicDescription asbd;
-
-@property (assign, nonatomic) AudioFileID audioFile;
-@property (assign, nonatomic) SInt64 numPacketsWritten;
-
 @end
 
 
+
+@implementation TORecorder
+
 /**
  This callback is called when the audioUnit needs new data to play through the
- speakers. 
+ speakers.
  */
-static OSStatus recorderCallback(void                     *inRefCon,
-                               AudioUnitRenderActionFlags *ioActionFlags,
-                               const AudioTimeStamp       *inTimeStamp,
-                               UInt32                      inBusNumber,
-                               UInt32                      inNumberFrames,
-                               AudioBufferList            *ioData)
+static OSStatus recorderCallback(void                       *inRefCon,
+                                 AudioUnitRenderActionFlags *ioActionFlags,
+                                 const AudioTimeStamp       *inTimeStamp,
+                                 UInt32                      inBusNumber,
+                                 UInt32                      inNumberFrames,
+                                 AudioBufferList            *ioData)
 {
     TORecorder *recorder = (__bridge TORecorder *)inRefCon;
     
     // get the data from the rio's input bus
-    TOThrowOnError(AudioUnitRender(recorder.rioUnit,
+    TOThrowOnError(AudioUnitRender(recorder->_rioUnit,
                                    ioActionFlags,
                                    inTimeStamp,
                                    kInputBus,
@@ -50,23 +57,23 @@ static OSStatus recorderCallback(void                     *inRefCon,
     
     
     // write the rendered audio into a file
-    if (recorder.isRecording) {
-        UInt32 numPackets = ioData->mBuffers[0].mDataByteSize / recorder.asbd.mBytesPerPacket;
+    if (recorder->_isRecording) {
+        UInt32 numPackets = ioData->mBuffers[0].mDataByteSize / recorder->_asbd.mBytesPerPacket;
         
-        TOThrowOnError(AudioFileWritePackets(recorder.audioFile,
+        TOThrowOnError(AudioFileWritePackets(recorder->_audioFile,
                                              false,
                                              ioData->mBuffers[0].mDataByteSize,
                                              NULL,
-                                             recorder.numPacketsWritten,
+                                             recorder->_numPacketsWritten,
                                              &numPackets,
                                              ioData->mBuffers[0].mData));
         
-        recorder.numPacketsWritten += numPackets;
+        recorder->_numPacketsWritten += numPackets;
     }
     
     
     // silence output
-    if (!recorder.isMonitoringInput) {
+    if (!recorder->_isMonitoringInput) {
         for (UInt32 i=0; i < ioData->mNumberBuffers; i++) {
             AudioBuffer buffer = ioData->mBuffers[i];
             memset(buffer.mData, 0, buffer.mDataByteSize); // fill in zeros
@@ -78,7 +85,7 @@ static OSStatus recorderCallback(void                     *inRefCon,
 
 
 
-@implementation TORecorder
+
 
 - (void)dealloc
 {
@@ -88,10 +95,7 @@ static OSStatus recorderCallback(void                     *inRefCon,
 
 - (void)setIsRecording:(BOOL)isRecording
 {
-    @synchronized(self)
-    {
-        _isRecording = isRecording;
-    }
+    _isRecording = isRecording;
 }
 
 
@@ -142,21 +146,20 @@ static OSStatus recorderCallback(void                     *inRefCon,
         self.isRecording = NO;
         self.isReadyForRecording = NO;
         
-        TOThrowOnError(AudioFileClose(self.audioFile));
+        TOThrowOnError(AudioFileClose(_audioFile));
     }
 }
 
 
 - (void)setUp
 {
-    AudioUnit rioUnit;
     TOThrowOnError(TOAudioUnitNewInstance(kAudioUnitType_Output,
                                           kAudioUnitSubType_RemoteIO,
-                                          &rioUnit));
+                                          &_rioUnit));
     
     // Enable IO for recording
 	UInt32 flag = 1;
-	TOThrowOnError(AudioUnitSetProperty(rioUnit,
+	TOThrowOnError(AudioUnitSetProperty(_rioUnit,
                                         kAudioOutputUnitProperty_EnableIO,
                                         kAudioUnitScope_Input,
                                         kInputBus,
@@ -165,7 +168,7 @@ static OSStatus recorderCallback(void                     *inRefCon,
 
 	
 	// Enable IO for playback
-    TOThrowOnError(AudioUnitSetProperty(rioUnit,
+    TOThrowOnError(AudioUnitSetProperty(_rioUnit,
                                         kAudioOutputUnitProperty_EnableIO,
                                         kAudioUnitScope_Output,
                                         kOutputBus,
@@ -174,28 +177,28 @@ static OSStatus recorderCallback(void                     *inRefCon,
 
     
     // Set recording/playback format
-    AudioStreamBasicDescription asbd = TOCanonicalLPCM();
+    _asbd = TOCanonicalLPCM();
     
-    TOThrowOnError(AudioUnitSetProperty(rioUnit,
+    TOThrowOnError(AudioUnitSetProperty(_rioUnit,
                                         kAudioUnitProperty_StreamFormat,
                                         kAudioUnitScope_Output,
                                         kInputBus,
-                                        &asbd,
-                                        sizeof(asbd)));
+                                        &_asbd,
+                                        sizeof(_asbd)));
 
-	TOThrowOnError(AudioUnitSetProperty(rioUnit,
+	TOThrowOnError(AudioUnitSetProperty(_rioUnit,
                                         kAudioUnitProperty_StreamFormat,
                                         kAudioUnitScope_Input,
                                         kOutputBus,
-                                        &asbd,
-                                        sizeof(asbd)));
+                                        &_asbd,
+                                        sizeof(_asbd)));
 
 	// Set up callback
     AURenderCallbackStruct callbackStruct;
 	callbackStruct.inputProc = recorderCallback;
     callbackStruct.inputProcRefCon = (__bridge void *)(self);
     
-	TOThrowOnError(AudioUnitSetProperty(rioUnit,
+	TOThrowOnError(AudioUnitSetProperty(_rioUnit,
                                         kAudioUnitProperty_SetRenderCallback,
                                         kAudioUnitScope_Global,
                                         kOutputBus,
@@ -203,11 +206,8 @@ static OSStatus recorderCallback(void                     *inRefCon,
                                         sizeof(callbackStruct)));
 
     
-    self.rioUnit = rioUnit;
-    self.asbd = asbd;
-    
-    TOThrowOnError(AudioUnitInitialize(rioUnit));
-    TOThrowOnError(AudioOutputUnitStart(rioUnit));
+    TOThrowOnError(AudioUnitInitialize(_rioUnit));
+    TOThrowOnError(AudioOutputUnitStart(_rioUnit));
     
     
     self.isSetUp = YES;
@@ -220,8 +220,8 @@ static OSStatus recorderCallback(void                     *inRefCon,
         [self stopRecording];
         self.isSetUp = NO;
         
-        TOThrowOnError(AudioOutputUnitStop(self.rioUnit));
-        TOThrowOnError(AudioUnitUninitialize(self.rioUnit));
+        TOThrowOnError(AudioOutputUnitStop(_rioUnit));
+        TOThrowOnError(AudioUnitUninitialize(_rioUnit));
     }
 }
 
