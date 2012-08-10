@@ -217,7 +217,7 @@ static OSStatus recorderCallback(void                       *inRefCon,
 
     
     // Set recording/playback format
-    _asbd = TOCanonicalLPCM();
+    _asbd = TOCanonicalMonoLPCM();
     
     TOThrowOnError(AudioUnitSetProperty(_rioUnit,
                                         kAudioUnitProperty_StreamFormat,
