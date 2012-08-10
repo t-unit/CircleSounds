@@ -62,13 +62,12 @@ void TOThrowOnError(OSStatus status);
 
 
 /**
- @function   TOCanonicalLPCM
- 
- @abstract   Convenience function returning an ASBD filled with an easy to handle
-             linear PCM format. The canonical PCM format for this project.
+ Convenience functions returning an ASBD filled with an easy to handle
+ linear PCM format. The canonical PCM formats for this project.
 */
 
-AudioStreamBasicDescription TOCanonicalLPCM();
+AudioStreamBasicDescription TOCanonicalStereoLPCM();
+AudioStreamBasicDescription TOCanonicalMonoLPCM();
 
 
 

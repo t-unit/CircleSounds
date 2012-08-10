@@ -43,7 +43,7 @@ void TOThrowOnError(OSStatus status)
 
 
 
-AudioStreamBasicDescription TOCanonicalLPCM()
+AudioStreamBasicDescription TOCanonicalStereoLPCM()
 {
     AudioStreamBasicDescription asbd;
     memset (&asbd, 0, sizeof (asbd));
@@ -56,6 +56,24 @@ AudioStreamBasicDescription TOCanonicalLPCM()
 	asbd.mChannelsPerFrame = 2;
 	asbd.mBitsPerChannel = 16;
 
+    return asbd;
+}
+
+
+AudioStreamBasicDescription TOCanonicalMonoLPCM()
+{
+    AudioStreamBasicDescription asbd;
+    memset (&asbd, 0, sizeof (asbd));
+	asbd.mSampleRate = 44100;
+	asbd.mFormatID = kAudioFormatLinearPCM;
+	asbd.mFormatFlags = kAudioFormatFlagsCanonical;
+	asbd.mBytesPerPacket = 2
+    ;
+	asbd.mFramesPerPacket = 1;
+	asbd.mBytesPerFrame = 2;
+	asbd.mChannelsPerFrame = 1;
+	asbd.mBitsPerChannel = 16;
+    
     return asbd;
 }
 
