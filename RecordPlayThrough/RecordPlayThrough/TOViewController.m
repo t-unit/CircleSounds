@@ -20,6 +20,7 @@
 	// Do any additional setup after loading the view, typically from a nib.
     
     self.recoder = [[TORecorder alloc] init];
+    self.recoder.delegate = self;
 }
 
 - (void)didReceiveMemoryWarning
@@ -71,13 +72,31 @@
 {
     if (self.recoder.isRecording) {
         [self.recoder stopRecording];
-        self.recordButton.selected = NO;
     }
     else {
         [self.recoder startRecording];
-        self.recordButton.selected = YES;
     }
     
+}
+
+
+- (void)recorderDidStartRecording:(TORecorder *)recorder
+{
+    NSLog(@"recorder did start recording");
+    self.recordButton.selected = YES;
+}
+
+
+- (void)recorderDidStopRecording:(TORecorder *)recorder
+{
+    NSLog(@"recorder did stop recording");
+    self.recordButton.selected = NO;
+}
+
+
+- (void)recorder:(TORecorder *) recorder didGetNewData:(AudioBufferList *)bufferList
+{
+    NSLog(@"got new data from recorder");
 }
 
 @end

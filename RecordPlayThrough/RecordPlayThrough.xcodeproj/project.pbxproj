@@ -46,6 +46,7 @@
 		D22FA52F15A9B4D6009E2600 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
 		D22FA53E15A9CD8F009E2600 /* TORecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TORecorder.h; sourceTree = "<group>"; };
 		D22FA53F15A9CD8F009E2600 /* TORecorder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TORecorder.m; sourceTree = "<group>"; };
+		D233A53E15D4F98000FC0C62 /* TORecorderDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TORecorderDelegate.h; sourceTree = "<group>"; };
 		D269CFBA15A9E91D00B94F6C /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -106,6 +107,7 @@
 				D20AE65715AA375F002EEF89 /* NSString+OSStatus.m */,
 				D22FA53E15A9CD8F009E2600 /* TORecorder.h */,
 				D22FA53F15A9CD8F009E2600 /* TORecorder.m */,
+				D233A53E15D4F98000FC0C62 /* TORecorderDelegate.h */,
 				D22FA51F15A9B3E3009E2600 /* TOAppDelegate.h */,
 				D22FA52015A9B3E3009E2600 /* TOAppDelegate.m */,
 				D22FA52215A9B3E3009E2600 /* MainStoryboard.storyboard */,

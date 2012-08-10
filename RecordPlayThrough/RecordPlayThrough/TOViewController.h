@@ -7,9 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "TORecorder.h"
 
-@interface TOViewController : UIViewController
+#import "TORecorder.h"
+#import "TORecorderDelegate.h"
+
+
+@interface TOViewController : UIViewController <TORecorderDelegate>
 
 @property (strong, nonatomic) TORecorder *recoder;
 
@@ -21,8 +24,5 @@
 - (IBAction)changeMonitorSetting:(id)sender;
 - (IBAction)prepareRecorder:(id)sender;
 - (IBAction)recordPressed:(id)sender;
-
-
-
 
 @end

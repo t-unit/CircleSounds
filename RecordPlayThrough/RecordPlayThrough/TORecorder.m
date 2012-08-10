@@ -8,9 +8,10 @@
 
 #import "TORecorder.h"
 
-#import "TOCAShortcuts.h"
-
 #import <AudioToolbox/AudioToolbox.h>
+
+#import "TOCAShortcuts.h"
+#import "TORecorderDelegate.h"
 
 
 @interface TORecorder ()
@@ -33,6 +34,49 @@
 
 
 @implementation TORecorder
+
+
+static inline OSStatus writeBufferToFile(TORecorder *recorder, AudioBufferList *ioData)
+{
+    UInt32 numPackets = ioData->mBuffers[0].mDataByteSize / recorder->_asbd.mBytesPerPacket;
+    
+    OSStatus status = AudioFileWritePackets(recorder->_audioFile,
+                                            false,
+                                            ioData->mBuffers[0].mDataByteSize,
+                                            NULL,
+                                            recorder->_numPacketsWritten,
+                                            &numPackets,
+                                            ioData->mBuffers[0].mData);
+    
+    recorder->_numPacketsWritten += numPackets;
+    
+    return status;
+}
+
+
+static inline void notifiyDelegateAboutNewData(TORecorder *recorder, AudioBufferList *ioData)
+{
+    AudioBufferList *delegateBufferList = malloc(sizeof(ioData));
+    delegateBufferList->mNumberBuffers = ioData->mNumberBuffers;
+    
+    
+    for (UInt32 i=0;i<ioData->mNumberBuffers; i++) {
+        AudioBuffer buffer;
+        buffer.mNumberChannels = ioData->mBuffers[i].mNumberChannels;
+        buffer.mDataByteSize = ioData->mBuffers[i].mDataByteSize;
+        buffer.mData = malloc(buffer.mDataByteSize);
+        
+        memcpy(buffer.mData, ioData->mBuffers[i].mData, ioData->mBuffers[i].mDataByteSize);
+        
+        delegateBufferList->mBuffers[i] = buffer;
+    }
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [recorder.delegate recorder:recorder didGetNewData:delegateBufferList];
+    });
+}
+
+
 
 /**
  This callback is called when the audioUnit needs new data to play through the
@@ -58,18 +102,12 @@ static OSStatus recorderCallback(void                       *inRefCon,
     
     // write the rendered audio into a file
     if (recorder->_isRecording) {
-        UInt32 numPackets = ioData->mBuffers[0].mDataByteSize / recorder->_asbd.mBytesPerPacket;
-        
-        TOThrowOnError(AudioFileWritePackets(recorder->_audioFile,
-                                             false,
-                                             ioData->mBuffers[0].mDataByteSize,
-                                             NULL,
-                                             recorder->_numPacketsWritten,
-                                             &numPackets,
-                                             ioData->mBuffers[0].mData));
-        
-        recorder->_numPacketsWritten += numPackets;
+        TOThrowOnError(writeBufferToFile(recorder, ioData));
     }
+    
+    // notify delegate
+    notifiyDelegateAboutNewData(recorder, ioData);
+    
 	
 
     // silence output
@@ -92,7 +130,7 @@ static OSStatus recorderCallback(void                       *inRefCon,
 
 - (void)setIsRecording:(BOOL)isRecording
 {
-        _isRecording = isRecording;
+    _isRecording = isRecording;
 }
 
 
@@ -134,6 +172,7 @@ static OSStatus recorderCallback(void                       *inRefCon,
     }
 
     self.isRecording = YES;
+    [self.delegate recorderDidStartRecording:self];
     
     return YES;
 }
@@ -146,6 +185,8 @@ static OSStatus recorderCallback(void                       *inRefCon,
         self.isReadyForRecording = NO;
         
         TOThrowOnError(AudioFileClose(_audioFile));
+        
+        [self.delegate recorderDidStopRecording:self];
     }
 }
 
