@@ -9,6 +9,7 @@
 #import "TORecorder.h"
 
 #import <AudioToolbox/AudioToolbox.h>
+#import <AVFoundation/AVFoundation.h>
 
 #import "TOCAShortcuts.h"
 #import "TORecorderDelegate.h"
@@ -73,6 +74,13 @@ static inline void notifiyDelegateAboutNewData(TORecorder *recorder, AudioBuffer
     
     dispatch_async(dispatch_get_main_queue(), ^{
         [recorder.delegate recorder:recorder didGetNewData:delegateBufferList];
+        
+        // cleanup
+        for (UInt32 i=0; i<delegateBufferList->mNumberBuffers; i++) {
+            free(delegateBufferList->mBuffers[i].mData);
+        }
+        
+        free(delegateBufferList);
     });
 }
 
@@ -92,12 +100,12 @@ static OSStatus recorderCallback(void                       *inRefCon,
 	TORecorder *recorder = (__bridge TORecorder *)inRefCon;
 	
     // get the data from the rio's input bus
-    TOThrowOnError(AudioUnitRender(recorder->_rioUnit,
+    OSStatus err = AudioUnitRender(recorder->_rioUnit,
                                    ioActionFlags,
                                    inTimeStamp,
                                    kInputBus,
                                    inNumberFrames,
-                                   ioData));
+                                   ioData);
     
     
     // write the rendered audio into a file
@@ -118,7 +126,7 @@ static OSStatus recorderCallback(void                       *inRefCon,
         }
     }
 
-    return noErr;
+    return err;
 }
 
 
@@ -193,6 +201,9 @@ static OSStatus recorderCallback(void                       *inRefCon,
 
 - (void)setUp
 {
+    [[AVAudioSession sharedInstance] setPreferredIOBufferDuration:0.05 error:nil];
+    
+    
     TOThrowOnError(TOAudioUnitNewInstance(kAudioUnitType_Output,
                                           kAudioUnitSubType_RemoteIO,
                                           &_rioUnit));

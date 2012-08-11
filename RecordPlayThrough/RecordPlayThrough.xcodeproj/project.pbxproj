@@ -20,7 +20,13 @@
 		D22FA53015A9B4D6009E2600 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D22FA52D15A9B4D6009E2600 /* AudioToolbox.framework */; };
 		D22FA53215A9B4D6009E2600 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D22FA52F15A9B4D6009E2600 /* CoreAudio.framework */; };
 		D22FA54015A9CD8F009E2600 /* TORecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = D22FA53F15A9CD8F009E2600 /* TORecorder.m */; };
+		D234B4D115D6943D00B145D6 /* TOBaseInterpolator.m in Sources */ = {isa = PBXBuildFile; fileRef = D234B4CE15D6943D00B145D6 /* TOBaseInterpolator.m */; };
+		D234B4D215D6943D00B145D6 /* TOColorInterpolator.m in Sources */ = {isa = PBXBuildFile; fileRef = D234B4D015D6943D00B145D6 /* TOColorInterpolator.m */; };
+		D234B4D515D6963600B145D6 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D234B4D415D6963600B145D6 /* QuartzCore.framework */; };
 		D269CFBB15A9E91D00B94F6C /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D269CFBA15A9E91D00B94F6C /* AVFoundation.framework */; };
+		D2D6EB3815D655D900C5D5BF /* TOWaveformView.m in Sources */ = {isa = PBXBuildFile; fileRef = D2D6EB3715D655D900C5D5BF /* TOWaveformView.m */; };
+		D2D6EB3D15D68B8500C5D5BF /* TOAudioMeterView.m in Sources */ = {isa = PBXBuildFile; fileRef = D2D6EB3C15D68B8500C5D5BF /* TOAudioMeterView.m */; };
+		D2D6EB4015D68B9100C5D5BF /* TOAudioMeterController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2D6EB3F15D68B9100C5D5BF /* TOAudioMeterController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,7 +53,19 @@
 		D22FA53E15A9CD8F009E2600 /* TORecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TORecorder.h; sourceTree = "<group>"; };
 		D22FA53F15A9CD8F009E2600 /* TORecorder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TORecorder.m; sourceTree = "<group>"; };
 		D233A53E15D4F98000FC0C62 /* TORecorderDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TORecorderDelegate.h; sourceTree = "<group>"; };
+		D234B4CD15D6943D00B145D6 /* TOBaseInterpolator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TOBaseInterpolator.h; sourceTree = "<group>"; };
+		D234B4CE15D6943D00B145D6 /* TOBaseInterpolator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TOBaseInterpolator.m; sourceTree = "<group>"; };
+		D234B4CF15D6943D00B145D6 /* TOColorInterpolator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TOColorInterpolator.h; sourceTree = "<group>"; };
+		D234B4D015D6943D00B145D6 /* TOColorInterpolator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TOColorInterpolator.m; sourceTree = "<group>"; };
+		D234B4D415D6963600B145D6 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		D269CFBA15A9E91D00B94F6C /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		D2D6EB3615D655D900C5D5BF /* TOWaveformView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TOWaveformView.h; sourceTree = "<group>"; };
+		D2D6EB3715D655D900C5D5BF /* TOWaveformView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TOWaveformView.m; sourceTree = "<group>"; };
+		D2D6EB3A15D65BDF00C5D5BF /* TOWaveformViewDatatSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TOWaveformViewDatatSource.h; sourceTree = "<group>"; };
+		D2D6EB3B15D68B8500C5D5BF /* TOAudioMeterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TOAudioMeterView.h; sourceTree = "<group>"; };
+		D2D6EB3C15D68B8500C5D5BF /* TOAudioMeterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TOAudioMeterView.m; sourceTree = "<group>"; };
+		D2D6EB3E15D68B9100C5D5BF /* TOAudioMeterController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TOAudioMeterController.h; sourceTree = "<group>"; };
+		D2D6EB3F15D68B9100C5D5BF /* TOAudioMeterController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TOAudioMeterController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +73,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D234B4D515D6963600B145D6 /* QuartzCore.framework in Frameworks */,
 				D269CFBB15A9E91D00B94F6C /* AVFoundation.framework in Frameworks */,
 				D22FA53015A9B4D6009E2600 /* AudioToolbox.framework in Frameworks */,
 				D22FA53215A9B4D6009E2600 /* CoreAudio.framework in Frameworks */,
@@ -87,6 +106,7 @@
 		D22FA50F15A9B3E3009E2600 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D234B4D415D6963600B145D6 /* QuartzCore.framework */,
 				D20AE64515AA2826002EEF89 /* AudioUnit.framework */,
 				D269CFBA15A9E91D00B94F6C /* AVFoundation.framework */,
 				D22FA52D15A9B4D6009E2600 /* AudioToolbox.framework */,
@@ -101,6 +121,10 @@
 		D22FA51615A9B3E3009E2600 /* RecordPlayThrough */ = {
 			isa = PBXGroup;
 			children = (
+				D234B4CD15D6943D00B145D6 /* TOBaseInterpolator.h */,
+				D234B4CE15D6943D00B145D6 /* TOBaseInterpolator.m */,
+				D234B4CF15D6943D00B145D6 /* TOColorInterpolator.h */,
+				D234B4D015D6943D00B145D6 /* TOColorInterpolator.m */,
 				D20AE64B15AA2CC6002EEF89 /* TOCAShortcuts.h */,
 				D20AE64C15AA2CC6002EEF89 /* TOCAShortcuts.m */,
 				D20AE65615AA375F002EEF89 /* NSString+OSStatus.h */,
@@ -113,6 +137,13 @@
 				D22FA52215A9B3E3009E2600 /* MainStoryboard.storyboard */,
 				D22FA52515A9B3E3009E2600 /* TOViewController.h */,
 				D22FA52615A9B3E3009E2600 /* TOViewController.m */,
+				D2D6EB3615D655D900C5D5BF /* TOWaveformView.h */,
+				D2D6EB3715D655D900C5D5BF /* TOWaveformView.m */,
+				D2D6EB3B15D68B8500C5D5BF /* TOAudioMeterView.h */,
+				D2D6EB3C15D68B8500C5D5BF /* TOAudioMeterView.m */,
+				D2D6EB3E15D68B9100C5D5BF /* TOAudioMeterController.h */,
+				D2D6EB3F15D68B9100C5D5BF /* TOAudioMeterController.m */,
+				D2D6EB3A15D65BDF00C5D5BF /* TOWaveformViewDatatSource.h */,
 				D22FA51715A9B3E3009E2600 /* Supporting Files */,
 			);
 			path = RecordPlayThrough;
@@ -199,6 +230,11 @@
 				D22FA54015A9CD8F009E2600 /* TORecorder.m in Sources */,
 				D20AE64D15AA2CC6002EEF89 /* TOCAShortcuts.m in Sources */,
 				D20AE65815AA375F002EEF89 /* NSString+OSStatus.m in Sources */,
+				D2D6EB3815D655D900C5D5BF /* TOWaveformView.m in Sources */,
+				D2D6EB3D15D68B8500C5D5BF /* TOAudioMeterView.m in Sources */,
+				D2D6EB4015D68B9100C5D5BF /* TOAudioMeterController.m in Sources */,
+				D234B4D115D6943D00B145D6 /* TOBaseInterpolator.m in Sources */,
+				D234B4D215D6943D00B145D6 /* TOColorInterpolator.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -244,7 +280,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
 			};
@@ -263,7 +299,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
