@@ -60,11 +60,13 @@ static inline OSStatus writeBufferToFile(TORecorder *recorder, AudioBufferList *
 }
 
 
+/**
+ Calculates the average Sample and finds the peak sample inside 'ioData' for each channel.
+ NOTE: this function assumes AudioSampleTypes inside the buffer!
+ NOTE: this function assumes that AudioSampleType is a signed integer!
+ */
 static inline void calculateAvgAndPeakSamples(TORecorder *recorder, AudioBufferList *ioData)
-{
-    // NOTE: this function assumes AudioSampleTypes inside the buffer!
-    // NOTE: this function assumes that AudioSampleType is a signed integer!
-    
+{    
     UInt32 currentChannel = 0;
     
     for (UInt32 i=0; i<ioData->mNumberBuffers; i++) {
