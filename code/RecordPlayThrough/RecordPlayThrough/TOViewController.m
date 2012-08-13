@@ -108,56 +108,12 @@
 }
 
 
-//- (void)recorder:(TORecorder *)recorder didGetNewData:(AudioBufferList *)bufferList
-//{
-//    if (bufferList->mNumberBuffers > 1) {
-//        NSLog(@"interleaved non MONO -  not supported yet");
-//    }
-//    
-//    else if (bufferList->mNumberBuffers == 0) {
-//        NSLog(@"no data!");
-//    }
-//    
-//    else if (bufferList->mBuffers[0].mNumberChannels > 1) {
-//        NSLog(@"noninterleaved non MONO -  not supported yet");
-//    }
-//    
-//    else {
-////        NSLog(@"got new data from recorder");
-//        AudioBuffer buffer = bufferList->mBuffers[0];
-//        
-//        UInt32 numSamples = buffer.mDataByteSize / sizeof(AudioSampleType);
-//        AudioSampleType *samples = buffer.mData;
-//        
-//        for (UInt32 i=0; i<numSamples; i++) {
-//            AudioSampleType sample = samples[i];
-//            
-//            [self.waveform addObject:@(sample)];
-//            
-//            if (self.waveform.count > 10000) {
-//                [self.waveform removeObjectAtIndex:0];
-//            }
-//        }
-//    }
-//
-//    [self.waveFormView setNeedsDisplay];
-//    
-//    
-//    AudioBuffer buffer = bufferList->mBuffers[0];
-//    [self.audioMeterController setNeedsUpdateWithBuffer:buffer];
-//}
-
-
-- (NSArray *)points
-{
-    return nil;
-}
-
-
 - (void)updateAudioMeterView:(NSTimer *)timer
 {
+    // display between -50db and 0db
+    
     double db = [self.recoder averagePowerForChannel:0];
-    CGFloat value = 0.01 * db + 1;
+    CGFloat value = 0.02 * db + 1;
     self.audioMeterView.value = value;
 }
 
