@@ -24,7 +24,12 @@
     SInt64 _numPacketsWritten;
     
     BOOL _isRecording;
-    BOOL _isMonitoringInput;
+    BOOL _monitoringInput;
+    
+    AudioSampleType _peakSample;
+    AudioSampleType _avgSample;
+    
+    BOOL _sampleUpdateNeeded; // new values for '_peakSample' & '_avgSample' will be calculate when set to 'NO'
 }
 
 @property (assign, atomic) BOOL isReadyForRecording;
@@ -55,34 +60,61 @@ static inline OSStatus writeBufferToFile(TORecorder *recorder, AudioBufferList *
 }
 
 
-static inline void notifiyDelegateAboutNewData(TORecorder *recorder, AudioBufferList *ioData)
+static inline void calculateAvgAndPeakSamples(TORecorder *recorder, AudioBufferList *ioData)
 {
-    AudioBufferList *delegateBufferList = malloc(sizeof(ioData));
-    delegateBufferList->mNumberBuffers = ioData->mNumberBuffers;
+    // TODO: what to do with multichannel buffers!
+    // NOTE: this assumes AudioSampleTypes inside the buffer!
+    
+    UInt32 numSamples = ioData->mBuffers[0].mDataByteSize / sizeof(AudioSampleType);
+    AudioSampleType *samples = ioData->mBuffers[0].mData;
     
     
-    for (UInt32 i=0;i<ioData->mNumberBuffers; i++) {
-        AudioBuffer buffer;
-        buffer.mNumberChannels = ioData->mBuffers[i].mNumberChannels;
-        buffer.mDataByteSize = ioData->mBuffers[i].mDataByteSize;
-        buffer.mData = malloc(buffer.mDataByteSize);
-        
-        memcpy(buffer.mData, ioData->mBuffers[i].mData, ioData->mBuffers[i].mDataByteSize);
-        
-        delegateBufferList->mBuffers[i] = buffer;
-    }
+    SInt64 sum = 0;  // NOTE: assume that AudioSampleType is a signed integer
+    AudioSampleType peak = 0;
     
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [recorder.delegate recorder:recorder didGetNewData:delegateBufferList];
+    for (int i=0; i<numSamples; i++) {
+        AudioSampleType curSample = abs((AudioSampleType)samples[i]);
         
-        // cleanup
-        for (UInt32 i=0; i<delegateBufferList->mNumberBuffers; i++) {
-            free(delegateBufferList->mBuffers[i].mData);
+        sum += curSample;
+        
+        if (peak < curSample) {
+            peak = curSample;
         }
-        
-        free(delegateBufferList);
-    });
+    }
+
+    recorder->_avgSample = sum / numSamples;
+    recorder->_peakSample = peak;
+    
 }
+
+//static inline void notifiyDelegateAboutNewData(TORecorder *recorder, AudioBufferList *ioData)
+//{
+//    AudioBufferList *delegateBufferList = malloc(sizeof(ioData));
+//    delegateBufferList->mNumberBuffers = ioData->mNumberBuffers;
+//    
+//    
+//    for (UInt32 i=0;i<ioData->mNumberBuffers; i++) {
+//        AudioBuffer buffer;
+//        buffer.mNumberChannels = ioData->mBuffers[i].mNumberChannels;
+//        buffer.mDataByteSize = ioData->mBuffers[i].mDataByteSize;
+//        buffer.mData = malloc(buffer.mDataByteSize);
+//        
+//        memcpy(buffer.mData, ioData->mBuffers[i].mData, ioData->mBuffers[i].mDataByteSize);
+//        
+//        delegateBufferList->mBuffers[i] = buffer;
+//    }
+//    
+//    dispatch_async(dispatch_get_main_queue(), ^{
+//        [recorder.delegate recorder:recorder didGetNewData:delegateBufferList];
+//        
+//        // cleanup
+//        for (UInt32 i=0; i<delegateBufferList->mNumberBuffers; i++) {
+//            free(delegateBufferList->mBuffers[i].mData);
+//        }
+//        
+//        free(delegateBufferList);
+//    });
+//}
 
 
 
@@ -113,13 +145,21 @@ static OSStatus recorderCallback(void                       *inRefCon,
         TOThrowOnError(writeBufferToFile(recorder, ioData));
     }
     
-    // notify delegate
-    notifiyDelegateAboutNewData(recorder, ioData);
+//    // notify delegate
+//    notifiyDelegateAboutNewData(recorder, ioData);
+    
+    // calculate peak and average
+    if (recorder->_sampleUpdateNeeded) {
+        calculateAvgAndPeakSamples(recorder, ioData);
+        recorder->_sampleUpdateNeeded = NO;
+    }
     
 	
 
     // silence output
-    if (!recorder->_isMonitoringInput) {
+    if (!recorder->_monitoringInput) {
+        *ioActionFlags = kAudioUnitRenderAction_OutputIsSilence;
+        
         for (UInt32 i=0; i < ioData->mNumberBuffers; i++) {
             AudioBuffer buffer = ioData->mBuffers[i];
             memset(buffer.mData, 0, buffer.mDataByteSize); // fill in zeros
@@ -139,6 +179,32 @@ static OSStatus recorderCallback(void                       *inRefCon,
 - (void)setIsRecording:(BOOL)isRecording
 {
     _isRecording = isRecording;
+}
+
+
+- (double)peakPowerForChannel:(NSUInteger)channelNumber
+{
+    if (channelNumber > self.numChannels) {
+        return 0.0;
+    }
+    
+    _sampleUpdateNeeded = YES;
+    
+    // NOTE: assume that AudioSampleType is a 16bit signed integer
+    return 10.0 * log10((double)_peakSample / INT16_MAX);
+}
+
+
+- (double)averagePowerForChannel:(NSUInteger)channelNumber
+{
+    if (channelNumber > self.numChannels) {
+        return 0.0;
+    }
+    
+    _sampleUpdateNeeded = YES;
+    
+    // NOTE: assume that AudioSampleType is a 16bit signed integer
+    return 10.0 * log10((double)_avgSample/ INT16_MAX);
 }
 
 
@@ -201,15 +267,23 @@ static OSStatus recorderCallback(void                       *inRefCon,
 
 - (void)setUp
 {
-    // TODO: refer to IOS developer library : Audio Session Programming Guide set preferred buffer duration to 1024 using
-	//  try ((buffer size + 1) / sample rate) - due to little arm6 floating point bug?
-	// doesn't seem to help - the duration seems to get set to whatever the system wants...
+    // Set up ASBD
+    _numChannels = [[AVAudioSession sharedInstance] inputNumberOfChannels];
+    
+    if (self.numChannels == 1) {
+        _asbd = TOCanonicalMonoLPCM();
+    }
+    else {
+        _asbd = TOCanonicalStereoLPCM();
+    }
+    
+
+    // Refer to iOS developer library : Audio Session Programming Guide set preferred buffer duration to 1024 / sample rate
+    [[AVAudioSession sharedInstance] setPreferredSampleRate:_asbd.mSampleRate error:nil];
+    [[AVAudioSession sharedInstance] setPreferredIOBufferDuration:1024.0/_asbd.mSampleRate error:nil];
     
     
-    [[AVAudioSession sharedInstance] setPreferredIOBufferDuration:1024.0/44100.0 error:nil];
-    [[AVAudioSession sharedInstance] setPreferredSampleRate:44100 error:nil];
-    
-    
+    // Get the RIO unit
     TOThrowOnError(TOAudioUnitNewInstance(kAudioUnitType_Output,
                                           kAudioUnitSubType_RemoteIO,
                                           &_rioUnit));
@@ -223,19 +297,8 @@ static OSStatus recorderCallback(void                       *inRefCon,
                                         &flag,
                                         sizeof(flag)));
 
-	
-	// Enable IO for playback
-    TOThrowOnError(AudioUnitSetProperty(_rioUnit,
-                                        kAudioOutputUnitProperty_EnableIO,
-                                        kAudioUnitScope_Output,
-                                        kOutputBus,
-                                        &flag,
-                                        sizeof(flag)));
 
-    
     // Set recording/playback format
-    _asbd = TOCanonicalMonoLPCM();
-    
     TOThrowOnError(AudioUnitSetProperty(_rioUnit,
                                         kAudioUnitProperty_StreamFormat,
                                         kAudioUnitScope_Output,

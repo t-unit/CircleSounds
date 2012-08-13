@@ -11,7 +11,8 @@
 
 @interface TOViewController ()
 
-@property (strong, nonatomic) NSMutableArray *waveform;
+//@property (strong, nonatomic) NSMutableArray *waveform;
+@property (strong, nonatomic) NSTimer *levelMeterUpdateTimer;
 
 @end
 
@@ -23,7 +24,6 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     
-    self.waveform = [[NSMutableArray alloc] init];
     self.waveFormView.dataSource = self;
     
     self.recoder = [[TORecorder alloc] init];
@@ -33,9 +33,8 @@
     [self.view addSubview:amv];
     self.audioMeterView = amv;
     
-    self.audioMeterController = [[TOAudioMeterController alloc] init];
-    self.audioMeterController.normalizedMax = 5000;
-    self.audioMeterController.audioMeterView = self.audioMeterView;
+    self.levelMeterUpdateTimer = [NSTimer timerWithTimeInterval:1.0/25 target:self selector:@selector(updateAudioMeterView:) userInfo:nil repeats:YES];
+    [[NSRunLoop mainRunLoop] addTimer:self.levelMeterUpdateTimer forMode:NSDefaultRunLoopMode];
 }
 
 - (void)didReceiveMemoryWarning
@@ -55,13 +54,13 @@
     [super viewDidAppear:animated];
     
     [self.recoder setUp];
-    self.recoder.isMonitoringInput = YES;
+    self.recoder.monitoringInput = YES;
 }
 
 
 - (IBAction)changeMonitorSetting:(id)sender
 {
-    self.recoder.isMonitoringInput = !self.recoder.isMonitoringInput;
+    self.recoder.monitoringInput = !self.recoder.monitoringInput;
     self.monitorButton.selected = !self.monitorButton.selected;
 }
 
@@ -109,8 +108,8 @@
 }
 
 
-- (void)recorder:(TORecorder *)recorder didGetNewData:(AudioBufferList *)bufferList
-{
+//- (void)recorder:(TORecorder *)recorder didGetNewData:(AudioBufferList *)bufferList
+//{
 //    if (bufferList->mNumberBuffers > 1) {
 //        NSLog(@"interleaved non MONO -  not supported yet");
 //    }
@@ -142,16 +141,24 @@
 //    }
 //
 //    [self.waveFormView setNeedsDisplay];
-    
-    
-    AudioBuffer buffer = bufferList->mBuffers[0];
-    [self.audioMeterController setNeedsUpdateWithBuffer:buffer];
-}
+//    
+//    
+//    AudioBuffer buffer = bufferList->mBuffers[0];
+//    [self.audioMeterController setNeedsUpdateWithBuffer:buffer];
+//}
 
 
 - (NSArray *)points
 {
-    return self.waveform;
+    return nil;
+}
+
+
+- (void)updateAudioMeterView:(NSTimer *)timer
+{
+    double db = [self.recoder averagePowerForChannel:0];
+    CGFloat value = 0.01 * db + 1;
+    self.audioMeterView.value = value;
 }
 
 @end

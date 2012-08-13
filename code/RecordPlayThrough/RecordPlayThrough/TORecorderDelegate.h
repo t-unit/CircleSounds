@@ -16,6 +16,6 @@
 
 - (void)recorderDidStartRecording:(TORecorder *)recorder;
 - (void)recorderDidStopRecording:(TORecorder *)recorder;
-- (void)recorder:(TORecorder *) recorder didGetNewData:(AudioBufferList *)bufferList;
+//- (void)recorder:(TORecorder *) recorder didGetNewData:(AudioBufferList *)bufferList;
 
 @end

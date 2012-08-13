@@ -26,7 +26,6 @@
 		D269CFBB15A9E91D00B94F6C /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D269CFBA15A9E91D00B94F6C /* AVFoundation.framework */; };
 		D2D6EB3815D655D900C5D5BF /* TOWaveformView.m in Sources */ = {isa = PBXBuildFile; fileRef = D2D6EB3715D655D900C5D5BF /* TOWaveformView.m */; };
 		D2D6EB3D15D68B8500C5D5BF /* TOAudioMeterView.m in Sources */ = {isa = PBXBuildFile; fileRef = D2D6EB3C15D68B8500C5D5BF /* TOAudioMeterView.m */; };
-		D2D6EB4015D68B9100C5D5BF /* TOAudioMeterController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2D6EB3F15D68B9100C5D5BF /* TOAudioMeterController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,8 +63,6 @@
 		D2D6EB3A15D65BDF00C5D5BF /* TOWaveformViewDatatSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TOWaveformViewDatatSource.h; sourceTree = "<group>"; };
 		D2D6EB3B15D68B8500C5D5BF /* TOAudioMeterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TOAudioMeterView.h; sourceTree = "<group>"; };
 		D2D6EB3C15D68B8500C5D5BF /* TOAudioMeterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TOAudioMeterView.m; sourceTree = "<group>"; };
-		D2D6EB3E15D68B9100C5D5BF /* TOAudioMeterController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TOAudioMeterController.h; sourceTree = "<group>"; };
-		D2D6EB3F15D68B9100C5D5BF /* TOAudioMeterController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TOAudioMeterController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,8 +138,6 @@
 				D2D6EB3715D655D900C5D5BF /* TOWaveformView.m */,
 				D2D6EB3B15D68B8500C5D5BF /* TOAudioMeterView.h */,
 				D2D6EB3C15D68B8500C5D5BF /* TOAudioMeterView.m */,
-				D2D6EB3E15D68B9100C5D5BF /* TOAudioMeterController.h */,
-				D2D6EB3F15D68B9100C5D5BF /* TOAudioMeterController.m */,
 				D2D6EB3A15D65BDF00C5D5BF /* TOWaveformViewDatatSource.h */,
 				D22FA51715A9B3E3009E2600 /* Supporting Files */,
 			);
@@ -232,7 +227,6 @@
 				D20AE65815AA375F002EEF89 /* NSString+OSStatus.m in Sources */,
 				D2D6EB3815D655D900C5D5BF /* TOWaveformView.m in Sources */,
 				D2D6EB3D15D68B8500C5D5BF /* TOAudioMeterView.m in Sources */,
-				D2D6EB4015D68B9100C5D5BF /* TOAudioMeterController.m in Sources */,
 				D234B4D115D6943D00B145D6 /* TOBaseInterpolator.m in Sources */,
 				D234B4D215D6943D00B145D6 /* TOColorInterpolator.m in Sources */,
 			);

@@ -16,11 +16,18 @@
 /**
  Boolean defining wether current signals from the input should be played via output.
  */
-@property (readwrite, nonatomic) BOOL isMonitoringInput;
+@property (readwrite, nonatomic) BOOL monitoringInput;
 
 
 /**
- Returns the url set via 'prepareForRecordingWithURL:error:'. Does return garbage
+ Number of input channels the recorder is using. Contains garbage value
+ until 'setup' has been called.
+ */
+@property (readonly, nonatomic) NSInteger numChannels;
+
+
+/**
+ Returns the URL set via 'prepareForRecordingWithURL:error:'. Does return garbage
  value before 'prepareForRecordingWithURL:error:' and after 'stopRecording' was
  called.
  */
@@ -28,6 +35,18 @@
 
 @property (readonly, nonatomic) BOOL isRecording;
 @property (weak, nonatomic) id<TORecorderDelegate> delegate;
+
+
+/**
+ Returns peak power in decibels for a given channel.
+ */
+- (double)peakPowerForChannel:(NSUInteger)channelNumber;
+
+/**
+ Returns average power in decibels for a given channel. 
+ */
+- (double)averagePowerForChannel:(NSUInteger)channelNumber;
+
 
 
 /**
