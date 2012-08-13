@@ -19,22 +19,21 @@
 
     UInt32 numSamples = buffer.mDataByteSize / sizeof(AudioSampleType);
     AudioSampleType *samples = buffer.mData;
+
     
-    AudioSampleType maxValue = 0.0;
-    
-    for (UInt32 i=0; i<numSamples; i++) {
-        AudioSampleType sample = samples[i];
-        
-        if (sample < 0) {
-            sample = -sample;
-        }
-        
-        if (sample > maxValue) {
-            maxValue = sample;
-        }
+    int sum = 0;
+    for (int i=0; i<numSamples; i++) {
+        sum += abs((int) samples[i]);
     }
     
-    self.audioMeterView.value = 1.0 / self.normalizedMax * maxValue;
+    int averageVolume = sum / numSamples;
+
+    
+    // now convert to logarithm and scale log10(0->32768) into 0->1 for display
+    float logVolume = log10f( (float) averageVolume );
+    logVolume = logVolume / log10(32768);
+    
+    self.audioMeterView.value = logVolume;
 }
 
 @end

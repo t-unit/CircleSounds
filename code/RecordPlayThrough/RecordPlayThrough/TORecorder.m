@@ -201,7 +201,13 @@ static OSStatus recorderCallback(void                       *inRefCon,
 
 - (void)setUp
 {
-    [[AVAudioSession sharedInstance] setPreferredIOBufferDuration:0.05 error:nil];
+    // TODO: refer to IOS developer library : Audio Session Programming Guide set preferred buffer duration to 1024 using
+	//  try ((buffer size + 1) / sample rate) - due to little arm6 floating point bug?
+	// doesn't seem to help - the duration seems to get set to whatever the system wants...
+    
+    
+    [[AVAudioSession sharedInstance] setPreferredIOBufferDuration:1024.0/44100.0 error:nil];
+    [[AVAudioSession sharedInstance] setPreferredSampleRate:44100 error:nil];
     
     
     TOThrowOnError(TOAudioUnitNewInstance(kAudioUnitType_Output,

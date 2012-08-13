@@ -3,7 +3,7 @@
 //  WeatherApp
 //
 //  Created by Tobias Ottenweller on 5/7/12.
-//  Copyright (c) 2012 Raureif GmbH. All rights reserved.
+//  Copyright (c) 2012 Tobias Ottenweller. All rights reserved.
 //
 
 #import "TOColorInterpolator.h"
