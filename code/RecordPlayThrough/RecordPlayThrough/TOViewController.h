@@ -25,13 +25,11 @@
 
 @property (weak, nonatomic) IBOutlet TOWaveformView *waveFormView;
 @property (weak, nonatomic) IBOutlet TOAudioMeterView *audioMeterView;
+@property (weak, nonatomic) IBOutlet UISlider *gainSlider;
 
 - (IBAction)changeMonitorSetting:(id)sender;
 - (IBAction)prepareRecorder:(id)sender;
 - (IBAction)recordPressed:(id)sender;
-
-
-- (NSArray *)points;
-
+- (IBAction)gainChanged:(id)sender;
 
 @end

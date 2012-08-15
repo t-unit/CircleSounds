@@ -75,23 +75,41 @@
                                     <action selector="recordPressed:" destination="2" eventType="touchUpInside" id="954-U9-ejh"/>
                                 </connections>
                             </button>
+                            <slider translatesAutoresizingMaskIntoConstraints="NO" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="0.0" maxValue="20" id="yrl-fm-Wge">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="323" id="Anr-Rr-Cki"/>
+                                </constraints>
+                                <connections>
+                                    <action selector="gainChanged:" destination="2" eventType="valueChanged" id="8Vl-4a-ytn"/>
+                                </connections>
+                            </slider>
+                            <label translatesAutoresizingMaskIntoConstraints="NO" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" text="gain" adjustsFontSizeToFit="NO" autoshrinkMode="none" id="fqw-Xf-KqR">
+                                <nil key="highlightedColor"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="ujq-hf-Vif" firstAttribute="top" secondItem="5" secondAttribute="top" constant="20" symbolic="YES" type="default" id="1kI-lD-aVT"/>
                             <constraint firstItem="bul-cI-iOp" firstAttribute="top" secondItem="O3h-9N-PJb" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="2TA-Yg-D4n"/>
                             <constraint firstItem="AsJ-nX-DcT" firstAttribute="baseline" secondItem="bul-cI-iOp" secondAttribute="baseline" type="default" id="PXD-YV-OPi"/>
+                            <constraint firstAttribute="trailing" secondItem="yrl-fm-Wge" secondAttribute="trailing" constant="30" id="T12-3U-e4e"/>
                             <constraint firstItem="ujq-hf-Vif" firstAttribute="leading" secondItem="5" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="Ws1-uE-WRC"/>
                             <constraint firstItem="AsJ-nX-DcT" firstAttribute="top" secondItem="cG0-2D-SRs" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="ZM4-II-CgI"/>
+                            <constraint firstItem="fqw-Xf-KqR" firstAttribute="centerX" secondItem="O3h-9N-PJb" secondAttribute="centerX" type="default" id="aqp-fI-hdt"/>
                             <constraint firstAttribute="trailing" secondItem="bul-cI-iOp" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="e1p-fe-gGB"/>
                             <constraint firstItem="AsJ-nX-DcT" firstAttribute="leading" secondItem="5" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="gR8-Js-YWP"/>
                             <constraint firstItem="O3h-9N-PJb" firstAttribute="leading" secondItem="cG0-2D-SRs" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="kdr-Tr-wbF"/>
                             <constraint firstItem="cG0-2D-SRs" firstAttribute="leading" secondItem="5" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="n5l-rZ-mBs"/>
+                            <constraint firstItem="fqw-Xf-KqR" firstAttribute="top" secondItem="yrl-fm-Wge" secondAttribute="top" type="default" id="noi-Dm-bW1"/>
                             <constraint firstItem="cG0-2D-SRs" firstAttribute="top" secondItem="ujq-hf-Vif" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="pxk-8V-mvc"/>
+                            <constraint firstItem="fqw-Xf-KqR" firstAttribute="top" secondItem="5" secondAttribute="top" constant="168" id="sgY-j8-PzF"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="filenameField" destination="cG0-2D-SRs" id="KGi-d2-WoS"/>
+                        <outlet property="gainSlider" destination="yrl-fm-Wge" id="UQa-kq-8aE"/>
                         <outlet property="monitorButton" destination="AsJ-nX-DcT" id="7E7-r1-XeT"/>
                         <outlet property="recordButton" destination="bul-cI-iOp" id="e7C-Ag-YXL"/>
                     </connections>
@@ -101,6 +119,32 @@
             <point key="canvasLocation" x="-251" y="-200"/>
         </scene>
     </scenes>
+    <classes>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="TOAudioMeterView" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TOAudioMeterView.h"/>
+        </class>
+        <class className="TOViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TOViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="changeMonitorSetting:"/>
+                <relationship kind="action" name="gainChanged:"/>
+                <relationship kind="action" name="prepareRecorder:"/>
+                <relationship kind="action" name="recordPressed:"/>
+                <relationship kind="outlet" name="audioMeterView" candidateClass="TOAudioMeterView"/>
+                <relationship kind="outlet" name="filenameField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="gainSlider" candidateClass="UISlider"/>
+                <relationship kind="outlet" name="monitorButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="recordButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="waveFormView" candidateClass="TOWaveformView"/>
+            </relationships>
+        </class>
+        <class className="TOWaveformView" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TOWaveformView.h"/>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>
         <simulatedOrientationMetrics key="orientation"/>

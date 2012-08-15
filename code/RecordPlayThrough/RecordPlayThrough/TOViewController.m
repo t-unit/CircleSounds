@@ -93,6 +93,11 @@
     
 }
 
+- (IBAction)gainChanged:(id)sender
+{
+    self.recoder.gain = self.gainSlider.value;
+}
+
 
 - (void)recorderDidStartRecording:(TORecorder *)recorder
 {
@@ -112,9 +117,13 @@
 {
     // display between -50db and 0db
     
-    double db = [self.recoder averagePowerForChannel:0];
+    double db = [self.recoder peakPowerForChannel:0];
     CGFloat value = 0.02 * db + 1;
     self.audioMeterView.value = value;
 }
 
+- (void)viewDidUnload {
+    [self setGainSlider:nil];
+    [super viewDidUnload];
+}
 @end

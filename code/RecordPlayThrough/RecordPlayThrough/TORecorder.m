@@ -23,11 +23,16 @@
     AudioFileID _audioFile;
     SInt64 _numPacketsWritten;
     
+    NSInteger _numChannels;
+    double _gain;
+    
     BOOL _isRecording;
     BOOL _monitoringInput;
     
     AudioSampleType *_peakSamples;
-    AudioSampleType *_avgSamples;
+    double *_avgSamples; // using double here even though the real value is SInt16. a double makes it possible to
+                         // calculate _avgSamples by not allocating memory during calculation. During calcualtion
+                         // this variable contains the sum of all samples!
     
     BOOL _sampleUpdateNeeded; // new values for '_peakSamples' & '_avgSamples' will be calculate when set to 'NO'
 }
@@ -63,35 +68,31 @@ static inline OSStatus writeBufferToFile(TORecorder *recorder, AudioBufferList *
 /**
  Calculates the average Sample and finds the peak sample inside 'ioData' for each channel.
  NOTE: this function assumes AudioSampleTypes inside the buffer!
- NOTE: this function assumes that AudioSampleType is a signed integer!
  */
-static inline void calculateAvgAndPeakSamples(TORecorder *recorder, AudioBufferList *ioData)
+static inline void calculateAvgAndPeakSamples(TORecorder *ioRecorder, AudioBufferList *inData)
 {    
+    // set stored values to zero
+    memset(ioRecorder->_avgSamples, 0, sizeof(double) * ioRecorder->_numChannels);
+    memset(ioRecorder->_peakSamples, 0, sizeof(AudioSampleType) * ioRecorder->_numChannels);
+    
+    
     UInt32 currentChannel = 0;
     
-    for (UInt32 i=0; i<ioData->mNumberBuffers; i++) {
-        UInt32 numChannels = ioData->mBuffers[i].mNumberChannels;
-        UInt32 numSamples = ioData->mBuffers[i].mDataByteSize / sizeof(AudioSampleType);
+    for (UInt32 i=0; i<inData->mNumberBuffers; i++) {
         
-        
-        AudioSampleType *samples = ioData->mBuffers[i].mData;
-        
-        SInt64 *sum = malloc(sizeof(SInt64) * numChannels);
-        AudioSampleType *peak = malloc(sizeof(AudioSampleType) * numChannels);
-        
-        memset(sum, 0, sizeof(SInt64) * numChannels);
-        memset(peak, 0, sizeof(AudioSampleType) * numChannels);
-        
-        
+        UInt32 numChannels = inData->mBuffers[i].mNumberChannels;
+        UInt32 numSamples = inData->mBuffers[i].mDataByteSize / sizeof(AudioSampleType);
+        AudioSampleType *samples = inData->mBuffers[i].mData;
+
         for (UInt32 i=0; i<numSamples; i++) {
             
             for (UInt32 j=0; j<numChannels; j++) {
                 
                 AudioSampleType curSample = abs((AudioSampleType)samples[i]);
-                sum[j] += curSample;
+                ioRecorder->_avgSamples[currentChannel+j] += curSample;
                 
-                if (peak[j] < curSample) {
-                    peak[j] = curSample;
+                if (ioRecorder->_peakSamples[currentChannel+j] < curSample) {
+                    ioRecorder->_peakSamples[currentChannel+j] = curSample;
                 }
                 
                 i++;
@@ -100,14 +101,24 @@ static inline void calculateAvgAndPeakSamples(TORecorder *recorder, AudioBufferL
         
         
         for (UInt32 i=0; i<numChannels; i++) {
-            recorder->_avgSamples[currentChannel] = sum[i] / numSamples;
-            recorder->_peakSamples[currentChannel] = peak[i];
+            ioRecorder->_avgSamples[currentChannel] /= numSamples;
             
             currentChannel++;
         }
+    }
+}
+
+
+static inline void applyGain(TORecorder *inRecorder, AudioBufferList *ioData)
+{
+    for (UInt32 i=0; i<ioData->mNumberBuffers; i++) {
         
-        free(peak);
-        free(sum);
+        UInt32 numSamples = ioData->mBuffers[i].mDataByteSize / sizeof(AudioSampleType);
+        AudioSampleType *samples = ioData->mBuffers[i].mData;
+        
+        for (UInt32 i=0; i<numSamples; i++) {
+            samples[i] *= inRecorder->_gain;
+        }
     }
 }
 
@@ -132,6 +143,9 @@ static OSStatus recorderCallback(void                       *inRefCon,
                                    kInputBus,
                                    inNumberFrames,
                                    ioData);
+    
+    // gain
+    applyGain(recorder, ioData);
     
     
     // write the rendered audio into a file
@@ -173,7 +187,7 @@ static OSStatus recorderCallback(void                       *inRefCon,
 }
 
 
-- (double)peakPowerForChannel:(NSUInteger)channelNumber
+- (double)peakPowerForChannel:(NSInteger)channelNumber
 {
     if (channelNumber > self.numChannels || !self.isSetUp) {
         return 0.0;
@@ -186,7 +200,7 @@ static OSStatus recorderCallback(void                       *inRefCon,
 }
 
 
-- (double)averagePowerForChannel:(NSUInteger)channelNumber
+- (double)averagePowerForChannel:(NSInteger)channelNumber
 {
     if (channelNumber > self.numChannels || !self.isSetUp) {
         return 0.0;
@@ -195,7 +209,7 @@ static OSStatus recorderCallback(void                       *inRefCon,
     _sampleUpdateNeeded = YES;
     
     // NOTE: assume that AudioSampleType is a 16bit signed integer
-    return 10.0 * log10((double)_avgSamples[channelNumber] / INT16_MAX);
+    return 10.0 * log10(_avgSamples[channelNumber] / INT16_MAX);
 }
 
 
@@ -261,6 +275,8 @@ static OSStatus recorderCallback(void                       *inRefCon,
     if (self.isSetUp) {
         return;
     }
+    
+    self.gain = 1.0;
     
     // Set up ASBD
     _numChannels = [[AVAudioSession sharedInstance] inputNumberOfChannels];

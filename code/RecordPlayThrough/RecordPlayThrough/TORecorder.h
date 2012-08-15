@@ -20,13 +20,6 @@
 
 
 /**
- Number of input channels the recorder is using. Contains garbage value
- until 'setup' has been called.
- */
-@property (readonly, nonatomic) NSInteger numChannels;
-
-
-/**
  Returns the URL set via 'prepareForRecordingWithURL:error:'. Does return garbage
  value before 'prepareForRecordingWithURL:error:' and after 'stopRecording' was
  called.
@@ -36,16 +29,28 @@
 @property (readonly, nonatomic) BOOL isRecording;
 @property (weak, nonatomic) id<TORecorderDelegate> delegate;
 
+/**
+ Needs to be set to a positive value. Default value is 1.0
+ */
+@property (assign, nonatomic) double gain;
+
+
+/**
+ Number of input channels the recorder is using. Contains garbage value
+ until 'setup' has been called.
+ */
+@property (readonly, nonatomic) NSInteger numChannels;
+
 
 /**
  Returns peak power in decibels for a given channel.
  */
-- (double)peakPowerForChannel:(NSUInteger)channelNumber;
+- (double)peakPowerForChannel:(NSInteger)channelNumber;
 
 /**
  Returns average power in decibels for a given channel. 
  */
-- (double)averagePowerForChannel:(NSUInteger)channelNumber;
+- (double)averagePowerForChannel:(NSInteger)channelNumber;
 
 
 
