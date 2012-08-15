@@ -15,6 +15,10 @@
 		D27EE24115DBAD77000E2E96 /* TOAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D27EE24015DBAD77000E2E96 /* TOAppDelegate.m */; };
 		D27EE24415DBAD77000E2E96 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D27EE24215DBAD77000E2E96 /* MainStoryboard.storyboard */; };
 		D27EE24715DBAD77000E2E96 /* TOViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D27EE24615DBAD77000E2E96 /* TOViewController.m */; };
+		D27EE25715DBB8F4000E2E96 /* TOMeteredMixer.m in Sources */ = {isa = PBXBuildFile; fileRef = D27EE25615DBB8F4000E2E96 /* TOMeteredMixer.m */; };
+		D27EE25A15DBF723000E2E96 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D27EE25915DBF723000E2E96 /* AudioToolbox.framework */; };
+		D27EE25C15DBF729000E2E96 /* AudioUnit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D27EE25B15DBF729000E2E96 /* AudioUnit.framework */; };
+		D27EE25F15DBF906000E2E96 /* TOCAShortcuts.m in Sources */ = {isa = PBXBuildFile; fileRef = D27EE25E15DBF906000E2E96 /* TOCAShortcuts.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +35,12 @@
 		D27EE24315DBAD77000E2E96 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		D27EE24515DBAD77000E2E96 /* TOViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TOViewController.h; sourceTree = "<group>"; };
 		D27EE24615DBAD77000E2E96 /* TOViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TOViewController.m; sourceTree = "<group>"; };
+		D27EE25515DBB8F4000E2E96 /* TOMeteredMixer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TOMeteredMixer.h; sourceTree = "<group>"; };
+		D27EE25615DBB8F4000E2E96 /* TOMeteredMixer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TOMeteredMixer.m; sourceTree = "<group>"; };
+		D27EE25915DBF723000E2E96 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		D27EE25B15DBF729000E2E96 /* AudioUnit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioUnit.framework; path = System/Library/Frameworks/AudioUnit.framework; sourceTree = SDKROOT; };
+		D27EE25D15DBF906000E2E96 /* TOCAShortcuts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TOCAShortcuts.h; sourceTree = "<group>"; };
+		D27EE25E15DBF906000E2E96 /* TOCAShortcuts.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TOCAShortcuts.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -38,6 +48,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D27EE25C15DBF729000E2E96 /* AudioUnit.framework in Frameworks */,
+				D27EE25A15DBF723000E2E96 /* AudioToolbox.framework in Frameworks */,
 				D27EE23115DBAD77000E2E96 /* UIKit.framework in Frameworks */,
 				D27EE23315DBAD77000E2E96 /* Foundation.framework in Frameworks */,
 				D27EE23515DBAD77000E2E96 /* CoreGraphics.framework in Frameworks */,
@@ -67,6 +79,8 @@
 		D27EE22F15DBAD77000E2E96 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D27EE25B15DBF729000E2E96 /* AudioUnit.framework */,
+				D27EE25915DBF723000E2E96 /* AudioToolbox.framework */,
 				D27EE23015DBAD77000E2E96 /* UIKit.framework */,
 				D27EE23215DBAD77000E2E96 /* Foundation.framework */,
 				D27EE23415DBAD77000E2E96 /* CoreGraphics.framework */,
@@ -77,8 +91,12 @@
 		D27EE23615DBAD77000E2E96 /* FilePlayMixerMeter */ = {
 			isa = PBXGroup;
 			children = (
+				D27EE25D15DBF906000E2E96 /* TOCAShortcuts.h */,
+				D27EE25E15DBF906000E2E96 /* TOCAShortcuts.m */,
 				D27EE23F15DBAD77000E2E96 /* TOAppDelegate.h */,
 				D27EE24015DBAD77000E2E96 /* TOAppDelegate.m */,
+				D27EE25515DBB8F4000E2E96 /* TOMeteredMixer.h */,
+				D27EE25615DBB8F4000E2E96 /* TOMeteredMixer.m */,
 				D27EE24215DBAD77000E2E96 /* MainStoryboard.storyboard */,
 				D27EE24515DBAD77000E2E96 /* TOViewController.h */,
 				D27EE24615DBAD77000E2E96 /* TOViewController.m */,
@@ -165,6 +183,8 @@
 				D27EE23D15DBAD77000E2E96 /* main.m in Sources */,
 				D27EE24115DBAD77000E2E96 /* TOAppDelegate.m in Sources */,
 				D27EE24715DBAD77000E2E96 /* TOViewController.m in Sources */,
+				D27EE25715DBB8F4000E2E96 /* TOMeteredMixer.m in Sources */,
+				D27EE25F15DBF906000E2E96 /* TOCAShortcuts.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -280,6 +300,7 @@
 				D27EE24C15DBAD77000E2E96 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

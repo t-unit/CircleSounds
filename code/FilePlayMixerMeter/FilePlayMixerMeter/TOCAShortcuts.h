@@ -16,18 +16,6 @@ extern NSString *kTOErrorStatusStringKey;
 #define kInputBus 1
 
 
-/*
- 
- 
- 
-    DO NOT USE THIS VERSION!!!!!!!!!!!!!!!!!
- 
-    (HAVE A LOOK AT FilePlayMixerMeter)
- 
- 
- */
-
-
 ///---------------------------------------------------------------------------------------
 /// @name Error Handling
 ///---------------------------------------------------------------------------------------
@@ -100,6 +88,8 @@ OSStatus TOAudioUnitNewInstanceWithDescription(AudioComponentDescription inCompo
 
 
 OSStatus TOAudioUnitNewInstance(OSType inComponentType, OSType inComponentSubType, AudioUnit *outAudioUnit);
+
+OSStatus TOAUGraphAddNode(OSType inComponentType, OSType inComponentSubType, AUGraph inGraph, AUNode *outNode);
 
 
 
