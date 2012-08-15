@@ -1,0 +1,287 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		D27EE23115DBAD77000E2E96 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D27EE23015DBAD77000E2E96 /* UIKit.framework */; };
+		D27EE23315DBAD77000E2E96 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D27EE23215DBAD77000E2E96 /* Foundation.framework */; };
+		D27EE23515DBAD77000E2E96 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D27EE23415DBAD77000E2E96 /* CoreGraphics.framework */; };
+		D27EE23B15DBAD77000E2E96 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D27EE23915DBAD77000E2E96 /* InfoPlist.strings */; };
+		D27EE23D15DBAD77000E2E96 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D27EE23C15DBAD77000E2E96 /* main.m */; };
+		D27EE24115DBAD77000E2E96 /* TOAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D27EE24015DBAD77000E2E96 /* TOAppDelegate.m */; };
+		D27EE24415DBAD77000E2E96 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D27EE24215DBAD77000E2E96 /* MainStoryboard.storyboard */; };
+		D27EE24715DBAD77000E2E96 /* TOViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D27EE24615DBAD77000E2E96 /* TOViewController.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		D27EE22C15DBAD77000E2E96 /* FilePlayMixerMeter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FilePlayMixerMeter.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D27EE23015DBAD77000E2E96 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		D27EE23215DBAD77000E2E96 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		D27EE23415DBAD77000E2E96 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		D27EE23815DBAD77000E2E96 /* FilePlayMixerMeter-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "FilePlayMixerMeter-Info.plist"; sourceTree = "<group>"; };
+		D27EE23A15DBAD77000E2E96 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		D27EE23C15DBAD77000E2E96 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		D27EE23E15DBAD77000E2E96 /* FilePlayMixerMeter-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FilePlayMixerMeter-Prefix.pch"; sourceTree = "<group>"; };
+		D27EE23F15DBAD77000E2E96 /* TOAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TOAppDelegate.h; sourceTree = "<group>"; };
+		D27EE24015DBAD77000E2E96 /* TOAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TOAppDelegate.m; sourceTree = "<group>"; };
+		D27EE24315DBAD77000E2E96 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
+		D27EE24515DBAD77000E2E96 /* TOViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TOViewController.h; sourceTree = "<group>"; };
+		D27EE24615DBAD77000E2E96 /* TOViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TOViewController.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D27EE22915DBAD77000E2E96 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D27EE23115DBAD77000E2E96 /* UIKit.framework in Frameworks */,
+				D27EE23315DBAD77000E2E96 /* Foundation.framework in Frameworks */,
+				D27EE23515DBAD77000E2E96 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		D27EE22115DBAD77000E2E96 = {
+			isa = PBXGroup;
+			children = (
+				D27EE23615DBAD77000E2E96 /* FilePlayMixerMeter */,
+				D27EE22F15DBAD77000E2E96 /* Frameworks */,
+				D27EE22D15DBAD77000E2E96 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		D27EE22D15DBAD77000E2E96 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D27EE22C15DBAD77000E2E96 /* FilePlayMixerMeter.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D27EE22F15DBAD77000E2E96 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D27EE23015DBAD77000E2E96 /* UIKit.framework */,
+				D27EE23215DBAD77000E2E96 /* Foundation.framework */,
+				D27EE23415DBAD77000E2E96 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D27EE23615DBAD77000E2E96 /* FilePlayMixerMeter */ = {
+			isa = PBXGroup;
+			children = (
+				D27EE23F15DBAD77000E2E96 /* TOAppDelegate.h */,
+				D27EE24015DBAD77000E2E96 /* TOAppDelegate.m */,
+				D27EE24215DBAD77000E2E96 /* MainStoryboard.storyboard */,
+				D27EE24515DBAD77000E2E96 /* TOViewController.h */,
+				D27EE24615DBAD77000E2E96 /* TOViewController.m */,
+				D27EE23715DBAD77000E2E96 /* Supporting Files */,
+			);
+			path = FilePlayMixerMeter;
+			sourceTree = "<group>";
+		};
+		D27EE23715DBAD77000E2E96 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				D27EE23815DBAD77000E2E96 /* FilePlayMixerMeter-Info.plist */,
+				D27EE23915DBAD77000E2E96 /* InfoPlist.strings */,
+				D27EE23C15DBAD77000E2E96 /* main.m */,
+				D27EE23E15DBAD77000E2E96 /* FilePlayMixerMeter-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		D27EE22B15DBAD77000E2E96 /* FilePlayMixerMeter */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D27EE24A15DBAD77000E2E96 /* Build configuration list for PBXNativeTarget "FilePlayMixerMeter" */;
+			buildPhases = (
+				D27EE22815DBAD77000E2E96 /* Sources */,
+				D27EE22915DBAD77000E2E96 /* Frameworks */,
+				D27EE22A15DBAD77000E2E96 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = FilePlayMixerMeter;
+			productName = FilePlayMixerMeter;
+			productReference = D27EE22C15DBAD77000E2E96 /* FilePlayMixerMeter.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D27EE22315DBAD77000E2E96 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = TO;
+				LastUpgradeCheck = 0450;
+				ORGANIZATIONNAME = "Tobias Ottenweller";
+			};
+			buildConfigurationList = D27EE22615DBAD77000E2E96 /* Build configuration list for PBXProject "FilePlayMixerMeter" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = D27EE22115DBAD77000E2E96;
+			productRefGroup = D27EE22D15DBAD77000E2E96 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D27EE22B15DBAD77000E2E96 /* FilePlayMixerMeter */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		D27EE22A15DBAD77000E2E96 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D27EE23B15DBAD77000E2E96 /* InfoPlist.strings in Resources */,
+				D27EE24415DBAD77000E2E96 /* MainStoryboard.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D27EE22815DBAD77000E2E96 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D27EE23D15DBAD77000E2E96 /* main.m in Sources */,
+				D27EE24115DBAD77000E2E96 /* TOAppDelegate.m in Sources */,
+				D27EE24715DBAD77000E2E96 /* TOViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		D27EE23915DBAD77000E2E96 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D27EE23A15DBAD77000E2E96 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		D27EE24215DBAD77000E2E96 /* MainStoryboard.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D27EE24315DBAD77000E2E96 /* en */,
+			);
+			name = MainStoryboard.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		D27EE24815DBAD77000E2E96 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Debug;
+		};
+		D27EE24915DBAD77000E2E96 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		D27EE24B15DBAD77000E2E96 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "FilePlayMixerMeter/FilePlayMixerMeter-Prefix.pch";
+				INFOPLIST_FILE = "FilePlayMixerMeter/FilePlayMixerMeter-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		D27EE24C15DBAD77000E2E96 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "FilePlayMixerMeter/FilePlayMixerMeter-Prefix.pch";
+				INFOPLIST_FILE = "FilePlayMixerMeter/FilePlayMixerMeter-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D27EE22615DBAD77000E2E96 /* Build configuration list for PBXProject "FilePlayMixerMeter" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D27EE24815DBAD77000E2E96 /* Debug */,
+				D27EE24915DBAD77000E2E96 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D27EE24A15DBAD77000E2E96 /* Build configuration list for PBXNativeTarget "FilePlayMixerMeter" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D27EE24B15DBAD77000E2E96 /* Debug */,
+				D27EE24C15DBAD77000E2E96 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D27EE22315DBAD77000E2E96 /* Project object */;
+}
