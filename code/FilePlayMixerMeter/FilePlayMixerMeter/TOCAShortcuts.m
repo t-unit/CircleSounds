@@ -117,6 +117,6 @@ OSStatus TOAudioUnitNewInstance(OSType inComponentType, OSType inComponentSubTyp
 OSStatus TOAUGraphAddNode(OSType inComponentType, OSType inComponentSubType, AUGraph inGraph, AUNode *outNode)
 {
     AudioComponentDescription desc = TOAudioComponentDescription(inComponentType, inComponentSubType);
-    return AUGraphAddNode(inGraph, desc, outNode);
+    return AUGraphAddNode(inGraph, &desc, outNode);
 }
 

@@ -10,4 +10,7 @@
 
 @interface TOMeteredMixer : NSObject
 
+- (Float32)meterValueLeft;
+- (Float32)meterValueRight;
+
 @end
