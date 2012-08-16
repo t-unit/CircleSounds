@@ -17,14 +17,20 @@
     AUGraph _graph;
     
     AudioUnit _rioUnit;
+    
     AudioUnit _mixerUnit;
+    AUNode _mixerNode;
+    
     AudioUnit _filePlayerUnit;
+    AUNode _filePlayerNode;
     
     AudioFileID _audioFile;
-    AudioStreamBasicDescription _audioFileASBD;
+    
+    BOOL _unitsGettingReset;
 }
 
-
+- (void)setUpFilePlayerUnit;
+- (void)setUp;
 
 @end
 
@@ -32,22 +38,38 @@
 @implementation TOMeteredMixer
 
 
+void AudioFileCompletionCallback(void *userData, ScheduledAudioFileRegion *fileRegion, OSStatus result)
+{    
+    TOMeteredMixer *mixer = (__bridge TOMeteredMixer *)userData;
+    
+    if (mixer->_unitsGettingReset) {
+        return;
+    }
+    
+    mixer->_unitsGettingReset = YES;
+    
+    NSLog(@"playback finished (%@)", mixer);
+    
+    
+    // stoping the graph inside it own callbacks does not work
+    // adding the operations to the main queue instead
+    dispatch_async(dispatch_get_main_queue(), ^{
+        TOThrowOnError(AUGraphStop(mixer->_graph));
+        TOThrowOnError(AUGraphUninitialize(mixer->_graph));
+        TOThrowOnError(AUGraphClose(mixer->_graph));
+        
+        [mixer setUp];
+        TOThrowOnError(AUGraphStart(mixer->_graph));
+          mixer->_unitsGettingReset = NO;
+    });
+}
+
+
 - (id)init
 {
     self = [super init];
     
     if (self) {
-        // init audioFile
-        NSURL *nyanURL = [[NSBundle mainBundle] URLForResource:@"nyan" withExtension:@"m4a"];
-        TOThrowOnError(AudioFileOpenURL((__bridge CFURLRef)(nyanURL), kAudioFileReadPermission, 0, &_audioFile));
-        
-        // get input file format
-        UInt32 propSize = sizeof(_audioFileASBD);
-        TOThrowOnError(AudioFileGetProperty(_audioFile,
-                                            kAudioFilePropertyDataFormat,
-                                            &propSize,
-                                            &_audioFileASBD));
-        
         // following lines are here for testing and should be removed later on!
         [self setUp];
         TOThrowOnError(AUGraphStart(_graph));
@@ -64,11 +86,9 @@
     
     
     // Create AUNodes
-    AUNode filePlayerNode;
-    TOThrowOnError(TOAUGraphAddNode(kAudioUnitType_Generator, kAudioUnitSubType_AudioFilePlayer, _graph, &filePlayerNode));
+    TOThrowOnError(TOAUGraphAddNode(kAudioUnitType_Generator, kAudioUnitSubType_AudioFilePlayer, _graph, &_filePlayerNode));
     
-    AUNode mixerNode;
-    TOThrowOnError(TOAUGraphAddNode(kAudioUnitType_Mixer, kAudioUnitSubType_MultiChannelMixer, _graph, &mixerNode));
+    TOThrowOnError(TOAUGraphAddNode(kAudioUnitType_Mixer, kAudioUnitSubType_MultiChannelMixer, _graph, &_mixerNode));
     
     AUNode rioNode;
     TOThrowOnError(TOAUGraphAddNode(kAudioUnitType_Output, kAudioUnitSubType_RemoteIO, _graph, &rioNode));
@@ -79,9 +99,18 @@
     
     
     // Get AudioUnits
-    TOThrowOnError(AUGraphNodeInfo(_graph, filePlayerNode, NULL, &_filePlayerUnit));
-    TOThrowOnError(AUGraphNodeInfo(_graph, mixerNode, NULL, &_mixerUnit));
+    TOThrowOnError(AUGraphNodeInfo(_graph, _filePlayerNode, NULL, &_filePlayerUnit));
+    TOThrowOnError(AUGraphNodeInfo(_graph, _mixerNode, NULL, &_mixerUnit));
     TOThrowOnError(AUGraphNodeInfo(_graph, rioNode, NULL, &_rioUnit));
+    
+    
+    // Connect AUNodes/AudioUnits
+    TOThrowOnError(AUGraphConnectNodeInput(_graph, _filePlayerNode, 0, _mixerNode, 0));
+    TOThrowOnError(AUGraphConnectNodeInput(_graph, _mixerNode, 0, rioNode, 0));
+    
+    
+    // Initialize Graph
+    TOThrowOnError(AUGraphInitialize(_graph));
     
     
     // Mixer Unit Property setup
@@ -93,22 +122,35 @@
                                         &meteringMode,
                                         sizeof(meteringMode)));
     
+    [self setUpFilePlayerUnit];
+}
+
+
+- (void)setUpFilePlayerUnit
+{
+    if (!_audioFile) {
+        // init audioFile
+        NSURL *nyanURL = [[NSBundle mainBundle] URLForResource:@"nyan" withExtension:@"m4a"];
+        TOThrowOnError(AudioFileOpenURL((__bridge CFURLRef)(nyanURL), kAudioFileReadPermission, 0, &_audioFile));
+        
+        TOThrowOnError(AudioUnitSetProperty(_filePlayerUnit,
+                                            kAudioUnitProperty_ScheduledFileIDs,
+                                            kAudioUnitScope_Global,
+                                            0,
+                                            &_audioFile,
+                                            sizeof(_audioFile)));
+    }
+
     
-    // Connect AUNodes/AudioUnits
-    TOThrowOnError(AUGraphConnectNodeInput(_graph, filePlayerNode, 0, mixerNode, 0));
-    TOThrowOnError(AUGraphConnectNodeInput(_graph, mixerNode, 0, rioNode, 0));
+    // get input file format
+    AudioStreamBasicDescription audioFileASBD;
+    UInt32 propSize = sizeof(audioFileASBD);
+    TOThrowOnError(AudioFileGetProperty(_audioFile,
+                                        kAudioFilePropertyDataFormat,
+                                        &propSize,
+                                        &audioFileASBD));
     
-    // Initialize Graph
-    TOThrowOnError(AUGraphInitialize(_graph));
     
-    
-    // prepare the file player unit
-    TOThrowOnError(AudioUnitSetProperty(_filePlayerUnit,
-                                        kAudioUnitProperty_ScheduledFileIDs,
-                                        kAudioUnitScope_Global,
-                                        0,
-                                        &_audioFile,
-                                        sizeof(_audioFile)));
     
 	UInt64 nPackets;
 	UInt32 propsize = sizeof(nPackets);
@@ -123,12 +165,12 @@
 	memset (&rgn.mTimeStamp, 0, sizeof(rgn.mTimeStamp));
 	rgn.mTimeStamp.mFlags = kAudioTimeStampSampleTimeValid;
 	rgn.mTimeStamp.mSampleTime = 0;
-	rgn.mCompletionProc = NULL;
-	rgn.mCompletionProcUserData = NULL;
+	rgn.mCompletionProc = AudioFileCompletionCallback;
+	rgn.mCompletionProcUserData = (__bridge void *)(self);
 	rgn.mAudioFile = _audioFile;
 	rgn.mLoopCount = 0;
 	rgn.mStartFrame = 0;
-	rgn.mFramesToPlay = nPackets * _audioFileASBD.mFramesPerPacket;
+	rgn.mFramesToPlay = nPackets * audioFileASBD.mFramesPerPacket;
 	
 	TOThrowOnError(AudioUnitSetProperty(_filePlayerUnit,
                                         kAudioUnitProperty_ScheduledFileRegion,
@@ -158,9 +200,8 @@
                                         0,
                                         &startTime,
                                         sizeof(startTime)));
-    
-    
 }
+
 
 
 - (AudioUnitParameterValue)meterValueLeft
