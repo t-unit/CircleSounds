@@ -94,7 +94,11 @@
         
         layer.frame = layerFrame;
         
-        layer.backgroundColor = [[TOColorInterpolator colorAtValue:1.0/NUM_ELEMENTS*i betweenLowerValue:0 withColor:lowColor andHigherValue:1 withColor:higColor] CGColor];
+        layer.backgroundColor = [[TOColorInterpolator colorAtValue:1.0/NUM_ELEMENTS*i
+                                                 betweenLowerValue:0
+                                                         withColor:lowColor
+                                                    andHigherValue:1
+                                                         withColor:higColor] CGColor];
         layer.cornerRadius = 1;
         
         

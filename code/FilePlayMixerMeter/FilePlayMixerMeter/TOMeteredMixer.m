@@ -126,7 +126,7 @@
 	rgn.mCompletionProc = NULL;
 	rgn.mCompletionProcUserData = NULL;
 	rgn.mAudioFile = _audioFile;
-	rgn.mLoopCount = 1;
+	rgn.mLoopCount = 0;
 	rgn.mStartFrame = 0;
 	rgn.mFramesToPlay = nPackets * _audioFileASBD.mFramesPerPacket;
 	
@@ -163,9 +163,9 @@
 }
 
 
-- (Float32)meterValueLeft
+- (AudioUnitParameterValue)meterValueLeft
 {
-    Float32 retVal;
+    AudioUnitParameterValue retVal;
     
     TOThrowOnError(AudioUnitGetParameter(_mixerUnit,
                                          kMultiChannelMixerParam_PostAveragePower,
@@ -177,9 +177,9 @@
 }
 
 
-- (Float32)meterValueRight
+- (AudioUnitParameterValue)meterValueRight
 {
-    Float32 retVal;
+    AudioUnitParameterValue retVal;
     
     TOThrowOnError(AudioUnitGetParameter(_mixerUnit,
                                          kMultiChannelMixerParam_PostAveragePower+1,

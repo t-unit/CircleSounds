@@ -7,10 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <AudioToolbox/AudioToolbox.h>
 
 @interface TOMeteredMixer : NSObject
 
-- (Float32)meterValueLeft;
-- (Float32)meterValueRight;
+- (AudioUnitParameterValue)meterValueLeft;
+- (AudioUnitParameterValue)meterValueRight;
 
 @end
