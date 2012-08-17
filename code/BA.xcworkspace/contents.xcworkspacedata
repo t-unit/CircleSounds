@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:FakeHeaderProject/HeaderProject.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "group:FilePlayMixerMeter/FilePlayMixerMeter.xcodeproj">
    </FileRef>
    <FileRef

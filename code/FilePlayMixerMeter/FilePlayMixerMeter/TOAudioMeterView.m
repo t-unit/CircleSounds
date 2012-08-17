@@ -29,10 +29,11 @@
 
 - (void)drawRect:(CGRect)rect
 {
-    self.layer.backgroundColor = [[UIColor blackColor] CGColor];
-    CGSize elementSize = CGSizeMake(self.bounds.size.width * 0.8, roundf(self.bounds.size.height * 0.8 / (NUM_ELEMENTS-2) - 2));
-    
-    
+    CGRect layerRect;
+    layerRect.origin = CGPointMake(0, self.bounds.size.height);
+    layerRect.size.width = self.bounds.size.width;
+    layerRect.size.height = roundf((self.bounds.size.height - (NUM_ELEMENTS-1) * 2) / NUM_ELEMENTS);
+
     // layer properties
     UIColor *lowColor = [UIColor colorWithRed:0 green:0.3725 blue:0.4823 alpha:1.0];
     UIColor *higColor = [UIColor colorWithRed:0.6235 green:0 blue:0.2784 alpha:1.0];
@@ -48,14 +49,8 @@
     
     
     for (int i=0; i<NUM_ELEMENTS; i++) {
-        CGRect layerFrame;
-        layerFrame.size = elementSize;
-        layerFrame.origin.x = self.bounds.size.width * 0.1;
-        layerFrame.origin.y = self.bounds.size.height * 0.9 - i * elementSize.height - i;
-        
-        
         // create the layer element
-        CALayer *meterLayer = [self createMeterLayerWithFrame:layerFrame];
+        CALayer *meterLayer = [self createMeterLayerWithFrame:layerRect];
         meterLayer.backgroundColor = [[TOColorInterpolator colorAtValue:1.0/NUM_ELEMENTS*i
                                                  betweenLowerValue:0
                                                          withColor:lowColor
@@ -67,7 +62,7 @@
         
         
         // create peak layer element
-        CALayer *peakLayer = [self createMeterLayerWithFrame:layerFrame];
+        CALayer *peakLayer = [self createMeterLayerWithFrame:layerRect];
         peakLayer.backgroundColor = peakColor.CGColor;
         
         [self.layer addSublayer:peakLayer];
@@ -75,10 +70,12 @@
         
         
         // draw the placholder rect
-        UIBezierPath *placeholderPath = [UIBezierPath bezierPathWithRoundedRect:layerFrame cornerRadius:CORNER_RADIUS];
+        UIBezierPath *placeholderPath = [UIBezierPath bezierPathWithRoundedRect:layerRect cornerRadius:CORNER_RADIUS];
         placeholderPath.lineWidth = 0.5;
         
         [placeholderPath stroke];
+        
+        layerRect.origin.y -= layerRect.size.height +2;
     }
     
     self.meterElements = [meterElemets copy];
@@ -137,9 +134,10 @@
         layer.opacity = 0.0;
     }
     
-    
-    NSUInteger visibleElementIndex = self.peakElements.count * self.peakValue;
-    [self.peakElements[visibleElementIndex] setOpacity:1.0];
+    if (self.peakValue > 0.0) {
+        NSUInteger visibleElementIndex = (self.peakElements.count-1) * self.peakValue;
+        [self.peakElements[visibleElementIndex] setOpacity:1.0];
+    }
 }
 
 @end

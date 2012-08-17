@@ -8,6 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+@class TOAudioMeterView;
+
 @interface TOViewController : UIViewController
 
+@property (weak, nonatomic)  IBOutlet TOAudioMeterView *audioMeterView1;
+@property (weak, nonatomic) IBOutlet TOAudioMeterView *audioMeterView2;
+
+@property (weak, nonatomic) IBOutlet UISlider *volumeSlider;
+- (IBAction)volumeSliderValueChanged:(id)sender;
 @end

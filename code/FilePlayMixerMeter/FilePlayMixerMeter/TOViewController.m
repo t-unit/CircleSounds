@@ -14,8 +14,7 @@
 @interface TOViewController ()
 
 @property (strong, nonatomic) TOMeteredMixer *mixer;
-@property (weak, nonatomic) TOAudioMeterView *audioMeterView1;
-@property (weak, nonatomic) TOAudioMeterView *audioMeterView2;
+
 @property (strong, nonatomic) NSTimer *levelMeterUpdateTimer;
 
 @end
@@ -29,19 +28,10 @@
     
     self.mixer = [[TOMeteredMixer alloc] init];
     
-    
-    TOAudioMeterView *amv = [[TOAudioMeterView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width/2, self.view.bounds.size.height)];
-    [self.view addSubview:amv];
-    self.audioMeterView1 = amv;
-    
-    amv = [[TOAudioMeterView alloc] initWithFrame:CGRectMake(self.view.bounds.size.width/2, 0, self.view.bounds.size.width/2, self.view.bounds.size.height)];
-    [self.view addSubview:amv];
-    self.audioMeterView2 = amv;
-    
-    
     self.levelMeterUpdateTimer = [NSTimer timerWithTimeInterval:1.0/25 target:self selector:@selector(updateAudioMeterView:) userInfo:nil repeats:YES];
     [[NSRunLoop mainRunLoop] addTimer:self.levelMeterUpdateTimer forMode:NSDefaultRunLoopMode];
 }
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -73,7 +63,11 @@
     value = 0.02 * db + 1;
     self.audioMeterView2.peakValue = value;
     
-    
 }
 
+
+- (IBAction)volumeSliderValueChanged:(id)sender
+{
+    self.mixer.volume = self.volumeSlider.value;
+}
 @end

@@ -11,10 +11,14 @@
 
 @interface TOMeteredMixer : NSObject
 
-- (AudioUnitParameterValue)avgValueLeft;
-- (AudioUnitParameterValue)avgValueRight;
 
-- (AudioUnitParameterValue)peakValueLeft;
-- (AudioUnitParameterValue)peakValueRight;
+@property (readonly, nonatomic) AudioUnitParameterValue avgValueLeft;
+@property (readonly, nonatomic) AudioUnitParameterValue avgValueRight;
+
+@property (readonly, nonatomic) AudioUnitParameterValue peakValueLeft;
+@property (readonly, nonatomic) AudioUnitParameterValue peakValueRight;
+
+
+@property (assign, nonatomic) AudioUnitParameterValue volume;
 
 @end

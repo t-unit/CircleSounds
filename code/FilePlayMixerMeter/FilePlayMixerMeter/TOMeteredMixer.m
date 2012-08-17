@@ -202,6 +202,7 @@ void AudioFileCompletionCallback(void *userData, ScheduledAudioFileRegion *fileR
 }
 
 
+# pragma mark - Mixer Parameters
 
 - (AudioUnitParameterValue)avgValueLeft
 {
@@ -251,6 +252,31 @@ void AudioFileCompletionCallback(void *userData, ScheduledAudioFileRegion *fileR
     
     TOThrowOnError(AudioUnitGetParameter(_mixerUnit,
                                          kMultiChannelMixerParam_PostPeakHoldLevel+1,
+                                         kAudioUnitScope_Output,
+                                         0,
+                                         &retVal));
+    
+    return retVal;
+}
+
+
+- (void)setVolume:(AudioUnitParameterValue)volume
+{
+    TOThrowOnError(AudioUnitSetParameter(_mixerUnit,
+                                         kMultiChannelMixerParam_Volume,
+                                         kAudioUnitScope_Output,
+                                         0,
+                                         volume,
+                                         0));
+}
+
+
+- (AudioUnitParameterValue)volume
+{
+    AudioUnitParameterValue retVal;
+    
+    TOThrowOnError(AudioUnitGetParameter(_mixerUnit,
+                                         kMultiChannelMixerParam_Volume,
                                          kAudioUnitScope_Output,
                                          0,
                                          &retVal));
