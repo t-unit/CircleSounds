@@ -43,25 +43,20 @@ void AudioFileCompletionCallback(void *userData, ScheduledAudioFileRegion *fileR
 {    
     TOMeteredMixer *mixer = (__bridge TOMeteredMixer *)userData;
     
+    // changes some properties of th file palyer unit will also cause
+    // calling this function. just return without doing anything while
+    // reseting the file player unit.
     if (mixer->_unitsGettingReset) {
         return;
     }
     
     mixer->_unitsGettingReset = YES;
     
-    NSLog(@"playback finished (%@)", mixer);
-    
-    
-    // stoping the graph inside it own callbacks does not work
-    // adding the operations to the main queue instead
+    // setting properties inside the units own callback does not work
+    // just add a block to the main queue doing the changes.
     dispatch_async(dispatch_get_main_queue(), ^{
-        TOThrowOnError(AUGraphStop(mixer->_graph));
-        TOThrowOnError(AUGraphUninitialize(mixer->_graph));
-        TOThrowOnError(AUGraphClose(mixer->_graph));
-        
-        [mixer setUp];
-        TOThrowOnError(AUGraphStart(mixer->_graph));
-          mixer->_unitsGettingReset = NO;
+        [mixer setUpFilePlayerUnit];
+        mixer->_unitsGettingReset = NO;
     });
 }
 
@@ -128,18 +123,22 @@ void AudioFileCompletionCallback(void *userData, ScheduledAudioFileRegion *fileR
 
 - (void)setUpFilePlayerUnit
 {
-    if (!_audioFile) {
-        // init audioFile
-        NSURL *nyanURL = [[NSBundle mainBundle] URLForResource:@"nyan" withExtension:@"m4a"];
-        TOThrowOnError(AudioFileOpenURL((__bridge CFURLRef)(nyanURL), kAudioFileReadPermission, 0, &_audioFile));
-        
-        TOThrowOnError(AudioUnitSetProperty(_filePlayerUnit,
-                                            kAudioUnitProperty_ScheduledFileIDs,
-                                            kAudioUnitScope_Global,
-                                            0,
-                                            &_audioFile,
-                                            sizeof(_audioFile)));
+    // init audioFile
+    if (_audioFile) {
+        TOThrowOnError(AudioFileClose(_audioFile));
     }
+    
+    
+    NSURL *nyanURL = [[NSBundle mainBundle] URLForResource:@"nyan" withExtension:@"m4a"];
+    TOThrowOnError(AudioFileOpenURL((__bridge CFURLRef)(nyanURL), kAudioFileReadPermission, 0, &_audioFile));
+    
+    TOThrowOnError(AudioUnitSetProperty(_filePlayerUnit,
+                                        kAudioUnitProperty_ScheduledFileIDs,
+                                        kAudioUnitScope_Global,
+                                        0,
+                                        &_audioFile,
+                                            sizeof(_audioFile)));
+   
 
     
     // get input file format
