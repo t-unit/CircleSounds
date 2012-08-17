@@ -54,6 +54,7 @@
 {
 //    NSLog(@"%f", [self.mixer meterValue]);
     
+    // AVG
     double db = [self.mixer avgValueLeft];
     CGFloat value = 0.02 * db + 1;
     self.audioMeterView1.value = value;
@@ -61,6 +62,18 @@
     db = [self.mixer avgValueRight];
     value = 0.02 * db + 1;
     self.audioMeterView2.value = value;
+    
+    
+    // PEAK
+    db = [self.mixer peakValueLeft];
+    value = 0.02 * db + 1;
+    self.audioMeterView1.peakValue = value;
+    
+    db = [self.mixer peakValueRight];
+    value = 0.02 * db + 1;
+    self.audioMeterView2.peakValue = value;
+    
+    
 }
 
 @end
