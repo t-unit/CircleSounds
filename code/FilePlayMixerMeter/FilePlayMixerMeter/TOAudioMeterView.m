@@ -12,6 +12,8 @@
 #import <QuartzCore/QuartzCore.h>
 
 
+#define NUM_ELEMENTS 50
+#define CORNER_RADIUS 1.0
 
 @interface TOAudioMeterView ()
 
@@ -24,66 +26,27 @@
 @implementation TOAudioMeterView
 
 
-- (id)initWithCoder:(NSCoder *)aDecoder
-{
-    self = [super initWithCoder:aDecoder];
-    [self initMeterElements];
-    
-    return self;
-}
-
-
-- (id)initWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame];
-    [self initMeterElements];
-    
-    return self;
-}
-
-
-- (void)setFrame:(CGRect)frame
-{
-    [super setFrame:frame];
-    [self initMeterElements];
-}
-
-
 - (void)drawRect:(CGRect)rect
 {
-    NSUInteger lastVisibleElementIndex = self.meterElements.count * self.value;
-    CGFloat opacityOfHighestElement = self.meterElements.count * self.value - lastVisibleElementIndex;
-    
-    for (NSUInteger i=0; i<self.meterElements.count; i++) {
-        if (i<lastVisibleElementIndex) {
-            [self.meterElements[i] setOpacity:1.0];
-        }
-        else if (i==lastVisibleElementIndex) {
-            [[self.meterElements objectAtIndex:i] setOpacity:opacityOfHighestElement];
-        }
-        else {
-            [self.meterElements[i] setOpacity:0.0];
-        }
-    }
-}
-
-
-
-#define NUM_ELEMENTS 50
-
-- (void)initMeterElements
-{
     self.layer.backgroundColor = [[UIColor blackColor] CGColor];
+    CGSize elementSize = CGSizeMake(self.bounds.size.width * 0.8, roundf(self.bounds.size.height * 0.8 / (NUM_ELEMENTS-2) - 2));
     
+    
+    // layer properties
     UIColor *lowColor = [UIColor colorWithRed:0 green:0.3725 blue:0.4823 alpha:1.0];
     UIColor *higColor = [UIColor colorWithRed:0.6235 green:0 blue:0.2784 alpha:1.0];
-    
-    CGSize elementSize = CGSizeMake(self.bounds.size.width * 0.8, self.bounds.size.height * 0.8 / (NUM_ELEMENTS-2) - 2);
-    
     NSMutableArray *meterElemets = [[NSMutableArray alloc] initWithCapacity:NUM_ELEMENTS];
     
     
+    // placehoder rects properties
+    [[UIColor colorWithRed:0.15 green:0.15 blue:0.15 alpha:1.0] set];
+    CGFloat cornerRadius = 1.0;
+    
+    
+    
     for (int i=0; i<NUM_ELEMENTS; i++) {
+        
+        // create the layer element
         CALayer *layer = [[CALayer alloc] init];
         layer.contentsScale = self.layer.contentsScale;
         
@@ -99,23 +62,50 @@
                                                          withColor:lowColor
                                                     andHigherValue:1
                                                          withColor:higColor] CGColor];
-        layer.cornerRadius = 1;
-        
-        
+        layer.cornerRadius = cornerRadius;
         layer.opacity = 0;
         [self.layer addSublayer:layer];
         [meterElemets addObject:layer];
+        
+        
+        // draw the placholder rect
+        UIBezierPath *placeholderPath = [UIBezierPath bezierPathWithRoundedRect:layerFrame cornerRadius:cornerRadius];
+        placeholderPath.lineWidth = 0.5;
+        
+        [placeholderPath stroke];
     }
     
-    self.meterElements = [meterElemets copy]; // imutable copy
-    self.value = 0.0;
+    self.meterElements = [meterElemets copy];
 }
 
 
 - (void)setValue:(CGFloat)value
 {
     _value = value;
-    [self setNeedsDisplay];
+    
+    
+    //
+    // set the visibility of the meter elements according to the current value
+    //
+    
+    NSUInteger lastVisibleElementIndex = self.meterElements.count * self.value;
+    CGFloat opacityOfHighestElement = self.meterElements.count * self.value - lastVisibleElementIndex;
+    
+    
+    NSUInteger i = 0;
+    
+    for (; i<lastVisibleElementIndex; i++) {
+        [self.meterElements[i] setOpacity:1.0];
+    }
+    
+    
+    i++;
+    [[self.meterElements objectAtIndex:i] setOpacity:opacityOfHighestElement];
+    
+    
+    for (; i<self.meterElements.count; i++) {
+        [self.meterElements[i] setOpacity:0.0];
+    }
 }
 
 @end
