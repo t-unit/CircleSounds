@@ -17,6 +17,7 @@
     AUGraph _graph;
     
     AudioUnit _rioUnit;
+    AUNode _rioNode;
     
     AudioUnit _mixerUnit;
     AUNode _mixerNode;
@@ -90,8 +91,7 @@ void AudioFileCompletionCallback(void *userData, ScheduledAudioFileRegion *fileR
     
     TOThrowOnError(TOAUGraphAddNode(kAudioUnitType_Mixer, kAudioUnitSubType_MultiChannelMixer, _graph, &_mixerNode));
     
-    AUNode rioNode;
-    TOThrowOnError(TOAUGraphAddNode(kAudioUnitType_Output, kAudioUnitSubType_RemoteIO, _graph, &rioNode));
+    TOThrowOnError(TOAUGraphAddNode(kAudioUnitType_Output, kAudioUnitSubType_RemoteIO, _graph, &_rioNode));
     
     
     // Open AUGraph
@@ -101,12 +101,12 @@ void AudioFileCompletionCallback(void *userData, ScheduledAudioFileRegion *fileR
     // Get AudioUnits
     TOThrowOnError(AUGraphNodeInfo(_graph, _filePlayerNode, NULL, &_filePlayerUnit));
     TOThrowOnError(AUGraphNodeInfo(_graph, _mixerNode, NULL, &_mixerUnit));
-    TOThrowOnError(AUGraphNodeInfo(_graph, rioNode, NULL, &_rioUnit));
+    TOThrowOnError(AUGraphNodeInfo(_graph, _rioNode, NULL, &_rioUnit));
     
     
     // Connect AUNodes/AudioUnits
     TOThrowOnError(AUGraphConnectNodeInput(_graph, _filePlayerNode, 0, _mixerNode, 0));
-    TOThrowOnError(AUGraphConnectNodeInput(_graph, _mixerNode, 0, rioNode, 0));
+    TOThrowOnError(AUGraphConnectNodeInput(_graph, _mixerNode, 0, _rioNode, 0));
     
     
     // Initialize Graph
@@ -204,7 +204,7 @@ void AudioFileCompletionCallback(void *userData, ScheduledAudioFileRegion *fileR
 
 
 
-- (AudioUnitParameterValue)meterValueLeft
+- (AudioUnitParameterValue)avgValueLeft
 {
     AudioUnitParameterValue retVal;
     
@@ -218,7 +218,7 @@ void AudioFileCompletionCallback(void *userData, ScheduledAudioFileRegion *fileR
 }
 
 
-- (AudioUnitParameterValue)meterValueRight
+- (AudioUnitParameterValue)avgValueRight
 {
     AudioUnitParameterValue retVal;
     
@@ -230,5 +230,34 @@ void AudioFileCompletionCallback(void *userData, ScheduledAudioFileRegion *fileR
     
     return retVal;
 }
+
+
+- (AudioUnitParameterValue)peakValueLeft
+{
+    AudioUnitParameterValue retVal;
+    
+    TOThrowOnError(AudioUnitGetParameter(_mixerUnit,
+                                         kMultiChannelMixerParam_PostPeakHoldLevel,
+                                         kAudioUnitScope_Output,
+                                         0,
+                                         &retVal));
+    
+    return retVal;
+}
+
+
+- (AudioUnitParameterValue)peakValueRight
+{
+    AudioUnitParameterValue retVal;
+    
+    TOThrowOnError(AudioUnitGetParameter(_mixerUnit,
+                                         kMultiChannelMixerParam_PostPeakHoldLevel+1,
+                                         kAudioUnitScope_Output,
+                                         0,
+                                         &retVal));
+    
+    return retVal;
+}
+
 
 @end

@@ -11,7 +11,10 @@
 
 @interface TOMeteredMixer : NSObject
 
-- (AudioUnitParameterValue)meterValueLeft;
-- (AudioUnitParameterValue)meterValueRight;
+- (AudioUnitParameterValue)avgValueLeft;
+- (AudioUnitParameterValue)avgValueRight;
+
+- (AudioUnitParameterValue)peakValueLeft;
+- (AudioUnitParameterValue)peakValueRight;
 
 @end
