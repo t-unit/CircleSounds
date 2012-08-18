@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		D222320815DED41100ADF466 /* TOBandEqualizer.m in Sources */ = {isa = PBXBuildFile; fileRef = D222320715DED41100ADF466 /* TOBandEqualizer.m */; };
 		D22C37B915DC4742004A1C63 /* nyan.m4a in Resources */ = {isa = PBXBuildFile; fileRef = D22C37B815DC4742004A1C63 /* nyan.m4a */; };
 		D22C37C415DC4B2C004A1C63 /* TOBaseInterpolator.m in Sources */ = {isa = PBXBuildFile; fileRef = D22C37BF15DC4B2C004A1C63 /* TOBaseInterpolator.m */; };
 		D22C37C515DC4B2C004A1C63 /* TOColorInterpolator.m in Sources */ = {isa = PBXBuildFile; fileRef = D22C37C115DC4B2C004A1C63 /* TOColorInterpolator.m */; };
@@ -29,8 +28,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		D222320615DED41100ADF466 /* TOBandEqualizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TOBandEqualizer.h; sourceTree = "<group>"; };
-		D222320715DED41100ADF466 /* TOBandEqualizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TOBandEqualizer.m; sourceTree = "<group>"; };
 		D22C37B815DC4742004A1C63 /* nyan.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = nyan.m4a; sourceTree = "<group>"; };
 		D22C37BE15DC4B2C004A1C63 /* TOBaseInterpolator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TOBaseInterpolator.h; sourceTree = "<group>"; };
 		D22C37BF15DC4B2C004A1C63 /* TOBaseInterpolator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TOBaseInterpolator.m; sourceTree = "<group>"; };
@@ -129,8 +126,6 @@
 				D27EE24215DBAD77000E2E96 /* MainStoryboard.storyboard */,
 				D27EE24515DBAD77000E2E96 /* TOViewController.h */,
 				D27EE24615DBAD77000E2E96 /* TOViewController.m */,
-				D222320615DED41100ADF466 /* TOBandEqualizer.h */,
-				D222320715DED41100ADF466 /* TOBandEqualizer.m */,
 				D27EE23715DBAD77000E2E96 /* Supporting Files */,
 			);
 			path = FilePlayMixerMeter;
@@ -222,7 +217,6 @@
 				D22C37C515DC4B2C004A1C63 /* TOColorInterpolator.m in Sources */,
 				D22C37C615DC4B2C004A1C63 /* TOAudioMeterView.m in Sources */,
 				D25D85BB15DC4C7400A954C2 /* TOMeteredMixer.m in Sources */,
-				D222320815DED41100ADF466 /* TOBandEqualizer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

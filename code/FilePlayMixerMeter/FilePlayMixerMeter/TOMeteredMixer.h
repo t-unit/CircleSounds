@@ -6,9 +6,11 @@
 //  Copyright (c) 2012 Tobias Ottenweller. All rights reserved.
 //
 
-#import "TOBandEqualizer.h"
+#import <Foundation/Foundation.h>
+#import <AudioToolbox/AudioToolbox.h>
 
-@interface TOMeteredMixer : TOBandEqualizer
+
+@interface TOMeteredMixer : NSObject
 
 /**
  Monitor properties. Return decibel values between -∞ and 0.

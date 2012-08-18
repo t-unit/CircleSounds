@@ -28,225 +28,27 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             </label>
-                            <view translatesAutoresizingMaskIntoConstraints="NO" contentMode="scaleToFill" id="eYB-Fh-zvx" userLabel="EQ">
-                                <subviews>
-                                    <label translatesAutoresizingMaskIntoConstraints="NO" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" text="500" adjustsFontSizeToFit="NO" autoshrinkMode="none" id="YW5-Ie-H6b">
-                                        <nil key="highlightedColor"/>
-                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                    </label>
-                                    <label translatesAutoresizingMaskIntoConstraints="NO" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" text="1k" textAlignment="right" adjustsFontSizeToFit="NO" autoshrinkMode="none" id="W89-b5-w1u">
-                                        <nil key="highlightedColor"/>
-                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                    </label>
-                                    <label translatesAutoresizingMaskIntoConstraints="NO" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" text="16k" textAlignment="right" adjustsFontSizeToFit="NO" autoshrinkMode="none" id="4Hk-od-XiG">
-                                        <nil key="highlightedColor"/>
-                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                    </label>
-                                    <slider translatesAutoresizingMaskIntoConstraints="NO" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="-24" maxValue="24" id="Pzw-VV-mZ4">
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="618" id="bYl-7j-x0j"/>
-                                        </constraints>
-                                        <connections>
-                                            <action selector="globalGainValueChanged:" destination="2" eventType="valueChanged" id="zJO-TM-FPC"/>
-                                        </connections>
-                                    </slider>
-                                    <label translatesAutoresizingMaskIntoConstraints="NO" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" text="250" textAlignment="right" adjustsFontSizeToFit="NO" autoshrinkMode="none" id="VUx-5Y-du0">
-                                        <nil key="highlightedColor"/>
-                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                    </label>
-                                    <slider translatesAutoresizingMaskIntoConstraints="NO" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="-24" maxValue="24" id="2Qk-kK-gjh">
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="267" id="q1Q-6c-J1L"/>
-                                        </constraints>
-                                        <connections>
-                                            <action selector="gainSlider1kValueChanged:" destination="2" eventType="valueChanged" id="sec-yA-fig"/>
-                                        </connections>
-                                    </slider>
-                                    <label translatesAutoresizingMaskIntoConstraints="NO" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" text="125" textAlignment="right" adjustsFontSizeToFit="NO" autoshrinkMode="none" id="0nC-HD-dEP">
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="22" id="IHd-jP-idK"/>
-                                        </constraints>
-                                        <nil key="highlightedColor"/>
-                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                    </label>
-                                    <label translatesAutoresizingMaskIntoConstraints="NO" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" text="Preamp" adjustsFontSizeToFit="NO" autoshrinkMode="none" id="x0b-YN-QWU">
-                                        <nil key="highlightedColor"/>
-                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                    </label>
-                                    <slider translatesAutoresizingMaskIntoConstraints="NO" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="-96" maxValue="24" id="v7O-Jh-kYm">
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="267" id="7v3-1A-xlD"/>
-                                        </constraints>
-                                        <connections>
-                                            <action selector="gainSlider250ValueChanged:" destination="2" eventType="valueChanged" id="Y3o-Ar-cLr"/>
-                                        </connections>
-                                    </slider>
-                                    <label translatesAutoresizingMaskIntoConstraints="NO" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" text="32" adjustsFontSizeToFit="NO" autoshrinkMode="none" id="1PA-WO-Q15">
-                                        <nil key="highlightedColor"/>
-                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                    </label>
-                                    <slider translatesAutoresizingMaskIntoConstraints="NO" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="-24" maxValue="24" id="lCc-wr-jcu">
-                                        <connections>
-                                            <action selector="gainSlider8kValueChanged:" destination="2" eventType="valueChanged" id="Xsx-gP-eXa"/>
-                                        </connections>
-                                    </slider>
-                                    <slider translatesAutoresizingMaskIntoConstraints="NO" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="-96" maxValue="24" id="nwY-1S-Z97">
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="269" id="gWb-01-X6d"/>
-                                        </constraints>
-                                        <connections>
-                                            <action selector="gainSlider32ValueChanged:" destination="2" eventType="valueChanged" id="k7d-Rg-60a"/>
-                                        </connections>
-                                    </slider>
-                                    <label translatesAutoresizingMaskIntoConstraints="NO" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" text="8k" textAlignment="right" adjustsFontSizeToFit="NO" autoshrinkMode="none" id="adH-Pa-RKM">
-                                        <nil key="highlightedColor"/>
-                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                    </label>
-                                    <slider translatesAutoresizingMaskIntoConstraints="NO" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="-96" maxValue="24" id="qKC-hI-Cxu">
-                                        <connections>
-                                            <action selector="gainSlider64ValueChanged:" destination="2" eventType="valueChanged" id="iiG-bu-Ecb"/>
-                                        </connections>
-                                    </slider>
-                                    <slider translatesAutoresizingMaskIntoConstraints="NO" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="-24" maxValue="24" id="NQq-7J-2K8">
-                                        <connections>
-                                            <action selector="gainSlider4kValueChanged:" destination="2" eventType="valueChanged" id="Oeg-ij-2yQ"/>
-                                        </connections>
-                                    </slider>
-                                    <label translatesAutoresizingMaskIntoConstraints="NO" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" text="4k" textAlignment="right" adjustsFontSizeToFit="NO" autoshrinkMode="none" id="89K-QF-VCY">
-                                        <nil key="highlightedColor"/>
-                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                    </label>
-                                    <slider translatesAutoresizingMaskIntoConstraints="NO" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="-96" maxValue="24" id="i1H-X0-6Au">
-                                        <connections>
-                                            <action selector="gainSlider500ValueChanged:" destination="2" eventType="valueChanged" id="lIH-w0-Bex"/>
-                                        </connections>
-                                    </slider>
-                                    <label translatesAutoresizingMaskIntoConstraints="NO" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" text="2k" textAlignment="right" adjustsFontSizeToFit="NO" autoshrinkMode="none" id="y5F-Du-eXZ">
-                                        <nil key="highlightedColor"/>
-                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                    </label>
-                                    <slider translatesAutoresizingMaskIntoConstraints="NO" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="-24" maxValue="24" id="w9S-Ao-way">
-                                        <connections>
-                                            <action selector="gainSlider2kValueChanged:" destination="2" eventType="valueChanged" id="K7U-th-oWn"/>
-                                        </connections>
-                                    </slider>
-                                    <label translatesAutoresizingMaskIntoConstraints="NO" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" text="64" textAlignment="right" adjustsFontSizeToFit="NO" autoshrinkMode="none" id="kjl-2G-Kz3">
-                                        <nil key="highlightedColor"/>
-                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                    </label>
-                                    <slider translatesAutoresizingMaskIntoConstraints="NO" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="-96" maxValue="24" id="N2w-pW-wQ4">
-                                        <connections>
-                                            <action selector="gainSlider125ValueChanged:" destination="2" eventType="valueChanged" id="Mer-9F-j8m"/>
-                                        </connections>
-                                    </slider>
-                                    <slider translatesAutoresizingMaskIntoConstraints="NO" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="-24" maxValue="24" id="JNt-70-FzT">
-                                        <connections>
-                                            <action selector="gainSlider16kValueChanged:" destination="2" eventType="valueChanged" id="RQP-ls-BI4"/>
-                                        </connections>
-                                    </slider>
-                                </subviews>
-                                <color key="backgroundColor" red="0.94117647059999998" green="0.50196078430000002" blue="0.066666666669999999" alpha="0.5" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstItem="v7O-Jh-kYm" firstAttribute="top" secondItem="N2w-pW-wQ4" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="3JZ-RZ-dYi"/>
-                                    <constraint firstItem="N2w-pW-wQ4" firstAttribute="bottom" secondItem="89K-QF-VCY" secondAttribute="bottom" type="default" id="5HW-xO-gac"/>
-                                    <constraint firstItem="4Hk-od-XiG" firstAttribute="baseline" secondItem="YW5-Ie-H6b" secondAttribute="baseline" type="default" id="5gM-Nm-JWi"/>
-                                    <constraint firstItem="i1H-X0-6Au" firstAttribute="trailing" secondItem="v7O-Jh-kYm" secondAttribute="trailing" type="default" id="6Mj-ys-ktW"/>
-                                    <constraint firstItem="i1H-X0-6Au" firstAttribute="top" secondItem="YW5-Ie-H6b" secondAttribute="top" type="default" id="6t7-yI-unw"/>
-                                    <constraint firstAttribute="bottom" secondItem="i1H-X0-6Au" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="7RG-3i-RsZ"/>
-                                    <constraint firstItem="W89-b5-w1u" firstAttribute="leading" secondItem="y5F-Du-eXZ" secondAttribute="leading" type="default" id="8Gx-rz-8eC"/>
-                                    <constraint firstItem="0nC-HD-dEP" firstAttribute="leading" secondItem="VUx-5Y-du0" secondAttribute="leading" type="default" id="8Ra-ep-2V9"/>
-                                    <constraint firstItem="adH-Pa-RKM" firstAttribute="trailing" secondItem="4Hk-od-XiG" secondAttribute="trailing" type="default" id="AKq-FM-7Dd"/>
-                                    <constraint firstItem="v7O-Jh-kYm" firstAttribute="leading" secondItem="N2w-pW-wQ4" secondAttribute="leading" type="default" id="AQf-r5-WPj"/>
-                                    <constraint firstItem="v7O-Jh-kYm" firstAttribute="top" secondItem="VUx-5Y-du0" secondAttribute="top" type="default" id="Aya-gn-Ceg"/>
-                                    <constraint firstItem="NQq-7J-2K8" firstAttribute="leading" secondItem="lCc-wr-jcu" secondAttribute="leading" type="default" id="BVP-AH-Mro"/>
-                                    <constraint firstItem="0nC-HD-dEP" firstAttribute="top" secondItem="89K-QF-VCY" secondAttribute="top" type="default" id="DpJ-vg-o35"/>
-                                    <constraint firstItem="JNt-70-FzT" firstAttribute="top" secondItem="lCc-wr-jcu" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="Hzq-3Y-ouk"/>
-                                    <constraint firstAttribute="trailing" secondItem="w9S-Ao-way" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="IhX-zZ-T6p"/>
-                                    <constraint firstItem="nwY-1S-Z97" firstAttribute="trailing" secondItem="qKC-hI-Cxu" secondAttribute="trailing" type="default" id="JDV-sH-rKH"/>
-                                    <constraint firstItem="NQq-7J-2K8" firstAttribute="leading" secondItem="w9S-Ao-way" secondAttribute="leading" type="default" id="L6W-3c-yKC"/>
-                                    <constraint firstAttribute="trailing" secondItem="2Qk-kK-gjh" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="LlA-sR-8re"/>
-                                    <constraint firstItem="0nC-HD-dEP" firstAttribute="leading" secondItem="eYB-Fh-zvx" secondAttribute="leading" constant="47" id="LlS-Rd-EDv"/>
-                                    <constraint firstAttribute="trailing" secondItem="JNt-70-FzT" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="LsN-Ay-60x"/>
-                                    <constraint firstItem="2Qk-kK-gjh" firstAttribute="top" secondItem="W89-b5-w1u" secondAttribute="top" type="default" id="MTg-up-GUU"/>
-                                    <constraint firstItem="Pzw-VV-mZ4" firstAttribute="bottom" secondItem="x0b-YN-QWU" secondAttribute="bottom" type="default" id="Mnt-fS-Fwd"/>
-                                    <constraint firstItem="y5F-Du-eXZ" firstAttribute="leading" secondItem="89K-QF-VCY" secondAttribute="leading" type="default" id="N6R-YJ-hJB"/>
-                                    <constraint firstAttribute="trailing" secondItem="NQq-7J-2K8" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="NbP-UR-0ZC"/>
-                                    <constraint firstItem="89K-QF-VCY" firstAttribute="top" secondItem="y5F-Du-eXZ" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="NtK-jo-3Np"/>
-                                    <constraint firstItem="qKC-hI-Cxu" firstAttribute="top" secondItem="nwY-1S-Z97" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="OqS-9R-bd8"/>
-                                    <constraint firstItem="kjl-2G-Kz3" firstAttribute="leading" secondItem="1PA-WO-Q15" secondAttribute="leading" type="default" id="Qny-ri-a8M"/>
-                                    <constraint firstAttribute="trailing" secondItem="Pzw-VV-mZ4" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="Qst-ou-2RK"/>
-                                    <constraint firstItem="YW5-Ie-H6b" firstAttribute="leading" secondItem="VUx-5Y-du0" secondAttribute="leading" type="default" id="SbZ-J6-H8Q"/>
-                                    <constraint firstItem="i1H-X0-6Au" firstAttribute="leading" secondItem="v7O-Jh-kYm" secondAttribute="leading" type="default" id="UKJ-QZ-KrE"/>
-                                    <constraint firstItem="qKC-hI-Cxu" firstAttribute="leading" secondItem="nwY-1S-Z97" secondAttribute="leading" type="default" id="Wwq-ms-ZBk"/>
-                                    <constraint firstItem="Pzw-VV-mZ4" firstAttribute="leading" secondItem="nwY-1S-Z97" secondAttribute="leading" type="default" id="X5H-L4-ITc"/>
-                                    <constraint firstItem="qKC-hI-Cxu" firstAttribute="leading" secondItem="N2w-pW-wQ4" secondAttribute="leading" type="default" id="Yy5-Qu-Owo"/>
-                                    <constraint firstItem="w9S-Ao-way" firstAttribute="top" secondItem="eYB-Fh-zvx" secondAttribute="top" constant="88" id="ZYf-M0-7Qn"/>
-                                    <constraint firstItem="qKC-hI-Cxu" firstAttribute="top" secondItem="kjl-2G-Kz3" secondAttribute="top" type="default" id="a8C-qe-vva"/>
-                                    <constraint firstItem="x0b-YN-QWU" firstAttribute="leading" secondItem="eYB-Fh-zvx" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="afV-iv-hMZ"/>
-                                    <constraint firstItem="adH-Pa-RKM" firstAttribute="top" secondItem="lCc-wr-jcu" secondAttribute="top" type="default" id="d0P-bo-LQ5"/>
-                                    <constraint firstAttribute="bottom" secondItem="JNt-70-FzT" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="dKQ-xI-UGL"/>
-                                    <constraint firstAttribute="bottom" secondItem="NQq-7J-2K8" secondAttribute="bottom" constant="83" id="fRa-Ro-xE8"/>
-                                    <constraint firstItem="nwY-1S-Z97" firstAttribute="top" secondItem="eYB-Fh-zvx" secondAttribute="top" constant="54" id="iz0-Qd-Z6B"/>
-                                    <constraint firstItem="w9S-Ao-way" firstAttribute="bottom" secondItem="y5F-Du-eXZ" secondAttribute="bottom" type="default" id="nvg-3l-3MN"/>
-                                    <constraint firstItem="adH-Pa-RKM" firstAttribute="leading" secondItem="89K-QF-VCY" secondAttribute="leading" type="default" id="oBk-nm-7id"/>
-                                    <constraint firstItem="w9S-Ao-way" firstAttribute="leading" secondItem="2Qk-kK-gjh" secondAttribute="leading" type="default" id="qhM-f5-xFq"/>
-                                    <constraint firstItem="0nC-HD-dEP" firstAttribute="trailing" secondItem="kjl-2G-Kz3" secondAttribute="trailing" type="default" id="quA-68-UsO"/>
-                                    <constraint firstItem="JNt-70-FzT" firstAttribute="leading" secondItem="lCc-wr-jcu" secondAttribute="leading" type="default" id="rJr-Gs-355"/>
-                                    <constraint firstAttribute="trailing" secondItem="W89-b5-w1u" secondAttribute="trailing" constant="302" id="sfo-L1-QDt"/>
-                                    <constraint firstItem="Pzw-VV-mZ4" firstAttribute="top" secondItem="eYB-Fh-zvx" secondAttribute="top" constant="20" symbolic="YES" type="default" id="uRD-Hk-CMC"/>
-                                    <constraint firstItem="qKC-hI-Cxu" firstAttribute="trailing" secondItem="N2w-pW-wQ4" secondAttribute="trailing" type="default" id="yds-Gp-bQT"/>
-                                    <constraint firstAttribute="trailing" secondItem="lCc-wr-jcu" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="yjl-fh-uDY"/>
-                                    <constraint firstItem="kjl-2G-Kz3" firstAttribute="top" secondItem="1PA-WO-Q15" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="yoX-z2-rKd"/>
-                                    <constraint firstItem="1PA-WO-Q15" firstAttribute="baseline" secondItem="W89-b5-w1u" secondAttribute="baseline" type="default" id="z4h-O8-YY7"/>
-                                </constraints>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="eho-ni-aGU" firstAttribute="leading" secondItem="5" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="0HX-IK-QP2"/>
-                            <constraint firstItem="33p-Hd-LMo" firstAttribute="top" secondItem="eYB-Fh-zvx" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="0X9-PZ-ygA"/>
                             <constraint firstAttribute="trailing" secondItem="0Bw-KR-vT4" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="5CG-fE-pg1"/>
                             <constraint firstItem="j69-GG-2fY" firstAttribute="leading" secondItem="5" secondAttribute="leading" constant="409" id="7GT-ga-JoG"/>
                             <constraint firstAttribute="trailing" secondItem="j69-GG-2fY" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="7Sj-vZ-bSg"/>
-                            <constraint firstAttribute="bottom" secondItem="0Bw-KR-vT4" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="ElS-No-F21"/>
-                            <constraint firstItem="eYB-Fh-zvx" firstAttribute="top" secondItem="5" secondAttribute="top" constant="706" id="Qpj-Og-PKg"/>
-                            <constraint firstAttribute="bottom" secondItem="33p-Hd-LMo" secondAttribute="bottom" constant="45" id="RXR-0p-BsN"/>
                             <constraint firstAttribute="trailing" secondItem="eho-ni-aGU" secondAttribute="trailing" constant="398" id="aoV-aH-if7"/>
                             <constraint firstItem="eho-ni-aGU" firstAttribute="top" secondItem="5" secondAttribute="top" constant="20" symbolic="YES" type="default" id="b2L-m7-lrq"/>
+                            <constraint firstAttribute="bottom" secondItem="eho-ni-aGU" secondAttribute="bottom" constant="118" id="c1J-2R-BE2"/>
                             <constraint firstItem="33p-Hd-LMo" firstAttribute="leading" secondItem="5" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="ej7-O9-2sF"/>
-                            <constraint firstAttribute="trailing" secondItem="eYB-Fh-zvx" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="hdh-zY-Ycv"/>
-                            <constraint firstAttribute="bottom" secondItem="j69-GG-2fY" secondAttribute="bottom" constant="422" id="hxL-qw-Ojq"/>
+                            <constraint firstItem="eho-ni-aGU" firstAttribute="bottom" secondItem="j69-GG-2fY" secondAttribute="bottom" type="default" id="ezJ-gV-QRQ"/>
+                            <constraint firstAttribute="bottom" secondItem="33p-Hd-LMo" secondAttribute="bottom" constant="55" id="idK-Ko-f4H"/>
                             <constraint firstItem="0Bw-KR-vT4" firstAttribute="leading" secondItem="5" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="jLK-bw-z4W"/>
                             <constraint firstItem="j69-GG-2fY" firstAttribute="top" secondItem="5" secondAttribute="top" constant="20" symbolic="YES" type="default" id="lHi-cT-Uul"/>
-                            <constraint firstItem="eYB-Fh-zvx" firstAttribute="leading" secondItem="5" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="p2y-AM-2LY"/>
-                            <constraint firstAttribute="bottom" secondItem="eho-ni-aGU" secondAttribute="bottom" constant="416" id="uRH-7p-uIc"/>
+                            <constraint firstAttribute="bottom" secondItem="0Bw-KR-vT4" secondAttribute="bottom" constant="31" id="s6h-R4-Cz0"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="audioMeterView1" destination="eho-ni-aGU" id="wRa-07-Bep"/>
                         <outlet property="audioMeterView2" destination="j69-GG-2fY" id="GUG-M7-ODC"/>
-                        <outlet property="gainSlider125" destination="N2w-pW-wQ4" id="mgg-yI-yrp"/>
-                        <outlet property="gainSlider16k" destination="JNt-70-FzT" id="bjm-kw-N7B"/>
-                        <outlet property="gainSlider1k" destination="2Qk-kK-gjh" id="hGb-Rn-UDi"/>
-                        <outlet property="gainSlider250" destination="v7O-Jh-kYm" id="xFb-ky-hud"/>
-                        <outlet property="gainSlider2k" destination="w9S-Ao-way" id="J1E-F3-kUc"/>
-                        <outlet property="gainSlider32" destination="nwY-1S-Z97" id="XJv-K3-JLu"/>
-                        <outlet property="gainSlider4k" destination="NQq-7J-2K8" id="gug-Bz-Oyl"/>
-                        <outlet property="gainSlider500" destination="i1H-X0-6Au" id="iXh-hl-bq3"/>
-                        <outlet property="gainSlider64" destination="qKC-hI-Cxu" id="anZ-61-dzE"/>
-                        <outlet property="gainSlider8k" destination="lCc-wr-jcu" id="Dxc-F3-dZk"/>
-                        <outlet property="globalGainSlider" destination="Pzw-VV-mZ4" id="kbW-kh-fVR"/>
                         <outlet property="volumeSlider" destination="0Bw-KR-vT4" id="3Ge-Q8-qvX"/>
                     </connections>
                 </viewController>
@@ -264,31 +66,9 @@
         <class className="TOViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/TOViewController.h"/>
             <relationships>
-                <relationship kind="action" name="gainSlider125ValueChanged:"/>
-                <relationship kind="action" name="gainSlider16kValueChanged:"/>
-                <relationship kind="action" name="gainSlider1kValueChanged:"/>
-                <relationship kind="action" name="gainSlider250ValueChanged:"/>
-                <relationship kind="action" name="gainSlider2kValueChanged:"/>
-                <relationship kind="action" name="gainSlider32ValueChanged:"/>
-                <relationship kind="action" name="gainSlider4kValueChanged:"/>
-                <relationship kind="action" name="gainSlider500ValueChanged:"/>
-                <relationship kind="action" name="gainSlider64ValueChanged:"/>
-                <relationship kind="action" name="gainSlider8kValueChanged:"/>
-                <relationship kind="action" name="globalGainValueChanged:"/>
                 <relationship kind="action" name="volumeSliderValueChanged:"/>
                 <relationship kind="outlet" name="audioMeterView1" candidateClass="TOAudioMeterView"/>
                 <relationship kind="outlet" name="audioMeterView2" candidateClass="TOAudioMeterView"/>
-                <relationship kind="outlet" name="gainSlider125" candidateClass="UISlider"/>
-                <relationship kind="outlet" name="gainSlider16k" candidateClass="UISlider"/>
-                <relationship kind="outlet" name="gainSlider1k" candidateClass="UISlider"/>
-                <relationship kind="outlet" name="gainSlider250" candidateClass="UISlider"/>
-                <relationship kind="outlet" name="gainSlider2k" candidateClass="UISlider"/>
-                <relationship kind="outlet" name="gainSlider32" candidateClass="UISlider"/>
-                <relationship kind="outlet" name="gainSlider4k" candidateClass="UISlider"/>
-                <relationship kind="outlet" name="gainSlider500" candidateClass="UISlider"/>
-                <relationship kind="outlet" name="gainSlider64" candidateClass="UISlider"/>
-                <relationship kind="outlet" name="gainSlider8k" candidateClass="UISlider"/>
-                <relationship kind="outlet" name="globalGainSlider" candidateClass="UISlider"/>
                 <relationship kind="outlet" name="volumeSlider" candidateClass="UISlider"/>
             </relationships>
         </class>
