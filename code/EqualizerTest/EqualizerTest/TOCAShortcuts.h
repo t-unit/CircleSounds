@@ -96,5 +96,12 @@ OSStatus TOAUGraphAddNode(OSType inComponentType, OSType inComponentSubType, AUG
 
 
 
+///---------------------------------------------------------------------------------------
+/// @name Printing Functions
+///---------------------------------------------------------------------------------------
+void TOPrintASBD(AudioStreamBasicDescription asbd);
+
+
+
 
 

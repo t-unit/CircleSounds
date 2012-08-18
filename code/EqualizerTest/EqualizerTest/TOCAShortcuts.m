@@ -82,6 +82,7 @@ AudioStreamBasicDescription TOCanonicalAUGraphStreamFormat(UInt32 nChannels, boo
     asbd.mChannelsPerFrame = nChannels;
     asbd.mFramesPerPacket = 1;
     asbd.mBitsPerChannel = 8 * (UInt32)sizeof(AudioUnitSampleType);
+    asbd.mSampleRate = 44100;
     
     if (interleaved) {
         asbd.mBytesPerPacket = asbd.mBytesPerFrame = nChannels * (UInt32)sizeof(AudioUnitSampleType);
@@ -93,53 +94,6 @@ AudioStreamBasicDescription TOCanonicalAUGraphStreamFormat(UInt32 nChannels, boo
     
     return asbd;
 }
-
-
-
-//AudioStreamBasicDescription TOASBD(UInt32 nChannels, bool interleaved)
-//{
-//    
-//}
-//
-//
-//
-//AudioStreamBasicDescription TOCanonicalStereoLPCM()
-//{
-//    return TOASBD(2, false);
-//        
-////    AudioStreamBasicDescription asbd;
-////    memset (&asbd, 0, sizeof (asbd));
-////	asbd.mSampleRate = 44100;
-////	asbd.mFormatID = kAudioFormatLinearPCM;
-////	asbd.mFormatFlags = kAudioFormatFlagsCanonical;
-////	asbd.mBytesPerPacket = 4;
-////	asbd.mFramesPerPacket = 1;
-////	asbd.mBytesPerFrame = 4;
-////	asbd.mChannelsPerFrame = 2;
-////	asbd.mBitsPerChannel = 16;
-////
-////    return asbd;
-//}
-//
-//
-//AudioStreamBasicDescription TOCanonicalMonoLPCM()
-//{
-//    return TOASBD(1, false);
-//    
-////    AudioStreamBasicDescription asbd;
-////    memset (&asbd, 0, sizeof (asbd));
-////	asbd.mSampleRate = 44100;
-////	asbd.mFormatID = kAudioFormatLinearPCM;
-////	asbd.mFormatFlags = kAudioFormatFlagsCanonical;
-////	asbd.mBytesPerPacket = 2
-////    ;
-////	asbd.mFramesPerPacket = 1;
-////	asbd.mBytesPerFrame = 2;
-////	asbd.mChannelsPerFrame = 1;
-////	asbd.mBitsPerChannel = 16;
-////    
-////    return asbd;
-//}
 
 
 AudioComponentDescription TOAudioComponentDescription(OSType componentType, OSType componentSubType)
@@ -183,4 +137,29 @@ OSStatus TOAUGraphAddNode(OSType inComponentType, OSType inComponentSubType, AUG
     AudioComponentDescription desc = TOAudioComponentDescription(inComponentType, inComponentSubType);
     return AUGraphAddNode(inGraph, &desc, outNode);
 }
+
+
+void TOPrintASBD(AudioStreamBasicDescription asbd)
+{
+    char formatIDString[5];
+    UInt32 formatID = CFSwapInt32HostToBig (asbd.mFormatID);
+    bcopy (&formatID, formatIDString, 4);
+    formatIDString[4] = '\0';
+
+    printf("  Sample Rate:         %10.0f\n",   asbd.mSampleRate);
+    printf("  Format ID:           %10s\n",     formatIDString);
+    printf("  Format Flags:        %10lX\n",    asbd.mFormatFlags);
+    printf("  Bytes per Packet:    %10ld\n",    asbd.mBytesPerPacket);
+    printf("  Frames per Packet:   %10ld\n",    asbd.mFramesPerPacket);
+    printf("  Bytes per Frame:     %10ld\n",    asbd.mBytesPerFrame);
+    printf("  Channels per Frame:  %10ld\n",    asbd.mChannelsPerFrame);
+    printf("  Bits per Channel:    %10ld\n",    asbd.mBitsPerChannel);
+}
+
+                                          
+                                   
+                            
+                            
+                            
+                            
 
