@@ -13,7 +13,20 @@
 @implementation TOBandEqualizer
 
 
-- (void)setUp
+- (id)init
+{
+    self = [super init];
+    
+    if (self) {
+        [self initializeGraph];
+        TOThrowOnError(AUGraphStart(graph));
+    }
+    
+    return self;
+}
+
+
+- (void)initializeGraph
 {
     //............................................................................
     // Create AUGraph
@@ -106,16 +119,11 @@
     
     //............................................................................
     // other audio unit setup
-    [self setUpFilePlayerUnit];
-    
-    
-    //............................................................................
-    // Start the Graph
-    TOThrowOnError(AUGraphStart(graph));
+    [self initializePlayerUnit];
 }
 
 
-- (void)setUpFilePlayerUnit
+- (void)initializePlayerUnit
 {
     NSURL *songURL = [[NSBundle mainBundle] URLForResource:@"song" withExtension:@"m4a"];
     TOThrowOnError(AudioFileOpenURL((__bridge CFURLRef)(songURL), kAudioFileReadPermission, 0, &audioFile));
@@ -255,13 +263,13 @@
 //                                             1,
 //                                             0));
 //        
-//        TOThrowOnError(AudioUnitSetParameter(equalizerUnit,
-//                                             kAUNBandEQParam_FilterType+i,
-//                                             kAudioUnitScope_Global,
-//                                             0,
-//                                             kAUNBandEQFilterType_BandPass,
-//                                             0));
-//        
+        TOThrowOnError(AudioUnitSetParameter(equalizerUnit,
+                                             kAUNBandEQParam_FilterType+i,
+                                             kAudioUnitScope_Global,
+                                             0,
+                                             kAUNBandEQFilterType_BandPass,
+                                             0));
+//
 //        TOThrowOnError(AudioUnitSetParameter(equalizerUnit,
 //                                             kAUNBandEQParam_Bandwidth+i,
 //                                             kAudioUnitScope_Global,

@@ -28,7 +28,6 @@
 	// Do any additional setup after loading the view, typically from a nib.
     
     self.eq = [[TOBandEqualizer alloc] init];
-    [self.eq setUp];
 }
 
 
