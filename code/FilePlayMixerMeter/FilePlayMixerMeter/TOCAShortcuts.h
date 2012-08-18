@@ -64,10 +64,13 @@ void TOThrowOnError(OSStatus status);
 /**
  Convenience functions returning an ASBD filled with an easy to handle
  linear PCM format. The canonical PCM formats for this project.
+ The implementation is based on the C++ class 'CAStreamBasicDescription'
+ availbible inside the 'iPublicUtility' published by Apple.
 */
 
-AudioStreamBasicDescription TOCanonicalStereoLPCM();
-AudioStreamBasicDescription TOCanonicalMonoLPCM();
+AudioStreamBasicDescription TOCanonicalStreamFormat(UInt32 nChannels, bool interleaved);
+
+AudioStreamBasicDescription TOCanonicalAUGraphStreamFormat(UInt32 nChannels, bool interleaved);
 
 
 

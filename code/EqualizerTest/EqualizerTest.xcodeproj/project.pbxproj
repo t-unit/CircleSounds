@@ -1,0 +1,304 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		D23394FF15DFDCE0002C24F3 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D23394FE15DFDCE0002C24F3 /* AudioToolbox.framework */; };
+		D233950415DFDD09002C24F3 /* song.m4a in Resources */ = {isa = PBXBuildFile; fileRef = D233950315DFDD09002C24F3 /* song.m4a */; };
+		D2AC1CCB15DFC183007C7203 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2AC1CCA15DFC183007C7203 /* UIKit.framework */; };
+		D2AC1CCD15DFC183007C7203 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2AC1CCC15DFC183007C7203 /* Foundation.framework */; };
+		D2AC1CCF15DFC183007C7203 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2AC1CCE15DFC183007C7203 /* CoreGraphics.framework */; };
+		D2AC1CD515DFC183007C7203 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D2AC1CD315DFC183007C7203 /* InfoPlist.strings */; };
+		D2AC1CD715DFC183007C7203 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D2AC1CD615DFC183007C7203 /* main.m */; };
+		D2AC1CDB15DFC183007C7203 /* TOAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D2AC1CDA15DFC183007C7203 /* TOAppDelegate.m */; };
+		D2AC1CDE15DFC183007C7203 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2AC1CDC15DFC183007C7203 /* MainStoryboard.storyboard */; };
+		D2AC1CE115DFC183007C7203 /* TOViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2AC1CE015DFC183007C7203 /* TOViewController.m */; };
+		D2AC1CFB15DFC1A3007C7203 /* TOBandEqualizer.m in Sources */ = {isa = PBXBuildFile; fileRef = D2AC1CF915DFC1A3007C7203 /* TOBandEqualizer.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		D23394FE15DFDCE0002C24F3 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		D233950315DFDD09002C24F3 /* song.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = song.m4a; sourceTree = "<group>"; };
+		D2AC1CC615DFC183007C7203 /* EqualizerTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EqualizerTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D2AC1CCA15DFC183007C7203 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		D2AC1CCC15DFC183007C7203 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		D2AC1CCE15DFC183007C7203 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		D2AC1CD215DFC183007C7203 /* EqualizerTest-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "EqualizerTest-Info.plist"; sourceTree = "<group>"; };
+		D2AC1CD415DFC183007C7203 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		D2AC1CD615DFC183007C7203 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		D2AC1CD815DFC183007C7203 /* EqualizerTest-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "EqualizerTest-Prefix.pch"; sourceTree = "<group>"; };
+		D2AC1CD915DFC183007C7203 /* TOAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TOAppDelegate.h; sourceTree = "<group>"; };
+		D2AC1CDA15DFC183007C7203 /* TOAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TOAppDelegate.m; sourceTree = "<group>"; };
+		D2AC1CDD15DFC183007C7203 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
+		D2AC1CDF15DFC183007C7203 /* TOViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TOViewController.h; sourceTree = "<group>"; };
+		D2AC1CE015DFC183007C7203 /* TOViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TOViewController.m; sourceTree = "<group>"; };
+		D2AC1CF815DFC1A3007C7203 /* TOBandEqualizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TOBandEqualizer.h; sourceTree = "<group>"; };
+		D2AC1CF915DFC1A3007C7203 /* TOBandEqualizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TOBandEqualizer.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D2AC1CC315DFC183007C7203 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D23394FF15DFDCE0002C24F3 /* AudioToolbox.framework in Frameworks */,
+				D2AC1CCB15DFC183007C7203 /* UIKit.framework in Frameworks */,
+				D2AC1CCD15DFC183007C7203 /* Foundation.framework in Frameworks */,
+				D2AC1CCF15DFC183007C7203 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		D2AC1CBB15DFC183007C7203 = {
+			isa = PBXGroup;
+			children = (
+				D2AC1CD015DFC183007C7203 /* EqualizerTest */,
+				D2AC1CC915DFC183007C7203 /* Frameworks */,
+				D2AC1CC715DFC183007C7203 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		D2AC1CC715DFC183007C7203 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D2AC1CC615DFC183007C7203 /* EqualizerTest.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D2AC1CC915DFC183007C7203 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D23394FE15DFDCE0002C24F3 /* AudioToolbox.framework */,
+				D2AC1CCA15DFC183007C7203 /* UIKit.framework */,
+				D2AC1CCC15DFC183007C7203 /* Foundation.framework */,
+				D2AC1CCE15DFC183007C7203 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D2AC1CD015DFC183007C7203 /* EqualizerTest */ = {
+			isa = PBXGroup;
+			children = (
+				D2AC1CD915DFC183007C7203 /* TOAppDelegate.h */,
+				D2AC1CDA15DFC183007C7203 /* TOAppDelegate.m */,
+				D2AC1CDC15DFC183007C7203 /* MainStoryboard.storyboard */,
+				D2AC1CDF15DFC183007C7203 /* TOViewController.h */,
+				D2AC1CE015DFC183007C7203 /* TOViewController.m */,
+				D2AC1CF815DFC1A3007C7203 /* TOBandEqualizer.h */,
+				D2AC1CF915DFC1A3007C7203 /* TOBandEqualizer.m */,
+				D2AC1CD115DFC183007C7203 /* Supporting Files */,
+			);
+			path = EqualizerTest;
+			sourceTree = "<group>";
+		};
+		D2AC1CD115DFC183007C7203 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				D233950315DFDD09002C24F3 /* song.m4a */,
+				D2AC1CD215DFC183007C7203 /* EqualizerTest-Info.plist */,
+				D2AC1CD315DFC183007C7203 /* InfoPlist.strings */,
+				D2AC1CD615DFC183007C7203 /* main.m */,
+				D2AC1CD815DFC183007C7203 /* EqualizerTest-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		D2AC1CC515DFC183007C7203 /* EqualizerTest */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D2AC1CE415DFC183007C7203 /* Build configuration list for PBXNativeTarget "EqualizerTest" */;
+			buildPhases = (
+				D2AC1CC215DFC183007C7203 /* Sources */,
+				D2AC1CC315DFC183007C7203 /* Frameworks */,
+				D2AC1CC415DFC183007C7203 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = EqualizerTest;
+			productName = EqualizerTest;
+			productReference = D2AC1CC615DFC183007C7203 /* EqualizerTest.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D2AC1CBD15DFC183007C7203 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = TO;
+				LastUpgradeCheck = 0440;
+				ORGANIZATIONNAME = "Tobias Ottenweller";
+			};
+			buildConfigurationList = D2AC1CC015DFC183007C7203 /* Build configuration list for PBXProject "EqualizerTest" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = D2AC1CBB15DFC183007C7203;
+			productRefGroup = D2AC1CC715DFC183007C7203 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D2AC1CC515DFC183007C7203 /* EqualizerTest */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		D2AC1CC415DFC183007C7203 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D2AC1CD515DFC183007C7203 /* InfoPlist.strings in Resources */,
+				D2AC1CDE15DFC183007C7203 /* MainStoryboard.storyboard in Resources */,
+				D233950415DFDD09002C24F3 /* song.m4a in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D2AC1CC215DFC183007C7203 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D2AC1CD715DFC183007C7203 /* main.m in Sources */,
+				D2AC1CDB15DFC183007C7203 /* TOAppDelegate.m in Sources */,
+				D2AC1CE115DFC183007C7203 /* TOViewController.m in Sources */,
+				D2AC1CFB15DFC1A3007C7203 /* TOBandEqualizer.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		D2AC1CD315DFC183007C7203 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D2AC1CD415DFC183007C7203 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		D2AC1CDC15DFC183007C7203 /* MainStoryboard.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D2AC1CDD15DFC183007C7203 /* en */,
+			);
+			name = MainStoryboard.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		D2AC1CE215DFC183007C7203 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Debug;
+		};
+		D2AC1CE315DFC183007C7203 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		D2AC1CE515DFC183007C7203 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "EqualizerTest/EqualizerTest-Prefix.pch";
+				INFOPLIST_FILE = "EqualizerTest/EqualizerTest-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		D2AC1CE615DFC183007C7203 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "EqualizerTest/EqualizerTest-Prefix.pch";
+				INFOPLIST_FILE = "EqualizerTest/EqualizerTest-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D2AC1CC015DFC183007C7203 /* Build configuration list for PBXProject "EqualizerTest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D2AC1CE215DFC183007C7203 /* Debug */,
+				D2AC1CE315DFC183007C7203 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D2AC1CE415DFC183007C7203 /* Build configuration list for PBXNativeTarget "EqualizerTest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D2AC1CE515DFC183007C7203 /* Debug */,
+				D2AC1CE615DFC183007C7203 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D2AC1CBD15DFC183007C7203 /* Project object */;
+}

@@ -43,39 +43,103 @@ void TOThrowOnError(OSStatus status)
 
 
 
-AudioStreamBasicDescription TOCanonicalStereoLPCM()
+AudioStreamBasicDescription TOCanonicalStreamFormat(UInt32 nChannels, bool interleaved)
 {
     AudioStreamBasicDescription asbd;
     memset (&asbd, 0, sizeof (asbd));
-	asbd.mSampleRate = 44100;
-	asbd.mFormatID = kAudioFormatLinearPCM;
-	asbd.mFormatFlags = kAudioFormatFlagsCanonical;
-	asbd.mBytesPerPacket = 4;
-	asbd.mFramesPerPacket = 1;
-	asbd.mBytesPerFrame = 4;
-	asbd.mChannelsPerFrame = 2;
-	asbd.mBitsPerChannel = 16;
-
-    return asbd;
-}
-
-
-AudioStreamBasicDescription TOCanonicalMonoLPCM()
-{
-    AudioStreamBasicDescription asbd;
-    memset (&asbd, 0, sizeof (asbd));
-	asbd.mSampleRate = 44100;
-	asbd.mFormatID = kAudioFormatLinearPCM;
-	asbd.mFormatFlags = kAudioFormatFlagsCanonical;
-	asbd.mBytesPerPacket = 2
-    ;
-	asbd.mFramesPerPacket = 1;
-	asbd.mBytesPerFrame = 2;
-	asbd.mChannelsPerFrame = 1;
-	asbd.mBitsPerChannel = 16;
+    
+    asbd.mFormatID = kAudioFormatLinearPCM;
+    UInt32 sampleSize = (UInt32)sizeof(AudioSampleType);
+    asbd.mFormatFlags = kAudioFormatFlagsCanonical;
+    asbd.mBitsPerChannel = 8 * sampleSize;
+    asbd.mChannelsPerFrame = nChannels;
+    asbd.mFramesPerPacket = 1;
+    asbd.mSampleRate = 44100;
+    
+    if (interleaved) {
+        asbd.mBytesPerPacket = asbd.mBytesPerFrame = nChannels * sampleSize;
+    }
+    else {
+        asbd.mBytesPerPacket = asbd.mBytesPerFrame = sampleSize;
+        asbd.mFormatFlags |= kAudioFormatFlagIsNonInterleaved;
+    }
     
     return asbd;
 }
+
+
+AudioStreamBasicDescription TOCanonicalAUGraphStreamFormat(UInt32 nChannels, bool interleaved)
+{
+    AudioStreamBasicDescription asbd;
+    memset (&asbd, 0, sizeof (asbd));
+    
+    asbd.mFormatID = kAudioFormatLinearPCM;
+#if CA_PREFER_FIXED_POINT
+    asbd.mFormatFlags = kAudioFormatFlagsCanonical | (kAudioUnitSampleFractionBits << kLinearPCMFormatFlagsSampleFractionShift);
+#else
+    asbd.mFormatFlags = kAudioFormatFlagsCanonical;
+#endif
+    asbd.mChannelsPerFrame = nChannels;
+    asbd.mFramesPerPacket = 1;
+    asbd.mBitsPerChannel = 8 * (UInt32)sizeof(AudioUnitSampleType);
+    
+    if (interleaved) {
+        asbd.mBytesPerPacket = asbd.mBytesPerFrame = nChannels * (UInt32)sizeof(AudioUnitSampleType);
+    }
+    else {
+        asbd.mBytesPerPacket = asbd.mBytesPerFrame = (UInt32)sizeof(AudioUnitSampleType);
+        asbd.mFormatFlags |= kAudioFormatFlagIsNonInterleaved;
+    }
+    
+    return asbd;
+}
+
+
+
+//AudioStreamBasicDescription TOASBD(UInt32 nChannels, bool interleaved)
+//{
+//    
+//}
+//
+//
+//
+//AudioStreamBasicDescription TOCanonicalStereoLPCM()
+//{
+//    return TOASBD(2, false);
+//        
+////    AudioStreamBasicDescription asbd;
+////    memset (&asbd, 0, sizeof (asbd));
+////	asbd.mSampleRate = 44100;
+////	asbd.mFormatID = kAudioFormatLinearPCM;
+////	asbd.mFormatFlags = kAudioFormatFlagsCanonical;
+////	asbd.mBytesPerPacket = 4;
+////	asbd.mFramesPerPacket = 1;
+////	asbd.mBytesPerFrame = 4;
+////	asbd.mChannelsPerFrame = 2;
+////	asbd.mBitsPerChannel = 16;
+////
+////    return asbd;
+//}
+//
+//
+//AudioStreamBasicDescription TOCanonicalMonoLPCM()
+//{
+//    return TOASBD(1, false);
+//    
+////    AudioStreamBasicDescription asbd;
+////    memset (&asbd, 0, sizeof (asbd));
+////	asbd.mSampleRate = 44100;
+////	asbd.mFormatID = kAudioFormatLinearPCM;
+////	asbd.mFormatFlags = kAudioFormatFlagsCanonical;
+////	asbd.mBytesPerPacket = 2
+////    ;
+////	asbd.mFramesPerPacket = 1;
+////	asbd.mBytesPerFrame = 2;
+////	asbd.mChannelsPerFrame = 1;
+////	asbd.mBitsPerChannel = 16;
+////    
+////    return asbd;
+//}
 
 
 AudioComponentDescription TOAudioComponentDescription(OSType componentType, OSType componentSubType)

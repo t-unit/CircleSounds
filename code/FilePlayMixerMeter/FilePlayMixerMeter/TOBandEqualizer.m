@@ -80,20 +80,20 @@
 //                                                 0,
 //                                                 0));
 //        }
-        
-        TOThrowOnError(AudioUnitSetParameter(equalizerUnit,
-                                             kAUNBandEQParam_FilterType+i,
-                                             kAudioUnitScope_Global,
-                                             0,
-                                             kAUNBandEQFilterType_BandStop,
-                                             0));
-        
-        TOThrowOnError(AudioUnitSetParameter(equalizerUnit,
-                                             kAUNBandEQParam_Bandwidth+i,
-                                             kAudioUnitScope_Global,
-                                             0,
-                                             5.0,
-                                             0));
+//        
+//        TOThrowOnError(AudioUnitSetParameter(equalizerUnit,
+//                                             kAUNBandEQParam_FilterType+i,
+//                                             kAudioUnitScope_Global,
+//                                             0,
+//                                             kAUNBandEQFilterType_BandStop,
+//                                             0));
+//        
+//        TOThrowOnError(AudioUnitSetParameter(equalizerUnit,
+//                                             kAUNBandEQParam_Bandwidth+i,
+//                                             kAudioUnitScope_Global,
+//                                             0,
+//                                             5.0,
+//                                             0));
     }
 }
 

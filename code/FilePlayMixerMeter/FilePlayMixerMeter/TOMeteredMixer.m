@@ -17,6 +17,10 @@
     AUGraph _graph;
     
     
+    AudioUnit _converterUnit;
+    AUNode _converterNode;
+    
+    
     AudioUnit _rioUnit;
     AUNode _rioNode;
     
@@ -86,6 +90,158 @@ void AudioFileCompletionCallback(void *userData, ScheduledAudioFileRegion *fileR
 }
 
 
+//- (void)initializeAUGraph
+//{
+//    printf("initializeAUGraph\n");
+//    
+//    AUNode outputNode;
+//    AUNode eqNode;
+//    AUNode mixerNode;
+//    AUNode converterNode;
+//    
+//    
+//    
+//    // client format audio goes into the mixer
+//    _clientASBD = TOCanonicalStreamFormat(2, false);
+//    
+//    // output format
+//    _outputASBD = TOCanonicalAUGraphStreamFormat(2, false);
+//
+//    
+//
+//    
+//    
+//    // create a new AUGraph
+//    TOThrowOnError(NewAUGraph(&_graph));
+//    
+//    // output unit
+//    AudioComponentDescription output_desc = TOAudioComponentDescription(kAudioUnitType_Output, kAudioUnitSubType_RemoteIO);
+//    
+//    // Effect unit
+//    AudioComponentDescription eq_desc = TOAudioComponentDescription(kAudioUnitType_Effect, kAudioUnitSubType_NBandEQ);
+//    
+//    // multichannel mixer unit
+//    AudioComponentDescription mixer_desc = TOAudioComponentDescription(kAudioUnitType_Mixer, kAudioUnitSubType_MultiChannelMixer);
+//    
+//    // converter mixer unit
+//    AudioComponentDescription converter_desc = TOAudioComponentDescription(kAudioUnitType_FormatConverter, kAudioUnitSubType_AUConverter);
+//    
+//    
+//    
+//    
+//    
+//    
+//    // create a node in the graph that is an AudioUnit, using the supplied AudioComponentDescription to find and open that unit
+//    TOThrowOnError(AUGraphAddNode(_graph, &output_desc, &outputNode));
+//
+//    TOThrowOnError(AUGraphAddNode(_graph, &eq_desc, &eqNode));
+//    
+//    TOThrowOnError(AUGraphAddNode(_graph, &mixer_desc, &mixerNode));
+//
+//    TOThrowOnError(AUGraphAddNode(_graph, &converter_desc, &converterNode));
+//
+//    
+//    
+//    
+//    
+//    
+//    // connect a node's output to a node's input
+//    // input -> mixer -> converter -> eq -> output
+//    TOThrowOnError(AUGraphConnectNodeInput(_graph, mixerNode, 0, converterNode, 0));
+//    
+//    TOThrowOnError(AUGraphConnectNodeInput(_graph, converterNode, 0, eqNode, 0));
+//    
+//    TOThrowOnError(AUGraphConnectNodeInput(_graph, eqNode, 0, outputNode, 0));
+//    
+//    
+//    
+//    // open the graph AudioUnits are open but not initialized (no resource allocation occurs here)
+//    TOThrowOnError(AUGraphOpen(_graph));
+//
+//    
+//    
+//    
+//    
+//    
+//    // grab the audio unit instances from the nodes
+//    TOThrowOnError(AUGraphNodeInfo(_graph, mixerNode, NULL, &_mixerUnit));
+//    
+//    TOThrowOnError(AUGraphNodeInfo(_graph, eqNode, NULL, &equalizerUnit));
+//    
+//    TOThrowOnError(AUGraphNodeInfo(_graph, converterNode, NULL, &_convertUnit));
+//    
+//    
+//    
+//    
+//    
+//    
+//    
+//    // set bus count
+//    UInt32 numbuses = 2;
+//    
+//    printf("set input bus count %lu\n", numbuses);
+//    
+//    result = AudioUnitSetProperty(mMixer, kAudioUnitProperty_ElementCount, kAudioUnitScope_Input, 0, &numbuses, sizeof(numbuses));
+//    if (result) { printf("AudioUnitSetProperty result %ld %08X %4.4s\n", result, (unsigned int)result, (char*)&result); return; }
+//    
+//    for (int i = 0; i < numbuses; ++i) {
+//        // setup render callback struct
+//        AURenderCallbackStruct rcbs;
+//        rcbs.inputProc = &renderInput;
+//        rcbs.inputProcRefCon = &mUserData;
+//        
+//        printf("set AUGraphSetNodeInputCallback\n");
+//        
+//        // set a callback for the specified node's specified input
+//        result = AUGraphSetNodeInputCallback(_graph, mixerNode, i, &rcbs);
+//        if (result) { printf("AUGraphSetNodeInputCallback result %ld %08X %4.4s\n", result, (unsigned int)result, (char*)&result); return; }
+//        
+//        printf("set input bus %d, client kAudioUnitProperty_StreamFormat\n", i);
+//        
+//        // set the input stream format, this is the format of the audio for mixer input
+//        result = AudioUnitSetProperty(mMixer, kAudioUnitProperty_StreamFormat, kAudioUnitScope_Input, i, &mClientFormat, sizeof(mClientFormat));
+//        if (result) { printf("AudioUnitSetProperty result %ld %08X %4.4s\n", result, (unsigned int)result, (char*)&result); return; }
+//    }
+//    
+//    printf("set output kAudioUnitProperty_StreamFormat\n");
+//    
+//    // set the output stream format of the mixer
+//    result = AudioUnitSetProperty(mMixer, kAudioUnitProperty_StreamFormat, kAudioUnitScope_Output, 0, &mOutputFormat, sizeof(mOutputFormat));
+//    if (result) { printf("AudioUnitSetProperty result %ld %08X %4.4s\n", result, (unsigned int)result, (char*)&result); return; }
+//    
+//    // set the output stream format of the converter
+//    result = AudioUnitSetProperty(mConverter, kAudioUnitProperty_StreamFormat, kAudioUnitScope_Input, 0, &mOutputFormat, sizeof(mOutputFormat));
+//    if (result) { printf("AudioUnitSetProperty result %ld %08X %4.4s\n", result, (unsigned int)result, (char*)&result); return; }
+//    
+//    
+//    /* ---- Get the format of the input bus of the effect unit --- this is the important bit */
+//    CAStreamBasicDescription effectUnitInputFormat;
+//    UInt32 propSize = sizeof(CAStreamBasicDescription);
+//    memset(&effectUnitInputFormat, 0, propSize);
+//    result = AudioUnitGetProperty(mEQ, kAudioUnitProperty_StreamFormat, kAudioUnitScope_Input, 0, &effectUnitInputFormat, &propSize);
+//    effectUnitInputFormat.Print();
+//    
+//    result = AudioUnitSetProperty(mConverter, kAudioUnitProperty_StreamFormat, kAudioUnitScope_Output, 0, &effectUnitInputFormat, sizeof(effectUnitInputFormat));
+//    if (result) { printf("AudioUnitSetProperty result %ld %08X %4.4s\n", result, (unsigned int)result, (char*)&result); return; }
+//    
+//    printf("set render notification\n");
+//    
+//    // add a render notification, this is a callback that the graph will call every time the graph renders
+//    // the callback will be called once before the graph’s render operation, and once after the render operation is complete
+//    result = AUGraphAddRenderNotify(_graph, renderNotification, &mUserData);
+//    if (result) { printf("AUGraphAddRenderNotify result %ld %08X %4.4s\n", result, (unsigned int)result, (char*)&result); return; }
+//    
+//    printf("AUGraphInitialize\n");
+//    
+//    // now that we've set everything up we can initialize the graph, this will also validate the connections
+//    result = AUGraphInitialize(_graph);
+//    if (result) { printf("AUGraphInitialize result %ld %08X %4.4s\n", result, (unsigned int)result, (char*)&result); return; }
+//    
+//    CAShow(_graph);
+//}
+
+
+
 - (void)setUp
 {
     //............................................................................
@@ -122,6 +278,12 @@ void AudioFileCompletionCallback(void *userData, ScheduledAudioFileRegion *fileR
                                     _graph,
                                     &_eqNode));
     
+    // converter unit
+    TOThrowOnError(TOAUGraphAddNode(kAudioUnitType_FormatConverter,
+                                    kAudioUnitSubType_AUConverter,
+                                    _graph,
+                                    &_converterNode));
+    
     
     //............................................................................
     // Open the processing graph.
@@ -152,33 +314,67 @@ void AudioFileCompletionCallback(void *userData, ScheduledAudioFileRegion *fileR
                                    NULL,
                                    &equalizerUnit));
     
+    TOThrowOnError(AUGraphNodeInfo(_graph,
+                                   _converterNode,
+                                   NULL,
+                                   &_converterUnit));
+    
     
     
     
     //............................................................................
     // Connect the nodes of the audio processing graph
+    // file player -> converter -> EQ -> mixer -> rio
     
     TOThrowOnError(AUGraphConnectNodeInput(_graph,
                                            _filePlayerNode,     // source node
                                            0,                   // source bus
-                                           _eqNode,             // destination node
+                                           _converterNode,      // destination node
                                            0));                 // destination bus
+    
+    TOThrowOnError(AUGraphConnectNodeInput(_graph,
+                                           _converterNode,
+                                           0,
+                                           _eqNode,
+                                           0));
     
     TOThrowOnError(AUGraphConnectNodeInput(_graph,
                                            _eqNode,
                                            0,
-                                           _mixerNode,
-                                           0));
-    
-    TOThrowOnError(AUGraphConnectNodeInput(_graph,
-                                           _mixerNode,
-                                           0,
                                            _rioNode,
                                            0));
+    
+//    TOThrowOnError(AUGraphConnectNodeInput(_graph,
+//                                           _mixerNode,
+//                                           0,
+//                                           _rioNode,
+//                                           0));
+
     
     
     //............................................................................
     // Set properties/parameters of the units inside the graph
+    
+    
+    // Set the correct streaming format to the converter unit
+    AudioStreamBasicDescription effectUnitInputFormat;
+    UInt32 propSize = sizeof(AudioStreamBasicDescription);
+
+    TOThrowOnError(AudioUnitGetProperty(equalizerUnit,
+                                        kAudioUnitProperty_StreamFormat,
+                                        kAudioUnitScope_Input,
+                                        0,
+                                        &effectUnitInputFormat,
+                                        &propSize));
+    
+    
+    TOThrowOnError(AudioUnitSetProperty(_converterUnit,
+                                        kAudioUnitProperty_StreamFormat,
+                                        kAudioUnitScope_Output,
+                                        0,
+                                        &effectUnitInputFormat,
+                                        propSize));
+    
     
     // Enable metering at the output of the mixer unit
     UInt32 meteringMode = 1; // enabled
@@ -196,11 +392,12 @@ void AudioFileCompletionCallback(void *userData, ScheduledAudioFileRegion *fileR
     self.numBands = _eqFrequencies.count;
     self.bands = _eqFrequencies;
     
-    NSLog(@"num band: %ld", self.numBands);
+    
     
     //............................................................................
     // Initialize Graph
     TOThrowOnError(AUGraphInitialize(_graph));
+    
     
     
     //............................................................................
