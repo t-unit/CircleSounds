@@ -98,6 +98,14 @@
 
 - (void)setValue:(CGFloat)value
 {
+    if (value < 0.0f) {
+        value = 0.0f;
+    }
+    
+    if (value > 1.0f) {
+        value = 1.0f;
+    }
+    
     _value = value;
     
     
@@ -105,39 +113,48 @@
     // set the visibility of the meter elements according to the current value
     //
     
-    NSUInteger lastVisibleElementIndex = self.meterElements.count * self.value;
-    CGFloat opacityOfHighestElement = self.meterElements.count * self.value - lastVisibleElementIndex;
+    NSUInteger lastVisibleElementIndex = (self.meterElements.count-1) * self.value;
+    CGFloat opacityOfHighestElement = (self.meterElements.count-1) * self.value - lastVisibleElementIndex;
     
     
     NSUInteger i = 0;
     
     for (; i<lastVisibleElementIndex; i++) {
-        [self.meterElements[i] setOpacity:1.0];
+        [[self.meterElements objectAtIndex:i] setOpacity:1.0];
     }
     
     
     i++;
-    [[self.meterElements objectAtIndex:i] setOpacity:opacityOfHighestElement];
+    if (i<self.meterElements.count) {
+        [[self.meterElements objectAtIndex:i] setOpacity:opacityOfHighestElement];
+    }
     
     
     for (; i<self.meterElements.count; i++) {
-        [self.meterElements[i] setOpacity:0.0];
+        [[self.meterElements objectAtIndex:i] setOpacity:0.0];
     }
 }
 
 
 - (void)setPeakValue:(CGFloat)peakValue
 {
+    if (peakValue < 0.0f) {
+        peakValue = 0.0f;
+    }
+    
+    if (peakValue > 1.0f) {
+        peakValue = 1.0f;
+    }
+    
+    
     _peakValue = peakValue;
     
     for (CALayer *layer in self.peakElements) {
         layer.opacity = 0.0;
     }
     
-    if (self.peakValue > 0.0) {
-        NSUInteger visibleElementIndex = (self.peakElements.count-1) * self.peakValue;
-        [self.peakElements[visibleElementIndex] setOpacity:1.0];
-    }
+    NSUInteger visibleElementIndex = (self.peakElements.count-1) * self.peakValue;
+    [[self.peakElements objectAtIndex:visibleElementIndex] setOpacity:1.0];
 }
 
 @end

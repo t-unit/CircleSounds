@@ -6,12 +6,13 @@
 //  Copyright (c) 2012 Tobias Ottenweller. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#import <AudioToolbox/AudioToolbox.h>
+#import "TOBandEqualizer.h"
 
-@interface TOMeteredMixer : NSObject
+@interface TOMeteredMixer : TOBandEqualizer
 
-
+/**
+ Monitor properties. Return decibel values between -∞ and 0.
+ */
 @property (readonly, nonatomic) AudioUnitParameterValue avgValueLeft;
 @property (readonly, nonatomic) AudioUnitParameterValue avgValueRight;
 
@@ -19,6 +20,10 @@
 @property (readonly, nonatomic) AudioUnitParameterValue peakValueRight;
 
 
+/**
+ Output volume of the mixer. Supplied values should be between 0 and 1.
+ The behaviour is otherwise undefined.
+ */
 @property (assign, nonatomic) AudioUnitParameterValue volume;
 
 @end

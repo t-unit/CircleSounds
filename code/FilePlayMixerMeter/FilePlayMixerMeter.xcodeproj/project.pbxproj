@@ -7,11 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D222320815DED41100ADF466 /* TOBandEqualizer.m in Sources */ = {isa = PBXBuildFile; fileRef = D222320715DED41100ADF466 /* TOBandEqualizer.m */; };
 		D22C37B915DC4742004A1C63 /* nyan.m4a in Resources */ = {isa = PBXBuildFile; fileRef = D22C37B815DC4742004A1C63 /* nyan.m4a */; };
 		D22C37C415DC4B2C004A1C63 /* TOBaseInterpolator.m in Sources */ = {isa = PBXBuildFile; fileRef = D22C37BF15DC4B2C004A1C63 /* TOBaseInterpolator.m */; };
 		D22C37C515DC4B2C004A1C63 /* TOColorInterpolator.m in Sources */ = {isa = PBXBuildFile; fileRef = D22C37C115DC4B2C004A1C63 /* TOColorInterpolator.m */; };
 		D22C37C615DC4B2C004A1C63 /* TOAudioMeterView.m in Sources */ = {isa = PBXBuildFile; fileRef = D22C37C315DC4B2C004A1C63 /* TOAudioMeterView.m */; };
 		D22C37C815DC4BCA004A1C63 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D22C37C715DC4BCA004A1C63 /* QuartzCore.framework */; };
+		D23394DF15DFC1E3002C24F3 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D23394DE15DFC1E3002C24F3 /* AVFoundation.framework */; };
 		D25D85BB15DC4C7400A954C2 /* TOMeteredMixer.m in Sources */ = {isa = PBXBuildFile; fileRef = D25D85BA15DC4C7400A954C2 /* TOMeteredMixer.m */; };
 		D269DBD515DE7FB6004E9944 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D269DBD415DE7FB6004E9944 /* UIKit.framework */; };
 		D269DBD815DE7FBC004E9944 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D269DBD715DE7FBC004E9944 /* Foundation.framework */; };
@@ -27,6 +29,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D222320615DED41100ADF466 /* TOBandEqualizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TOBandEqualizer.h; sourceTree = "<group>"; };
+		D222320715DED41100ADF466 /* TOBandEqualizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TOBandEqualizer.m; sourceTree = "<group>"; };
 		D22C37B815DC4742004A1C63 /* nyan.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = nyan.m4a; sourceTree = "<group>"; };
 		D22C37BE15DC4B2C004A1C63 /* TOBaseInterpolator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TOBaseInterpolator.h; sourceTree = "<group>"; };
 		D22C37BF15DC4B2C004A1C63 /* TOBaseInterpolator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TOBaseInterpolator.m; sourceTree = "<group>"; };
@@ -35,6 +39,7 @@
 		D22C37C215DC4B2C004A1C63 /* TOAudioMeterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TOAudioMeterView.h; sourceTree = "<group>"; };
 		D22C37C315DC4B2C004A1C63 /* TOAudioMeterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TOAudioMeterView.m; sourceTree = "<group>"; };
 		D22C37C715DC4BCA004A1C63 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		D23394DE15DFC1E3002C24F3 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		D25D85BA15DC4C7400A954C2 /* TOMeteredMixer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TOMeteredMixer.m; sourceTree = "<group>"; };
 		D269DBD415DE7FB6004E9944 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		D269DBD715DE7FBC004E9944 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -62,6 +67,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D23394DF15DFC1E3002C24F3 /* AVFoundation.framework in Frameworks */,
 				D269DBDA15DE7FCD004E9944 /* CoreGraphics.framework in Frameworks */,
 				D269DBD815DE7FBC004E9944 /* Foundation.framework in Frameworks */,
 				D269DBD515DE7FB6004E9944 /* UIKit.framework in Frameworks */,
@@ -93,6 +99,7 @@
 		D27EE22F15DBAD77000E2E96 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D23394DE15DFC1E3002C24F3 /* AVFoundation.framework */,
 				D269DBD915DE7FCD004E9944 /* CoreGraphics.framework */,
 				D269DBD715DE7FBC004E9944 /* Foundation.framework */,
 				D269DBD415DE7FB6004E9944 /* UIKit.framework */,
@@ -122,6 +129,8 @@
 				D27EE24215DBAD77000E2E96 /* MainStoryboard.storyboard */,
 				D27EE24515DBAD77000E2E96 /* TOViewController.h */,
 				D27EE24615DBAD77000E2E96 /* TOViewController.m */,
+				D222320615DED41100ADF466 /* TOBandEqualizer.h */,
+				D222320715DED41100ADF466 /* TOBandEqualizer.m */,
 				D27EE23715DBAD77000E2E96 /* Supporting Files */,
 			);
 			path = FilePlayMixerMeter;
@@ -213,6 +222,7 @@
 				D22C37C515DC4B2C004A1C63 /* TOColorInterpolator.m in Sources */,
 				D22C37C615DC4B2C004A1C63 /* TOAudioMeterView.m in Sources */,
 				D25D85BB15DC4C7400A954C2 /* TOMeteredMixer.m in Sources */,
+				D222320815DED41100ADF466 /* TOBandEqualizer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -260,7 +270,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
@@ -281,7 +291,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
@@ -297,9 +307,11 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "FilePlayMixerMeter/FilePlayMixerMeter-Prefix.pch";
 				INFOPLIST_FILE = "FilePlayMixerMeter/FilePlayMixerMeter-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
 				WRAPPER_EXTENSION = app;
 			};
@@ -311,7 +323,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "FilePlayMixerMeter/FilePlayMixerMeter-Prefix.pch";
 				INFOPLIST_FILE = "FilePlayMixerMeter/FilePlayMixerMeter-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
 				WRAPPER_EXTENSION = app;
 			};

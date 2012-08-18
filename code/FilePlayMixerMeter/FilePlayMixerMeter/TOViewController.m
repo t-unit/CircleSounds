@@ -70,4 +70,71 @@
 {
     self.mixer.volume = self.volumeSlider.value;
 }
+
+
+- (IBAction)globalGainValueChanged:(id)sender
+{
+    self.mixer.globalGain = self.globalGainSlider.value;
+}
+
+
+- (IBAction)gainSlider32ValueChanged:(id)sender
+{
+    [self.mixer setGain:self.gainSlider32.value forBandAtPosition:0];
+}
+
+
+- (IBAction)gainSlider64ValueChanged:(id)sender
+{
+    [self.mixer setGain:self.gainSlider64.value forBandAtPosition:1];
+}
+
+
+- (IBAction)gainSlider125ValueChanged:(id)sender
+{
+    [self.mixer setGain:self.gainSlider125.value forBandAtPosition:2];
+}
+
+
+- (IBAction)gainSlider250ValueChanged:(id)sender
+{
+    [self.mixer setGain:self.gainSlider250.value forBandAtPosition:3];
+}
+
+
+- (IBAction)gainSlider500ValueChanged:(id)sender
+{
+    [self.mixer setGain:self.gainSlider500.value forBandAtPosition:4];
+}
+
+
+- (IBAction)gainSlider1kValueChanged:(id)sender
+{
+    [self.mixer setGain:self.gainSlider1k.value forBandAtPosition:5];
+}
+
+
+- (IBAction)gainSlider2kValueChanged:(id)sender
+{
+    [self.mixer setGain:self.gainSlider2k.value forBandAtPosition:6];
+}
+
+
+- (IBAction)gainSlider4kValueChanged:(id)sender
+{
+    [self.mixer setGain:self.gainSlider4k.value forBandAtPosition:7];
+}
+
+
+- (IBAction)gainSlider8kValueChanged:(id)sender
+{
+    [self.mixer setGain:self.gainSlider8k.value forBandAtPosition:8];
+}
+
+
+- (IBAction)gainSlider16kValueChanged:(id)sender
+{
+    [self.mixer setGain:self.gainSlider16k.value forBandAtPosition:9];
+}
+
 @end

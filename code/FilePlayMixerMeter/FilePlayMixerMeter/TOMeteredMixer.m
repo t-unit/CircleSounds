@@ -16,16 +16,25 @@
 {
     AUGraph _graph;
     
+    
     AudioUnit _rioUnit;
     AUNode _rioNode;
     
+    
     AudioUnit _mixerUnit;
     AUNode _mixerNode;
+    
     
     AudioUnit _filePlayerUnit;
     AUNode _filePlayerNode;
     
     AudioFileID _audioFile;
+    
+    
+    AUNode _eqNode;
+    
+    NSArray *_eqFrequencies;
+    
     
     BOOL _unitsGettingReset;
 }
@@ -38,6 +47,7 @@
 
 @implementation TOMeteredMixer
 
+#pragma mark - C function callbacks
 
 void AudioFileCompletionCallback(void *userData, ScheduledAudioFileRegion *fileRegion, OSStatus result)
 {    
@@ -60,6 +70,7 @@ void AudioFileCompletionCallback(void *userData, ScheduledAudioFileRegion *fileR
     });
 }
 
+#pragma mark - setup
 
 - (id)init
 {
@@ -77,38 +88,99 @@ void AudioFileCompletionCallback(void *userData, ScheduledAudioFileRegion *fileR
 
 - (void)setUp
 {
+    //............................................................................
     // Create AUGraph
+    
     TOThrowOnError(NewAUGraph(&_graph));
     
     
-    // Create AUNodes
-    TOThrowOnError(TOAUGraphAddNode(kAudioUnitType_Generator, kAudioUnitSubType_AudioFilePlayer, _graph, &_filePlayerNode));
     
-    TOThrowOnError(TOAUGraphAddNode(kAudioUnitType_Mixer, kAudioUnitSubType_MultiChannelMixer, _graph, &_mixerNode));
+    //............................................................................
+    // Add Audio Units to the graph
     
-    TOThrowOnError(TOAUGraphAddNode(kAudioUnitType_Output, kAudioUnitSubType_RemoteIO, _graph, &_rioNode));
+    // file player unit
+    TOThrowOnError(TOAUGraphAddNode(kAudioUnitType_Generator,
+                                    kAudioUnitSubType_AudioFilePlayer,
+                                    _graph,
+                                    &_filePlayerNode));
+    
+    // mixer unit
+    TOThrowOnError(TOAUGraphAddNode(kAudioUnitType_Mixer,
+                                    kAudioUnitSubType_MultiChannelMixer,
+                                    _graph,
+                                    &_mixerNode));
+    
+    // remote IO unit
+    TOThrowOnError(TOAUGraphAddNode(kAudioUnitType_Output,
+                                    kAudioUnitSubType_RemoteIO,
+                                    _graph,
+                                    &_rioNode));
+    
+    // EQ unit
+    TOThrowOnError(TOAUGraphAddNode(kAudioUnitType_Effect,
+                                    kAudioUnitSubType_NBandEQ,
+                                    _graph,
+                                    &_eqNode));
     
     
-    // Open AUGraph
+    //............................................................................
+    // Open the processing graph.
+    
     TOThrowOnError(AUGraphOpen(_graph));
     
     
-    // Get AudioUnits
-    TOThrowOnError(AUGraphNodeInfo(_graph, _filePlayerNode, NULL, &_filePlayerUnit));
-    TOThrowOnError(AUGraphNodeInfo(_graph, _mixerNode, NULL, &_mixerUnit));
-    TOThrowOnError(AUGraphNodeInfo(_graph, _rioNode, NULL, &_rioUnit));
+    //............................................................................
+    // Obtain the audio unit instances from its corresponding node.
+    
+    TOThrowOnError(AUGraphNodeInfo(_graph,
+                                   _filePlayerNode,
+                                   NULL,
+                                   &_filePlayerUnit));
+    
+    TOThrowOnError(AUGraphNodeInfo(_graph,
+                                   _mixerNode,
+                                   NULL,
+                                   &_mixerUnit));
+    
+    TOThrowOnError(AUGraphNodeInfo(_graph,
+                                   _rioNode,
+                                   NULL,
+                                   &_rioUnit));
+    
+    TOThrowOnError(AUGraphNodeInfo(_graph,
+                                   _eqNode,
+                                   NULL,
+                                   &equalizerUnit));
     
     
-    // Connect AUNodes/AudioUnits
-    TOThrowOnError(AUGraphConnectNodeInput(_graph, _filePlayerNode, 0, _mixerNode, 0));
-    TOThrowOnError(AUGraphConnectNodeInput(_graph, _mixerNode, 0, _rioNode, 0));
     
     
-    // Initialize Graph
-    TOThrowOnError(AUGraphInitialize(_graph));
+    //............................................................................
+    // Connect the nodes of the audio processing graph
+    
+    TOThrowOnError(AUGraphConnectNodeInput(_graph,
+                                           _filePlayerNode,     // source node
+                                           0,                   // source bus
+                                           _eqNode,             // destination node
+                                           0));                 // destination bus
+    
+    TOThrowOnError(AUGraphConnectNodeInput(_graph,
+                                           _eqNode,
+                                           0,
+                                           _mixerNode,
+                                           0));
+    
+    TOThrowOnError(AUGraphConnectNodeInput(_graph,
+                                           _mixerNode,
+                                           0,
+                                           _rioNode,
+                                           0));
     
     
-    // Mixer Unit Property setup
+    //............................................................................
+    // Set properties/parameters of the units inside the graph
+    
+    // Enable metering at the output of the mixer unit
     UInt32 meteringMode = 1; // enabled
     TOThrowOnError(AudioUnitSetProperty(_mixerUnit,
                                         kAudioUnitProperty_MeteringMode,
@@ -117,6 +189,22 @@ void AudioFileCompletionCallback(void *userData, ScheduledAudioFileRegion *fileR
                                         &meteringMode,
                                         sizeof(meteringMode)));
     
+    
+    // Set number of bands for the EQ unit
+    // Set the frequencies for each band of the EQ unit    
+    _eqFrequencies = @[ @32, @64, @125, @250, @500, @1000, @2000, @4000, @8000, @16000 ];
+    self.numBands = _eqFrequencies.count;
+    self.bands = _eqFrequencies;
+    
+    NSLog(@"num band: %ld", self.numBands);
+    
+    //............................................................................
+    // Initialize Graph
+    TOThrowOnError(AUGraphInitialize(_graph));
+    
+    
+    //............................................................................
+    // other audio unit setup
     [self setUpFilePlayerUnit];
 }
 
