@@ -11,6 +11,19 @@
 
 
 @interface TOMeteredMixer : NSObject
+{
+    AUGraph graph;
+    
+    AudioUnit rioUnit;
+    AudioUnit mixerUnit;
+    AudioUnit filePlayerUnit;
+    
+    AudioFileID audioFile;
+    
+    
+    BOOL unitsGettingReset;
+}
+
 
 /**
  Monitor properties. Return decibel values between -∞ and 0.
