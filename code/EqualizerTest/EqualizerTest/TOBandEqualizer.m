@@ -7,29 +7,7 @@
 //
 
 #import "TOBandEqualizer.h"
-
-void TOThrowOnError(OSStatus status)
-{
-    if (status != noErr) {
-        @throw [NSException exceptionWithName:@"TOAudioErrorException"
-                                       reason:[NSString stringWithFormat:@"Status is not 'noErr'! Status is %ld).", status]
-                                     userInfo:nil];
-    }
-}
-
-
-OSStatus TOAUGraphAddNode(OSType inComponentType, OSType inComponentSubType, AUGraph inGraph, AUNode *outNode)
-{
-    AudioComponentDescription desc;
-	desc.componentType = inComponentType;
-	desc.componentSubType = inComponentSubType;
-	desc.componentFlags = 0;
-	desc.componentFlagsMask = 0;
-	desc.componentManufacturer = kAudioUnitManufacturer_Apple;
-    
-    return AUGraphAddNode(inGraph, &desc, outNode);
-}
-
+#import "TOCAShortcuts.h"
 
 
 @implementation TOBandEqualizer
