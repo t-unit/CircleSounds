@@ -17,6 +17,8 @@
     AudioUnit equalizerUnit;
     AudioUnit filePlayerUnit;
     AudioUnit rioUnit;
+    AudioUnit file2eqConverterUnit;
+    AudioUnit eq2rioConverterUnit;
     
     AudioFileID audioFile;
 }
