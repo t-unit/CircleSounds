@@ -1,0 +1,317 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		D231895315E2CAB200F37106 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D231895215E2CAB200F37106 /* UIKit.framework */; };
+		D231895515E2CAB200F37106 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D231895415E2CAB200F37106 /* Foundation.framework */; };
+		D231895715E2CAB200F37106 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D231895615E2CAB200F37106 /* CoreGraphics.framework */; };
+		D231895D15E2CAB200F37106 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D231895B15E2CAB200F37106 /* InfoPlist.strings */; };
+		D231895F15E2CAB200F37106 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D231895E15E2CAB200F37106 /* main.m */; };
+		D231896315E2CAB200F37106 /* TOAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D231896215E2CAB200F37106 /* TOAppDelegate.m */; };
+		D231896615E2CAB200F37106 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D231896415E2CAB200F37106 /* MainStoryboard.storyboard */; };
+		D231896915E2CAB200F37106 /* TOViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D231896815E2CAB200F37106 /* TOViewController.m */; };
+		D231897115E2CBA700F37106 /* TOSubgraph.m in Sources */ = {isa = PBXBuildFile; fileRef = D231897015E2CBA700F37106 /* TOSubgraph.m */; };
+		D231897A15E2CC2600F37106 /* TOCAShortcuts.m in Sources */ = {isa = PBXBuildFile; fileRef = D231897715E2CC2600F37106 /* TOCAShortcuts.m */; };
+		D231897B15E2CC2600F37106 /* NSString+OSStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = D231897915E2CC2600F37106 /* NSString+OSStatus.m */; };
+		D231897D15E2CC3B00F37106 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D231897C15E2CC3B00F37106 /* AVFoundation.framework */; };
+		D231897F15E2CC4300F37106 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D231897E15E2CC4300F37106 /* AudioToolbox.framework */; };
+		D231898115E2D53900F37106 /* guitarStereo.caf in Resources */ = {isa = PBXBuildFile; fileRef = D231898015E2D53900F37106 /* guitarStereo.caf */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		D231894E15E2CAB200F37106 /* SubGraphTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SubGraphTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D231895215E2CAB200F37106 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		D231895415E2CAB200F37106 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		D231895615E2CAB200F37106 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		D231895A15E2CAB200F37106 /* SubGraphTest-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SubGraphTest-Info.plist"; sourceTree = "<group>"; };
+		D231895C15E2CAB200F37106 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		D231895E15E2CAB200F37106 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		D231896015E2CAB200F37106 /* SubGraphTest-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SubGraphTest-Prefix.pch"; sourceTree = "<group>"; };
+		D231896115E2CAB200F37106 /* TOAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TOAppDelegate.h; sourceTree = "<group>"; };
+		D231896215E2CAB200F37106 /* TOAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TOAppDelegate.m; sourceTree = "<group>"; };
+		D231896515E2CAB200F37106 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
+		D231896715E2CAB200F37106 /* TOViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TOViewController.h; sourceTree = "<group>"; };
+		D231896815E2CAB200F37106 /* TOViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TOViewController.m; sourceTree = "<group>"; };
+		D231896F15E2CBA700F37106 /* TOSubgraph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TOSubgraph.h; sourceTree = "<group>"; };
+		D231897015E2CBA700F37106 /* TOSubgraph.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TOSubgraph.m; sourceTree = "<group>"; };
+		D231897615E2CC2600F37106 /* TOCAShortcuts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TOCAShortcuts.h; sourceTree = "<group>"; };
+		D231897715E2CC2600F37106 /* TOCAShortcuts.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TOCAShortcuts.m; sourceTree = "<group>"; };
+		D231897815E2CC2600F37106 /* NSString+OSStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+OSStatus.h"; sourceTree = "<group>"; };
+		D231897915E2CC2600F37106 /* NSString+OSStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+OSStatus.m"; sourceTree = "<group>"; };
+		D231897C15E2CC3B00F37106 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		D231897E15E2CC4300F37106 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		D231898015E2D53900F37106 /* guitarStereo.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = guitarStereo.caf; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D231894B15E2CAB200F37106 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D231897F15E2CC4300F37106 /* AudioToolbox.framework in Frameworks */,
+				D231897D15E2CC3B00F37106 /* AVFoundation.framework in Frameworks */,
+				D231895315E2CAB200F37106 /* UIKit.framework in Frameworks */,
+				D231895515E2CAB200F37106 /* Foundation.framework in Frameworks */,
+				D231895715E2CAB200F37106 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		D231894315E2CAB200F37106 = {
+			isa = PBXGroup;
+			children = (
+				D231895815E2CAB200F37106 /* SubGraphTest */,
+				D231895115E2CAB200F37106 /* Frameworks */,
+				D231894F15E2CAB200F37106 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		D231894F15E2CAB200F37106 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D231894E15E2CAB200F37106 /* SubGraphTest.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D231895115E2CAB200F37106 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D231897E15E2CC4300F37106 /* AudioToolbox.framework */,
+				D231897C15E2CC3B00F37106 /* AVFoundation.framework */,
+				D231895215E2CAB200F37106 /* UIKit.framework */,
+				D231895415E2CAB200F37106 /* Foundation.framework */,
+				D231895615E2CAB200F37106 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D231895815E2CAB200F37106 /* SubGraphTest */ = {
+			isa = PBXGroup;
+			children = (
+				D231897615E2CC2600F37106 /* TOCAShortcuts.h */,
+				D231897715E2CC2600F37106 /* TOCAShortcuts.m */,
+				D231897815E2CC2600F37106 /* NSString+OSStatus.h */,
+				D231897915E2CC2600F37106 /* NSString+OSStatus.m */,
+				D231896115E2CAB200F37106 /* TOAppDelegate.h */,
+				D231896215E2CAB200F37106 /* TOAppDelegate.m */,
+				D231896415E2CAB200F37106 /* MainStoryboard.storyboard */,
+				D231896715E2CAB200F37106 /* TOViewController.h */,
+				D231896815E2CAB200F37106 /* TOViewController.m */,
+				D231896F15E2CBA700F37106 /* TOSubgraph.h */,
+				D231897015E2CBA700F37106 /* TOSubgraph.m */,
+				D231895915E2CAB200F37106 /* Supporting Files */,
+			);
+			path = SubGraphTest;
+			sourceTree = "<group>";
+		};
+		D231895915E2CAB200F37106 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				D231898015E2D53900F37106 /* guitarStereo.caf */,
+				D231895A15E2CAB200F37106 /* SubGraphTest-Info.plist */,
+				D231895B15E2CAB200F37106 /* InfoPlist.strings */,
+				D231895E15E2CAB200F37106 /* main.m */,
+				D231896015E2CAB200F37106 /* SubGraphTest-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		D231894D15E2CAB200F37106 /* SubGraphTest */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D231896C15E2CAB200F37106 /* Build configuration list for PBXNativeTarget "SubGraphTest" */;
+			buildPhases = (
+				D231894A15E2CAB200F37106 /* Sources */,
+				D231894B15E2CAB200F37106 /* Frameworks */,
+				D231894C15E2CAB200F37106 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SubGraphTest;
+			productName = SubGraphTest;
+			productReference = D231894E15E2CAB200F37106 /* SubGraphTest.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D231894515E2CAB200F37106 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = TO;
+				LastUpgradeCheck = 0450;
+				ORGANIZATIONNAME = "Tobias Ottenweller";
+			};
+			buildConfigurationList = D231894815E2CAB200F37106 /* Build configuration list for PBXProject "SubGraphTest" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = D231894315E2CAB200F37106;
+			productRefGroup = D231894F15E2CAB200F37106 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D231894D15E2CAB200F37106 /* SubGraphTest */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		D231894C15E2CAB200F37106 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D231895D15E2CAB200F37106 /* InfoPlist.strings in Resources */,
+				D231896615E2CAB200F37106 /* MainStoryboard.storyboard in Resources */,
+				D231898115E2D53900F37106 /* guitarStereo.caf in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D231894A15E2CAB200F37106 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D231895F15E2CAB200F37106 /* main.m in Sources */,
+				D231896315E2CAB200F37106 /* TOAppDelegate.m in Sources */,
+				D231896915E2CAB200F37106 /* TOViewController.m in Sources */,
+				D231897115E2CBA700F37106 /* TOSubgraph.m in Sources */,
+				D231897A15E2CC2600F37106 /* TOCAShortcuts.m in Sources */,
+				D231897B15E2CC2600F37106 /* NSString+OSStatus.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		D231895B15E2CAB200F37106 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D231895C15E2CAB200F37106 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		D231896415E2CAB200F37106 /* MainStoryboard.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D231896515E2CAB200F37106 /* en */,
+			);
+			name = MainStoryboard.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		D231896A15E2CAB200F37106 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Debug;
+		};
+		D231896B15E2CAB200F37106 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		D231896D15E2CAB200F37106 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SubGraphTest/SubGraphTest-Prefix.pch";
+				INFOPLIST_FILE = "SubGraphTest/SubGraphTest-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		D231896E15E2CAB200F37106 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SubGraphTest/SubGraphTest-Prefix.pch";
+				INFOPLIST_FILE = "SubGraphTest/SubGraphTest-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D231894815E2CAB200F37106 /* Build configuration list for PBXProject "SubGraphTest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D231896A15E2CAB200F37106 /* Debug */,
+				D231896B15E2CAB200F37106 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D231896C15E2CAB200F37106 /* Build configuration list for PBXNativeTarget "SubGraphTest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D231896D15E2CAB200F37106 /* Debug */,
+				D231896E15E2CAB200F37106 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D231894515E2CAB200F37106 /* Project object */;
+}

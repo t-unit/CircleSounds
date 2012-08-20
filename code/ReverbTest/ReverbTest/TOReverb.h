@@ -70,4 +70,5 @@
  */
 @property (assign, nonatomic) int randomizeReflections;
 
+
 @end
