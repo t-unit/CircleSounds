@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2829" systemVersion="12A269" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="2">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1914"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="4">
+            <objects>
+                <viewController id="2" customClass="TOViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5">
+                        <rect key="frame" x="0.0" y="20" width="768" height="1004"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <slider translatesAutoresizingMaskIntoConstraints="NO" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="0.03125" maxValue="4" id="rRU-hO-QiB">
+                                <connections>
+                                    <action selector="pitchSliderValueChanged:" destination="2" eventType="valueChanged" id="vRg-mD-bw5"/>
+                                </connections>
+                            </slider>
+                            <label translatesAutoresizingMaskIntoConstraints="NO" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" text="Value:" adjustsFontSizeToFit="NO" autoshrinkMode="none" id="zco-un-nQw">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="49" id="703-dM-p1u"/>
+                                </constraints>
+                                <nil key="highlightedColor"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            </label>
+                            <label translatesAutoresizingMaskIntoConstraints="NO" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" text="1" adjustsFontSizeToFit="NO" autoshrinkMode="none" id="3pP-6G-29K">
+                                <nil key="highlightedColor"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="rRU-hO-QiB" firstAttribute="top" secondItem="5" secondAttribute="top" constant="20" symbolic="YES" type="default" id="0Tm-RU-LoC"/>
+                            <constraint firstAttribute="trailing" secondItem="3pP-6G-29K" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="1a9-sY-u8R"/>
+                            <constraint firstItem="zco-un-nQw" firstAttribute="leading" secondItem="5" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="6hN-6X-lgk"/>
+                            <constraint firstAttribute="trailing" secondItem="rRU-hO-QiB" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="Tod-hj-lbO"/>
+                            <constraint firstItem="3pP-6G-29K" firstAttribute="baseline" secondItem="zco-un-nQw" secondAttribute="baseline" type="default" id="cqa-8x-f26"/>
+                            <constraint firstItem="3pP-6G-29K" firstAttribute="leading" secondItem="zco-un-nQw" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="mgb-2r-dr7"/>
+                            <constraint firstItem="zco-un-nQw" firstAttribute="top" secondItem="rRU-hO-QiB" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="sQx-VJ-Htt"/>
+                            <constraint firstItem="rRU-hO-QiB" firstAttribute="leading" secondItem="5" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="ySV-pW-Kw1"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="pitchLabel" destination="3pP-6G-29K" id="2wf-99-E9Y"/>
+                        <outlet property="pitchSlider" destination="rRU-hO-QiB" id="dyK-14-9d6"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
+    </scenes>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination"/>
+    </simulatedMetricsContainer>
+</document>

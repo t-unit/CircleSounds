@@ -59,10 +59,10 @@
                                     &eqNode));
     
     // file to eq converter unit
-    TOThrowOnError(TOAUGraphAddNode(kAudioUnitType_FormatConverter,
-                                    kAudioUnitSubType_AUConverter,
-                                    graph,
-                                    &file2eqConverterNode));
+//    TOThrowOnError(TOAUGraphAddNode(kAudioUnitType_FormatConverter,
+//                                    kAudioUnitSubType_AUConverter,
+//                                    graph,
+//                                    &file2eqConverterNode));
     
     // eq to rio converter unit
     TOThrowOnError(TOAUGraphAddNode(kAudioUnitType_FormatConverter,
@@ -96,10 +96,10 @@
                                    NULL,
                                    &rioUnit));
     
-    TOThrowOnError(AUGraphNodeInfo(graph,
-                                   file2eqConverterNode,
-                                   NULL,
-                                   &file2eqConverterUnit));
+//    TOThrowOnError(AUGraphNodeInfo(graph,
+//                                   file2eqConverterNode,
+//                                   NULL,
+//                                   &file2eqConverterUnit));
     
     TOThrowOnError(AUGraphNodeInfo(graph,
                                    eq2rioConverterNode,
@@ -129,15 +129,15 @@
                                         &propSize));
     
     
-    AudioStreamBasicDescription effectFormat;
-    propSize = sizeof(effectFormat);
-    
-    TOThrowOnError(AudioUnitGetProperty(equalizerUnit,
-                                        kAudioUnitProperty_StreamFormat,
-                                        kAudioUnitScope_Input,
-                                        0,
-                                        &effectFormat,
-                                        &propSize));
+//    AudioStreamBasicDescription effectFormat;
+//    propSize = sizeof(effectFormat);
+//    
+//    TOThrowOnError(AudioUnitGetProperty(equalizerUnit,
+//                                        kAudioUnitProperty_StreamFormat,
+//                                        kAudioUnitScope_Input,
+//                                        0,
+//                                        &effectFormat,
+//                                        &propSize));
     
     AudioStreamBasicDescription rioFormat = TOCanonicalAUGraphStreamFormat(2, false);
 //    propSize = sizeof(rioFormat);
@@ -153,35 +153,35 @@
     
     TOPrintASBD(filePlayerFormat);
     printf("\n**************************************\n\n");
-    TOPrintASBD(effectFormat);
+//    TOPrintASBD(effectFormat);
     printf("\n**************************************\n\n");
     TOPrintASBD(rioFormat);
 
     
     
-    TOThrowOnError(AudioUnitSetProperty(file2eqConverterUnit,
+//    TOThrowOnError(AudioUnitSetProperty(file2eqConverterUnit,
+//                                        kAudioUnitProperty_StreamFormat,
+//                                        kAudioUnitScope_Input,
+//                                        0,
+//                                        &filePlayerFormat,
+//                                        sizeof(filePlayerFormat)));
+//    
+//    
+//    TOThrowOnError(AudioUnitSetProperty(file2eqConverterUnit,
+//                                        kAudioUnitProperty_StreamFormat,
+//                                        kAudioUnitScope_Output,
+//                                        0,
+//                                        &effectFormat,
+//                                        sizeof(effectFormat)));
+    
+    
+    TOThrowOnError(AudioUnitSetProperty(equalizerUnit,
                                         kAudioUnitProperty_StreamFormat,
                                         kAudioUnitScope_Input,
                                         0,
                                         &filePlayerFormat,
                                         sizeof(filePlayerFormat)));
-    
-    
-    TOThrowOnError(AudioUnitSetProperty(file2eqConverterUnit,
-                                        kAudioUnitProperty_StreamFormat,
-                                        kAudioUnitScope_Output,
-                                        0,
-                                        &effectFormat,
-                                        sizeof(effectFormat)));
-    
-    
-//    TOThrowOnError(AudioUnitSetProperty(equalizerUnit,
-//                                        kAudioUnitProperty_StreamFormat,
-//                                        kAudioUnitScope_Input,
-//                                        0,
-//                                        &streamFormat,
-//                                        sizeof(streamFormat)));
-//    
+//
 //    
 //    TOThrowOnError(AudioUnitSetProperty(equalizerUnit,
 //                                        kAudioUnitProperty_StreamFormat,
@@ -195,8 +195,8 @@
                                         kAudioUnitProperty_StreamFormat,
                                         kAudioUnitScope_Input,
                                         0,
-                                        &effectFormat,
-                                        sizeof(effectFormat)));
+                                        &filePlayerFormat,
+                                        sizeof(filePlayerFormat)));
     
     
     TOThrowOnError(AudioUnitSetProperty(eq2rioConverterUnit,
@@ -222,14 +222,14 @@
     TOThrowOnError(AUGraphConnectNodeInput(graph,
                                            filePlayerNode,          // source node
                                            0,                       // source bus
-                                           file2eqConverterNode,    // destination node
+                                           eqNode,    // destination node
                                            0));                     // destination bus
     
-    TOThrowOnError(AUGraphConnectNodeInput(graph,
-                                           file2eqConverterNode,
-                                           0,
-                                           eqNode,
-                                           0));
+//    TOThrowOnError(AUGraphConnectNodeInput(graph,
+//                                           file2eqConverterNode,
+//                                           0,
+//                                           eqNode,
+//                                           0));
     
     TOThrowOnError(AUGraphConnectNodeInput(graph,
                                            eqNode,
