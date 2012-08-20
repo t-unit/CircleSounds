@@ -1,0 +1,317 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		D231891015E298D400F37106 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D231890F15E298D400F37106 /* UIKit.framework */; };
+		D231891215E298D400F37106 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D231891115E298D400F37106 /* Foundation.framework */; };
+		D231891415E298D400F37106 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D231891315E298D400F37106 /* CoreGraphics.framework */; };
+		D231891A15E298D400F37106 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D231891815E298D400F37106 /* InfoPlist.strings */; };
+		D231891C15E298D400F37106 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D231891B15E298D400F37106 /* main.m */; };
+		D231892015E298D400F37106 /* TOAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D231891F15E298D400F37106 /* TOAppDelegate.m */; };
+		D231892315E298D400F37106 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D231892115E298D400F37106 /* MainStoryboard.storyboard */; };
+		D231892615E298D400F37106 /* TOViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D231892515E298D400F37106 /* TOViewController.m */; };
+		D231892E15E298F100F37106 /* TOReverb.m in Sources */ = {isa = PBXBuildFile; fileRef = D231892D15E298F100F37106 /* TOReverb.m */; };
+		D231893015E2990C00F37106 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D231892F15E2990C00F37106 /* AudioToolbox.framework */; };
+		D231893215E2991200F37106 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D231893115E2991200F37106 /* AVFoundation.framework */; };
+		D231893715E2A06100F37106 /* TOCAShortcuts.m in Sources */ = {isa = PBXBuildFile; fileRef = D231893415E2A06100F37106 /* TOCAShortcuts.m */; };
+		D231893815E2A06100F37106 /* NSString+OSStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = D231893615E2A06100F37106 /* NSString+OSStatus.m */; };
+		D231894215E2A7B100F37106 /* guitarStereo.caf in Resources */ = {isa = PBXBuildFile; fileRef = D231894115E2A7B000F37106 /* guitarStereo.caf */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		D231890B15E298D400F37106 /* ReverbTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ReverbTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D231890F15E298D400F37106 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		D231891115E298D400F37106 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		D231891315E298D400F37106 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		D231891715E298D400F37106 /* ReverbTest-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ReverbTest-Info.plist"; sourceTree = "<group>"; };
+		D231891915E298D400F37106 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		D231891B15E298D400F37106 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		D231891D15E298D400F37106 /* ReverbTest-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ReverbTest-Prefix.pch"; sourceTree = "<group>"; };
+		D231891E15E298D400F37106 /* TOAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TOAppDelegate.h; sourceTree = "<group>"; };
+		D231891F15E298D400F37106 /* TOAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TOAppDelegate.m; sourceTree = "<group>"; };
+		D231892215E298D400F37106 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
+		D231892415E298D400F37106 /* TOViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TOViewController.h; sourceTree = "<group>"; };
+		D231892515E298D400F37106 /* TOViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TOViewController.m; sourceTree = "<group>"; };
+		D231892C15E298F100F37106 /* TOReverb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TOReverb.h; sourceTree = "<group>"; };
+		D231892D15E298F100F37106 /* TOReverb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TOReverb.m; sourceTree = "<group>"; };
+		D231892F15E2990C00F37106 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		D231893115E2991200F37106 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		D231893315E2A06100F37106 /* TOCAShortcuts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TOCAShortcuts.h; sourceTree = "<group>"; };
+		D231893415E2A06100F37106 /* TOCAShortcuts.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TOCAShortcuts.m; sourceTree = "<group>"; };
+		D231893515E2A06100F37106 /* NSString+OSStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+OSStatus.h"; sourceTree = "<group>"; };
+		D231893615E2A06100F37106 /* NSString+OSStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+OSStatus.m"; sourceTree = "<group>"; };
+		D231894115E2A7B000F37106 /* guitarStereo.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = guitarStereo.caf; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D231890815E298D400F37106 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D231893215E2991200F37106 /* AVFoundation.framework in Frameworks */,
+				D231893015E2990C00F37106 /* AudioToolbox.framework in Frameworks */,
+				D231891015E298D400F37106 /* UIKit.framework in Frameworks */,
+				D231891215E298D400F37106 /* Foundation.framework in Frameworks */,
+				D231891415E298D400F37106 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		D231890015E298D400F37106 = {
+			isa = PBXGroup;
+			children = (
+				D231891515E298D400F37106 /* ReverbTest */,
+				D231890E15E298D400F37106 /* Frameworks */,
+				D231890C15E298D400F37106 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		D231890C15E298D400F37106 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D231890B15E298D400F37106 /* ReverbTest.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D231890E15E298D400F37106 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D231893115E2991200F37106 /* AVFoundation.framework */,
+				D231892F15E2990C00F37106 /* AudioToolbox.framework */,
+				D231890F15E298D400F37106 /* UIKit.framework */,
+				D231891115E298D400F37106 /* Foundation.framework */,
+				D231891315E298D400F37106 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D231891515E298D400F37106 /* ReverbTest */ = {
+			isa = PBXGroup;
+			children = (
+				D231893315E2A06100F37106 /* TOCAShortcuts.h */,
+				D231893415E2A06100F37106 /* TOCAShortcuts.m */,
+				D231893515E2A06100F37106 /* NSString+OSStatus.h */,
+				D231893615E2A06100F37106 /* NSString+OSStatus.m */,
+				D231891E15E298D400F37106 /* TOAppDelegate.h */,
+				D231891F15E298D400F37106 /* TOAppDelegate.m */,
+				D231892115E298D400F37106 /* MainStoryboard.storyboard */,
+				D231892415E298D400F37106 /* TOViewController.h */,
+				D231892515E298D400F37106 /* TOViewController.m */,
+				D231892C15E298F100F37106 /* TOReverb.h */,
+				D231892D15E298F100F37106 /* TOReverb.m */,
+				D231891615E298D400F37106 /* Supporting Files */,
+			);
+			path = ReverbTest;
+			sourceTree = "<group>";
+		};
+		D231891615E298D400F37106 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				D231894115E2A7B000F37106 /* guitarStereo.caf */,
+				D231891715E298D400F37106 /* ReverbTest-Info.plist */,
+				D231891815E298D400F37106 /* InfoPlist.strings */,
+				D231891B15E298D400F37106 /* main.m */,
+				D231891D15E298D400F37106 /* ReverbTest-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		D231890A15E298D400F37106 /* ReverbTest */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D231892915E298D400F37106 /* Build configuration list for PBXNativeTarget "ReverbTest" */;
+			buildPhases = (
+				D231890715E298D400F37106 /* Sources */,
+				D231890815E298D400F37106 /* Frameworks */,
+				D231890915E298D400F37106 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ReverbTest;
+			productName = ReverbTest;
+			productReference = D231890B15E298D400F37106 /* ReverbTest.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D231890215E298D400F37106 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = TO;
+				LastUpgradeCheck = 0450;
+				ORGANIZATIONNAME = "Tobias Ottenweller";
+			};
+			buildConfigurationList = D231890515E298D400F37106 /* Build configuration list for PBXProject "ReverbTest" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = D231890015E298D400F37106;
+			productRefGroup = D231890C15E298D400F37106 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D231890A15E298D400F37106 /* ReverbTest */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		D231890915E298D400F37106 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D231891A15E298D400F37106 /* InfoPlist.strings in Resources */,
+				D231892315E298D400F37106 /* MainStoryboard.storyboard in Resources */,
+				D231894215E2A7B100F37106 /* guitarStereo.caf in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D231890715E298D400F37106 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D231891C15E298D400F37106 /* main.m in Sources */,
+				D231892015E298D400F37106 /* TOAppDelegate.m in Sources */,
+				D231892615E298D400F37106 /* TOViewController.m in Sources */,
+				D231892E15E298F100F37106 /* TOReverb.m in Sources */,
+				D231893715E2A06100F37106 /* TOCAShortcuts.m in Sources */,
+				D231893815E2A06100F37106 /* NSString+OSStatus.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		D231891815E298D400F37106 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D231891915E298D400F37106 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		D231892115E298D400F37106 /* MainStoryboard.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D231892215E298D400F37106 /* en */,
+			);
+			name = MainStoryboard.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		D231892715E298D400F37106 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Debug;
+		};
+		D231892815E298D400F37106 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		D231892A15E298D400F37106 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ReverbTest/ReverbTest-Prefix.pch";
+				INFOPLIST_FILE = "ReverbTest/ReverbTest-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		D231892B15E298D400F37106 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ReverbTest/ReverbTest-Prefix.pch";
+				INFOPLIST_FILE = "ReverbTest/ReverbTest-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D231890515E298D400F37106 /* Build configuration list for PBXProject "ReverbTest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D231892715E298D400F37106 /* Debug */,
+				D231892815E298D400F37106 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D231892915E298D400F37106 /* Build configuration list for PBXNativeTarget "ReverbTest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D231892A15E298D400F37106 /* Debug */,
+				D231892B15E298D400F37106 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D231890215E298D400F37106 /* Project object */;
+}
