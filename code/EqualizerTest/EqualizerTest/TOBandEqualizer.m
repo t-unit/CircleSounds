@@ -140,7 +140,7 @@
                                         &propSize));
     
     AudioStreamBasicDescription rioFormat = TOCanonicalAUGraphStreamFormat(2, false);
-//    propSize = sizeof(rioUnit);
+//    propSize = sizeof(rioFormat);
 //    
 //    TOThrowOnError(AudioUnitGetProperty(rioUnit,
 //                                        kAudioUnitProperty_StreamFormat,
@@ -399,12 +399,12 @@
 //                                             1,
 //                                             0));
 //        
-//        TOThrowOnError(AudioUnitSetParameter(equalizerUnit,
-//                                             kAUNBandEQParam_FilterType+i,
-//                                             kAudioUnitScope_Global,
-//                                             0,
-//                                             kAUNBandEQFilterType_BandPass,
-//                                             0));
+        TOThrowOnError(AudioUnitSetParameter(equalizerUnit,
+                                             kAUNBandEQParam_FilterType+i,
+                                             kAudioUnitScope_Global,
+                                             0,
+                                             kAUNBandEQFilterType_Parametric,
+                                             0));
 //
 //        TOThrowOnError(AudioUnitSetParameter(equalizerUnit,
 //                                             kAUNBandEQParam_Bandwidth+i,
