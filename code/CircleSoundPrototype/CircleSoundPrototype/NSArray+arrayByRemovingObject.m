@@ -13,8 +13,7 @@
 
 - (NSArray *)arrayByRemovingObject:(id)anObject
 {
-    
-    NSMutableArray *newArray = [NSMutableArray arrayWithArray:self];
+    NSMutableArray *newArray = [self mutableCopy];
     [newArray removeObject:anObject];
     
     return [newArray copy];
