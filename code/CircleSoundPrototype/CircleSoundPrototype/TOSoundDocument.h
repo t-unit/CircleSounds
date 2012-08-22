@@ -20,17 +20,19 @@
     TOAudioUnit *mixerUnit;
     TOAudioUnit *rioUnit;
     
-    // mixer bus use info
+
     UInt32 maxBusTaken; /* -1 if no bus is in use */
     NSArray *availibleBuses; /* number of buses ready for reuse */
+    
+    
+    Float64 startSampleTime; /* NaN before set to correct value*/
+    Float64 currentSampleTime; /* NaN before set to correct value*/
 }
 
+@property (readonly, nonatomic) Float64 currentPlaybackPos; // in seconds
+
+
 @property (readonly, nonatomic) NSArray *plugableSounds;
-
-@property (readonly, nonatomic) double currentPlaybackPos; // in seconds
-
-@property (readonly, nonatomic) AudioTimeStamp currentAudioTimeStamp;
-
 
 - (void)addPlugableSoundObject:(TOPlugableSound *)soundObject;
 - (void)removePlugableSoundObject:(TOPlugableSound *)soundObject;

@@ -32,6 +32,8 @@
         mixerUnit = [[TOAudioUnit alloc] init];
         rioUnit = [[TOAudioUnit alloc] init];
         
+        startSampleTime = currentSampleTime = NAN;
+        
         [self setupProcessingGraph];
     }
     
@@ -48,6 +50,30 @@
     TOThrowOnError(DisposeAUGraph(graph));
 }
 
+
+#pragma mark - Audio Render Callbacks
+
+OSStatus MixerUnitRenderNoteCallack(void                        *inRefCon,
+                                    AudioUnitRenderActionFlags  *ioActionFlags,
+                                    const AudioTimeStamp        *inTimeStamp,
+                                    UInt32                      inBusNumber,
+                                    UInt32                      inNumberFrames,
+                                    AudioBufferList             *ioData
+                                   )
+{
+    TOSoundDocument *doc = (__bridge TOSoundDocument *)inRefCon;
+    
+    if (*ioActionFlags & kAudioUnitRenderAction_PostRender) {
+        
+        if (isnan(doc->startSampleTime)) {
+            doc->startSampleTime = inTimeStamp->mSampleTime;
+        }
+        
+        doc->currentSampleTime = inTimeStamp->mSampleTime;
+    }
+    
+    return noErr;
+}
 
 
 #pragma mark - AUGraph setup
@@ -116,6 +142,11 @@
                                         0,
                                         &meteringMode,
                                         sizeof(meteringMode)));
+    
+    
+    TOThrowOnError(AudioUnitAddRenderNotify(mixerUnit->unit,
+                                            MixerUnitRenderNoteCallack,
+                                            (__bridge void *)(self)));
     
 
     //............................................................................
@@ -295,9 +326,10 @@
 
 # pragma mark - Property Setter and Getter
 
-- (double)currentPlaybackPos
+- (Float64)currentPlaybackPos
 {
-    
+    // TODO: get the sample rate from the mixer unit!
+    return (currentSampleTime - startSampleTime) / 44100.0;
 }
 
 
@@ -306,7 +338,6 @@
 - (AudioUnitParameterValue)avgValueLeft
 {
     AudioUnitParameterValue retVal;
-    
     TOThrowOnError(AudioUnitGetParameter(mixerUnit->unit,
                                          kMultiChannelMixerParam_PostAveragePower,
                                          kAudioUnitScope_Output,
@@ -320,7 +351,6 @@
 - (AudioUnitParameterValue)avgValueRight
 {
     AudioUnitParameterValue retVal;
-    
     TOThrowOnError(AudioUnitGetParameter(mixerUnit->unit,
                                          kMultiChannelMixerParam_PostAveragePower+1,
                                          kAudioUnitScope_Output,
@@ -334,7 +364,6 @@
 - (AudioUnitParameterValue)peakValueLeft
 {
     AudioUnitParameterValue retVal;
-    
     TOThrowOnError(AudioUnitGetParameter(mixerUnit->unit,
                                          kMultiChannelMixerParam_PostPeakHoldLevel,
                                          kAudioUnitScope_Output,
@@ -348,7 +377,6 @@
 - (AudioUnitParameterValue)peakValueRight
 {
     AudioUnitParameterValue retVal;
-    
     TOThrowOnError(AudioUnitGetParameter(mixerUnit->unit,
                                          kMultiChannelMixerParam_PostPeakHoldLevel+1,
                                          kAudioUnitScope_Output,
@@ -373,7 +401,6 @@
 - (AudioUnitParameterValue)volume
 {
     AudioUnitParameterValue retVal;
-    
     TOThrowOnError(AudioUnitGetParameter(mixerUnit->unit,
                                          kMultiChannelMixerParam_Volume,
                                          kAudioUnitScope_Output,

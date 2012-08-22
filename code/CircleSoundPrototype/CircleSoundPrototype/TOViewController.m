@@ -7,8 +7,13 @@
 //
 
 #import "TOViewController.h"
+#import "TOSoundDocument.h"
+
 
 @interface TOViewController ()
+
+@property (strong, nonatomic) TOSoundDocument *document;
+@property (strong, nonatomic) NSTimer *timer;
 
 @end
 
@@ -17,13 +22,24 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+    
+	self.document = [[TOSoundDocument alloc] init];
+    [self.document start];
+    
+    self.timer = [NSTimer timerWithTimeInterval:1.0 target:self selector:@selector(printCurrentPlaybackTime) userInfo:nil repeats:YES];
+    [[NSRunLoop mainRunLoop] addTimer:self.timer forMode:NSDefaultRunLoopMode];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+
+- (void)printCurrentPlaybackTime
+{
+    NSLog(@"%f", self.document.currentPlaybackPos);
 }
 
 @end
