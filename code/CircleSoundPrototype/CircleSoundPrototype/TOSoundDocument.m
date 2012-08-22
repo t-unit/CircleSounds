@@ -7,15 +7,121 @@
 //
 
 #import "TOSoundDocument.h"
-#import <AVFoundation/AVFoundation.h>
 
-#define GRAPH_SAMPLE_RATE 44100.0
+#import <AVFoundation/AVFoundation.h>
+#import "TOAudioUnit.h"
+#import "TOCAShortcuts.h"
+#import "TOPlugableSound.h"
+#import "NSArray+arrayByRemovingObject.h"
+
+#define PREFERRED_GRAPH_SAMPLE_RATE 44100.0
 
 
 @implementation TOSoundDocument
 
+- (id)init
+{
+    self = [super init];
+    
+    if (self) {
+        _plugableSounds = @[];
+        availibleBuses = @[];
+        
+        maxBusTaken = -1;
+        
+        mixerUnit = [[TOAudioUnit alloc] init];
+        rioUnit = [[TOAudioUnit alloc] init];
+        
+        [self setupProcessingGraph];
+    }
+    
+    return self;
+}
 
-#pragma mark - Audio Callbacks
+
+- (void)dealloc
+{
+    [self stop];
+    
+    TOThrowOnError(AUGraphClose(graph));
+    TOThrowOnError(AUGraphUninitialize(graph));
+    TOThrowOnError(DisposeAUGraph(graph));
+}
+
+
+
+#pragma mark - AUGraph setup
+
+- (void)setupProcessingGraph
+{
+    //............................................................................
+    // Create AUGraph
+    
+    TOThrowOnError(NewAUGraph(&graph));
+    
+    
+    //............................................................................
+    // Add Audio Units (Nodes) to the graph
+    
+    mixerUnit->description = TOAudioComponentDescription(kAudioUnitType_Mixer, kAudioUnitSubType_MultiChannelMixer);
+    TOThrowOnError(AUGraphAddNode(graph,
+                                  &(mixerUnit->description),
+                                  &(mixerUnit->node)));
+    
+    
+    rioUnit->description = TOAudioComponentDescription(kAudioUnitType_Output, kAudioUnitSubType_RemoteIO);
+    TOThrowOnError(AUGraphAddNode(graph,
+                                  &(rioUnit->description),
+                                  &(rioUnit->node)));
+    
+    
+    //............................................................................
+    // Open the processing graph.
+    
+    TOThrowOnError(AUGraphOpen(graph));
+    
+    
+    //............................................................................
+    // Obtain the audio unit instances from its corresponding node.
+    
+    TOThrowOnError(AUGraphNodeInfo(graph,
+                                   mixerUnit->node,
+                                   NULL,
+                                   &(mixerUnit->unit)));
+    
+    TOThrowOnError(AUGraphNodeInfo(graph,
+                                   rioUnit->node,
+                                   NULL,
+                                   &(rioUnit->unit)));
+    
+    
+    //............................................................................
+    // Connect the nodes of the audio processing graph
+    
+    TOThrowOnError(AUGraphConnectNodeInput(graph,
+                                           mixerUnit->node,      // source node
+                                           0,                    // source bus
+                                           rioUnit->node,        // destination node
+                                           0));                  // destination bus
+    
+    
+    //............................................................................
+    // Set properties/parameters of the units inside the graph
+    
+    // Enable metering at the output of the mixer unit
+    UInt32 meteringMode = 1; // enabled
+    TOThrowOnError(AudioUnitSetProperty(mixerUnit->unit,
+                                        kAudioUnitProperty_MeteringMode,
+                                        kAudioUnitScope_Output,
+                                        0,
+                                        &meteringMode,
+                                        sizeof(meteringMode)));
+    
+
+    //............................................................................
+    // Initialize Graph
+    TOThrowOnError(AUGraphInitialize(graph));
+}
 
 
 #pragma mark - Audio Session
@@ -29,8 +135,8 @@
     [session setCategory:AVAudioSessionCategoryPlayback error:&error];
     [session setActive:YES error:&error];
     
-    [session setPreferredSampleRate:GRAPH_SAMPLE_RATE error:&error];
-    [[AVAudioSession sharedInstance] setPreferredIOBufferDuration:1024.0/GRAPH_SAMPLE_RATE error:&error];
+    [session setPreferredSampleRate:PREFERRED_GRAPH_SAMPLE_RATE error:&error];
+    [[AVAudioSession sharedInstance] setPreferredIOBufferDuration:1024.0/PREFERRED_GRAPH_SAMPLE_RATE error:&error];
     
     
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -62,27 +168,219 @@
 
 - (void)start
 {
-    
+    @synchronized(self) {
+        Boolean isRunning;
+        
+        TOThrowOnError(AUGraphIsRunning(graph, &isRunning));
+        
+        if (!isRunning) {
+            TOThrowOnError(AUGraphStart(graph));
+        }
+    }
 }
 
 
 - (void)stop
 {
-    
+    @synchronized(self) {
+        Boolean isRunning;
+        
+        TOThrowOnError(AUGraphIsRunning(graph, &isRunning));
+        
+        if (isRunning) {
+            TOThrowOnError(AUGraphStop(graph));
+        }
+    }
 }
 
 
 - (void)reset
+{    
+}
+
+
+# pragma mark - Plugable Sounds Handling
+
+- (void)addPlugableSoundObject:(TOPlugableSound *)soundObject
 {
-    
+    @synchronized(self) {
+        _plugableSounds = [_plugableSounds arrayByAddingObject:soundObject];
+        
+        // add node to the graph and get the unit back
+        for (TOAudioUnit *au in soundObject.audioUnits) {
+            TOThrowOnError(AUGraphAddNode(graph,
+                                          &(au->description),
+                                          &(au->node)));
+            
+            TOThrowOnError(AUGraphNodeInfo(graph,
+                                           au->node,
+                                           NULL,
+                                           &(au->unit)));
+        }
+        
+        
+        // connect the nodes inside the sound object
+        for (NSInteger i=0; i<soundObject.audioUnits.count-1; i++) {
+            TOAudioUnit *sourceAU = soundObject.audioUnits[i];
+            TOAudioUnit *destAU = soundObject.audioUnits[i+1];
+            
+            TOThrowOnError(AUGraphConnectNodeInput(graph,
+                                                   sourceAU->node,
+                                                   0,
+                                                   destAU->node,
+                                                   0));
+        }
+        
+        
+        // connect the last AU inside the sound object to the mixer unit;
+        UInt32 mixerInputBus;
+        
+        if (availibleBuses.count) {
+            mixerInputBus = [availibleBuses[0] unsignedIntegerValue];
+        }
+        else {
+            mixerInputBus = ++maxBusTaken;
+        }
+        
+        TOAudioUnit *sourceAU = [soundObject.audioUnits lastObject];
+        TOThrowOnError(AUGraphConnectNodeInput(graph,
+                                               sourceAU->node,
+                                               0,
+                                               mixerUnit->node,
+                                               mixerInputBus));
+    }
+}
+
+
+- (void)removePlugableSoundObject:(TOPlugableSound *)soundObject
+{
+    @synchronized(self) {
+        if (![self.plugableSounds containsObject:soundObject]) {
+            return;
+        }
+        
+        // disconnect all the nodes from the graph
+        for (NSInteger i=1; i<soundObject.audioUnits.count; i++) {
+            TOAudioUnit *destAU = soundObject.audioUnits[i];
+            
+            TOThrowOnError(AUGraphDisconnectNodeInput(graph,
+                                                      destAU->node,
+                                                      0));
+        }
+        
+        
+        // disconnect the last AU inside the sound object from the mixer unit;
+        TOAudioUnit *lastAU = [soundObject.audioUnits lastObject];
+        AUNodeInteraction lastAUInteraction;
+        UInt32 numInteractions = 1;
+        
+        TOThrowOnError(AUGraphGetNodeInteractions(graph,
+                                                  lastAU->node,
+                                                  &numInteractions,
+                                                  &lastAUInteraction));
+        
+        UInt32 mixerBus = lastAUInteraction.nodeInteraction.connection.destInputNumber;
+        
+        TOThrowOnError(AUGraphDisconnectNodeInput(graph,
+                                                  mixerUnit->node,
+                                                  mixerBus));
+        
+        availibleBuses = [availibleBuses arrayByAddingObject:@(mixerBus)];
+        _plugableSounds = [self.plugableSounds arrayByRemovingObject:soundObject];
+        
+        TOThrowOnError(AUGraphUpdate(graph, NULL));
+    }
 }
 
 
 # pragma mark - Property Setter and Getter
 
-- (double)graphSampleRate
+- (double)currentPlaybackPos
 {
-    return GRAPH_SAMPLE_RATE;
+    
+}
+
+
+# pragma mark - Mixer Parameter Wrapper Methods
+
+- (AudioUnitParameterValue)avgValueLeft
+{
+    AudioUnitParameterValue retVal;
+    
+    TOThrowOnError(AudioUnitGetParameter(mixerUnit->unit,
+                                         kMultiChannelMixerParam_PostAveragePower,
+                                         kAudioUnitScope_Output,
+                                         0,
+                                         &retVal));
+    
+    return retVal;
+}
+
+
+- (AudioUnitParameterValue)avgValueRight
+{
+    AudioUnitParameterValue retVal;
+    
+    TOThrowOnError(AudioUnitGetParameter(mixerUnit->unit,
+                                         kMultiChannelMixerParam_PostAveragePower+1,
+                                         kAudioUnitScope_Output,
+                                         0,
+                                         &retVal));
+    
+    return retVal;
+}
+
+
+- (AudioUnitParameterValue)peakValueLeft
+{
+    AudioUnitParameterValue retVal;
+    
+    TOThrowOnError(AudioUnitGetParameter(mixerUnit->unit,
+                                         kMultiChannelMixerParam_PostPeakHoldLevel,
+                                         kAudioUnitScope_Output,
+                                         0,
+                                         &retVal));
+    
+    return retVal;
+}
+
+
+- (AudioUnitParameterValue)peakValueRight
+{
+    AudioUnitParameterValue retVal;
+    
+    TOThrowOnError(AudioUnitGetParameter(mixerUnit->unit,
+                                         kMultiChannelMixerParam_PostPeakHoldLevel+1,
+                                         kAudioUnitScope_Output,
+                                         0,
+                                         &retVal));
+    
+    return retVal;
+}
+
+
+- (void)setVolume:(AudioUnitParameterValue)volume
+{
+    TOThrowOnError(AudioUnitSetParameter(mixerUnit->unit,
+                                         kMultiChannelMixerParam_Volume,
+                                         kAudioUnitScope_Output,
+                                         0,
+                                         volume,
+                                         0));
+}
+
+
+- (AudioUnitParameterValue)volume
+{
+    AudioUnitParameterValue retVal;
+    
+    TOThrowOnError(AudioUnitGetParameter(mixerUnit->unit,
+                                         kMultiChannelMixerParam_Volume,
+                                         kAudioUnitScope_Output,
+                                         0,
+                                         &retVal));
+    
+    return retVal;
 }
 
 

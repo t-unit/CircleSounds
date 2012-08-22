@@ -22,6 +22,7 @@
 		D21F0DE415E4E18200DFC68C /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D21F0DE315E4E18200DFC68C /* AVFoundation.framework */; };
 		D21F0DE815E4E27300DFC68C /* TOPlugableSound.m in Sources */ = {isa = PBXBuildFile; fileRef = D21F0DE715E4E27300DFC68C /* TOPlugableSound.m */; };
 		D21F0DFA15E4E6B100DFC68C /* TOSoundDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = D21F0DF915E4E6B100DFC68C /* TOSoundDocument.m */; };
+		D23007DB15E548D100919C6C /* NSArray+arrayByRemovingObject.m in Sources */ = {isa = PBXBuildFile; fileRef = D23007DA15E548D100919C6C /* NSArray+arrayByRemovingObject.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +51,8 @@
 		D21F0DE715E4E27300DFC68C /* TOPlugableSound.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TOPlugableSound.m; sourceTree = "<group>"; };
 		D21F0DF815E4E6B100DFC68C /* TOSoundDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TOSoundDocument.h; sourceTree = "<group>"; };
 		D21F0DF915E4E6B100DFC68C /* TOSoundDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TOSoundDocument.m; sourceTree = "<group>"; };
+		D23007D915E548D100919C6C /* NSArray+arrayByRemovingObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+arrayByRemovingObject.h"; sourceTree = "<group>"; };
+		D23007DA15E548D100919C6C /* NSArray+arrayByRemovingObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+arrayByRemovingObject.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +103,8 @@
 		D21F0DBB15E4DF5100DFC68C /* CircleSoundPrototype */ = {
 			isa = PBXGroup;
 			children = (
+				D23007D915E548D100919C6C /* NSArray+arrayByRemovingObject.h */,
+				D23007DA15E548D100919C6C /* NSArray+arrayByRemovingObject.m */,
 				D21F0DE515E4E25600DFC68C /* Audio Layer */,
 				D21F0DC415E4DF5100DFC68C /* TOAppDelegate.h */,
 				D21F0DC515E4DF5100DFC68C /* TOAppDelegate.m */,
@@ -219,6 +224,7 @@
 				D21F0DDF15E4E11200DFC68C /* TOAudioUnit.m in Sources */,
 				D21F0DE815E4E27300DFC68C /* TOPlugableSound.m in Sources */,
 				D21F0DFA15E4E6B100DFC68C /* TOSoundDocument.m in Sources */,
+				D23007DB15E548D100919C6C /* NSArray+arrayByRemovingObject.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -334,6 +340,7 @@
 				D21F0DD115E4DF5100DFC68C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

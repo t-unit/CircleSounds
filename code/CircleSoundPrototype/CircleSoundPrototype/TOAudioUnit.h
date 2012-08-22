@@ -11,11 +11,14 @@
 
 
 /**
- A object wrapper around a audio unit and its corresponding node.
+ A object wrapper around a audio unit, its corresponding node and its audio component description.
  */
 @interface TOAudioUnit : NSObject
-
-@property (assign, nonatomic) AUNode node;
-@property (assign, nonatomic) AudioUnit unit;
+{
+@public
+    AUNode node;
+    AudioUnit unit;
+    AudioComponentDescription description;
+}
 
 @end
