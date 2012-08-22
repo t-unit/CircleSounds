@@ -102,19 +102,23 @@
     if (audioFile) {
         TOThrowOnError(AudioFileClose(audioFile));
     }
+    
+    NSError *intError = nil;
 
-    TOThrowOnError(AudioFileOpenURL((__bridge CFURLRef)(self.audioFileURL),
+    TOErrorHandler(AudioFileOpenURL((__bridge CFURLRef)(self.audioFileURL),
                                     kAudioFileReadPermission,
                                     0,
-                                    &audioFile));
+                                    &audioFile),
+                    &intError,
+                    @"Failed to open audio file");
     
-    
-    TOThrowOnError(AudioUnitSetProperty(filePlayerUnit,
-                                        kAudioUnitProperty_ScheduledFileIDs,
-                                        kAudioUnitScope_Global,
-                                        0,
-                                        &audioFile,
-                                        sizeof(audioFile)));
+    if (intError) {
+        if (error) {
+            *error = intError;
+        }
+        
+        return NO;
+    }
     
     
     
@@ -136,13 +140,15 @@
                                         &nPackets));
     
     
+    
     //............................................................................
-    // get current playback time from the document
-    double currentTime = 0; // TODO: ask the document for the time
+    // calculate file player unit properties
     
-    
+    // region
     SInt64 startFrame;
+    double currentTime = 0; // TODO: ask the document for the time
     UInt32 framesToPlay;
+    UInt32 numFramesInFile = nPackets * audioFileASBD.mFramesPerPacket;
     
     
     if (currentTime < self.startTime) {
@@ -150,11 +156,18 @@
         framesToPlay = self.regionDuration * audioFileASBD.mSampleRate;
     }
     else {
-        
+        startFrame = currentTime * audioFileASBD.mSampleRate;
+        framesToPlay = (self.regionDuration - (currentTime - self.startTime)) * audioFileASBD.mSampleRate;
     }
-	
     
-	ScheduledAudioFileRegion rgn;
+    
+    // avoid playing over the end of the actual file
+    if ((startFrame + framesToPlay) > numFramesInFile) {
+        framesToPlay -= numFramesInFile - startFrame - framesToPlay;
+    }
+    
+    
+    ScheduledAudioFileRegion rgn;
 	memset (&rgn.mTimeStamp, 0, sizeof(rgn.mTimeStamp));
 	rgn.mTimeStamp.mFlags = kAudioTimeStampSampleTimeValid;
 	rgn.mTimeStamp.mSampleTime = 0;
@@ -164,6 +177,32 @@
 	rgn.mLoopCount = self.loopCount;
 	rgn.mStartFrame = startFrame;
 	rgn.mFramesToPlay = framesToPlay;
+    
+    
+    // start time
+    Float64 currentGraphSampleTime = 0; // TODO: ask the document for the time
+    Float64 graphSampleRate = 44100; // TODO: ask the document for the sample rate
+    
+    Float64 sampleStartTime = (startFrame / audioFileASBD.mSampleRate + currentGraphSampleTime) * graphSampleRate;
+    
+    AudioTimeStamp startTime;
+	memset (&startTime, 0, sizeof(startTime));
+	startTime.mFlags = kAudioTimeStampSampleTimeValid;
+	startTime.mSampleTime = sampleStartTime;
+    
+    
+    
+    //............................................................................
+    // set the file player properties
+    TOThrowOnError(AudioUnitSetProperty(filePlayerUnit,
+                                        kAudioUnitProperty_ScheduledFileIDs,
+                                        kAudioUnitScope_Global,
+                                        0,
+                                        &audioFile,
+                                        sizeof(audioFile)));
+	
+    
+	
 	
 	TOThrowOnError(AudioUnitSetProperty(filePlayerUnit,
                                         kAudioUnitProperty_ScheduledFileRegion,
@@ -183,21 +222,13 @@
                                         sizeof(defaultVal)));
 	
     
-	// tell the file player AU when to start playing (-1 sample time means next render cycle)
-	AudioTimeStamp startTime;
-	memset (&startTime, 0, sizeof(startTime));
-	startTime.mFlags = kAudioTimeStampSampleTimeValid;
-	startTime.mSampleTime = -1;
-    
 	TOThrowOnError(AudioUnitSetProperty(filePlayerUnit,
                                         kAudioUnitProperty_ScheduleStartTimeStamp,
                                         kAudioUnitScope_Global,
                                         0,
                                         &startTime,
                                         sizeof(startTime)));
-    
-    NSLog(@"_");
-    
+
     return YES;
 }
 
