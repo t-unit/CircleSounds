@@ -291,7 +291,7 @@ OSStatus MixerUnitRenderNoteCallack(void                        *inRefCon,
                                                0,
                                                _mixerUnit->node,
                                                mixerInputBus));
-        
+        soundObject.document = self;
         [soundObject setupUnits];
         
         TOThrowOnError(AUGraphUpdate(_graph, NULL));
@@ -341,7 +341,9 @@ OSStatus MixerUnitRenderNoteCallack(void                        *inRefCon,
             TOThrowOnError(AUGraphRemoveNode(_graph, au->node));
         }
         
+        
         [soundObject tearDownUnits];
+        soundObject.document = nil;
         
         
         // set nodes and units to NULL

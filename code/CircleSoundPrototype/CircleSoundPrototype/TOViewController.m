@@ -8,6 +8,7 @@
 
 #import "TOViewController.h"
 #import "TOSoundDocument.h"
+#import "TOVarispeed.h"
 
 
 @interface TOViewController ()
@@ -28,6 +29,15 @@
     
     self.timer = [NSTimer timerWithTimeInterval:1.0 target:self selector:@selector(printCurrentPlaybackTime) userInfo:nil repeats:YES];
     [[NSRunLoop mainRunLoop] addTimer:self.timer forMode:NSDefaultRunLoopMode];
+    
+    TOVarispeed *varispeed = [[TOVarispeed alloc] init];
+    varispeed.audioFileURL = [[NSBundle mainBundle] URLForResource:@"06 Birkenholzkompott" withExtension:@"mp3"];
+    varispeed.regionDuration = 60;
+    
+    [self.document addPlugableSoundObject:varispeed];
+    
+    [varispeed applyChanges:nil];
+    
 }
 
 - (void)didReceiveMemoryWarning

@@ -137,7 +137,7 @@
     AudioTimeStamp startTime;
 	memset (&startTime, 0, sizeof(startTime));
 	startTime.mFlags = kAudioTimeStampSampleTimeValid;
-	startTime.mSampleTime = sampleStartTime;
+	startTime.mSampleTime = -1;
     
     
     
