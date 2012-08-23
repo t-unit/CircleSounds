@@ -7,15 +7,29 @@
 //
 
 #import "TOAudioFilePlayer.h"
-#import "TOCAShortcuts.h"
 
-#include <mach/mach_time.h>
+#import "TOCAShortcuts.h"
+#import "TOSoundDocument.h"
+
 
 @implementation TOAudioFilePlayer
 
-+ (NSUInteger)numUnits
+
+OSStatus FilePlayerUnitRenderNotifyCallblack (void                        *inRefCon,
+                                              AudioUnitRenderActionFlags  *ioActionFlags,
+                                              const AudioTimeStamp        *inTimeStamp,
+                                              UInt32                      inBusNumber,
+                                              UInt32                      inNumberFrames,
+                                              AudioBufferList             *ioData
+                                             )
 {
-    return [super numUnits] + 1;
+    TOAudioFilePlayer *filePlayer = (__bridge TOAudioFilePlayer *)(inRefCon);
+    
+    if (*ioActionFlags & kAudioUnitRenderAction_PostRender) {
+        filePlayer->_currentFilePlayerUnitRenderTimeStamp = *inTimeStamp;
+    }
+    
+    return noErr;
 }
 
 
@@ -41,6 +55,29 @@
     }
     
     [super tearDownUnits];
+}
+
+
+- (void)setupUnits
+{
+    [super setupUnits];
+    
+    // set up the notify render callback
+    TOThrowOnError(AudioUnitAddRenderNotify(_filePlayerUnit->unit,
+                                            FilePlayerUnitRenderNotifyCallblack,
+                                            (__bridge void *)(self)));
+    
+    
+    // obtain the output sample rate of the file player unit
+    // (used later on to calculate the current playback time in seconds)
+    UInt32 propSize = sizeof(_filePlayerUnitOutputSampleRate);
+    
+    TOThrowOnError(AudioUnitGetProperty(_filePlayerUnit->unit,
+                                        kAudioUnitProperty_SampleRate,
+                                        kAudioUnitScope_Output,
+                                        0,
+                                        &_filePlayerUnitOutputSampleRate,
+                                        &propSize));
 }
 
 
@@ -95,7 +132,7 @@
     
     // region
     SInt64 startFrame;
-    double currentTime = 0; // TODO: ask the document for the time
+    double currentTime = self.document.currentPlaybackPos;
     UInt32 framesToPlay;
     UInt32 numFramesInFile = nPackets * audioFileASBD.mFramesPerPacket;
     
@@ -129,15 +166,18 @@
     
     
     // start time
-    Float64 currentGraphSampleTime = 0; // TODO: ask the document for the time
-    Float64 graphSampleRate = 44100; // TODO: ask the document for the sample rate
+    Float64 timeOffset = self.startTime - currentTime; /* in seconds */
     
-    Float64 sampleStartTime = (startFrame / audioFileASBD.mSampleRate + currentGraphSampleTime) * graphSampleRate;
+    if (timeOffset < 0.0) {
+        timeOffset = 0.0;
+    }
+    
+    Float64 sampleStartTime = _currentFilePlayerUnitRenderTimeStamp.mSampleTime + timeOffset * _filePlayerUnitOutputSampleRate;
     
     AudioTimeStamp startTime;
 	memset (&startTime, 0, sizeof(startTime));
 	startTime.mFlags = kAudioTimeStampSampleTimeValid;
-	startTime.mSampleTime = -1;
+	startTime.mSampleTime = sampleStartTime;
     
     
     

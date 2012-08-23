@@ -33,6 +33,7 @@
     TOVarispeed *varispeed = [[TOVarispeed alloc] init];
     varispeed.audioFileURL = [[NSBundle mainBundle] URLForResource:@"06 Birkenholzkompott" withExtension:@"mp3"];
     varispeed.regionDuration = 60;
+    varispeed.startTime = 5;
     
     [self.document addPlugableSoundObject:varispeed];
     

@@ -13,6 +13,9 @@
 {
     TOAudioUnit *_filePlayerUnit;
     AudioFileID _audioFile;
+    
+    AudioTimeStamp _currentFilePlayerUnitRenderTimeStamp;
+    Float64 _filePlayerUnitOutputSampleRate;
 }
 
 
@@ -51,9 +54,10 @@
 @property (assign, nonatomic) double startTime;
 
 
-
 /**
- Apply the changes made.
+ Apply the changes made. Needs to be called after the
+ object has been added to the document. An exception might
+ get thrown otherwise.
  */
 - (BOOL)applyChanges:(NSError *__autoreleasing *)error;
 

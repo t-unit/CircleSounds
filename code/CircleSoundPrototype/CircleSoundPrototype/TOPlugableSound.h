@@ -23,9 +23,6 @@
 }
 
 
-+ (NSUInteger)numUnits;
-
-
 /**
  Contains TOAudioUnit object. The order represents the the
  order in which they unit should be chained.
