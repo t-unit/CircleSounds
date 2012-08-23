@@ -8,7 +8,7 @@
 
 #import "TOViewController.h"
 #import "TOSoundDocument.h"
-#import "TOVarispeed.h"
+#import "TOBandEqualizer.h"
 
 
 @interface TOViewController ()
@@ -30,14 +30,15 @@
     self.timer = [NSTimer timerWithTimeInterval:1.0 target:self selector:@selector(printCurrentPlaybackTime) userInfo:nil repeats:YES];
     [[NSRunLoop mainRunLoop] addTimer:self.timer forMode:NSDefaultRunLoopMode];
     
-    TOVarispeed *varispeed = [[TOVarispeed alloc] init];
-    varispeed.audioFileURL = [[NSBundle mainBundle] URLForResource:@"06 Birkenholzkompott" withExtension:@"mp3"];
-    varispeed.regionDuration = 60;
-    varispeed.startTime = 5;
+    TOBandEqualizer *eqSound = [[TOBandEqualizer alloc] init];
+    eqSound.audioFileURL = [[NSBundle mainBundle] URLForResource:@"06 Birkenholzkompott" withExtension:@"mp3"];
     
-    [self.document addPlugableSoundObject:varispeed];
+    [self.document addPlugableSoundObject:eqSound];
     
-    [varispeed applyChanges:nil];
+    eqSound.regionDuration = 60;
+    eqSound.startTime = 5;
+    eqSound.playbackCents = 2400;
+    [eqSound applyChanges:nil];
     
 }
 

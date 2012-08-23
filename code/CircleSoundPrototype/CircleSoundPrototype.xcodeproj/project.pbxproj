@@ -24,6 +24,8 @@
 		D21F0DFA15E4E6B100DFC68C /* TOSoundDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = D21F0DF915E4E6B100DFC68C /* TOSoundDocument.m */; };
 		D23007DB15E548D100919C6C /* NSArray+arrayByRemovingObject.m in Sources */ = {isa = PBXBuildFile; fileRef = D23007DA15E548D100919C6C /* NSArray+arrayByRemovingObject.m */; };
 		D26F8A8715E684D20063FF0F /* 06 Birkenholzkompott.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D26F8A8615E684D20063FF0F /* 06 Birkenholzkompott.mp3 */; };
+		D26F8A8E15E695EA0063FF0F /* TOReverb.m in Sources */ = {isa = PBXBuildFile; fileRef = D26F8A8D15E695EA0063FF0F /* TOReverb.m */; };
+		D26F8A9515E6960D0063FF0F /* TOBandEqualizer.m in Sources */ = {isa = PBXBuildFile; fileRef = D26F8A9415E6960D0063FF0F /* TOBandEqualizer.m */; };
 		D2E8279515E62270000B3144 /* TOVarispeed.m in Sources */ = {isa = PBXBuildFile; fileRef = D2E8279415E62270000B3144 /* TOVarispeed.m */; };
 		D2E8279815E62286000B3144 /* TOAudioFilePlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = D2E8279715E62286000B3144 /* TOAudioFilePlayer.m */; };
 /* End PBXBuildFile section */
@@ -57,6 +59,10 @@
 		D23007D915E548D100919C6C /* NSArray+arrayByRemovingObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+arrayByRemovingObject.h"; sourceTree = "<group>"; };
 		D23007DA15E548D100919C6C /* NSArray+arrayByRemovingObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+arrayByRemovingObject.m"; sourceTree = "<group>"; };
 		D26F8A8615E684D20063FF0F /* 06 Birkenholzkompott.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "06 Birkenholzkompott.mp3"; sourceTree = "<group>"; };
+		D26F8A8C15E695EA0063FF0F /* TOReverb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TOReverb.h; sourceTree = "<group>"; };
+		D26F8A8D15E695EA0063FF0F /* TOReverb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TOReverb.m; sourceTree = "<group>"; };
+		D26F8A9315E6960D0063FF0F /* TOBandEqualizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TOBandEqualizer.h; sourceTree = "<group>"; };
+		D26F8A9415E6960D0063FF0F /* TOBandEqualizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TOBandEqualizer.m; sourceTree = "<group>"; };
 		D2E8279315E62270000B3144 /* TOVarispeed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TOVarispeed.h; sourceTree = "<group>"; };
 		D2E8279415E62270000B3144 /* TOVarispeed.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TOVarispeed.m; sourceTree = "<group>"; };
 		D2E8279615E62286000B3144 /* TOAudioFilePlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TOAudioFilePlayer.h; sourceTree = "<group>"; };
@@ -169,6 +175,10 @@
 				D2E8279715E62286000B3144 /* TOAudioFilePlayer.m */,
 				D2E8279315E62270000B3144 /* TOVarispeed.h */,
 				D2E8279415E62270000B3144 /* TOVarispeed.m */,
+				D26F8A8C15E695EA0063FF0F /* TOReverb.h */,
+				D26F8A8D15E695EA0063FF0F /* TOReverb.m */,
+				D26F8A9315E6960D0063FF0F /* TOBandEqualizer.h */,
+				D26F8A9415E6960D0063FF0F /* TOBandEqualizer.m */,
 			);
 			name = TOPlugableSound;
 			sourceTree = "<group>";
@@ -249,6 +259,8 @@
 				D23007DB15E548D100919C6C /* NSArray+arrayByRemovingObject.m in Sources */,
 				D2E8279515E62270000B3144 /* TOVarispeed.m in Sources */,
 				D2E8279815E62286000B3144 /* TOAudioFilePlayer.m in Sources */,
+				D26F8A8E15E695EA0063FF0F /* TOReverb.m in Sources */,
+				D26F8A9515E6960D0063FF0F /* TOBandEqualizer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
