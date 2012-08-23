@@ -8,7 +8,7 @@
 
 #import "TOViewController.h"
 #import "TOSoundDocument.h"
-#import "TOBandEqualizer.h"
+#import "TOEqualizerSound.h"
 
 
 @interface TOViewController ()
@@ -30,7 +30,7 @@
     self.timer = [NSTimer timerWithTimeInterval:1.0 target:self selector:@selector(printCurrentPlaybackTime) userInfo:nil repeats:YES];
     [[NSRunLoop mainRunLoop] addTimer:self.timer forMode:NSDefaultRunLoopMode];
     
-    TOBandEqualizer *eqSound = [[TOBandEqualizer alloc] init];
+    TOEqualizerSound *eqSound = [[TOEqualizerSound alloc] init];
     eqSound.audioFileURL = [[NSBundle mainBundle] URLForResource:@"06 Birkenholzkompott" withExtension:@"mp3"];
     
     [self.document addPlugableSoundObject:eqSound];

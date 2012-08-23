@@ -6,13 +6,13 @@
 //  Copyright (c) 2012 Tobias Ottenweller. All rights reserved.
 //
 
-#import "TOAudioFilePlayer.h"
+#import "TOFilePlayerSound.h"
 
 #import "TOCAShortcuts.h"
 #import "TOSoundDocument.h"
 
 
-@implementation TOAudioFilePlayer
+@implementation TOFilePlayerSound
 
 
 OSStatus FilePlayerUnitRenderNotifyCallblack (void                        *inRefCon,
@@ -23,7 +23,7 @@ OSStatus FilePlayerUnitRenderNotifyCallblack (void                        *inRef
                                               AudioBufferList             *ioData
                                              )
 {
-    TOAudioFilePlayer *filePlayer = (__bridge TOAudioFilePlayer *)(inRefCon);
+    TOFilePlayerSound *filePlayer = (__bridge TOFilePlayerSound *)(inRefCon);
     
     if (*ioActionFlags & kAudioUnitRenderAction_PostRender) {
         filePlayer->_currentFilePlayerUnitRenderTimeStamp = *inTimeStamp;

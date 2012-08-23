@@ -6,10 +6,10 @@
 //  Copyright (c) 2012 Tobias Ottenweller. All rights reserved.
 //
 
-#import "TOReverb.h"
+#import "TOReverbSound.h"
 
 
-@interface TOBandEqualizer : TOReverb
+@interface TOEqualizerSound : TOReverbSound
 {
     TOAudioUnit *_equalizerUnit;
 }

@@ -9,7 +9,7 @@
 #import "TOPlugableSound.h"
 
 
-@interface TOAudioFilePlayer : TOPlugableSound
+@interface TOFilePlayerSound : TOPlugableSound
 {
     TOAudioUnit *_filePlayerUnit;
     AudioFileID _audioFile;

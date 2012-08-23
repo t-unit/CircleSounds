@@ -6,10 +6,10 @@
 //  Copyright (c) 2012 Tobias Ottenweller. All rights reserved.
 //
 
-#import "TOVarispeed.h"
+#import "TOVarispeedSound.h"
 
 
-@interface TOReverb : TOVarispeed
+@interface TOReverbSound : TOVarispeedSound
 {
     TOAudioUnit *_reverbUnit;
 }

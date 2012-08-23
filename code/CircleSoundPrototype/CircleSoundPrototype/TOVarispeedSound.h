@@ -6,10 +6,10 @@
 //  Copyright (c) 2012 Tobias Ottenweller. All rights reserved.
 //
 
-#import "TOAudioFilePlayer.h"
+#import "TOFilePlayerSound.h"
 
 
-@interface TOVarispeed : TOAudioFilePlayer
+@interface TOVarispeedSound : TOFilePlayerSound
 {
     TOAudioUnit *_varispeedUnit;
 }

@@ -6,11 +6,11 @@
 //  Copyright (c) 2012 Tobias Ottenweller. All rights reserved.
 //
 
-#import "TOReverb.h"
+#import "TOReverbSound.h"
 #import "TOPlugableSound.h"
 
 
-@implementation TOReverb
+@implementation TOReverbSound
 
 
 - (id)init

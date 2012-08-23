@@ -6,11 +6,11 @@
 //  Copyright (c) 2012 Tobias Ottenweller. All rights reserved.
 //
 
-#import "TOBandEqualizer.h"
+#import "TOEqualizerSound.h"
 #import "TOCAShortcuts.h"
 
 
-@implementation TOBandEqualizer
+@implementation TOEqualizerSound
 
 
 - (id)init

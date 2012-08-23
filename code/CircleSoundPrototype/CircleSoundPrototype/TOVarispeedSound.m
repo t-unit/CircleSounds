@@ -6,10 +6,10 @@
 //  Copyright (c) 2012 Tobias Ottenweller. All rights reserved.
 //
 
-#import "TOVarispeed.h"
+#import "TOVarispeedSound.h"
 
 
-@implementation TOVarispeed
+@implementation TOVarispeedSound
 
 - (id)init
 {
@@ -89,8 +89,8 @@
     /*
      Depending on the playback rate the varispeed unit will 
      ask the file player for more or less samples during 
-     the same time we need to adjust the start time of the
-     file player.
+     the same time. So the start time of the file player
+     needs to be adjusted.
      */
     
     startTime *= self.playbackRate;
