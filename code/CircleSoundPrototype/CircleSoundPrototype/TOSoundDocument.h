@@ -27,6 +27,8 @@
     
     Float64 startSampleTime; /* NaN before set to correct value*/
     Float64 currentSampleTime; /* NaN before set to correct value*/
+    
+    Float64 mixerOutputSampleRate;
 }
 
 @property (readonly, nonatomic) Float64 currentPlaybackPos; // in seconds

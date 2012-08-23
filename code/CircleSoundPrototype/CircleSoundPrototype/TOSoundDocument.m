@@ -132,6 +132,11 @@ OSStatus MixerUnitRenderNoteCallack(void                        *inRefCon,
     
     
     //............................................................................
+    // Initialize Graph
+    TOThrowOnError(AUGraphInitialize(graph));
+    
+    
+    //............................................................................
     // Set properties/parameters of the units inside the graph
     
     // Enable metering at the output of the mixer unit
@@ -144,14 +149,21 @@ OSStatus MixerUnitRenderNoteCallack(void                        *inRefCon,
                                         sizeof(meteringMode)));
     
     
+    // add render notification callback to the mixer output
     TOThrowOnError(AudioUnitAddRenderNotify(mixerUnit->unit,
                                             MixerUnitRenderNoteCallack,
                                             (__bridge void *)(self)));
     
+    
+    // obtain the mixer output sample rate
+    UInt32 propSize = sizeof(mixerOutputSampleRate);
+    TOThrowOnError(AudioUnitGetProperty(mixerUnit->unit,
+                                        kAudioUnitProperty_SampleRate,
+                                        kAudioUnitScope_Output,
+                                        0,
+                                        &mixerOutputSampleRate,
+                                        &propSize));
 
-    //............................................................................
-    // Initialize Graph
-    TOThrowOnError(AUGraphInitialize(graph));
 }
 
 
@@ -328,8 +340,7 @@ OSStatus MixerUnitRenderNoteCallack(void                        *inRefCon,
 
 - (Float64)currentPlaybackPos
 {
-    // TODO: get the sample rate from the mixer unit!
-    return (currentSampleTime - startSampleTime) / 44100.0;
+    return (currentSampleTime - startSampleTime) / mixerOutputSampleRate;
 }
 
 
