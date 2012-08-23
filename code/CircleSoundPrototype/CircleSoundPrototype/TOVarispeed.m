@@ -50,7 +50,7 @@
                                          playbackCents,
                                          0));
     
-    self.startTime = self.startTime;
+    self.startTime = self.startTime; /* this will call the setter which will set the correct start time */
 }
 
 
@@ -77,7 +77,7 @@
                                          playbackRate,
                                          0));
     
-    self.startTime = self.startTime;
+    self.startTime = self.startTime; /* this will call the setter which will set the correct start time */
 }
 
 
