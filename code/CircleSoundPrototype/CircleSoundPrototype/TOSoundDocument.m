@@ -332,6 +332,13 @@ OSStatus MixerUnitRenderNoteCallack(void                        *inRefCon,
         _plugableSounds = [self.plugableSounds arrayByRemovingObject:soundObject];
         
         TOThrowOnError(AUGraphUpdate(graph, NULL));
+        
+        
+        // set nodes and units to NULL
+        for (TOAudioUnit *au in soundObject.audioUnits) {
+            memset(&(au->unit), 0, sizeof(AudioUnit));
+            memset(&(au->node), 0, sizeof(AUNode));
+        }
     }
 }
 
@@ -420,6 +427,5 @@ OSStatus MixerUnitRenderNoteCallack(void                        *inRefCon,
     
     return retVal;
 }
-
 
 @end
