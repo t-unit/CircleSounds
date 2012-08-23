@@ -49,6 +49,8 @@
                                          0,
                                          playbackCents,
                                          0));
+    
+    self.startTime = self.startTime;
 }
 
 
@@ -74,6 +76,25 @@
                                          0,
                                          playbackRate,
                                          0));
+    
+    self.startTime = self.startTime;
+}
+
+
+
+#pragma mark - Audio File Player Overwrite Methods
+
+- (void)setStartTime:(double)startTime
+{
+    /*
+     Depending on the playback rate the varispeed unit will 
+     ask the file player for more or less samples during 
+     the same time we need to adjust the start time of the
+     file player.
+     */
+    
+    startTime *= self.playbackRate;
+    [super setStartTime:startTime];
 }
 
 @end
