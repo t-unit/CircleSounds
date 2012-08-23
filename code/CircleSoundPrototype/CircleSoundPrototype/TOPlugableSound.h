@@ -7,12 +7,20 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <AudioToolbox/AudioToolbox.h>
+#import "TOCAShortcuts.h"
+#import "TOAudioUnit.h"
+
+@class TOSoundDocument;
 
 
 /**
  Base class for Audio Unit wrapper classes.
  */
 @interface TOPlugableSound : NSObject
+{
+    NSArray *_audioUnits;
+}
 
 
 + (NSUInteger)numUnits;
@@ -22,9 +30,23 @@
  Contains TOAudioUnit object. The order represents the the
  order in which they unit should be chained.
  */
-@property (strong, nonatomic) NSArray *audioUnits;
+@property (readonly, nonatomic) NSArray *audioUnits;
 
 
-- (void)setupUnitProperties;
+/**
+ A reference to the document the object is currently part of.
+ */
+@property (weak, nonatomic) TOSoundDocument *document;
+
+
+
+/**
+ Overwrite the setup and tear down method in your subclass to 
+ do any additional code needs to be exectuted after the audio
+ unit has been initialized or after it has been removed from
+ the audio processing graph.
+ */
+- (void)setupUnits;
+- (void)tearDownUnits;
 
 @end

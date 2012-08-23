@@ -15,20 +15,20 @@
 
 @interface TOSoundDocument : NSObject
 {
-    AUGraph graph;
+    AUGraph _graph;
     
-    TOAudioUnit *mixerUnit;
-    TOAudioUnit *rioUnit;
+    TOAudioUnit *_mixerUnit;
+    TOAudioUnit *_rioUnit;
     
 
-    UInt32 maxBusTaken; /* -1 if no bus is in use */
-    NSArray *availibleBuses; /* number of buses ready for reuse */
+    UInt32 _maxBusTaken; /* -1 if no bus is in use */
+    NSArray *_availibleBuses; /* number of buses ready for reuse */
     
     
-    Float64 startSampleTime; /* NaN before set to correct value*/
-    Float64 currentSampleTime; /* NaN before set to correct value*/
+    Float64 _startSampleTime; /* NaN before set to correct value*/
+    Float64 _currentSampleTime; /* NaN before set to correct value*/
     
-    Float64 mixerOutputSampleRate;
+    Float64 _mixerOutputSampleRate;
 }
 
 @property (readonly, nonatomic) Float64 currentPlaybackPos; // in seconds

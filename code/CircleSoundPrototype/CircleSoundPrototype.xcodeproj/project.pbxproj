@@ -23,6 +23,9 @@
 		D21F0DE815E4E27300DFC68C /* TOPlugableSound.m in Sources */ = {isa = PBXBuildFile; fileRef = D21F0DE715E4E27300DFC68C /* TOPlugableSound.m */; };
 		D21F0DFA15E4E6B100DFC68C /* TOSoundDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = D21F0DF915E4E6B100DFC68C /* TOSoundDocument.m */; };
 		D23007DB15E548D100919C6C /* NSArray+arrayByRemovingObject.m in Sources */ = {isa = PBXBuildFile; fileRef = D23007DA15E548D100919C6C /* NSArray+arrayByRemovingObject.m */; };
+		D26F8A8715E684D20063FF0F /* 06 Birkenholzkompott.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D26F8A8615E684D20063FF0F /* 06 Birkenholzkompott.mp3 */; };
+		D2E8279515E62270000B3144 /* TOVarispeed.m in Sources */ = {isa = PBXBuildFile; fileRef = D2E8279415E62270000B3144 /* TOVarispeed.m */; };
+		D2E8279815E62286000B3144 /* TOAudioFilePlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = D2E8279715E62286000B3144 /* TOAudioFilePlayer.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,6 +56,11 @@
 		D21F0DF915E4E6B100DFC68C /* TOSoundDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TOSoundDocument.m; sourceTree = "<group>"; };
 		D23007D915E548D100919C6C /* NSArray+arrayByRemovingObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+arrayByRemovingObject.h"; sourceTree = "<group>"; };
 		D23007DA15E548D100919C6C /* NSArray+arrayByRemovingObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+arrayByRemovingObject.m"; sourceTree = "<group>"; };
+		D26F8A8615E684D20063FF0F /* 06 Birkenholzkompott.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "06 Birkenholzkompott.mp3"; sourceTree = "<group>"; };
+		D2E8279315E62270000B3144 /* TOVarispeed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TOVarispeed.h; sourceTree = "<group>"; };
+		D2E8279415E62270000B3144 /* TOVarispeed.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TOVarispeed.m; sourceTree = "<group>"; };
+		D2E8279615E62286000B3144 /* TOAudioFilePlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TOAudioFilePlayer.h; sourceTree = "<group>"; };
+		D2E8279715E62286000B3144 /* TOAudioFilePlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TOAudioFilePlayer.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +127,7 @@
 		D21F0DBC15E4DF5100DFC68C /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				D26F8A8615E684D20063FF0F /* 06 Birkenholzkompott.mp3 */,
 				D21F0DBD15E4DF5100DFC68C /* CircleSoundPrototype-Info.plist */,
 				D21F0DBE15E4DF5100DFC68C /* InfoPlist.strings */,
 				D21F0DC115E4DF5100DFC68C /* main.m */,
@@ -144,12 +153,24 @@
 			isa = PBXGroup;
 			children = (
 				D21F0DE015E4E11C00DFC68C /* Core Audio Convenience Wrapper */,
-				D21F0DE615E4E27300DFC68C /* TOPlugableSound.h */,
-				D21F0DE715E4E27300DFC68C /* TOPlugableSound.m */,
+				D2E8279115E6214C000B3144 /* TOPlugableSound */,
 				D21F0DF815E4E6B100DFC68C /* TOSoundDocument.h */,
 				D21F0DF915E4E6B100DFC68C /* TOSoundDocument.m */,
 			);
 			name = "Audio Layer";
+			sourceTree = "<group>";
+		};
+		D2E8279115E6214C000B3144 /* TOPlugableSound */ = {
+			isa = PBXGroup;
+			children = (
+				D21F0DE615E4E27300DFC68C /* TOPlugableSound.h */,
+				D21F0DE715E4E27300DFC68C /* TOPlugableSound.m */,
+				D2E8279615E62286000B3144 /* TOAudioFilePlayer.h */,
+				D2E8279715E62286000B3144 /* TOAudioFilePlayer.m */,
+				D2E8279315E62270000B3144 /* TOVarispeed.h */,
+				D2E8279415E62270000B3144 /* TOVarispeed.m */,
+			);
+			name = TOPlugableSound;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -206,6 +227,7 @@
 			files = (
 				D21F0DC015E4DF5100DFC68C /* InfoPlist.strings in Resources */,
 				D21F0DC915E4DF5100DFC68C /* MainStoryboard.storyboard in Resources */,
+				D26F8A8715E684D20063FF0F /* 06 Birkenholzkompott.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -225,6 +247,8 @@
 				D21F0DE815E4E27300DFC68C /* TOPlugableSound.m in Sources */,
 				D21F0DFA15E4E6B100DFC68C /* TOSoundDocument.m in Sources */,
 				D23007DB15E548D100919C6C /* NSArray+arrayByRemovingObject.m in Sources */,
+				D2E8279515E62270000B3144 /* TOVarispeed.m in Sources */,
+				D2E8279815E62286000B3144 /* TOAudioFilePlayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -302,10 +326,12 @@
 		D21F0DD015E4DF5100DFC68C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CircleSoundPrototype/CircleSoundPrototype-Prefix.pch";
 				INFOPLIST_FILE = "CircleSoundPrototype/CircleSoundPrototype-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -313,10 +339,12 @@
 		D21F0DD115E4DF5100DFC68C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CircleSoundPrototype/CircleSoundPrototype-Prefix.pch";
 				INFOPLIST_FILE = "CircleSoundPrototype/CircleSoundPrototype-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

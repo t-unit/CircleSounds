@@ -16,10 +16,27 @@
 }
 
 
-- (void)setupUnitProperties
+- (id)init
+{
+    self = [super init];
+    
+    if (self) {
+        _audioUnits = @[];
+    }
+    
+    return self;
+}
+
+
+- (void)setupUnits
 {
     
 }
 
+
+- (void)tearDownUnits
+{
+    
+}
 
 @end

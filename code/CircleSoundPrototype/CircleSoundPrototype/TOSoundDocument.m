@@ -25,14 +25,14 @@
     
     if (self) {
         _plugableSounds = @[];
-        availibleBuses = @[];
+        _availibleBuses = @[];
         
-        maxBusTaken = -1;
+        _maxBusTaken = -1;
         
-        mixerUnit = [[TOAudioUnit alloc] init];
-        rioUnit = [[TOAudioUnit alloc] init];
+        _mixerUnit = [[TOAudioUnit alloc] init];
+        _rioUnit = [[TOAudioUnit alloc] init];
         
-        startSampleTime = currentSampleTime = NAN;
+        _startSampleTime = _currentSampleTime = NAN;
         
         [self setupProcessingGraph];
     }
@@ -45,9 +45,9 @@
 {
     [self stop];
     
-    TOThrowOnError(AUGraphClose(graph));
-    TOThrowOnError(AUGraphUninitialize(graph));
-    TOThrowOnError(DisposeAUGraph(graph));
+    TOThrowOnError(AUGraphClose(_graph));
+    TOThrowOnError(AUGraphUninitialize(_graph));
+    TOThrowOnError(DisposeAUGraph(_graph));
 }
 
 
@@ -65,11 +65,11 @@ OSStatus MixerUnitRenderNoteCallack(void                        *inRefCon,
     
     if (*ioActionFlags & kAudioUnitRenderAction_PostRender) {
         
-        if (isnan(doc->startSampleTime)) {
-            doc->startSampleTime = inTimeStamp->mSampleTime;
+        if (isnan(doc->_startSampleTime)) {
+            doc->_startSampleTime = inTimeStamp->mSampleTime;
         }
         
-        doc->currentSampleTime = inTimeStamp->mSampleTime;
+        doc->_currentSampleTime = inTimeStamp->mSampleTime;
     }
     
     return noErr;
@@ -83,57 +83,57 @@ OSStatus MixerUnitRenderNoteCallack(void                        *inRefCon,
     //............................................................................
     // Create AUGraph
     
-    TOThrowOnError(NewAUGraph(&graph));
+    TOThrowOnError(NewAUGraph(&_graph));
     
     
     //............................................................................
     // Add Audio Units (Nodes) to the graph
     
-    mixerUnit->description = TOAudioComponentDescription(kAudioUnitType_Mixer, kAudioUnitSubType_MultiChannelMixer);
-    TOThrowOnError(AUGraphAddNode(graph,
-                                  &(mixerUnit->description),
-                                  &(mixerUnit->node)));
+    _mixerUnit->description = TOAudioComponentDescription(kAudioUnitType_Mixer, kAudioUnitSubType_MultiChannelMixer);
+    TOThrowOnError(AUGraphAddNode(_graph,
+                                  &(_mixerUnit->description),
+                                  &(_mixerUnit->node)));
     
     
-    rioUnit->description = TOAudioComponentDescription(kAudioUnitType_Output, kAudioUnitSubType_RemoteIO);
-    TOThrowOnError(AUGraphAddNode(graph,
-                                  &(rioUnit->description),
-                                  &(rioUnit->node)));
+    _rioUnit->description = TOAudioComponentDescription(kAudioUnitType_Output, kAudioUnitSubType_RemoteIO);
+    TOThrowOnError(AUGraphAddNode(_graph,
+                                  &(_rioUnit->description),
+                                  &(_rioUnit->node)));
     
     
     //............................................................................
     // Open the processing graph.
     
-    TOThrowOnError(AUGraphOpen(graph));
+    TOThrowOnError(AUGraphOpen(_graph));
     
     
     //............................................................................
     // Obtain the audio unit instances from its corresponding node.
     
-    TOThrowOnError(AUGraphNodeInfo(graph,
-                                   mixerUnit->node,
+    TOThrowOnError(AUGraphNodeInfo(_graph,
+                                   _mixerUnit->node,
                                    NULL,
-                                   &(mixerUnit->unit)));
+                                   &(_mixerUnit->unit)));
     
-    TOThrowOnError(AUGraphNodeInfo(graph,
-                                   rioUnit->node,
+    TOThrowOnError(AUGraphNodeInfo(_graph,
+                                   _rioUnit->node,
                                    NULL,
-                                   &(rioUnit->unit)));
+                                   &(_rioUnit->unit)));
     
     
     //............................................................................
     // Connect the nodes of the audio processing graph
     
-    TOThrowOnError(AUGraphConnectNodeInput(graph,
-                                           mixerUnit->node,      // source node
+    TOThrowOnError(AUGraphConnectNodeInput(_graph,
+                                           _mixerUnit->node,      // source node
                                            0,                    // source bus
-                                           rioUnit->node,        // destination node
+                                           _rioUnit->node,        // destination node
                                            0));                  // destination bus
     
     
     //............................................................................
     // Initialize Graph
-    TOThrowOnError(AUGraphInitialize(graph));
+    TOThrowOnError(AUGraphInitialize(_graph));
     
     
     //............................................................................
@@ -141,7 +141,7 @@ OSStatus MixerUnitRenderNoteCallack(void                        *inRefCon,
     
     // Enable metering at the output of the mixer unit
     UInt32 meteringMode = 1; // enabled
-    TOThrowOnError(AudioUnitSetProperty(mixerUnit->unit,
+    TOThrowOnError(AudioUnitSetProperty(_mixerUnit->unit,
                                         kAudioUnitProperty_MeteringMode,
                                         kAudioUnitScope_Output,
                                         0,
@@ -150,18 +150,18 @@ OSStatus MixerUnitRenderNoteCallack(void                        *inRefCon,
     
     
     // add render notification callback to the mixer output
-    TOThrowOnError(AudioUnitAddRenderNotify(mixerUnit->unit,
+    TOThrowOnError(AudioUnitAddRenderNotify(_mixerUnit->unit,
                                             MixerUnitRenderNoteCallack,
                                             (__bridge void *)(self)));
     
     
     // obtain the mixer output sample rate
-    UInt32 propSize = sizeof(mixerOutputSampleRate);
-    TOThrowOnError(AudioUnitGetProperty(mixerUnit->unit,
+    UInt32 propSize = sizeof(_mixerOutputSampleRate);
+    TOThrowOnError(AudioUnitGetProperty(_mixerUnit->unit,
                                         kAudioUnitProperty_SampleRate,
                                         kAudioUnitScope_Output,
                                         0,
-                                        &mixerOutputSampleRate,
+                                        &_mixerOutputSampleRate,
                                         &propSize));
 
 }
@@ -214,10 +214,10 @@ OSStatus MixerUnitRenderNoteCallack(void                        *inRefCon,
     @synchronized(self) {
         Boolean isRunning;
         
-        TOThrowOnError(AUGraphIsRunning(graph, &isRunning));
+        TOThrowOnError(AUGraphIsRunning(_graph, &isRunning));
         
         if (!isRunning) {
-            TOThrowOnError(AUGraphStart(graph));
+            TOThrowOnError(AUGraphStart(_graph));
         }
     }
 }
@@ -228,10 +228,10 @@ OSStatus MixerUnitRenderNoteCallack(void                        *inRefCon,
     @synchronized(self) {
         Boolean isRunning;
         
-        TOThrowOnError(AUGraphIsRunning(graph, &isRunning));
+        TOThrowOnError(AUGraphIsRunning(_graph, &isRunning));
         
         if (isRunning) {
-            TOThrowOnError(AUGraphStop(graph));
+            TOThrowOnError(AUGraphStop(_graph));
         }
     }
 }
@@ -251,11 +251,11 @@ OSStatus MixerUnitRenderNoteCallack(void                        *inRefCon,
         
         // add node to the graph and get the unit back
         for (TOAudioUnit *au in soundObject.audioUnits) {
-            TOThrowOnError(AUGraphAddNode(graph,
+            TOThrowOnError(AUGraphAddNode(_graph,
                                           &(au->description),
                                           &(au->node)));
             
-            TOThrowOnError(AUGraphNodeInfo(graph,
+            TOThrowOnError(AUGraphNodeInfo(_graph,
                                            au->node,
                                            NULL,
                                            &(au->unit)));
@@ -267,7 +267,7 @@ OSStatus MixerUnitRenderNoteCallack(void                        *inRefCon,
             TOAudioUnit *sourceAU = soundObject.audioUnits[i];
             TOAudioUnit *destAU = soundObject.audioUnits[i+1];
             
-            TOThrowOnError(AUGraphConnectNodeInput(graph,
+            TOThrowOnError(AUGraphConnectNodeInput(_graph,
                                                    sourceAU->node,
                                                    0,
                                                    destAU->node,
@@ -278,19 +278,23 @@ OSStatus MixerUnitRenderNoteCallack(void                        *inRefCon,
         // connect the last AU inside the sound object to the mixer unit;
         UInt32 mixerInputBus;
         
-        if (availibleBuses.count) {
-            mixerInputBus = [availibleBuses[0] unsignedIntegerValue];
+        if (_availibleBuses.count) {
+            mixerInputBus = [_availibleBuses[0] unsignedIntegerValue];
         }
         else {
-            mixerInputBus = ++maxBusTaken;
+            mixerInputBus = ++_maxBusTaken;
         }
         
         TOAudioUnit *sourceAU = [soundObject.audioUnits lastObject];
-        TOThrowOnError(AUGraphConnectNodeInput(graph,
+        TOThrowOnError(AUGraphConnectNodeInput(_graph,
                                                sourceAU->node,
                                                0,
-                                               mixerUnit->node,
+                                               _mixerUnit->node,
                                                mixerInputBus));
+        
+        [soundObject setupUnits];
+        
+        TOThrowOnError(AUGraphUpdate(_graph, NULL));
     }
 }
 
@@ -306,7 +310,7 @@ OSStatus MixerUnitRenderNoteCallack(void                        *inRefCon,
         for (NSInteger i=1; i<soundObject.audioUnits.count; i++) {
             TOAudioUnit *destAU = soundObject.audioUnits[i];
             
-            TOThrowOnError(AUGraphDisconnectNodeInput(graph,
+            TOThrowOnError(AUGraphDisconnectNodeInput(_graph,
                                                       destAU->node,
                                                       0));
         }
@@ -317,21 +321,27 @@ OSStatus MixerUnitRenderNoteCallack(void                        *inRefCon,
         AUNodeInteraction lastAUInteraction;
         UInt32 numInteractions = 1;
         
-        TOThrowOnError(AUGraphGetNodeInteractions(graph,
+        TOThrowOnError(AUGraphGetNodeInteractions(_graph,
                                                   lastAU->node,
                                                   &numInteractions,
                                                   &lastAUInteraction));
         
         UInt32 mixerBus = lastAUInteraction.nodeInteraction.connection.destInputNumber;
         
-        TOThrowOnError(AUGraphDisconnectNodeInput(graph,
-                                                  mixerUnit->node,
+        TOThrowOnError(AUGraphDisconnectNodeInput(_graph,
+                                                  _mixerUnit->node,
                                                   mixerBus));
         
-        availibleBuses = [availibleBuses arrayByAddingObject:@(mixerBus)];
+        _availibleBuses = [_availibleBuses arrayByAddingObject:@(mixerBus)];
         _plugableSounds = [self.plugableSounds arrayByRemovingObject:soundObject];
         
-        TOThrowOnError(AUGraphUpdate(graph, NULL));
+        
+        // remove nodes from the graph
+        for (TOAudioUnit *au in soundObject.audioUnits) {
+            TOThrowOnError(AUGraphRemoveNode(_graph, au->node));
+        }
+        
+        [soundObject tearDownUnits];
         
         
         // set nodes and units to NULL
@@ -339,6 +349,9 @@ OSStatus MixerUnitRenderNoteCallack(void                        *inRefCon,
             memset(&(au->unit), 0, sizeof(AudioUnit));
             memset(&(au->node), 0, sizeof(AUNode));
         }
+        
+
+        TOThrowOnError(AUGraphUpdate(_graph, NULL));
     }
 }
 
@@ -347,7 +360,7 @@ OSStatus MixerUnitRenderNoteCallack(void                        *inRefCon,
 
 - (Float64)currentPlaybackPos
 {
-    return (currentSampleTime - startSampleTime) / mixerOutputSampleRate;
+    return (_currentSampleTime - _startSampleTime) / _mixerOutputSampleRate;
 }
 
 
@@ -356,7 +369,7 @@ OSStatus MixerUnitRenderNoteCallack(void                        *inRefCon,
 - (AudioUnitParameterValue)avgValueLeft
 {
     AudioUnitParameterValue retVal;
-    TOThrowOnError(AudioUnitGetParameter(mixerUnit->unit,
+    TOThrowOnError(AudioUnitGetParameter(_mixerUnit->unit,
                                          kMultiChannelMixerParam_PostAveragePower,
                                          kAudioUnitScope_Output,
                                          0,
@@ -369,7 +382,7 @@ OSStatus MixerUnitRenderNoteCallack(void                        *inRefCon,
 - (AudioUnitParameterValue)avgValueRight
 {
     AudioUnitParameterValue retVal;
-    TOThrowOnError(AudioUnitGetParameter(mixerUnit->unit,
+    TOThrowOnError(AudioUnitGetParameter(_mixerUnit->unit,
                                          kMultiChannelMixerParam_PostAveragePower+1,
                                          kAudioUnitScope_Output,
                                          0,
@@ -382,7 +395,7 @@ OSStatus MixerUnitRenderNoteCallack(void                        *inRefCon,
 - (AudioUnitParameterValue)peakValueLeft
 {
     AudioUnitParameterValue retVal;
-    TOThrowOnError(AudioUnitGetParameter(mixerUnit->unit,
+    TOThrowOnError(AudioUnitGetParameter(_mixerUnit->unit,
                                          kMultiChannelMixerParam_PostPeakHoldLevel,
                                          kAudioUnitScope_Output,
                                          0,
@@ -395,7 +408,7 @@ OSStatus MixerUnitRenderNoteCallack(void                        *inRefCon,
 - (AudioUnitParameterValue)peakValueRight
 {
     AudioUnitParameterValue retVal;
-    TOThrowOnError(AudioUnitGetParameter(mixerUnit->unit,
+    TOThrowOnError(AudioUnitGetParameter(_mixerUnit->unit,
                                          kMultiChannelMixerParam_PostPeakHoldLevel+1,
                                          kAudioUnitScope_Output,
                                          0,
@@ -407,7 +420,7 @@ OSStatus MixerUnitRenderNoteCallack(void                        *inRefCon,
 
 - (void)setVolume:(AudioUnitParameterValue)volume
 {
-    TOThrowOnError(AudioUnitSetParameter(mixerUnit->unit,
+    TOThrowOnError(AudioUnitSetParameter(_mixerUnit->unit,
                                          kMultiChannelMixerParam_Volume,
                                          kAudioUnitScope_Output,
                                          0,
@@ -419,7 +432,7 @@ OSStatus MixerUnitRenderNoteCallack(void                        *inRefCon,
 - (AudioUnitParameterValue)volume
 {
     AudioUnitParameterValue retVal;
-    TOThrowOnError(AudioUnitGetParameter(mixerUnit->unit,
+    TOThrowOnError(AudioUnitGetParameter(_mixerUnit->unit,
                                          kMultiChannelMixerParam_Volume,
                                          kAudioUnitScope_Output,
                                          0,
