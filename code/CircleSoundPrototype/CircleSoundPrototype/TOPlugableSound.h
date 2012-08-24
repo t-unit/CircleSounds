@@ -36,6 +36,15 @@
 @property (weak, nonatomic) TOSoundDocument *document;
 
 
+/**
+ Overwrite the getter if sound of the subclass ends after
+ a certain amount of time. Otherwise return [super duration].
+ Value is '-1.0' if sounds loops forever or if there is no sound
+ at all.
+ */
+@property (readonly, nonatomic) NSTimeInterval duration;
+
+
 
 /**
  Overwrite the setup and tear down method in your subclass to 

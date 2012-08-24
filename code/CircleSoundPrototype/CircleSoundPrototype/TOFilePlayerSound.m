@@ -81,6 +81,20 @@ OSStatus FilePlayerUnitRenderNotifyCallblack (void                        *inRef
 }
 
 
+- (NSTimeInterval)duration
+{
+    if (self.loopCount == -1) {
+        return -1;
+    }
+    else if (self.audioFileURL && self.regionDuration) {
+        return self.regionStart + self.regionDuration * self.loopCount;
+    }
+    else {
+        return [super duration];
+    }
+}
+
+
 - (BOOL)applyChanges:(NSError *__autoreleasing *)error
 {
     //............................................................................
