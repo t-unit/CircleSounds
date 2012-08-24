@@ -145,12 +145,11 @@ OSStatus FilePlayerUnitRenderNotifyCallblack (void                        *inRef
     }
     
     
-	UInt64 nPackets;
-	UInt32 propsize = sizeof(nPackets);
+	UInt32 propsize = sizeof(_audioFileNumPackets);
 	TOErrorHandler(AudioFileGetProperty(_audioFile,
                                         kAudioFilePropertyAudioDataPacketCount,
                                         &propsize,
-                                        &nPackets),
+                                        &_audioFileNumPackets),
                    &intError,
                    @"Failed to read file packet count");
     
@@ -212,12 +211,16 @@ OSStatus FilePlayerUnitRenderNotifyCallblack (void                        *inRef
     
     // start time
     Float64 timeOffset = self.startTime - currentTime; /* in seconds */
+    Float64 sampleStartTime;
     
-    if (timeOffset < 0.0) {
-        timeOffset = 0.0;
+    
+    if (timeOffset > 0.0) {
+        sampleStartTime = _currentFilePlayerUnitRenderTimeStamp.mSampleTime + timeOffset * _filePlayerUnitOutputSampleRate;
+    }
+    else {
+        sampleStartTime = -1.0;
     }
     
-    Float64 sampleStartTime = _currentFilePlayerUnitRenderTimeStamp.mSampleTime + timeOffset * _filePlayerUnitOutputSampleRate;
     
     AudioTimeStamp startTime;
 	memset (&startTime, 0, sizeof(startTime));

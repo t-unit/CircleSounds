@@ -43,6 +43,10 @@
     eqSound.playbackCents = 2400;
     [eqSound applyChanges:nil];
     
+    self.document.loop = YES;
+    
+    [self performSelector:@selector(addAdditionalSound) withObject:nil afterDelay:30];
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -55,6 +59,20 @@
 - (void)printCurrentPlaybackTime
 {
     NSLog(@"%f", self.document.currentPlaybackPosition);
+}
+
+
+- (void)addAdditionalSound
+{
+    TOEqualizerSound *eqSound = [[TOEqualizerSound alloc] init];
+    NSURL *fileURL = [[NSBundle mainBundle] URLForResource:@"06 Birkenholzkompott" withExtension:@"mp3"];
+    [eqSound setAudioFileURL:fileURL error:nil];
+    
+    [self.document addPlugableSoundObject:eqSound];
+    
+    eqSound.regionDuration = 60;
+    eqSound.startTime = 5;
+    [eqSound applyChanges:nil];
 }
 
 @end
