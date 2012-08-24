@@ -55,4 +55,13 @@
 - (void)setupUnits;
 - (void)tearDownUnits;
 
+
+
+
+/**
+ Overwrite this method to handle document resets (playback postion 
+ reset to 0).
+ */
+- (void)handleDocumentReset;
+
 @end

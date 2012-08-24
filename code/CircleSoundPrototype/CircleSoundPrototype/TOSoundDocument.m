@@ -19,6 +19,10 @@
 
 @implementation TOSoundDocument
 
+@synthesize duration = _duration;
+@synthesize currentPlaybackPosition = _currentPlaybackPosition;
+
+
 - (id)init
 {
     self = [super init];
@@ -32,7 +36,7 @@
         _mixerUnit = [[TOAudioUnit alloc] init];
         _rioUnit = [[TOAudioUnit alloc] init];
         
-        _startSampleTime = _currentSampleTime = NAN;
+        _startSampleTime = NAN;
         
         [self setupProcessingGraph];
     }
@@ -69,7 +73,16 @@ OSStatus MixerUnitRenderNoteCallack(void                        *inRefCon,
             doc->_startSampleTime = inTimeStamp->mSampleTime;
         }
         
-        doc->_currentSampleTime = inTimeStamp->mSampleTime;
+        doc->_currentPlaybackPosition =  (inTimeStamp->mSampleTime - doc->_startSampleTime) / doc->_mixerOutputSampleRate;
+        
+        
+        if (doc->_currentPlaybackPosition > doc->_duration) {
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [doc reset];
+            });
+            
+        }
     }
     
     return noErr;
@@ -126,9 +139,9 @@ OSStatus MixerUnitRenderNoteCallack(void                        *inRefCon,
     
     TOThrowOnError(AUGraphConnectNodeInput(_graph,
                                            _mixerUnit->node,      // source node
-                                           0,                    // source bus
+                                           0,                     // source bus
                                            _rioUnit->node,        // destination node
-                                           0));                  // destination bus
+                                           0));                   // destination bus
     
     
     //............................................................................
@@ -238,7 +251,12 @@ OSStatus MixerUnitRenderNoteCallack(void                        *inRefCon,
 
 
 - (void)reset
-{    
+{
+    _startSampleTime = NAN;
+    
+    for (TOPlugableSound *sound in self.plugableSounds) {
+        [sound handleDocumentReset];
+    }
 }
 
 
@@ -360,10 +378,10 @@ OSStatus MixerUnitRenderNoteCallack(void                        *inRefCon,
 
 # pragma mark - Property Setter and Getter
 
-- (Float64)currentPlaybackPos
-{
-    return (_currentSampleTime - _startSampleTime) / _mixerOutputSampleRate;
-}
+//- (Float64)currentPlaybackPos
+//{
+//    return (_currentSampleTime - _startSampleTime) / _mixerOutputSampleRate;
+//}
 
 
 # pragma mark - Mixer Parameter Wrapper Methods

@@ -121,7 +121,6 @@ OSStatus FilePlayerUnitRenderNotifyCallblack (void                        *inRef
     }
     
     
-    
     //............................................................................
     // get audio file properties
     AudioStreamBasicDescription audioFileASBD;
@@ -146,7 +145,7 @@ OSStatus FilePlayerUnitRenderNotifyCallblack (void                        *inRef
     
     // region
     SInt64 startFrame;
-    double currentTime = self.document.currentPlaybackPos;
+    double currentTime = self.document.currentPlaybackPosition;
     UInt32 framesToPlay;
     UInt32 numFramesInFile = nPackets * audioFileASBD.mFramesPerPacket;
     

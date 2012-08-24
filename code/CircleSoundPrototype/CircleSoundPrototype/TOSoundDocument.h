@@ -26,12 +26,11 @@
     
     
     Float64 _startSampleTime; /* NaN before set to correct value*/
-    Float64 _currentSampleTime; /* NaN before set to correct value*/
-    
     Float64 _mixerOutputSampleRate;
 }
 
-@property (readonly, nonatomic) Float64 currentPlaybackPos; // in seconds
+@property (readonly, nonatomic) NSTimeInterval currentPlaybackPosition; // in seconds
+@property (readwrite, nonatomic) NSTimeInterval duration; // in seconds
 
 
 @property (readonly, nonatomic) NSArray *plugableSounds;
@@ -42,7 +41,7 @@
 
 - (void)start;
 - (void)stop;
-- (void)reset;
+- (void)reset; /* set the playback position back to zero */
 
 
 /**

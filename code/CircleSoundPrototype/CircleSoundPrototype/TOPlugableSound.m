@@ -39,4 +39,10 @@
     return -1.0;
 }
 
+
+- (void)handleDocumentReset
+{
+
+}
+
 @end

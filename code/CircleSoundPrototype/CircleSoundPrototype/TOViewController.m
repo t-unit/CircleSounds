@@ -25,6 +25,8 @@
     [super viewDidLoad];
     
 	self.document = [[TOSoundDocument alloc] init];
+    self.document.duration = 60;
+    
     [self.document start];
     
     self.timer = [NSTimer timerWithTimeInterval:1.0 target:self selector:@selector(printCurrentPlaybackTime) userInfo:nil repeats:YES];
@@ -51,7 +53,7 @@
 
 - (void)printCurrentPlaybackTime
 {
-    NSLog(@"%f", self.document.currentPlaybackPos);
+    NSLog(@"%f", self.document.currentPlaybackPosition);
 }
 
 @end
