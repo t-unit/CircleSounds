@@ -95,22 +95,27 @@ OSStatus FilePlayerUnitRenderNotifyCallblack (void                        *inRef
 }
 
 
-- (BOOL)applyChanges:(NSError *__autoreleasing *)error
+- (BOOL)setAudioFileURL:(NSURL *)url error:(NSError **)error
 {
-    //............................................................................
-    // audio file setup
+    _audioFileURL = url;
+    
+    
     if (_audioFile) {
         TOThrowOnError(AudioFileClose(_audioFile));
     }
     
+    
+    //............................................................................
+    // audio file setup
+    
     NSError *intError = nil;
-
+    
     TOErrorHandler(AudioFileOpenURL((__bridge CFURLRef)(self.audioFileURL),
                                     kAudioFileReadPermission,
                                     0,
                                     &_audioFile),
-                    &intError,
-                    @"Failed to open audio file");
+                   &intError,
+                   @"Failed to open audio file");
     
     if (intError) {
         if (error) {
@@ -123,23 +128,50 @@ OSStatus FilePlayerUnitRenderNotifyCallblack (void                        *inRef
     
     //............................................................................
     // get audio file properties
-    AudioStreamBasicDescription audioFileASBD;
-    UInt32 propSize = sizeof(audioFileASBD);
-    TOThrowOnError(AudioFileGetProperty(_audioFile,
+    UInt32 propSize = sizeof(_audioFileASBD);
+    TOErrorHandler(AudioFileGetProperty(_audioFile,
                                         kAudioFilePropertyDataFormat,
                                         &propSize,
-                                        &audioFileASBD));
+                                        &_audioFileASBD),
+                   &intError,
+                   @"Failed to read file stream format");
+    
+    if (intError) {
+        if (error) {
+            *error = intError;
+        }
+        
+        return NO;
+    }
     
     
 	UInt64 nPackets;
 	UInt32 propsize = sizeof(nPackets);
-	TOThrowOnError(AudioFileGetProperty(_audioFile,
+	TOErrorHandler(AudioFileGetProperty(_audioFile,
                                         kAudioFilePropertyAudioDataPacketCount,
                                         &propsize,
-                                        &nPackets));
+                                        &nPackets),
+                   &intError,
+                   @"Failed to read file packet count");
+    
+    if (intError) {
+        if (error) {
+            *error = intError;
+        }
+        
+        return NO;
+    }
     
     
-    
+    return YES;
+}
+
+
+
+
+
+- (BOOL)applyChanges:(NSError *__autoreleasing *)error
+{
     //............................................................................
     // calculate file player unit properties
     
@@ -147,16 +179,16 @@ OSStatus FilePlayerUnitRenderNotifyCallblack (void                        *inRef
     SInt64 startFrame;
     double currentTime = self.document.currentPlaybackPosition;
     UInt32 framesToPlay;
-    UInt32 numFramesInFile = nPackets * audioFileASBD.mFramesPerPacket;
+    UInt32 numFramesInFile = _audioFileNumPackets * _audioFileASBD.mFramesPerPacket;
     
     
     if (currentTime < self.startTime) {
-        startFrame = self.regionStart * audioFileASBD.mSampleRate;
-        framesToPlay = self.regionDuration * audioFileASBD.mSampleRate;
+        startFrame = self.regionStart * _audioFileASBD.mSampleRate;
+        framesToPlay = self.regionDuration * _audioFileASBD.mSampleRate;
     }
     else {
-        startFrame = currentTime * audioFileASBD.mSampleRate;
-        framesToPlay = (self.regionDuration - (currentTime - self.startTime)) * audioFileASBD.mSampleRate;
+        startFrame = currentTime * _audioFileASBD.mSampleRate;
+        framesToPlay = (self.regionDuration - (currentTime - self.startTime)) * _audioFileASBD.mSampleRate;
     }
     
     
@@ -232,6 +264,12 @@ OSStatus FilePlayerUnitRenderNotifyCallblack (void                        *inRef
                                         sizeof(startTime)));
 
     return YES;
+}
+
+
+- (void)handleDocumentReset
+{
+    [self applyChanges:nil];
 }
 
 

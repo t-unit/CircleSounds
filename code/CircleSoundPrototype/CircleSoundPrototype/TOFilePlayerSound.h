@@ -16,10 +16,16 @@
     
     AudioTimeStamp _currentFilePlayerUnitRenderTimeStamp;
     Float64 _filePlayerUnitOutputSampleRate;
+    
+    // audio file properties
+    AudioStreamBasicDescription _audioFileASBD;
+    UInt64 _audioFileNumPackets;
+    
 }
 
 
-@property (strong, nonatomic) NSURL *audioFileURL;
+- (BOOL)setAudioFileURL:(NSURL *)url error:(NSError **)error;
+@property (readonly, nonatomic) NSURL *audioFileURL;
 
 
 /**

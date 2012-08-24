@@ -33,7 +33,8 @@
     [[NSRunLoop mainRunLoop] addTimer:self.timer forMode:NSDefaultRunLoopMode];
     
     TOEqualizerSound *eqSound = [[TOEqualizerSound alloc] init];
-    eqSound.audioFileURL = [[NSBundle mainBundle] URLForResource:@"06 Birkenholzkompott" withExtension:@"mp3"];
+    NSURL *fileURL = [[NSBundle mainBundle] URLForResource:@"06 Birkenholzkompott" withExtension:@"mp3"];
+    [eqSound setAudioFileURL:fileURL error:nil];
     
     [self.document addPlugableSoundObject:eqSound];
     
