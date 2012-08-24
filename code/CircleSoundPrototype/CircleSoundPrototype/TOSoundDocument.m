@@ -333,6 +333,8 @@ OSStatus MixerUnitRenderNoteCallack(void                        *inRefCon,
         [soundObject setupUnits];
         
         TOThrowOnError(AUGraphUpdate(_graph, NULL));
+        
+        [soundObject setupFinished];
     }
 }
 

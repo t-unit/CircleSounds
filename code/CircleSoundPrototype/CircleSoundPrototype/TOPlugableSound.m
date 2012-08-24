@@ -34,6 +34,12 @@
 }
 
 
+- (void)setupFinished
+{
+    
+}
+
+
 - (NSTimeInterval)duration
 {
     return -1.0;

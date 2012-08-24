@@ -21,6 +21,7 @@
     AudioStreamBasicDescription _audioFileASBD;
     UInt64 _audioFileNumPackets;
     
+    BOOL _filePlayerUnitFullyInitialized;
 }
 
 
@@ -31,19 +32,19 @@
 /**
  Length of the audio file in seconds.
  */
-@property (readonly, nonatomic) double fileDuration;
+@property (readonly, nonatomic) Float64 fileDuration;
 
 
 /**
  Start in seconds of the region of the file selected. 
  */
-@property (assign, nonatomic) double regionStart;
+@property (assign, nonatomic) NSTimeInterval regionStart;
 
 
 /**
  Number of seconds that should be played back.
  */
-@property (assign, nonatomic) double regionDuration;
+@property (assign, nonatomic) NSTimeInterval regionDuration;
 
 
 /**
@@ -57,14 +58,14 @@
  Seconds before the selected file region begins to play.
  Count starts at the beginning of the document.
  */
-@property (assign, nonatomic) double startTime;
+@property (assign, nonatomic) NSTimeInterval startTime;
 
 
-/**
- Apply the changes made. Needs to be called after the
- object has been added to the document. An exception might
- get thrown otherwise.
- */
-- (BOOL)applyChanges:(NSError *__autoreleasing *)error;
+///**
+// Apply the changes made. Needs to be called after the
+// object has been added to the document. An exception might
+// get thrown otherwise.
+// */
+//- (BOOL)applyChanges:(NSError *__autoreleasing *)error;
 
 @end

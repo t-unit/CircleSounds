@@ -12,9 +12,9 @@
 @interface TOVarispeedSound : TOFilePlayerSound
 {
     TOAudioUnit *_varispeedUnit;
+    NSTimeInterval _realFilePlayerStartTime;
 }
 
 @property (assign, nonatomic) AudioUnitParameterValue playbackRate;
-@property (assign, nonatomic) AudioUnitParameterValue playbackCents;
 
 @end

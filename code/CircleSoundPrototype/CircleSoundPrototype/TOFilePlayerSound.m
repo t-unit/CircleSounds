@@ -1,4 +1,4 @@
-//
+ //
 //  TOAudioFilePlayer.m
 //  FilePlayerTest
 //
@@ -27,6 +27,21 @@ OSStatus FilePlayerUnitRenderNotifyCallblack (void                        *inRef
     
     if (*ioActionFlags & kAudioUnitRenderAction_PostRender) {
         filePlayer->_currentFilePlayerUnitRenderTimeStamp = *inTimeStamp;
+        
+//        /**** DEBUG BEGIN ****/ 
+//        
+//        static Float64 startTime = NAN;
+//        
+//        if (isnan(startTime)) {
+//            startTime = inTimeStamp->mSampleTime;
+//        }
+//        
+//        
+//        
+//        printf("file player time: %f\n", (inTimeStamp->mSampleTime - startTime) / 44100);
+//        
+//        
+//        /**** DEBUG END ****/ 
     }
     
     return noErr;
@@ -53,6 +68,8 @@ OSStatus FilePlayerUnitRenderNotifyCallblack (void                        *inRef
     if (_audioFile) {
         TOThrowOnError(AudioFileClose(_audioFile));
     }
+    
+    _filePlayerUnitFullyInitialized = NO;
     
     [super tearDownUnits];
 }
@@ -81,6 +98,13 @@ OSStatus FilePlayerUnitRenderNotifyCallblack (void                        *inRef
 }
 
 
+- (void)setupFinished
+{
+    _filePlayerUnitFullyInitialized = YES;
+    [self applyFileChanges];
+}
+
+
 - (NSTimeInterval)duration
 {
     if (self.loopCount == -1) {
@@ -94,6 +118,18 @@ OSStatus FilePlayerUnitRenderNotifyCallblack (void                        *inRef
     }
 }
 
+
+- (void)handleDocumentReset
+{
+    [super handleDocumentReset];
+    
+    if (_audioFile) {
+        [self applySchedulingChanges];
+    }
+}
+
+
+#pragma mark - Property Setter & Getter
 
 - (BOOL)setAudioFileURL:(NSURL *)url error:(NSError **)error
 {
@@ -166,28 +202,86 @@ OSStatus FilePlayerUnitRenderNotifyCallblack (void                        *inRef
 }
 
 
-
-
-
-- (BOOL)applyChanges:(NSError *__autoreleasing *)error
+- (Float64)fileDuration
 {
-    //............................................................................
-    // calculate file player unit properties
+    if (!_audioFile) {
+        return 0.0;
+    }
     
+    Float64 fileDuration;
+    
+    UInt32 propSize = sizeof(fileDuration);
+    TOThrowOnError(AudioFileGetProperty(_audioFile,
+                                        kAudioFilePropertyEstimatedDuration,
+                                        &propSize,
+                                        &fileDuration));
+    
+    return fileDuration;
+}
+
+
+- (void)setRegionStart:(double)regionStart
+{
+    _regionStart = regionStart;
+    
+    if (self.document && _filePlayerUnitFullyInitialized) {
+        [self applySchedulingChanges];
+    }
+}
+
+
+- (void)setRegionDuration:(double)regionDuration
+{
+    _regionDuration = regionDuration;
+    
+    if (self.document && _filePlayerUnitFullyInitialized) {
+        [self applySchedulingChanges];
+    }
+}
+
+
+- (void)setLoopCount:(UInt32)loopCount
+{
+    _loopCount = loopCount;
+    
+    if (self.document && _filePlayerUnitFullyInitialized) {
+        [self applySchedulingChanges];
+    }
+}
+
+
+- (void)setStartTime:(double)startTime
+{
+    _startTime = startTime;
+    
+    if (self.document && _filePlayerUnitFullyInitialized) {
+        [self applySchedulingChanges];
+    }
+}
+
+
+- (void)applySchedulingChanges
+{
+    TOThrowOnError(AudioUnitReset(_filePlayerUnit->unit,
+                                  kAudioUnitScope_Input,
+                                  0));
+    
+    //............................................................................
     // region
+    
     SInt64 startFrame;
-    double currentTime = self.document.currentPlaybackPosition;
+    Float64 currentTime = self.document.currentPlaybackPosition;
     UInt32 framesToPlay;
     UInt32 numFramesInFile = _audioFileNumPackets * _audioFileASBD.mFramesPerPacket;
     
     
-    if (currentTime < self.startTime) {
+    if (currentTime < _startTime) {
         startFrame = self.regionStart * _audioFileASBD.mSampleRate;
         framesToPlay = self.regionDuration * _audioFileASBD.mSampleRate;
     }
     else {
         startFrame = currentTime * _audioFileASBD.mSampleRate;
-        framesToPlay = (self.regionDuration - (currentTime - self.startTime)) * _audioFileASBD.mSampleRate;
+        framesToPlay = (self.regionDuration - (currentTime - _startTime)) * _audioFileASBD.mSampleRate;
     }
     
     
@@ -209,8 +303,27 @@ OSStatus FilePlayerUnitRenderNotifyCallblack (void                        *inRef
 	rgn.mFramesToPlay = framesToPlay;
     
     
+    TOThrowOnError(AudioUnitSetProperty(_filePlayerUnit->unit,
+                                        kAudioUnitProperty_ScheduledFileRegion,
+                                        kAudioUnitScope_Global,
+                                        0,
+                                        &rgn,
+                                        sizeof(rgn)));
+    
+    UInt32 defaultVal = 0;
+	TOThrowOnError(AudioUnitSetProperty(_filePlayerUnit->unit,
+                                        kAudioUnitProperty_ScheduledFilePrime,
+                                        kAudioUnitScope_Global,
+                                        0,
+                                        &defaultVal,
+                                        sizeof(defaultVal)));
+    
+    
+    
+    //............................................................................
     // start time
-    Float64 timeOffset = self.startTime - currentTime; /* in seconds */
+    
+    Float64 timeOffset = _startTime - currentTime; /* in seconds */
     Float64 sampleStartTime;
     
     
@@ -228,52 +341,25 @@ OSStatus FilePlayerUnitRenderNotifyCallblack (void                        *inRef
 	startTime.mSampleTime = sampleStartTime;
     
     
-    
-    //............................................................................
-    // set the file player properties
+    TOThrowOnError(AudioUnitSetProperty(_filePlayerUnit->unit,
+                                        kAudioUnitProperty_ScheduleStartTimeStamp,
+                                        kAudioUnitScope_Global,
+                                        0,
+                                        &startTime,
+                                        sizeof(startTime)));
+}
+
+
+- (void)applyFileChanges
+{
     TOThrowOnError(AudioUnitSetProperty(_filePlayerUnit->unit,
                                         kAudioUnitProperty_ScheduledFileIDs,
                                         kAudioUnitScope_Global,
                                         0,
                                         &_audioFile,
                                         sizeof(_audioFile)));
-	
     
-	
-	
-	TOThrowOnError(AudioUnitSetProperty(_filePlayerUnit->unit,
-                                        kAudioUnitProperty_ScheduledFileRegion,
-                                        kAudioUnitScope_Global,
-                                        0,
-                                        &rgn,
-                                        sizeof(rgn)));
-    
-    
-	// prime the file player AU with default values
-	UInt32 defaultVal = 0;
-	TOThrowOnError(AudioUnitSetProperty(_filePlayerUnit->unit,
-                                        kAudioUnitProperty_ScheduledFilePrime,
-                                        kAudioUnitScope_Global,
-                                        0,
-                                        &defaultVal,
-                                        sizeof(defaultVal)));
-	
-    
-	TOThrowOnError(AudioUnitSetProperty(_filePlayerUnit->unit,
-                                        kAudioUnitProperty_ScheduleStartTimeStamp,
-                                        kAudioUnitScope_Global,
-                                        0,
-                                        &startTime,
-                                        sizeof(startTime)));
-
-    return YES;
+    [self applySchedulingChanges];
 }
-
-
-- (void)handleDocumentReset
-{
-    [self applyChanges:nil];
-}
-
 
 @end

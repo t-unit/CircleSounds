@@ -15,7 +15,8 @@
 
 @property (strong, nonatomic) TOSoundDocument *document;
 @property (strong, nonatomic) NSTimer *timer;
-@property (strong, nonatomic) TOPlugableSound *sound;
+@property (strong, nonatomic) TOEqualizerSound *sound1;
+@property (strong, nonatomic) TOEqualizerSound *sound2;
 
 @end
 
@@ -37,16 +38,14 @@
     NSURL *fileURL = [[NSBundle mainBundle] URLForResource:@"06 Birkenholzkompott" withExtension:@"mp3"];
     [eqSound setAudioFileURL:fileURL error:nil];
     
-    [self.document addPlugableSoundObject:eqSound];
-    
     eqSound.regionDuration = 60;
     eqSound.regionStart = 50;
     eqSound.startTime = 5;
-    eqSound.playbackCents = 2400;
-    [eqSound applyChanges:nil];
+    eqSound.playbackRate = 4;
     
+    [self.document addPlugableSoundObject:eqSound];
     
-    self.sound = eqSound;
+    self.sound1 = eqSound;
     self.document.loop = YES;
     
     [self performSelector:@selector(addAdditionalSound) withObject:nil afterDelay:30];
@@ -77,13 +76,19 @@
     
     eqSound.regionDuration = 60;
     eqSound.startTime = 5;
-    [eqSound applyChanges:nil];
+    
+    self.sound2 = eqSound;
 }
 
 
 - (void)removeSound
 {
-    [self.document removePlugableSoundObject:self.sound];
+    [self.document removePlugableSoundObject:self.sound1];
+    
+    self.sound2.startTime = 50;
+    self.sound2.playbackRate = 3;
+    
+    [self addAdditionalSound];
 }
 
 @end

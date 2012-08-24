@@ -56,6 +56,12 @@
 - (void)tearDownUnits;
 
 
+/**
+ Called after the sound object has been added to the graph
+ */
+- (void)setupFinished;
+
+
 
 
 /**

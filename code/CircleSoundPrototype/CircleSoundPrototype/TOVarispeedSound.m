@@ -7,6 +7,7 @@
 //
 
 #import "TOVarispeedSound.h"
+#import "TOSoundDocument.h"
 
 
 @implementation TOVarispeedSound
@@ -20,81 +21,93 @@
         _varispeedUnit->description = TOAudioComponentDescription(kAudioUnitType_FormatConverter, kAudioUnitSubType_Varispeed);
         
         _audioUnits = [_audioUnits arrayByAddingObject:_varispeedUnit];
+        
+        self.playbackRate = 1.0;
     }
     
     return self;
 }
 
 
+- (void)setupUnits
+{
+    [super setupUnits];
+    [self applyPlaybackRate];
+}
+
+
+- (void)handleDocumentReset
+{
+    [super setStartTime:[self calculateStartTime:self.startTime]];
+    [super handleDocumentReset];
+}
+
+
+/**
+ Depending on the playback rate the varispeed unit will
+ ask the file player for more or less samples during
+ the same time. So the start time of the file player
+ needs to be adjusted.
+ */
+- (NSTimeInterval)calculateStartTime:(NSTimeInterval)startTime
+{
+    NSTimeInterval currentTime = self.document.currentPlaybackPosition;
+    NSTimeInterval offset =  startTime - currentTime;
+    
+    
+    if (currentTime == 0.0) { // units getting reset {
+        startTime *= self.playbackRate;
+    }
+    else if (offset < 0.0) {
+        startTime += offset / self.playbackRate - offset;
+    }
+    else {
+        startTime += offset * self.playbackRate - offset;
+    }
+    
+    return startTime;
+}
+
+
 #pragma mark - Varispeed Unit Parameter Wrapper Methods
-
-- (AudioUnitParameterValue)playbackCents
-{
-    AudioUnitParameterValue playbackCents;
-    TOThrowOnError(AudioUnitGetParameter(_varispeedUnit->unit,
-                                         kVarispeedParam_PlaybackCents,
-                                         kAudioUnitScope_Global,
-                                         0,
-                                         &playbackCents));
-    
-    return playbackCents;
-}
-
-
-- (void)setPlaybackCents:(AudioUnitParameterValue)playbackCents
-{
-    TOThrowOnError(AudioUnitSetParameter(_varispeedUnit->unit,
-                                         kVarispeedParam_PlaybackCents,
-                                         kAudioUnitScope_Global,
-                                         0,
-                                         playbackCents,
-                                         0));
-    
-    self.startTime = self.startTime; /* this will call the setter which will set the correct start time */
-}
-
-
-
-- (AudioUnitParameterValue)playbackRate
-{
-    AudioUnitParameterValue playbackRate;
-    TOThrowOnError(AudioUnitGetParameter(_varispeedUnit->unit,
-                                         kVarispeedParam_PlaybackRate,
-                                         kAudioUnitScope_Global,
-                                         0,
-                                         &playbackRate));
-    
-    return playbackRate;
-}
-
 
 - (void)setPlaybackRate:(AudioUnitParameterValue)playbackRate
 {
+    _playbackRate = playbackRate;
+    self.startTime = self.startTime; /* this will call the setter which will set the correct start time */
+    
+    if (self.document) {
+        [self applyPlaybackRate];
+    }
+}
+
+
+- (void)applyPlaybackRate
+{
     TOThrowOnError(AudioUnitSetParameter(_varispeedUnit->unit,
                                          kVarispeedParam_PlaybackRate,
                                          kAudioUnitScope_Global,
                                          0,
-                                         playbackRate,
+                                         self.playbackRate,
                                          0));
-    
-    self.startTime = self.startTime; /* this will call the setter which will set the correct start time */
-}
 
+    [super setStartTime:[self calculateStartTime:_realFilePlayerStartTime]];
+
+}
 
 
 #pragma mark - Audio File Player Overwrite Methods
 
-- (void)setStartTime:(double)startTime
+- (void)setStartTime:(NSTimeInterval)startTime
 {
-    /*
-     Depending on the playback rate the varispeed unit will 
-     ask the file player for more or less samples during 
-     the same time. So the start time of the file player
-     needs to be adjusted.
-     */
-    
-    startTime *= self.playbackRate;
-    [super setStartTime:startTime];
+    _realFilePlayerStartTime = startTime;
+    [super setStartTime:[self calculateStartTime:startTime]];
+}
+
+
+- (NSTimeInterval)startTime
+{
+    return _realFilePlayerStartTime;
 }
 
 @end
