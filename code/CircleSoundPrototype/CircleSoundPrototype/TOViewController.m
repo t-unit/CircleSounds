@@ -15,6 +15,7 @@
 
 @property (strong, nonatomic) TOSoundDocument *document;
 @property (strong, nonatomic) NSTimer *timer;
+@property (strong, nonatomic) TOPlugableSound *sound;
 
 @end
 
@@ -39,13 +40,17 @@
     [self.document addPlugableSoundObject:eqSound];
     
     eqSound.regionDuration = 60;
+    eqSound.regionStart = 50;
     eqSound.startTime = 5;
     eqSound.playbackCents = 2400;
     [eqSound applyChanges:nil];
     
+    
+    self.sound = eqSound;
     self.document.loop = YES;
     
     [self performSelector:@selector(addAdditionalSound) withObject:nil afterDelay:30];
+    [self performSelector:@selector(removeSound) withObject:nil afterDelay:40];
     
 }
 
@@ -73,6 +78,12 @@
     eqSound.regionDuration = 60;
     eqSound.startTime = 5;
     [eqSound applyChanges:nil];
+}
+
+
+- (void)removeSound
+{
+    [self.document removePlugableSoundObject:self.sound];
 }
 
 @end
