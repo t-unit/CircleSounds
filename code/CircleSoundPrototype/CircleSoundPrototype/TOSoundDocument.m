@@ -16,6 +16,13 @@
 
 #define PREFERRED_GRAPH_SAMPLE_RATE 44100.0
 
+@interface TOSoundDocument ()
+
+- (void)handleDocumentDurationReached;
+
+@end
+
+
 
 @implementation TOSoundDocument
 
@@ -79,7 +86,7 @@ OSStatus MixerUnitRenderNoteCallack(void                        *inRefCon,
         if (doc->_currentPlaybackPosition > doc->_duration) {
             
             dispatch_async(dispatch_get_main_queue(), ^{
-                [doc reset];
+                [doc handleDocumentDurationReached];
             });
             
         }
@@ -253,11 +260,24 @@ OSStatus MixerUnitRenderNoteCallack(void                        *inRefCon,
 - (void)reset
 {
     _startSampleTime = NAN;
+    _currentPlaybackPosition = 0;
     
     for (TOPlugableSound *sound in self.plugableSounds) {
         [sound handleDocumentReset];
     }
 }
+
+
+
+- (void)handleDocumentDurationReached
+{
+    if (!self.loop) {
+        [self stop];
+    }
+    
+    [self reset];
+}
+
 
 
 # pragma mark - Plugable Sounds Handling

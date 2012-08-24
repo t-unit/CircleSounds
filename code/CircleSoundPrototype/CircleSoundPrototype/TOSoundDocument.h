@@ -33,6 +33,12 @@
 @property (readwrite, nonatomic) NSTimeInterval duration; // in seconds
 
 
+/**
+ Should the document restart replaying after it reached 'duration'?
+ */
+@property (readwrite, nonatomic) BOOL loop;
+
+
 @property (readonly, nonatomic) NSArray *plugableSounds;
 
 - (void)addPlugableSoundObject:(TOPlugableSound *)soundObject;
