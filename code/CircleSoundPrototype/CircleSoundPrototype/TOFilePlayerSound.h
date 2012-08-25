@@ -61,11 +61,4 @@
 @property (assign, nonatomic) NSTimeInterval startTime;
 
 
-///**
-// Apply the changes made. Needs to be called after the
-// object has been added to the document. An exception might
-// get thrown otherwise.
-// */
-//- (BOOL)applyChanges:(NSError *__autoreleasing *)error;
-
 @end

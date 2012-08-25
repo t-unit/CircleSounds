@@ -27,21 +27,6 @@ OSStatus FilePlayerUnitRenderNotifyCallblack (void                        *inRef
     
     if (*ioActionFlags & kAudioUnitRenderAction_PostRender) {
         filePlayer->_currentFilePlayerUnitRenderTimeStamp = *inTimeStamp;
-        
-//        /**** DEBUG BEGIN ****/ 
-//        
-//        static Float64 startTime = NAN;
-//        
-//        if (isnan(startTime)) {
-//            startTime = inTimeStamp->mSampleTime;
-//        }
-//        
-//        
-//        
-//        printf("file player time: %f\n", (inTimeStamp->mSampleTime - startTime) / 44100);
-//        
-//        
-//        /**** DEBUG END ****/ 
     }
     
     return noErr;
@@ -107,11 +92,11 @@ OSStatus FilePlayerUnitRenderNotifyCallblack (void                        *inRef
 
 - (NSTimeInterval)duration
 {
-    if (self.loopCount == -1) {
+    if (_loopCount == -1) {
         return -1;
     }
-    else if (self.audioFileURL && self.regionDuration) {
-        return self.regionStart + self.regionDuration * self.loopCount;
+    else if (_audioFileURL && _regionDuration) {
+        return _regionStart + _regionDuration * _loopCount;
     }
     else {
         return [super duration];
@@ -146,7 +131,7 @@ OSStatus FilePlayerUnitRenderNotifyCallblack (void                        *inRef
     
     NSError *intError = nil;
     
-    TOErrorHandler(AudioFileOpenURL((__bridge CFURLRef)(self.audioFileURL),
+    TOErrorHandler(AudioFileOpenURL((__bridge CFURLRef)(_audioFileURL),
                                     kAudioFileReadPermission,
                                     0,
                                     &_audioFile),
@@ -276,12 +261,12 @@ OSStatus FilePlayerUnitRenderNotifyCallblack (void                        *inRef
     
     
     if (currentTime < _startTime) {
-        startFrame = self.regionStart * _audioFileASBD.mSampleRate;
-        framesToPlay = self.regionDuration * _audioFileASBD.mSampleRate;
+        startFrame = _regionStart * _audioFileASBD.mSampleRate;
+        framesToPlay = _regionDuration * _audioFileASBD.mSampleRate;
     }
     else {
         startFrame = currentTime * _audioFileASBD.mSampleRate;
-        framesToPlay = (self.regionDuration - (currentTime - _startTime)) * _audioFileASBD.mSampleRate;
+        framesToPlay = (_regionDuration - (currentTime - _startTime)) * _audioFileASBD.mSampleRate;
     }
     
     
@@ -298,7 +283,7 @@ OSStatus FilePlayerUnitRenderNotifyCallblack (void                        *inRef
 	rgn.mCompletionProc = NULL;
 	rgn.mCompletionProcUserData = NULL;
 	rgn.mAudioFile = _audioFile;
-	rgn.mLoopCount = self.loopCount;
+	rgn.mLoopCount = _loopCount;
 	rgn.mStartFrame = startFrame;
 	rgn.mFramesToPlay = framesToPlay;
     
