@@ -12,6 +12,14 @@
 @interface TOReverbSound : TOVarispeedSound
 {
     TOAudioUnit *_reverbUnit;
+    
+    AudioUnitParameterValue _dryWetMix;
+    AudioUnitParameterValue _gain;
+    AudioUnitParameterValue _minDelayTime;
+    AudioUnitParameterValue _maxDelayTime;
+    AudioUnitParameterValue _decayTimeAt0Hz;
+    AudioUnitParameterValue _decayTimeAtNyquist;
+    int _randomizeReflections;
 }
 
 

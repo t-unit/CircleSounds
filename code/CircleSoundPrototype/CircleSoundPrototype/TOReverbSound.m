@@ -22,6 +22,13 @@
         _reverbUnit->description = TOAudioComponentDescription(kAudioUnitType_Effect, kAudioUnitSubType_Reverb2);
         
         _audioUnits = [_audioUnits arrayByAddingObject:_reverbUnit];
+        
+        // property default values
+        _minDelayTime = 0.008;
+        _maxDelayTime = 0.050;
+        _decayTimeAt0Hz = 0;
+        _decayTimeAtNyquist = 0.5;
+        _randomizeReflections = 1;
     }
     
     return self;
@@ -30,184 +37,151 @@
 
 #pragma mark - Reverb Paramter Wrapper Methods
 
-- (AudioUnitParameterValue)dryWetMix
+
+- (void)setDryWetMix:(AudioUnitParameterValue)dryWetMix
 {
-    AudioUnitParameterValue dryWetMix;
+    _dryWetMix = dryWetMix;
     
-    TOThrowOnError(AudioUnitGetParameter(_reverbUnit->unit,
-                                         kReverb2Param_DryWetMix,
-                                         kAudioUnitScope_Global,
-                                         0,
-                                         &dryWetMix));
-    
-    
-    return dryWetMix;
+    if (_reverbUnit->unit) {
+        [self applyDryWetMix];
+    }
 }
 
 
-- (void)setDryWetMix:(AudioUnitParameterValue)dryWetMix
+- (void)applyDryWetMix
 {
     TOThrowOnError(AudioUnitSetParameter(_reverbUnit->unit,
                                          kReverb2Param_DryWetMix,
                                          kAudioUnitScope_Global,
                                          0,
-                                         dryWetMix,
+                                         _dryWetMix,
                                          0));
 }
 
-
-- (AudioUnitParameterValue)gain
-{
-    AudioUnitParameterValue gain;
-    
-    TOThrowOnError(AudioUnitGetParameter(_reverbUnit->unit,
-                                         kReverb2Param_Gain,
-                                         kAudioUnitScope_Global,
-                                         0,
-                                         &gain));
-    
-    
-    return gain;
-}
 
 
 - (void)setGain:(AudioUnitParameterValue)gain
 {
+    _gain = gain;
+    
+    if (_reverbUnit->unit) {
+        [self applyGain];
+    }
+}
+
+
+- (void)applyGain
+{
     TOThrowOnError(AudioUnitSetParameter(_reverbUnit->unit,
                                          kReverb2Param_Gain,
                                          kAudioUnitScope_Global,
                                          0,
-                                         gain,
+                                         _gain,
                                          0));
-}
-
-
-- (AudioUnitParameterValue)minDelayTime
-{
-    AudioUnitParameterValue minDelayTime;
-    
-    TOThrowOnError(AudioUnitGetParameter(_reverbUnit->unit,
-                                         kReverb2Param_MinDelayTime,
-                                         kAudioUnitScope_Global,
-                                         0,
-                                         &minDelayTime));
-    
-    
-    return minDelayTime;
 }
 
 
 - (void)setMinDelayTime:(AudioUnitParameterValue)minDelayTime
 {
+    _minDelayTime = minDelayTime;
+    
+    if (_reverbUnit->unit) {
+        [self applyMinDelayTime];
+    }
+}
+
+
+- (void)applyMinDelayTime
+{
     TOThrowOnError(AudioUnitSetParameter(_reverbUnit->unit,
                                          kReverb2Param_MinDelayTime,
                                          kAudioUnitScope_Global,
                                          0,
-                                         minDelayTime,
+                                         _minDelayTime,
                                          0));
-}
-
-
-- (AudioUnitParameterValue)maxDelayTime
-{
-    AudioUnitParameterValue maxDelayTime;
-    
-    TOThrowOnError(AudioUnitGetParameter(_reverbUnit->unit,
-                                         kReverb2Param_MaxDelayTime,
-                                         kAudioUnitScope_Global,
-                                         0,
-                                         &maxDelayTime));
-    
-    
-    return maxDelayTime;
 }
 
 
 - (void)setMaxDelayTime:(AudioUnitParameterValue)maxDelayTime
 {
+    _maxDelayTime = maxDelayTime;
+    
+    if (_reverbUnit->unit) {
+        [self applyMaxDelayTime];
+    }
+}
+
+
+- (void)applyMaxDelayTime
+{
     TOThrowOnError(AudioUnitSetParameter(_reverbUnit->unit,
                                          kReverb2Param_MaxDelayTime,
                                          kAudioUnitScope_Global,
                                          0,
-                                         maxDelayTime,
+                                         _maxDelayTime,
                                          0));
-}
-
-
-- (AudioUnitParameterValue)decayTimeAt0Hz
-{
-    AudioUnitParameterValue decayTimeAt0Hz;
-    
-    TOThrowOnError(AudioUnitGetParameter(_reverbUnit->unit,
-                                         kReverb2Param_DecayTimeAt0Hz,
-                                         kAudioUnitScope_Global,
-                                         0,
-                                         &decayTimeAt0Hz));
-    
-    
-    return decayTimeAt0Hz;
 }
 
 
 - (void)setDecayTimeAt0Hz:(AudioUnitParameterValue)decayTimeAt0Hz
 {
+    _decayTimeAt0Hz = decayTimeAt0Hz;
+    
+    if (_reverbUnit->unit) {
+        [self applyDecayTimeAt0Hz];
+    }
+}
+
+
+- (void)applyDecayTimeAt0Hz
+{
     TOThrowOnError(AudioUnitSetParameter(_reverbUnit->unit,
                                          kReverb2Param_DecayTimeAt0Hz,
                                          kAudioUnitScope_Global,
                                          0,
-                                         decayTimeAt0Hz,
+                                         _decayTimeAt0Hz,
                                          0));
-}
-
-
-- (AudioUnitParameterValue)decayTimeAtNyquist
-{
-    AudioUnitParameterValue decayTimeAtNyquist;
-    
-    TOThrowOnError(AudioUnitGetParameter(_reverbUnit->unit,
-                                         kReverb2Param_DecayTimeAtNyquist,
-                                         kAudioUnitScope_Global,
-                                         0,
-                                         &decayTimeAtNyquist));
-    
-    
-    return decayTimeAtNyquist;
 }
 
 
 - (void)setDecayTimeAtNyquist:(AudioUnitParameterValue)decayTimeAtNyquist
 {
+    _decayTimeAtNyquist = decayTimeAtNyquist;
+    
+    if (_reverbUnit->unit) {
+        [self applyDecayTimeAtNyquist];
+    }
+}
+
+
+- (void)applyDecayTimeAtNyquist
+{
     TOThrowOnError(AudioUnitSetParameter(_reverbUnit->unit,
                                          kReverb2Param_DecayTimeAtNyquist,
                                          kAudioUnitScope_Global,
                                          0,
-                                         decayTimeAtNyquist,
+                                         _decayTimeAtNyquist,
                                          0));
-}
-
-
-- (int)randomizeReflections
-{
-    AudioUnitParameterValue randomizeReflections;
-    
-    TOThrowOnError(AudioUnitGetParameter(_reverbUnit->unit,
-                                         kReverb2Param_RandomizeReflections,
-                                         kAudioUnitScope_Global,
-                                         0,
-                                         &randomizeReflections));
-    
-    
-    return (int)randomizeReflections;
 }
 
 
 - (void)setRandomizeReflections:(int)randomizeReflections
 {
+    _randomizeReflections = randomizeReflections;
+    
+    if (_reverbUnit->unit) {
+        [self applyRandomizeReflections];
+    }
+}
+
+
+- (void)applyRandomizeReflections
+{
     TOThrowOnError(AudioUnitSetParameter(_reverbUnit->unit,
                                          kReverb2Param_RandomizeReflections,
                                          kAudioUnitScope_Global,
                                          0,
-                                         (AudioUnitParameterValue)randomizeReflections,
+                                         (AudioUnitParameterValue)_randomizeReflections,
                                          0));
 }
 
