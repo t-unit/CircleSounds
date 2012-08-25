@@ -13,6 +13,8 @@
 {
     TOAudioUnit *_varispeedUnit;
     NSTimeInterval _realFilePlayerStartTime;
+    
+    AudioUnitParameterValue _playbackRate;
 }
 
 @property (assign, nonatomic) AudioUnitParameterValue playbackRate;

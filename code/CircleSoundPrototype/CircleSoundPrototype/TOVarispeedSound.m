@@ -38,34 +38,8 @@
 
 - (void)handleDocumentReset
 {
-    [super setStartTime:[self calculateStartTime:self.startTime]];
+    _startTime = [self calculateStartTime:self.startTime];
     [super handleDocumentReset];
-}
-
-
-/**
- Depending on the playback rate the varispeed unit will
- ask the file player for more or less samples during
- the same time. So the start time of the file player
- needs to be adjusted.
- */
-- (NSTimeInterval)calculateStartTime:(NSTimeInterval)startTime
-{
-    NSTimeInterval currentTime = self.document.currentPlaybackPosition;
-    NSTimeInterval offset =  startTime - currentTime;
-    
-    
-    if (currentTime == 0.0) { // units getting reset {
-        startTime *= self.playbackRate;
-    }
-    else if (offset < 0.0) {
-        startTime += offset / self.playbackRate - offset;
-    }
-    else {
-        startTime += offset * self.playbackRate - offset;
-    }
-    
-    return startTime;
 }
 
 
@@ -108,6 +82,32 @@
 - (NSTimeInterval)startTime
 {
     return _realFilePlayerStartTime;
+}
+
+
+/**
+ Depending on the playback rate the varispeed unit will
+ ask the file player for more or less samples during
+ the same time. So the start time of the file player
+ needs to be adjusted.
+ */
+- (NSTimeInterval)calculateStartTime:(NSTimeInterval)startTime
+{
+    NSTimeInterval currentTime = self.document.currentPlaybackPosition;
+    NSTimeInterval offset =  startTime - currentTime;
+    
+    
+    if (currentTime == 0.0) { // units getting reset {
+        startTime *= self.playbackRate;
+    }
+    else if (offset < 0.0) {
+        startTime += offset / self.playbackRate - offset;
+    }
+    else {
+        startTime += offset * self.playbackRate - offset;
+    }
+    
+    return startTime;
 }
 
 @end
