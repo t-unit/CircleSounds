@@ -12,6 +12,9 @@
 @interface TOEqualizerSound : TOReverbSound
 {
     TOAudioUnit *_equalizerUnit;
+    
+    NSArray *_bands;
+    NSMutableArray *_bandGains;
 }
 
 
@@ -19,16 +22,12 @@
 
 
 /**
- Can only be set if the equalizer unit is uninitialized. The number
- of elements in this array must no be greater than 'maxNumberOfBands'.
- */
-@property (readwrite, nonatomic) UInt32 numBands;
-
-
-/**
  An array contains frequencies in Hz for each band of the equalizer unit.
- Frequencies must be between 20 and SampleRate/2. The number of supplied
- frequencies must match the value of 'numBands'.
+ Frequencies must be between 20 and SampleRate/2.
+ 
+ Can only be set if the equalizer unit is uninitialized. This is before the
+ sound has been added to the document! The number of elements in this array 
+ must no be greater than 'maxNumberOfBands'.
  */
 @property (readwrite, nonatomic) NSArray *bands;
 

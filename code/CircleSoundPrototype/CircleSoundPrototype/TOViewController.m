@@ -42,6 +42,11 @@
     eqSound.regionStart = 50;
     eqSound.startTime = 5;
     eqSound.playbackRate = 4;
+    eqSound.bands = @[ @32, @64, @125, @250, @500, @1000, @2000, @4000, @8000, @16000 ];
+    
+    for (NSUInteger i=0; i<5; i++) {
+        [eqSound setGain:-96 forBandAtPosition:i];
+    }
     
     [self.document addPlugableSoundObject:eqSound];
     
