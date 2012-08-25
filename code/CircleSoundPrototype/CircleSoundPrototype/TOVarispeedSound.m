@@ -50,7 +50,7 @@
     _playbackRate = playbackRate;
     self.startTime = self.startTime; /* this will call the setter which will set the correct start time */
     
-    if (self.document) {
+    if (_varispeedUnit->unit) {
         [self applyPlaybackRate];
     }
 }

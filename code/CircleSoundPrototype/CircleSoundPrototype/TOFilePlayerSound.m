@@ -209,7 +209,7 @@ OSStatus FilePlayerUnitRenderNotifyCallblack (void                        *inRef
 {
     _regionStart = regionStart;
     
-    if (self.document && _filePlayerUnitFullyInitialized) {
+    if (_filePlayerUnitFullyInitialized) {
         [self applySchedulingChanges];
     }
 }
@@ -219,7 +219,7 @@ OSStatus FilePlayerUnitRenderNotifyCallblack (void                        *inRef
 {
     _regionDuration = regionDuration;
     
-    if (self.document && _filePlayerUnitFullyInitialized) {
+    if (_filePlayerUnitFullyInitialized) {
         [self applySchedulingChanges];
     }
 }
@@ -229,7 +229,7 @@ OSStatus FilePlayerUnitRenderNotifyCallblack (void                        *inRef
 {
     _loopCount = loopCount;
     
-    if (self.document && _filePlayerUnitFullyInitialized) {
+    if (_filePlayerUnitFullyInitialized) {
         [self applySchedulingChanges];
     }
 }
@@ -239,7 +239,7 @@ OSStatus FilePlayerUnitRenderNotifyCallblack (void                        *inRef
 {
     _startTime = startTime;
     
-    if (self.document && _filePlayerUnitFullyInitialized) {
+    if (_filePlayerUnitFullyInitialized) {
         [self applySchedulingChanges];
     }
 }
