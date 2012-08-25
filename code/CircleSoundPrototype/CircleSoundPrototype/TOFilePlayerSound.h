@@ -21,6 +21,11 @@
     AudioStreamBasicDescription _audioFileASBD;
     UInt64 _audioFileNumPackets;
     
+    NSTimeInterval _regionStart;
+    NSTimeInterval _regionDuration;
+    UInt32 _loopCount;
+    NSTimeInterval _startTime;
+    
     BOOL _filePlayerUnitFullyInitialized;
 }
 
