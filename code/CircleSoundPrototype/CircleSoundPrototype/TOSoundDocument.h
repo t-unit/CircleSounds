@@ -46,7 +46,7 @@
 
 
 - (void)start;
-- (void)stop;
+- (void)pause;
 - (void)reset; /* set the playback position back to zero */
 
 

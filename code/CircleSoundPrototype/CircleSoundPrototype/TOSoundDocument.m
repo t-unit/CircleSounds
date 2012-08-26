@@ -54,7 +54,7 @@
 
 - (void)dealloc
 {
-    [self stop];
+    [self pause];
     
     TOThrowOnError(AUGraphClose(_graph));
     TOThrowOnError(AUGraphUninitialize(_graph));
@@ -243,7 +243,7 @@ OSStatus MixerUnitRenderNoteCallack(void                        *inRefCon,
 }
 
 
-- (void)stop
+- (void)pause
 {
     @synchronized(self) {
         Boolean isRunning;
@@ -272,7 +272,7 @@ OSStatus MixerUnitRenderNoteCallack(void                        *inRefCon,
 - (void)handleDocumentDurationReached
 {
     if (!self.loop) {
-        [self stop];
+        [self pause];
     }
     
     [self reset];
