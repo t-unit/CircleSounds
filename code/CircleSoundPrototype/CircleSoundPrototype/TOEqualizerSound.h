@@ -15,6 +15,8 @@
     
     NSArray *_bands;
     NSMutableArray *_bandGains;
+    
+    AudioUnitParameterValue _globaleGain;
 }
 
 

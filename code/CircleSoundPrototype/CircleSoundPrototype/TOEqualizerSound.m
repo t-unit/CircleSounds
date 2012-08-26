@@ -32,6 +32,7 @@
 {
     [super setupUnits];
     [self applyBands];
+    [self applyGlobalGain];
 }
 
 
@@ -174,5 +175,25 @@
                                          0));
 }
 
+
+- (void)setGlobalGain:(AudioUnitParameterValue)globalGain
+{
+    _globalGain = globalGain;
+    
+    if (_equalizerUnit->unit) {
+        [self applyGlobalGain];
+    }
+}
+
+
+- (void)applyGlobalGain
+{
+    TOThrowOnError(AudioUnitSetParameter(_equalizerUnit->unit,
+                                         kAUNBandEQParam_GlobalGain,
+                                         kAudioUnitScope_Global,
+                                         0,
+                                         _globalGain,
+                                         0));
+}
 
 @end
