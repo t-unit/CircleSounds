@@ -23,6 +23,10 @@
 		D21F0DE815E4E27300DFC68C /* TOPlugableSound.m in Sources */ = {isa = PBXBuildFile; fileRef = D21F0DE715E4E27300DFC68C /* TOPlugableSound.m */; };
 		D21F0DFA15E4E6B100DFC68C /* TOSoundDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = D21F0DF915E4E6B100DFC68C /* TOSoundDocument.m */; };
 		D23007DB15E548D100919C6C /* NSArray+arrayByRemovingObject.m in Sources */ = {isa = PBXBuildFile; fileRef = D23007DA15E548D100919C6C /* NSArray+arrayByRemovingObject.m */; };
+		D25C76BB15EA747700F4B162 /* TOBaseInterpolator.m in Sources */ = {isa = PBXBuildFile; fileRef = D25C76B615EA747700F4B162 /* TOBaseInterpolator.m */; };
+		D25C76BC15EA747700F4B162 /* TOColorInterpolator.m in Sources */ = {isa = PBXBuildFile; fileRef = D25C76B815EA747700F4B162 /* TOColorInterpolator.m */; };
+		D25C76BD15EA747700F4B162 /* TOAudioMeterView.m in Sources */ = {isa = PBXBuildFile; fileRef = D25C76BA15EA747700F4B162 /* TOAudioMeterView.m */; };
+		D25C76C015EA748900F4B162 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D25C76BF15EA748900F4B162 /* QuartzCore.framework */; };
 		D26F8A8715E684D20063FF0F /* 06 Birkenholzkompott.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D26F8A8615E684D20063FF0F /* 06 Birkenholzkompott.mp3 */; };
 		D26F8A8E15E695EA0063FF0F /* TOReverbSound.m in Sources */ = {isa = PBXBuildFile; fileRef = D26F8A8D15E695EA0063FF0F /* TOReverbSound.m */; };
 		D26F8A9515E6960D0063FF0F /* TOEqualizerSound.m in Sources */ = {isa = PBXBuildFile; fileRef = D26F8A9415E6960D0063FF0F /* TOEqualizerSound.m */; };
@@ -58,6 +62,13 @@
 		D21F0DF915E4E6B100DFC68C /* TOSoundDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TOSoundDocument.m; sourceTree = "<group>"; };
 		D23007D915E548D100919C6C /* NSArray+arrayByRemovingObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+arrayByRemovingObject.h"; sourceTree = "<group>"; };
 		D23007DA15E548D100919C6C /* NSArray+arrayByRemovingObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+arrayByRemovingObject.m"; sourceTree = "<group>"; };
+		D25C76B515EA747700F4B162 /* TOBaseInterpolator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TOBaseInterpolator.h; sourceTree = "<group>"; };
+		D25C76B615EA747700F4B162 /* TOBaseInterpolator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TOBaseInterpolator.m; sourceTree = "<group>"; };
+		D25C76B715EA747700F4B162 /* TOColorInterpolator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TOColorInterpolator.h; sourceTree = "<group>"; };
+		D25C76B815EA747700F4B162 /* TOColorInterpolator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TOColorInterpolator.m; sourceTree = "<group>"; };
+		D25C76B915EA747700F4B162 /* TOAudioMeterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TOAudioMeterView.h; sourceTree = "<group>"; };
+		D25C76BA15EA747700F4B162 /* TOAudioMeterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TOAudioMeterView.m; sourceTree = "<group>"; };
+		D25C76BF15EA748900F4B162 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		D26F8A8615E684D20063FF0F /* 06 Birkenholzkompott.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "06 Birkenholzkompott.mp3"; sourceTree = "<group>"; };
 		D26F8A8C15E695EA0063FF0F /* TOReverbSound.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TOReverbSound.h; sourceTree = "<group>"; };
 		D26F8A8D15E695EA0063FF0F /* TOReverbSound.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TOReverbSound.m; sourceTree = "<group>"; };
@@ -74,6 +85,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D25C76C015EA748900F4B162 /* QuartzCore.framework in Frameworks */,
 				D21F0DE415E4E18200DFC68C /* AVFoundation.framework in Frameworks */,
 				D21F0DE215E4E17D00DFC68C /* AudioToolbox.framework in Frameworks */,
 				D21F0DB615E4DF5100DFC68C /* UIKit.framework in Frameworks */,
@@ -105,6 +117,7 @@
 		D21F0DB415E4DF5100DFC68C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D25C76BF15EA748900F4B162 /* QuartzCore.framework */,
 				D21F0DE315E4E18200DFC68C /* AVFoundation.framework */,
 				D21F0DE115E4E17D00DFC68C /* AudioToolbox.framework */,
 				D21F0DB515E4DF5100DFC68C /* UIKit.framework */,
@@ -117,6 +130,12 @@
 		D21F0DBB15E4DF5100DFC68C /* CircleSoundPrototype */ = {
 			isa = PBXGroup;
 			children = (
+				D25C76B515EA747700F4B162 /* TOBaseInterpolator.h */,
+				D25C76B615EA747700F4B162 /* TOBaseInterpolator.m */,
+				D25C76B715EA747700F4B162 /* TOColorInterpolator.h */,
+				D25C76B815EA747700F4B162 /* TOColorInterpolator.m */,
+				D25C76B915EA747700F4B162 /* TOAudioMeterView.h */,
+				D25C76BA15EA747700F4B162 /* TOAudioMeterView.m */,
 				D23007D915E548D100919C6C /* NSArray+arrayByRemovingObject.h */,
 				D23007DA15E548D100919C6C /* NSArray+arrayByRemovingObject.m */,
 				D21F0DE515E4E25600DFC68C /* Audio Layer */,
@@ -261,6 +280,9 @@
 				D2E8279815E62286000B3144 /* TOFilePlayerSound.m in Sources */,
 				D26F8A8E15E695EA0063FF0F /* TOReverbSound.m in Sources */,
 				D26F8A9515E6960D0063FF0F /* TOEqualizerSound.m in Sources */,
+				D25C76BB15EA747700F4B162 /* TOBaseInterpolator.m in Sources */,
+				D25C76BC15EA747700F4B162 /* TOColorInterpolator.m in Sources */,
+				D25C76BD15EA747700F4B162 /* TOAudioMeterView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
