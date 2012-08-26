@@ -9,12 +9,13 @@
 #import "TOViewController.h"
 #import "TOSoundDocument.h"
 #import "TOEqualizerSound.h"
+#import "TOAudioMeterView.h"
 
 
 @interface TOViewController ()
 
 @property (strong, nonatomic) TOSoundDocument *document;
-@property (strong, nonatomic) NSTimer *timer;
+@property (strong, nonatomic) NSTimer *timeAndMeterUpdateTimer;
 @property (strong, nonatomic) TOEqualizerSound *sound1;
 @property (strong, nonatomic) TOEqualizerSound *sound2;
 
@@ -29,10 +30,11 @@
 	self.document = [[TOSoundDocument alloc] init];
     self.document.duration = 60;
     
-    [self.document start];
+    [self startPauseButtonPressed:nil]; // start the document
     
-    self.timer = [NSTimer timerWithTimeInterval:1.0 target:self selector:@selector(printCurrentPlaybackTime) userInfo:nil repeats:YES];
-    [[NSRunLoop mainRunLoop] addTimer:self.timer forMode:NSDefaultRunLoopMode];
+    
+    self.timeAndMeterUpdateTimer = [NSTimer timerWithTimeInterval:1.0/25.0 target:self selector:@selector(updateTimeAndMeter) userInfo:nil repeats:YES];
+    [[NSRunLoop mainRunLoop] addTimer:self.timeAndMeterUpdateTimer forMode:NSDefaultRunLoopMode];
     
     TOEqualizerSound *eqSound = [[TOEqualizerSound alloc] init];
     NSURL *fileURL = [[NSBundle mainBundle] URLForResource:@"06 Birkenholzkompott" withExtension:@"mp3"];
@@ -42,11 +44,11 @@
     eqSound.regionStart = 50;
     eqSound.startTime = 5;
     eqSound.playbackRate = 4;
-    eqSound.bands = @[ @32, @64, @125, @250, @500, @1000, @2000, @4000, @8000, @16000 ];
-    
-    for (NSUInteger i=0; i<5; i++) {
-        [eqSound setGain:-96 forBandAtPosition:i];
-    }
+//    eqSound.bands = @[ @32, @64, @125, @250, @500, @1000, @2000, @4000, @8000, @16000 ];
+//    
+//    for (NSUInteger i=0; i<5; i++) {
+//        [eqSound setGain:-96 forBandAtPosition:i];
+//    }
     
     [self.document addPlugableSoundObject:eqSound];
     
@@ -55,7 +57,6 @@
     
     [self performSelector:@selector(addAdditionalSound) withObject:nil afterDelay:30];
     [self performSelector:@selector(removeSound) withObject:nil afterDelay:40];
-    
 }
 
 - (void)didReceiveMemoryWarning
@@ -65,9 +66,33 @@
 }
 
 
-- (void)printCurrentPlaybackTime
+- (void)updateTimeAndMeter
 {
-    NSLog(@"%f", self.document.currentPlaybackPosition);
+    self.currentTimeLabel.text = [NSString stringWithFormat:@"%.2f", self.document.currentPlaybackPosition];
+    
+    //
+    // 0 == -50db
+    // 1 ==   0db
+    //
+    
+    // AVG
+    double db = [self.document avgValueLeft];
+    CGFloat value = 0.02 * db + 1;
+    self.leftMeterView.value = value;
+    
+    db = [self.document avgValueRight];
+    value = 0.02 * db + 1;
+    self.rightMeterView.value = value;
+    
+    
+    // PEAK
+    db = [self.document peakValueLeft];
+    value = 0.02 * db + 1;
+    self.leftMeterView.peakValue = value;
+    
+    db = [self.document peakValueRight];
+    value = 0.02 * db + 1;
+    self.rightMeterView.peakValue = value;
 }
 
 
@@ -94,6 +119,31 @@
     self.sound2.playbackRate = 3;
     
     [self addAdditionalSound];
+}
+
+
+- (IBAction)startPauseButtonPressed:(id)sender
+{
+    if (self.document.isRunning) {
+        [self.document pause];
+        self.startPauseButton.selected = NO;
+    }
+    else {
+        [self.document start];
+        self.startPauseButton.selected = YES;
+    }
+}
+
+
+- (IBAction)resetButtonPressed:(id)sender
+{
+    [self.document reset];
+}
+
+
+- (IBAction)volumeSliderValueChanged:(id)sender
+{
+    self.document.volume = self.volumeSlider.value;
 }
 
 @end

@@ -152,11 +152,6 @@ OSStatus MixerUnitRenderNoteCallack(void                        *inRefCon,
     
     
     //............................................................................
-    // Initialize Graph
-    TOThrowOnError(AUGraphInitialize(_graph));
-    
-    
-    //............................................................................
     // Set properties/parameters of the units inside the graph
     
     // Enable metering at the output of the mixer unit
@@ -183,7 +178,11 @@ OSStatus MixerUnitRenderNoteCallack(void                        *inRefCon,
                                         0,
                                         &_mixerOutputSampleRate,
                                         &propSize));
-
+    
+    
+    //............................................................................
+    // Initialize Graph
+    TOThrowOnError(AUGraphInitialize(_graph));
 }
 
 
@@ -254,6 +253,19 @@ OSStatus MixerUnitRenderNoteCallack(void                        *inRefCon,
             TOThrowOnError(AUGraphStop(_graph));
         }
     }
+}
+
+
+- (BOOL)isRunning
+{
+    if (!_graph) {
+        return NO;
+    }
+
+    Boolean isRunning;
+    TOThrowOnError(AUGraphIsRunning(_graph, &isRunning));
+    
+    return isRunning;
 }
 
 
@@ -336,6 +348,8 @@ OSStatus MixerUnitRenderNoteCallack(void                        *inRefCon,
         
         [soundObject setupFinished];
     }
+    
+    CAShow(_graph);
 }
 
 
@@ -396,14 +410,6 @@ OSStatus MixerUnitRenderNoteCallack(void                        *inRefCon,
         TOThrowOnError(AUGraphUpdate(_graph, NULL));
     }
 }
-
-
-# pragma mark - Property Setter and Getter
-
-//- (Float64)currentPlaybackPos
-//{
-//    return (_currentSampleTime - _startSampleTime) / _mixerOutputSampleRate;
-//}
 
 
 # pragma mark - Mixer Parameter Wrapper Methods

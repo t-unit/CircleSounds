@@ -49,6 +49,8 @@
 - (void)pause;
 - (void)reset; /* set the playback position back to zero */
 
+@property (readonly, nonatomic) BOOL isRunning;
+
 
 /**
  Monitor properties. Return decibel values between -∞ and 0.
