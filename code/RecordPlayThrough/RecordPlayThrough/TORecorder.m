@@ -163,7 +163,7 @@ static OSStatus recorderCallback(void                       *inRefCon,
 
     // silence output
     if (!recorder->_monitoringInput) {
-        *ioActionFlags = kAudioUnitRenderAction_OutputIsSilence;
+        *ioActionFlags |= kAudioUnitRenderAction_OutputIsSilence;
         
         for (UInt32 i=0; i < ioData->mNumberBuffers; i++) {
             AudioBuffer buffer = ioData->mBuffers[i];
