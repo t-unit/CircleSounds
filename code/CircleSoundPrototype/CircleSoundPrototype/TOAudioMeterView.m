@@ -30,9 +30,10 @@
 - (void)drawRect:(CGRect)rect
 {
     CGRect layerRect;
-    layerRect.origin = CGPointMake(0, self.bounds.size.height);
     layerRect.size.width = self.bounds.size.width;
-    layerRect.size.height = roundf((self.bounds.size.height - (NUM_ELEMENTS-1) * 2) / NUM_ELEMENTS);
+//    layerRect.size.height = roundf((self.bounds.size.height - (NUM_ELEMENTS-1) * 2) / NUM_ELEMENTS);
+    layerRect.size.height = (self.bounds.size.height - (NUM_ELEMENTS-1) * 2) / NUM_ELEMENTS;
+    layerRect.origin = CGPointMake(0, self.bounds.size.height-layerRect.size.height);
 
     // layer properties
     UIColor *lowColor = [UIColor colorWithRed:0 green:0.3725 blue:0.4823 alpha:1.0];
