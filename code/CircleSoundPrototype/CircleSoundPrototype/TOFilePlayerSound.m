@@ -12,6 +12,13 @@
 #import "TOSoundDocument.h"
 
 
+@interface TOFilePlayerSound ()
+
+- (void)applySchedulingChanges;
+
+@end
+
+
 @implementation TOFilePlayerSound
 
 
@@ -26,7 +33,19 @@ OSStatus FilePlayerUnitRenderNotifyCallblack (void                        *inRef
     TOFilePlayerSound *filePlayer = (__bridge TOFilePlayerSound *)(inRefCon);
     
     if (*ioActionFlags & kAudioUnitRenderAction_PostRender) {
-        filePlayer->_currentFilePlayerUnitRenderTimeStamp = *inTimeStamp;
+        
+        if (isnan(filePlayer->_currentFilePlayerUnitRenderSampleTime)) {
+            filePlayer->_currentFilePlayerUnitRenderSampleTime = inTimeStamp->mSampleTime;
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if (filePlayer->_audioFile) {
+                    [filePlayer applySchedulingChanges];
+                }
+            });
+        }
+        else {
+            filePlayer->_currentFilePlayerUnitRenderSampleTime = inTimeStamp->mSampleTime;
+        }
     }
     
     return noErr;
@@ -40,6 +59,8 @@ OSStatus FilePlayerUnitRenderNotifyCallblack (void                        *inRef
     if (self) {
         _filePlayerUnit = [[TOAudioUnit alloc] init];
         _filePlayerUnit->description = TOAudioComponentDescription(kAudioUnitType_Generator, kAudioUnitSubType_AudioFilePlayer);
+        
+        _currentFilePlayerUnitRenderSampleTime = NAN;
         
         _audioUnits = [_audioUnits arrayByAddingObject:_filePlayerUnit];
     }
@@ -313,7 +334,7 @@ OSStatus FilePlayerUnitRenderNotifyCallblack (void                        *inRef
     
     
     if (timeOffset > 0.0) {
-        sampleStartTime = _currentFilePlayerUnitRenderTimeStamp.mSampleTime + timeOffset * _filePlayerUnitOutputSampleRate;
+        sampleStartTime = _currentFilePlayerUnitRenderSampleTime + timeOffset * _filePlayerUnitOutputSampleRate;
     }
     else {
         sampleStartTime = -1.0;
@@ -324,6 +345,9 @@ OSStatus FilePlayerUnitRenderNotifyCallblack (void                        *inRef
 	memset (&startTime, 0, sizeof(startTime));
 	startTime.mFlags = kAudioTimeStampSampleTimeValid;
 	startTime.mSampleTime = sampleStartTime;
+    
+    
+    printf("sample start time: %f\n", sampleStartTime);
     
     
     TOThrowOnError(AudioUnitSetProperty(_filePlayerUnit->unit,

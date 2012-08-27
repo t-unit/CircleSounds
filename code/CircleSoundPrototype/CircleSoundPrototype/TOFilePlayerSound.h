@@ -14,7 +14,7 @@
     TOAudioUnit *_filePlayerUnit;
     AudioFileID _audioFile;
     
-    AudioTimeStamp _currentFilePlayerUnitRenderTimeStamp;
+    Float64 _currentFilePlayerUnitRenderSampleTime; /* NaN if invalid */
     Float64 _filePlayerUnitOutputSampleRate;
     
     // audio file properties

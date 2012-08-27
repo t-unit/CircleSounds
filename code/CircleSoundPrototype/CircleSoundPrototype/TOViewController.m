@@ -28,10 +28,7 @@
     [super viewDidLoad];
     
 	self.document = [[TOSoundDocument alloc] init];
-    self.document.duration = 60;
-    
-    [self startPauseButtonPressed:nil]; // start the document
-    
+    self.document.duration = 60;    
     
     self.timeAndMeterUpdateTimer = [NSTimer timerWithTimeInterval:1.0/25.0 target:self selector:@selector(updateTimeAndMeter) userInfo:nil repeats:YES];
     [[NSRunLoop mainRunLoop] addTimer:self.timeAndMeterUpdateTimer forMode:NSDefaultRunLoopMode];
