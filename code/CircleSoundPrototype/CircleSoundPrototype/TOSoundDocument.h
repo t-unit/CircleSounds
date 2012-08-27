@@ -25,7 +25,12 @@
     NSArray *_availibleBuses; /* number of buses ready for reuse */
     
     
-    Float64 _startSampleTime; /* NaN before set to correct value*/
+    Float64 _startSampleTime; /* NaN before set to correct value */
+    NSTimeInterval _prePausePlaybackPosition; /* The playback position position before 
+                                                 the graph was stopped while the graph 
+                                                 is not running. Zero otherwise. 
+                                               */
+    
     Float64 _mixerOutputSampleRate;
 }
 

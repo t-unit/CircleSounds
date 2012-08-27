@@ -76,13 +76,21 @@ OSStatus MixerUnitRenderNoteCallack(void                        *inRefCon,
     
     if (*ioActionFlags & kAudioUnitRenderAction_PostRender) {
         
+        /* start playback */
         if (isnan(doc->_startSampleTime)) {
             doc->_startSampleTime = inTimeStamp->mSampleTime;
         }
         
+        
+        /* resume after pause */
+        if (doc->_prePausePlaybackPosition) {
+            doc->_startSampleTime = inTimeStamp->mSampleTime - doc->_prePausePlaybackPosition * doc->_mixerOutputSampleRate;
+            doc->_prePausePlaybackPosition = 0;
+        }
+        
         doc->_currentPlaybackPosition =  (inTimeStamp->mSampleTime - doc->_startSampleTime) / doc->_mixerOutputSampleRate;
         
-        
+        /* handle end of document */
         if (doc->_currentPlaybackPosition > doc->_duration) {
             
             dispatch_async(dispatch_get_main_queue(), ^{
@@ -251,6 +259,8 @@ OSStatus MixerUnitRenderNoteCallack(void                        *inRefCon,
         
         if (isRunning) {
             TOThrowOnError(AUGraphStop(_graph));
+            
+            _prePausePlaybackPosition = _currentPlaybackPosition;
         }
     }
 }
@@ -273,6 +283,7 @@ OSStatus MixerUnitRenderNoteCallack(void                        *inRefCon,
 {
     _startSampleTime = NAN;
     _currentPlaybackPosition = 0;
+    _prePausePlaybackPosition = 0;
     
     for (TOPlugableSound *sound in self.plugableSounds) {
         [sound handleDocumentReset];
@@ -349,7 +360,10 @@ OSStatus MixerUnitRenderNoteCallack(void                        *inRefCon,
         [soundObject setupFinished];
     }
     
+#if DEBUG
     CAShow(_graph);
+#endif
+    
 }
 
 
