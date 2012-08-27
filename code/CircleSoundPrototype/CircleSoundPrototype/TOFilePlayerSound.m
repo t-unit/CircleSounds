@@ -268,6 +268,16 @@ OSStatus FilePlayerUnitRenderNotifyCallblack (void                        *inRef
 
 - (void)applySchedulingChanges
 {
+    if (isnan(_currentFilePlayerUnitRenderSampleTime)) {
+#if DEBUG
+        NSLog(@"%@ invalid sample time. Scheduling not possible!", self);
+#endif
+        return;
+    }
+    
+    
+    
+    
     TOThrowOnError(AudioUnitReset(_filePlayerUnit->unit,
                                   kAudioUnitScope_Input,
                                   0));
