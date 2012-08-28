@@ -15,7 +15,12 @@
 		D244673215EB9D5E003D47F6 /* TOAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D244673115EB9D5E003D47F6 /* TOAppDelegate.m */; };
 		D244673515EB9D5E003D47F6 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D244673315EB9D5E003D47F6 /* MainStoryboard.storyboard */; };
 		D244673815EB9D5E003D47F6 /* TOViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D244673715EB9D5E003D47F6 /* TOViewController.m */; };
-		D244674415EB9F0F003D47F6 /* TOWaveformView.m in Sources */ = {isa = PBXBuildFile; fileRef = D244674315EB9F0F003D47F6 /* TOWaveformView.m */; };
+		D244674815EBA121003D47F6 /* TOWaveformDrawer.m in Sources */ = {isa = PBXBuildFile; fileRef = D244674715EBA121003D47F6 /* TOWaveformDrawer.m */; };
+		D244675115EBCEE2003D47F6 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D244675015EBCEE2003D47F6 /* AudioToolbox.framework */; };
+		D244675E15EBCF9B003D47F6 /* TOCAShortcuts.m in Sources */ = {isa = PBXBuildFile; fileRef = D244675B15EBCF9B003D47F6 /* TOCAShortcuts.m */; };
+		D244675F15EBCF9B003D47F6 /* NSString+OSStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = D244675D15EBCF9B003D47F6 /* NSString+OSStatus.m */; };
+		D26C577B15EBE04200B65CD0 /* 07 Fair.m4a in Resources */ = {isa = PBXBuildFile; fileRef = D26C577A15EBE04200B65CD0 /* 07 Fair.m4a */; };
+		D26C577E15EBEC0E00B65CD0 /* 24 Eine Sultanine.m4a in Resources */ = {isa = PBXBuildFile; fileRef = D26C577D15EBEC0E00B65CD0 /* 24 Eine Sultanine.m4a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,8 +37,15 @@
 		D244673415EB9D5E003D47F6 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		D244673615EB9D5E003D47F6 /* TOViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TOViewController.h; sourceTree = "<group>"; };
 		D244673715EB9D5E003D47F6 /* TOViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TOViewController.m; sourceTree = "<group>"; };
-		D244674215EB9F0F003D47F6 /* TOWaveformView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TOWaveformView.h; sourceTree = "<group>"; };
-		D244674315EB9F0F003D47F6 /* TOWaveformView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TOWaveformView.m; sourceTree = "<group>"; };
+		D244674615EBA121003D47F6 /* TOWaveformDrawer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TOWaveformDrawer.h; sourceTree = "<group>"; };
+		D244674715EBA121003D47F6 /* TOWaveformDrawer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TOWaveformDrawer.m; sourceTree = "<group>"; };
+		D244675015EBCEE2003D47F6 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		D244675A15EBCF9B003D47F6 /* TOCAShortcuts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TOCAShortcuts.h; sourceTree = "<group>"; };
+		D244675B15EBCF9B003D47F6 /* TOCAShortcuts.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TOCAShortcuts.m; sourceTree = "<group>"; };
+		D244675C15EBCF9B003D47F6 /* NSString+OSStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+OSStatus.h"; sourceTree = "<group>"; };
+		D244675D15EBCF9B003D47F6 /* NSString+OSStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+OSStatus.m"; sourceTree = "<group>"; };
+		D26C577A15EBE04200B65CD0 /* 07 Fair.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "07 Fair.m4a"; sourceTree = "<group>"; };
+		D26C577D15EBEC0E00B65CD0 /* 24 Eine Sultanine.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "24 Eine Sultanine.m4a"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -41,6 +53,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D244675115EBCEE2003D47F6 /* AudioToolbox.framework in Frameworks */,
 				D244672215EB9D5E003D47F6 /* UIKit.framework in Frameworks */,
 				D244672415EB9D5E003D47F6 /* Foundation.framework in Frameworks */,
 				D244672615EB9D5E003D47F6 /* CoreGraphics.framework in Frameworks */,
@@ -70,6 +83,7 @@
 		D244672015EB9D5E003D47F6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D244675015EBCEE2003D47F6 /* AudioToolbox.framework */,
 				D244672115EB9D5E003D47F6 /* UIKit.framework */,
 				D244672315EB9D5E003D47F6 /* Foundation.framework */,
 				D244672515EB9D5E003D47F6 /* CoreGraphics.framework */,
@@ -80,14 +94,18 @@
 		D244672715EB9D5E003D47F6 /* WaveformViewer */ = {
 			isa = PBXGroup;
 			children = (
-				D244674215EB9F0F003D47F6 /* TOWaveformView.h */,
-				D244674315EB9F0F003D47F6 /* TOWaveformView.m */,
+				D244675A15EBCF9B003D47F6 /* TOCAShortcuts.h */,
+				D244675B15EBCF9B003D47F6 /* TOCAShortcuts.m */,
+				D244675C15EBCF9B003D47F6 /* NSString+OSStatus.h */,
+				D244675D15EBCF9B003D47F6 /* NSString+OSStatus.m */,
 				D244673015EB9D5E003D47F6 /* TOAppDelegate.h */,
 				D244673115EB9D5E003D47F6 /* TOAppDelegate.m */,
 				D244673315EB9D5E003D47F6 /* MainStoryboard.storyboard */,
 				D244673615EB9D5E003D47F6 /* TOViewController.h */,
 				D244673715EB9D5E003D47F6 /* TOViewController.m */,
 				D244672815EB9D5E003D47F6 /* Supporting Files */,
+				D244674615EBA121003D47F6 /* TOWaveformDrawer.h */,
+				D244674715EBA121003D47F6 /* TOWaveformDrawer.m */,
 			);
 			path = WaveformViewer;
 			sourceTree = "<group>";
@@ -95,6 +113,8 @@
 		D244672815EB9D5E003D47F6 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				D26C577D15EBEC0E00B65CD0 /* 24 Eine Sultanine.m4a */,
+				D26C577A15EBE04200B65CD0 /* 07 Fair.m4a */,
 				D244672915EB9D5E003D47F6 /* WaveformViewer-Info.plist */,
 				D244672A15EB9D5E003D47F6 /* InfoPlist.strings */,
 				D244672D15EB9D5E003D47F6 /* main.m */,
@@ -157,6 +177,8 @@
 			files = (
 				D244672C15EB9D5E003D47F6 /* InfoPlist.strings in Resources */,
 				D244673515EB9D5E003D47F6 /* MainStoryboard.storyboard in Resources */,
+				D26C577B15EBE04200B65CD0 /* 07 Fair.m4a in Resources */,
+				D26C577E15EBEC0E00B65CD0 /* 24 Eine Sultanine.m4a in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -170,7 +192,9 @@
 				D244672E15EB9D5E003D47F6 /* main.m in Sources */,
 				D244673215EB9D5E003D47F6 /* TOAppDelegate.m in Sources */,
 				D244673815EB9D5E003D47F6 /* TOViewController.m in Sources */,
-				D244674415EB9F0F003D47F6 /* TOWaveformView.m in Sources */,
+				D244674815EBA121003D47F6 /* TOWaveformDrawer.m in Sources */,
+				D244675E15EBCF9B003D47F6 /* TOCAShortcuts.m in Sources */,
+				D244675F15EBCF9B003D47F6 /* NSString+OSStatus.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
