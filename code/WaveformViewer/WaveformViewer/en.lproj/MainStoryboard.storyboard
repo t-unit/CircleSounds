@@ -15,10 +15,10 @@
                             <view translatesAutoresizingMaskIntoConstraints="NO" contentMode="scaleToFill" id="c0v-JX-RWy">
                                 <subviews>
                                     <imageView translatesAutoresizingMaskIntoConstraints="NO" userInteractionEnabled="NO" contentMode="scaleToFill" id="eoM-f2-FLB">
-                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="calibratedRGB"/>
                                     </imageView>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.25" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="eoM-f2-FLB" firstAttribute="trailing" secondItem="c0v-JX-RWy" secondAttribute="trailing" type="default" id="2a0-Lg-DgR"/>
                                     <constraint firstItem="eoM-f2-FLB" firstAttribute="leading" secondItem="c0v-JX-RWy" secondAttribute="leading" type="default" id="8Ao-5F-u9U"/>
@@ -26,17 +26,37 @@
                                     <constraint firstItem="eoM-f2-FLB" firstAttribute="bottom" secondItem="c0v-JX-RWy" secondAttribute="bottom" type="default" id="dwa-Lt-bv9"/>
                                 </constraints>
                             </view>
+                            <view translatesAutoresizingMaskIntoConstraints="NO" contentMode="scaleToFill" id="daS-D8-WN8">
+                                <subviews>
+                                    <imageView translatesAutoresizingMaskIntoConstraints="NO" userInteractionEnabled="NO" contentMode="scaleToFill" id="UFP-mx-yin">
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="500" id="Oyy-AH-cOy"/>
+                                            <constraint firstAttribute="width" constant="500" id="xHJ-o4-yDq"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.25" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="UFP-mx-yin" firstAttribute="top" secondItem="daS-D8-WN8" secondAttribute="top" type="default" id="2pe-CJ-rEU"/>
+                                    <constraint firstItem="UFP-mx-yin" firstAttribute="leading" secondItem="daS-D8-WN8" secondAttribute="leading" type="default" id="HIB-gv-xg5"/>
+                                </constraints>
+                            </view>
                         </subviews>
-                        <color key="backgroundColor" red="0.94117647059999998" green="0.50196078430000002" blue="0.066666666669999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="c0v-JX-RWy" firstAttribute="centerX" secondItem="5" secondAttribute="centerX" type="default" id="0r9-ik-exZ"/>
+                            <constraint firstItem="daS-D8-WN8" firstAttribute="top" secondItem="5" secondAttribute="top" constant="184" id="2mc-dT-Bbv"/>
                             <constraint firstItem="c0v-JX-RWy" firstAttribute="top" secondItem="5" secondAttribute="top" constant="20" symbolic="YES" type="default" id="Ct6-P0-Xtk"/>
+                            <constraint firstAttribute="trailing" secondItem="daS-D8-WN8" secondAttribute="trailing" constant="131" id="OJB-jP-Yrs"/>
+                            <constraint firstAttribute="bottom" secondItem="daS-D8-WN8" secondAttribute="bottom" constant="320" id="OTa-jI-O27"/>
+                            <constraint firstItem="daS-D8-WN8" firstAttribute="leading" secondItem="5" secondAttribute="leading" constant="137" id="TEj-Te-PgB"/>
                             <constraint firstAttribute="bottom" secondItem="c0v-JX-RWy" secondAttribute="bottom" constant="884" id="fI0-xL-d4C"/>
+                            <constraint firstItem="c0v-JX-RWy" firstAttribute="centerX" secondItem="5" secondAttribute="centerX" type="default" id="oqy-WJ-Saj"/>
                             <constraint firstItem="c0v-JX-RWy" firstAttribute="leading" secondItem="5" secondAttribute="leading" constant="134" id="srf-N4-tDo"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="imageView" destination="eoM-f2-FLB" id="akd-HG-Gno"/>
+                        <outlet property="imageView2" destination="UFP-mx-yin" id="xe8-e3-qAh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3" sceneMemberID="firstResponder"/>
@@ -51,6 +71,7 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/TOViewController.h"/>
             <relationships>
                 <relationship kind="outlet" name="imageView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="imageView2" candidateClass="UIImageView"/>
             </relationships>
         </class>
     </classes>

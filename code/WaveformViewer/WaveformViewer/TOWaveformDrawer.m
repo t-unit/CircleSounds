@@ -27,7 +27,9 @@
                                                are drawn.
                                              */
 @property (assign, nonatomic) CGFloat distBetweenSamples; /* in radians on circle mode */
-@property (assign, nonatomic) CGFloat maxAmplitude;
+@property (assign, nonatomic) CGFloat maxAmplitude; /* only used in rectangle mode */
+@property (assign, nonatomic) CGFloat outerRadius; /* only used in circle mode */
+@property (assign, nonatomic) CGPoint center; /* Center of the circle. Only used in circle mode */
 
 @end
 
@@ -88,7 +90,7 @@
 - (CGPoint)pointInRectWithSample:(AudioSampleType)sample atPosition:(UInt64)samplePostion
 {    
     CGFloat x = samplePostion * self.distBetweenSamples;
-    CGFloat y = self.base + sample / NORMALIZED_MAX * self.maxAmplitude;
+    CGFloat y = self.base + (sample / NORMALIZED_MAX * self.maxAmplitude);
     
     return CGPointMake(x, y);
 }
@@ -96,11 +98,19 @@
 
 - (CGPoint)pointInCircletWithSample:(AudioSampleType)sample atPosition:(UInt64)samplePostion
 {
-    CGFloat widthPerSample = self.imageSize.width / (self.audioFileDuration * self.audioFileClientFormat.mSampleRate);
-    CGFloat baseHeight = self.imageSize.height / 2.0;
-    CGFloat maxApplitude = MIN(self.imageSize.width, self.imageSize.height) - self.innerRadius;
+    CGFloat angle = M_PI - (samplePostion * self.distBetweenSamples);
+    CGFloat amplitude = 1/NORMALIZED_MAX * sample;
     
-    return CGPointMake(samplePostion*widthPerSample, baseHeight+sample/NORMALIZED_MAX * maxApplitude);
+    CGPoint basePoint = CGPointMake(sinf(angle) * self.base, cosf(angle) * self.base);
+    CGPoint maxPosAmplitudePoint = CGPointMake(sinf(angle) * self.outerRadius, cosf(angle) * self.outerRadius);
+    CGPoint vecBaseMax = CGPointMake(maxPosAmplitudePoint.x - basePoint.x, maxPosAmplitudePoint.y - basePoint.y);
+    
+    
+    CGFloat x = self.center.x  + basePoint.x + (vecBaseMax.x * amplitude);
+    CGFloat y = self.center.y + basePoint.y + (vecBaseMax.y * amplitude);
+
+    
+    return CGPointMake(x, y);
 }
 
 
@@ -126,7 +136,12 @@
         [waveformPath moveToPoint:CGPointMake(0, self.base)];
     }
     else {
+        self.outerRadius = MIN(self.imageSize.width, self.imageSize.height) / 2.0;
+        self.base =  self.outerRadius - (self.innerRadius / 2.0);
+        self.distBetweenSamples = (2 * M_PI) / (self.audioFileDuration * self.audioFileClientFormat.mSampleRate);
+        self.center = CGPointMake(self.imageSize.width/2.0, self.imageSize.height/2.0);
         
+        [waveformPath moveToPoint:CGPointMake(self.center.x, self.center.y - self.base)];
     }
     
     
@@ -190,6 +205,8 @@
     if (!self.url) {
         return nil;
     }
+    
+    [self setupExtAudioFile];
     
     
     // setup drawing context

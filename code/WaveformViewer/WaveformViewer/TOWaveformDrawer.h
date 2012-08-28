@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 Tobias Ottenweller. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 
 typedef enum TOWaveformDrawerMode : NSInteger
 {
@@ -15,7 +15,7 @@ typedef enum TOWaveformDrawerMode : NSInteger
 } TOWaveformDrawerMode;
 
 
-@interface TOWaveformDrawer : UIView
+@interface TOWaveformDrawer : NSObject
 
 @property (assign, nonatomic) TOWaveformDrawerMode mode;
 @property (strong, nonatomic) UIColor *waveformColor;
