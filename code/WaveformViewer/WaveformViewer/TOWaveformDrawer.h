@@ -31,18 +31,14 @@ typedef enum TOWaveformDrawerMode : NSInteger
 
 
 /**
- The url must not be nil. It also needs to point to a valid audio file URL.
- An exception will be thrown otherwise.
- */
-@property (strong, nonatomic) NSURL *url;
-
-
-/**
  Method creating an image representation of an audio file found at 'url'.
  It supports files containing any number of channels but downsamples
  all files to mono.
- Accessing this property can be fairy expensive!
+ The url must not be nil. It also needs to point to a valid audio file URL.
+ An exception will be thrown otherwise.
+ 
+ Calling this method can be fairy expensive!
  */
-@property (readonly, nonatomic) UIImage *waveformImage;
+- (UIImage *)waveformFromImageAtURL:(NSURL *)url;
 
 @end

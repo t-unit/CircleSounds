@@ -44,7 +44,7 @@
 }
 
 
-- (void)setupExtAudioFile
+- (void)setupExtAudioFileAtURL:(NSURL *)url
 {
     if (self.extAudioFile) {
         TOThrowOnError(ExtAudioFileDispose(self.extAudioFile));
@@ -53,7 +53,7 @@
     
     // open the file
     ExtAudioFileRef extFile;
-    TOThrowOnError(ExtAudioFileOpenURL((__bridge CFURLRef)(self.url), &extFile));
+    TOThrowOnError(ExtAudioFileOpenURL((__bridge CFURLRef)(url), &extFile));
     self.extAudioFile = extFile;
     
     
@@ -111,15 +111,6 @@
 
     
     return CGPointMake(x, y);
-}
-
-
-- (void)setUrl:(NSURL *)url
-{
-     NSParameterAssert(url); // make sure 'url' is not nil.
-    
-    _url = url;
-    [self setupExtAudioFile];
 }
 
 
@@ -200,13 +191,11 @@
 }
 
 
-- (UIImage *)waveformImage
+- (UIImage *)waveformFromImageAtURL:(NSURL *)url
 {
-    if (!self.url) {
-        return nil;
-    }
+    NSParameterAssert(url);
     
-    [self setupExtAudioFile];
+    [self setupExtAudioFileAtURL:url];
     
     
     // setup drawing context

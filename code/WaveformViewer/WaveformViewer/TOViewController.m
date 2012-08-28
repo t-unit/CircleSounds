@@ -29,19 +29,18 @@
     
     TOWaveformDrawer *drawer = [[TOWaveformDrawer alloc] init];
     drawer.mode = TOWaveformDrawerModeRectangle;
-    drawer.waveformColor = [UIColor colorWithRed:50/255.0 green:200/255.0 blue:255/255.0 alpha:0.8];
-    drawer.url = audioFileURL;
+    drawer.waveformColor = [UIColor colorWithRed:50/255.0 green:200/255.0 blue:255/255.0 alpha:1];
     drawer.imageSize = CGSizeMake(500, 100);
     
     
-    UIImage *image = [drawer waveformImage];
+    UIImage *image = [drawer waveformFromImageAtURL:audioFileURL];
     self.imageView.image = image;
     
     
     drawer.mode = TOWaveformDrawerModeCircle;
     drawer.imageSize = CGSizeMake(500, 500);
     drawer.innerRadius = 150;
-    image = [drawer waveformImage];
+    image = [drawer waveformFromImageAtURL:audioFileURL];
     self.imageView2.image = image;
     
     NSLog(@"done");
