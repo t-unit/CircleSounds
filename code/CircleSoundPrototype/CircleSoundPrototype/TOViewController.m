@@ -27,6 +27,10 @@
 {
     [super viewDidLoad];
     
+    self.leftMeterView.mode = TOAudioMeterViewModeLandscape;
+    self.rightMeterView.mode = TOAudioMeterViewModeLandscape;
+    
+    
 	self.document = [[TOSoundDocument alloc] init];
     self.document.duration = 60;    
     

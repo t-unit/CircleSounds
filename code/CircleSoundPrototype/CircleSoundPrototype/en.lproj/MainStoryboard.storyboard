@@ -9,77 +9,121 @@
             <objects>
                 <viewController id="2" customClass="TOViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5">
-                        <rect key="frame" x="0.0" y="20" width="768" height="1004"/>
+                        <rect key="frame" x="0.0" y="20" width="1024" height="748"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view translatesAutoresizingMaskIntoConstraints="NO" contentMode="scaleToFill" id="TJ8-OZ-SaE" customClass="TOAudioMeterView">
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
-                            <view translatesAutoresizingMaskIntoConstraints="NO" contentMode="scaleToFill" id="bIk-Mu-0h6" customClass="TOAudioMeterView">
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
-                            <button translatesAutoresizingMaskIntoConstraints="NO" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="yG6-ns-bte">
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="start">
-                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="selected" title="pause"/>
-                                <state key="highlighted" title="pause">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="startPauseButtonPressed:" destination="2" eventType="touchUpInside" id="yjq-at-ca7"/>
-                                </connections>
-                            </button>
-                            <button translatesAutoresizingMaskIntoConstraints="NO" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="41O-kL-3aC">
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="reset">
-                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="highlighted">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="resetButtonPressed:" destination="2" eventType="touchUpInside" id="opQ-ee-Tw5"/>
-                                </connections>
-                            </button>
-                            <slider translatesAutoresizingMaskIntoConstraints="NO" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="0.0" maxValue="1" id="gqm-E4-YhM">
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="266" id="LCY-QV-MhO"/>
-                                </constraints>
-                                <connections>
-                                    <action selector="volumeSliderValueChanged:" destination="2" eventType="valueChanged" id="v99-4x-juZ"/>
-                                </connections>
-                            </slider>
+                            <toolbar translatesAutoresizingMaskIntoConstraints="NO" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="Rhd-yK-g8p">
+                                <items>
+                                    <barButtonItem style="plain" id="n8Q-IE-8IY">
+                                        <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="yG6-ns-bte">
+                                            <rect key="frame" x="12" y="7" width="57" height="31"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                            <state key="normal" title="start">
+                                                <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                            <state key="selected" title="pause"/>
+                                            <state key="highlighted" title="pause">
+                                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="startPauseButtonPressed:" destination="2" eventType="touchUpInside" id="yjq-at-ca7"/>
+                                            </connections>
+                                        </button>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" id="edL-cw-agy">
+                                        <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="41O-kL-3aC">
+                                            <rect key="frame" x="79" y="7" width="60" height="31"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                            <state key="normal" title="reset">
+                                                <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                            <state key="highlighted">
+                                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="resetButtonPressed:" destination="2" eventType="touchUpInside" id="opQ-ee-Tw5"/>
+                                            </connections>
+                                        </button>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" id="EaK-Dx-xdZ">
+                                        <slider key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="0.0" maxValue="1" id="gqm-E4-YhM">
+                                            <rect key="frame" x="149" y="11" width="270" height="23"/>
+                                            <connections>
+                                                <action selector="volumeSliderValueChanged:" destination="2" eventType="valueChanged" id="v99-4x-juZ"/>
+                                            </connections>
+                                        </slider>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="oGG-Kg-fpv"/>
+                                    <barButtonItem style="plain" id="Fwg-J7-vSM">
+                                        <view key="customView" contentMode="scaleToFill" id="QQZ-fT-dPm">
+                                            <rect key="frame" x="622" y="-20" width="390" height="83"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <subviews>
+                                                <view translatesAutoresizingMaskIntoConstraints="NO" contentMode="scaleToFill" id="bIk-Mu-0h6" customClass="TOAudioMeterView">
+                                                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                </view>
+                                                <label translatesAutoresizingMaskIntoConstraints="NO" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" text="L" adjustsFontSizeToFit="NO" autoshrinkMode="none" id="o2V-J9-9OD">
+                                                    <nil key="highlightedColor"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                </label>
+                                                <label translatesAutoresizingMaskIntoConstraints="NO" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" text="R" adjustsFontSizeToFit="NO" autoshrinkMode="none" id="Lse-7u-Qip">
+                                                    <nil key="highlightedColor"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                </label>
+                                                <view translatesAutoresizingMaskIntoConstraints="NO" contentMode="scaleToFill" id="TJ8-OZ-SaE" customClass="TOAudioMeterView">
+                                                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                </view>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                            <constraints>
+                                                <constraint firstItem="Lse-7u-Qip" firstAttribute="top" secondItem="QQZ-fT-dPm" secondAttribute="top" constant="41" id="1oS-i1-lVx"/>
+                                                <constraint firstItem="bIk-Mu-0h6" firstAttribute="bottom" secondItem="o2V-J9-9OD" secondAttribute="bottom" type="default" id="5hV-W6-lK5"/>
+                                                <constraint firstItem="bIk-Mu-0h6" firstAttribute="trailing" secondItem="TJ8-OZ-SaE" secondAttribute="trailing" type="default" id="7dI-r4-dv2"/>
+                                                <constraint firstItem="bIk-Mu-0h6" firstAttribute="top" secondItem="QQZ-fT-dPm" secondAttribute="top" constant="21" id="G7l-KJ-cvf"/>
+                                                <constraint firstItem="Lse-7u-Qip" firstAttribute="leading" secondItem="QQZ-fT-dPm" secondAttribute="leading" constant="21" id="KuF-gm-lfd"/>
+                                                <constraint firstItem="o2V-J9-9OD" firstAttribute="leading" secondItem="QQZ-fT-dPm" secondAttribute="leading" constant="23" id="M8W-k1-XeJ"/>
+                                                <constraint firstItem="TJ8-OZ-SaE" firstAttribute="bottom" secondItem="Lse-7u-Qip" secondAttribute="bottom" type="default" id="P2C-Ei-UFA"/>
+                                                <constraint firstItem="TJ8-OZ-SaE" firstAttribute="top" secondItem="QQZ-fT-dPm" secondAttribute="top" constant="42" id="R2x-Rx-Rnp"/>
+                                                <constraint firstItem="o2V-J9-9OD" firstAttribute="top" secondItem="QQZ-fT-dPm" secondAttribute="top" constant="20" symbolic="YES" type="default" id="bty-RC-pC9"/>
+                                                <constraint firstItem="bIk-Mu-0h6" firstAttribute="leading" secondItem="o2V-J9-9OD" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="pPp-Vj-QXU"/>
+                                                <constraint firstItem="bIk-Mu-0h6" firstAttribute="leading" secondItem="TJ8-OZ-SaE" secondAttribute="leading" type="default" id="r1a-3M-d1f"/>
+                                                <constraint firstAttribute="trailing" secondItem="bIk-Mu-0h6" secondAttribute="trailing" constant="-1" id="yXJ-KC-fqc"/>
+                                            </constraints>
+                                        </view>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
                             <label translatesAutoresizingMaskIntoConstraints="NO" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" text="0" textAlignment="center" adjustsFontSizeToFit="NO" autoshrinkMode="none" id="Od4-Hh-3ux">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="82" id="sgF-uj-Hje"/>
+                                </constraints>
                                 <nil key="highlightedColor"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             </label>
+                            <view translatesAutoresizingMaskIntoConstraints="NO" contentMode="scaleToFill" id="re0-VE-zRo">
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="yG6-ns-bte" firstAttribute="leading" secondItem="5" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="8Zv-ed-8Fy"/>
-                            <constraint firstItem="bIk-Mu-0h6" firstAttribute="leading" secondItem="5" secondAttribute="leading" constant="582" id="9Vb-1d-wJL"/>
-                            <constraint firstItem="41O-kL-3aC" firstAttribute="leading" secondItem="yG6-ns-bte" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="BOU-92-Wpe"/>
-                            <constraint firstItem="TJ8-OZ-SaE" firstAttribute="bottom" secondItem="bIk-Mu-0h6" secondAttribute="bottom" type="default" id="Dqw-ui-exY"/>
-                            <constraint firstItem="41O-kL-3aC" firstAttribute="top" secondItem="5" secondAttribute="top" constant="20" symbolic="YES" type="default" id="E6i-f1-CC7"/>
-                            <constraint firstItem="Od4-Hh-3ux" firstAttribute="leading" secondItem="5" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="OjC-bH-hJt"/>
-                            <constraint firstItem="Od4-Hh-3ux" firstAttribute="trailing" secondItem="41O-kL-3aC" secondAttribute="trailing" type="default" id="VVy-F6-d5R"/>
-                            <constraint firstAttribute="trailing" secondItem="bIk-Mu-0h6" secondAttribute="trailing" constant="117" id="cdr-Ni-g2c"/>
-                            <constraint firstItem="TJ8-OZ-SaE" firstAttribute="leading" secondItem="5" secondAttribute="leading" constant="673" id="juI-8o-vBi"/>
-                            <constraint firstItem="gqm-E4-YhM" firstAttribute="leading" secondItem="41O-kL-3aC" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="juP-2p-qwU"/>
-                            <constraint firstItem="gqm-E4-YhM" firstAttribute="top" secondItem="5" secondAttribute="top" constant="31" id="kHi-vh-ENy"/>
-                            <constraint firstAttribute="trailing" secondItem="TJ8-OZ-SaE" secondAttribute="trailing" constant="26" id="rNT-kt-wqZ"/>
-                            <constraint firstItem="bIk-Mu-0h6" firstAttribute="top" secondItem="5" secondAttribute="top" constant="20" symbolic="YES" type="default" id="s8v-G9-4lQ"/>
-                            <constraint firstItem="TJ8-OZ-SaE" firstAttribute="top" secondItem="5" secondAttribute="top" constant="20" symbolic="YES" type="default" id="sfG-Sz-epp"/>
-                            <constraint firstItem="Od4-Hh-3ux" firstAttribute="top" secondItem="yG6-ns-bte" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="x3p-hj-4xS"/>
-                            <constraint firstItem="yG6-ns-bte" firstAttribute="top" secondItem="5" secondAttribute="top" constant="20" symbolic="YES" type="default" id="y7Q-3t-rVz"/>
-                            <constraint firstAttribute="bottom" secondItem="bIk-Mu-0h6" secondAttribute="bottom" constant="660" id="yba-y0-LG2"/>
+                            <constraint firstItem="re0-VE-zRo" firstAttribute="bottom" secondItem="5" secondAttribute="bottom" type="default" id="3t7-pj-gjT"/>
+                            <constraint firstItem="re0-VE-zRo" firstAttribute="trailing" secondItem="5" secondAttribute="trailing" type="default" id="847-ie-Fv4"/>
+                            <constraint firstItem="Od4-Hh-3ux" firstAttribute="top" secondItem="5" secondAttribute="top" constant="11" id="E31-Ho-T2O"/>
+                            <constraint firstItem="Rhd-yK-g8p" firstAttribute="top" secondItem="5" secondAttribute="top" type="default" id="G2p-gk-6sq"/>
+                            <constraint firstItem="Rhd-yK-g8p" firstAttribute="trailing" secondItem="5" secondAttribute="trailing" type="default" id="I4J-aG-Vo2"/>
+                            <constraint firstItem="Rhd-yK-g8p" firstAttribute="leading" secondItem="5" secondAttribute="leading" type="default" id="LdH-yQ-qgN"/>
+                            <constraint firstItem="re0-VE-zRo" firstAttribute="leading" secondItem="5" secondAttribute="leading" type="default" id="Xtg-kV-F10"/>
+                            <constraint firstItem="Od4-Hh-3ux" firstAttribute="centerX" secondItem="Rhd-yK-g8p" secondAttribute="centerX" type="default" id="kpl-9w-INM"/>
+                            <constraint firstItem="re0-VE-zRo" firstAttribute="top" secondItem="Rhd-yK-g8p" secondAttribute="bottom" type="default" id="uxB-Hw-y4v"/>
                         </constraints>
+                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <connections>
                         <outlet property="currentTimeLabel" destination="Od4-Hh-3ux" id="cQq-5x-S4Y"/>
                         <outlet property="leftMeterView" destination="bIk-Mu-0h6" id="bes-gL-dxh"/>

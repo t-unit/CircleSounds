@@ -8,6 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
+typedef enum TOAudioMeterViewMode : NSInteger
+{
+    TOAudioMeterViewModePortrait,
+    TOAudioMeterViewModeLandscape
+    
+} TOAudioMeterViewMode;
+
+
+
 @interface TOAudioMeterView : UIView
 
 /**
@@ -25,5 +34,7 @@
  the correct position will be displayed.
  */
 @property (assign, nonatomic) CGFloat peakValue;
+
+@property (assign, nonatomic) TOAudioMeterViewMode mode;
 
 @end

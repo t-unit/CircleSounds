@@ -30,10 +30,18 @@
 - (void)drawRect:(CGRect)rect
 {
     CGRect layerRect;
-    layerRect.size.width = self.bounds.size.width;
-//    layerRect.size.height = roundf((self.bounds.size.height - (NUM_ELEMENTS-1) * 2) / NUM_ELEMENTS);
-    layerRect.size.height = (self.bounds.size.height - (NUM_ELEMENTS-1) * 2) / NUM_ELEMENTS;
-    layerRect.origin = CGPointMake(0, self.bounds.size.height-layerRect.size.height);
+    
+    if (self.mode == TOAudioMeterViewModePortrait) {
+        layerRect.size.width = self.bounds.size.width;
+        layerRect.size.height = (self.bounds.size.height - (NUM_ELEMENTS-1) * 2) / NUM_ELEMENTS;
+        layerRect.origin = CGPointMake(0, self.bounds.size.height-layerRect.size.height);
+    }
+    else {
+        layerRect.size.height = self.bounds.size.height;
+        layerRect.size.width = (self.bounds.size.width - (NUM_ELEMENTS-1) * 0.5) / NUM_ELEMENTS;
+        layerRect.origin = CGPointZero;
+    }
+    
 
     // layer properties
     UIColor *lowColor = [UIColor colorWithRed:0 green:0.3725 blue:0.4823 alpha:1.0];
@@ -76,7 +84,14 @@
         
         [placeholderPath stroke];
         
-        layerRect.origin.y -= layerRect.size.height +2;
+        // update the layer rect for the next element
+        if (self.mode == TOAudioMeterViewModePortrait) {
+            layerRect.origin.y -= layerRect.size.height + 2;
+        }
+        else {
+            layerRect.origin.x += layerRect.size.width + 0.5;
+        }
+        
     }
     
     self.meterElements = [meterElemets copy];
@@ -156,6 +171,13 @@
     
     NSUInteger visibleElementIndex = (self.peakElements.count-1) * self.peakValue;
     [[self.peakElements objectAtIndex:visibleElementIndex] setOpacity:1.0];
+}
+
+
+- (void)setMode:(TOAudioMeterViewMode)mode
+{
+    _mode = mode;
+    [self setNeedsDisplay];
 }
 
 @end
