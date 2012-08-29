@@ -1,0 +1,450 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		D2698E7515EE37D3008A52D7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2698E7415EE37D3008A52D7 /* UIKit.framework */; };
+		D2698E7715EE37D3008A52D7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2698E7615EE37D3008A52D7 /* Foundation.framework */; };
+		D2698E7915EE37D3008A52D7 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2698E7815EE37D3008A52D7 /* CoreGraphics.framework */; };
+		D2698E7F15EE37D3008A52D7 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D2698E7D15EE37D3008A52D7 /* InfoPlist.strings */; };
+		D2698E8115EE37D3008A52D7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D2698E8015EE37D3008A52D7 /* main.m */; };
+		D2698E8515EE37D4008A52D7 /* TOAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D2698E8415EE37D4008A52D7 /* TOAppDelegate.m */; };
+		D2698E8815EE37D4008A52D7 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2698E8615EE37D4008A52D7 /* MainStoryboard.storyboard */; };
+		D2698E8B15EE37D4008A52D7 /* TOViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2698E8A15EE37D4008A52D7 /* TOViewController.m */; };
+		D2698E9315EE37D4008A52D7 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2698E9215EE37D4008A52D7 /* SenTestingKit.framework */; };
+		D2698E9415EE37D4008A52D7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2698E7415EE37D3008A52D7 /* UIKit.framework */; };
+		D2698E9515EE37D4008A52D7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2698E7615EE37D3008A52D7 /* Foundation.framework */; };
+		D2698E9D15EE37D4008A52D7 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D2698E9B15EE37D4008A52D7 /* InfoPlist.strings */; };
+		D2698EA015EE37D4008A52D7 /* CircleSoundsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D2698E9F15EE37D4008A52D7 /* CircleSoundsTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		D2698E9615EE37D4008A52D7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D2698E6715EE37D3008A52D7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D2698E6F15EE37D3008A52D7;
+			remoteInfo = CircleSounds;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		D2698E7015EE37D3008A52D7 /* CircleSounds.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CircleSounds.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D2698E7415EE37D3008A52D7 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		D2698E7615EE37D3008A52D7 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		D2698E7815EE37D3008A52D7 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		D2698E7C15EE37D3008A52D7 /* CircleSounds-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CircleSounds-Info.plist"; sourceTree = "<group>"; };
+		D2698E7E15EE37D3008A52D7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		D2698E8015EE37D3008A52D7 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		D2698E8215EE37D4008A52D7 /* CircleSounds-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CircleSounds-Prefix.pch"; sourceTree = "<group>"; };
+		D2698E8315EE37D4008A52D7 /* TOAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TOAppDelegate.h; sourceTree = "<group>"; };
+		D2698E8415EE37D4008A52D7 /* TOAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TOAppDelegate.m; sourceTree = "<group>"; };
+		D2698E8715EE37D4008A52D7 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
+		D2698E8915EE37D4008A52D7 /* TOViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TOViewController.h; sourceTree = "<group>"; };
+		D2698E8A15EE37D4008A52D7 /* TOViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TOViewController.m; sourceTree = "<group>"; };
+		D2698E9115EE37D4008A52D7 /* CircleSoundsTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CircleSoundsTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D2698E9215EE37D4008A52D7 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		D2698E9A15EE37D4008A52D7 /* CircleSoundsTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CircleSoundsTests-Info.plist"; sourceTree = "<group>"; };
+		D2698E9C15EE37D4008A52D7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		D2698E9E15EE37D4008A52D7 /* CircleSoundsTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CircleSoundsTests.h; sourceTree = "<group>"; };
+		D2698E9F15EE37D4008A52D7 /* CircleSoundsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CircleSoundsTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D2698E6D15EE37D3008A52D7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D2698E7515EE37D3008A52D7 /* UIKit.framework in Frameworks */,
+				D2698E7715EE37D3008A52D7 /* Foundation.framework in Frameworks */,
+				D2698E7915EE37D3008A52D7 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D2698E8D15EE37D4008A52D7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D2698E9315EE37D4008A52D7 /* SenTestingKit.framework in Frameworks */,
+				D2698E9415EE37D4008A52D7 /* UIKit.framework in Frameworks */,
+				D2698E9515EE37D4008A52D7 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		D2698E6515EE37D3008A52D7 = {
+			isa = PBXGroup;
+			children = (
+				D2698E7A15EE37D3008A52D7 /* CircleSounds */,
+				D2698E9815EE37D4008A52D7 /* CircleSoundsTests */,
+				D2698E7315EE37D3008A52D7 /* Frameworks */,
+				D2698E7115EE37D3008A52D7 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		D2698E7115EE37D3008A52D7 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D2698E7015EE37D3008A52D7 /* CircleSounds.app */,
+				D2698E9115EE37D4008A52D7 /* CircleSoundsTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D2698E7315EE37D3008A52D7 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D2698E7415EE37D3008A52D7 /* UIKit.framework */,
+				D2698E7615EE37D3008A52D7 /* Foundation.framework */,
+				D2698E7815EE37D3008A52D7 /* CoreGraphics.framework */,
+				D2698E9215EE37D4008A52D7 /* SenTestingKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D2698E7A15EE37D3008A52D7 /* CircleSounds */ = {
+			isa = PBXGroup;
+			children = (
+				D2698E8315EE37D4008A52D7 /* TOAppDelegate.h */,
+				D2698E8415EE37D4008A52D7 /* TOAppDelegate.m */,
+				D2698E8615EE37D4008A52D7 /* MainStoryboard.storyboard */,
+				D2698E8915EE37D4008A52D7 /* TOViewController.h */,
+				D2698E8A15EE37D4008A52D7 /* TOViewController.m */,
+				D2698E7B15EE37D3008A52D7 /* Supporting Files */,
+			);
+			path = CircleSounds;
+			sourceTree = "<group>";
+		};
+		D2698E7B15EE37D3008A52D7 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				D2698E7C15EE37D3008A52D7 /* CircleSounds-Info.plist */,
+				D2698E7D15EE37D3008A52D7 /* InfoPlist.strings */,
+				D2698E8015EE37D3008A52D7 /* main.m */,
+				D2698E8215EE37D4008A52D7 /* CircleSounds-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		D2698E9815EE37D4008A52D7 /* CircleSoundsTests */ = {
+			isa = PBXGroup;
+			children = (
+				D2698E9E15EE37D4008A52D7 /* CircleSoundsTests.h */,
+				D2698E9F15EE37D4008A52D7 /* CircleSoundsTests.m */,
+				D2698E9915EE37D4008A52D7 /* Supporting Files */,
+			);
+			path = CircleSoundsTests;
+			sourceTree = "<group>";
+		};
+		D2698E9915EE37D4008A52D7 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				D2698E9A15EE37D4008A52D7 /* CircleSoundsTests-Info.plist */,
+				D2698E9B15EE37D4008A52D7 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		D2698E6F15EE37D3008A52D7 /* CircleSounds */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D2698EA315EE37D4008A52D7 /* Build configuration list for PBXNativeTarget "CircleSounds" */;
+			buildPhases = (
+				D2698E6C15EE37D3008A52D7 /* Sources */,
+				D2698E6D15EE37D3008A52D7 /* Frameworks */,
+				D2698E6E15EE37D3008A52D7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CircleSounds;
+			productName = CircleSounds;
+			productReference = D2698E7015EE37D3008A52D7 /* CircleSounds.app */;
+			productType = "com.apple.product-type.application";
+		};
+		D2698E9015EE37D4008A52D7 /* CircleSoundsTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D2698EA615EE37D4008A52D7 /* Build configuration list for PBXNativeTarget "CircleSoundsTests" */;
+			buildPhases = (
+				D2698E8C15EE37D4008A52D7 /* Sources */,
+				D2698E8D15EE37D4008A52D7 /* Frameworks */,
+				D2698E8E15EE37D4008A52D7 /* Resources */,
+				D2698E8F15EE37D4008A52D7 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D2698E9715EE37D4008A52D7 /* PBXTargetDependency */,
+			);
+			name = CircleSoundsTests;
+			productName = CircleSoundsTests;
+			productReference = D2698E9115EE37D4008A52D7 /* CircleSoundsTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D2698E6715EE37D3008A52D7 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = TO;
+				LastUpgradeCheck = 0450;
+				ORGANIZATIONNAME = "Tobias Ottenweller";
+			};
+			buildConfigurationList = D2698E6A15EE37D3008A52D7 /* Build configuration list for PBXProject "CircleSounds" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = D2698E6515EE37D3008A52D7;
+			productRefGroup = D2698E7115EE37D3008A52D7 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D2698E6F15EE37D3008A52D7 /* CircleSounds */,
+				D2698E9015EE37D4008A52D7 /* CircleSoundsTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		D2698E6E15EE37D3008A52D7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D2698E7F15EE37D3008A52D7 /* InfoPlist.strings in Resources */,
+				D2698E8815EE37D4008A52D7 /* MainStoryboard.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D2698E8E15EE37D4008A52D7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D2698E9D15EE37D4008A52D7 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		D2698E8F15EE37D4008A52D7 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D2698E6C15EE37D3008A52D7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D2698E8115EE37D3008A52D7 /* main.m in Sources */,
+				D2698E8515EE37D4008A52D7 /* TOAppDelegate.m in Sources */,
+				D2698E8B15EE37D4008A52D7 /* TOViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D2698E8C15EE37D4008A52D7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D2698EA015EE37D4008A52D7 /* CircleSoundsTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		D2698E9715EE37D4008A52D7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D2698E6F15EE37D3008A52D7 /* CircleSounds */;
+			targetProxy = D2698E9615EE37D4008A52D7 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		D2698E7D15EE37D3008A52D7 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D2698E7E15EE37D3008A52D7 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		D2698E8615EE37D4008A52D7 /* MainStoryboard.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D2698E8715EE37D4008A52D7 /* en */,
+			);
+			name = MainStoryboard.storyboard;
+			sourceTree = "<group>";
+		};
+		D2698E9B15EE37D4008A52D7 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D2698E9C15EE37D4008A52D7 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		D2698EA115EE37D4008A52D7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Debug;
+		};
+		D2698EA215EE37D4008A52D7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		D2698EA415EE37D4008A52D7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "CircleSounds/CircleSounds-Prefix.pch";
+				INFOPLIST_FILE = "CircleSounds/CircleSounds-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		D2698EA515EE37D4008A52D7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "CircleSounds/CircleSounds-Prefix.pch";
+				INFOPLIST_FILE = "CircleSounds/CircleSounds-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		D2698EA715EE37D4008A52D7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/CircleSounds.app/CircleSounds";
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "CircleSounds/CircleSounds-Prefix.pch";
+				INFOPLIST_FILE = "CircleSoundsTests/CircleSoundsTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		D2698EA815EE37D4008A52D7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/CircleSounds.app/CircleSounds";
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "CircleSounds/CircleSounds-Prefix.pch";
+				INFOPLIST_FILE = "CircleSoundsTests/CircleSoundsTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D2698E6A15EE37D3008A52D7 /* Build configuration list for PBXProject "CircleSounds" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D2698EA115EE37D4008A52D7 /* Debug */,
+				D2698EA215EE37D4008A52D7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D2698EA315EE37D4008A52D7 /* Build configuration list for PBXNativeTarget "CircleSounds" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D2698EA415EE37D4008A52D7 /* Debug */,
+				D2698EA515EE37D4008A52D7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		D2698EA615EE37D4008A52D7 /* Build configuration list for PBXNativeTarget "CircleSoundsTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D2698EA715EE37D4008A52D7 /* Debug */,
+				D2698EA815EE37D4008A52D7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D2698E6715EE37D3008A52D7 /* Project object */;
+}
