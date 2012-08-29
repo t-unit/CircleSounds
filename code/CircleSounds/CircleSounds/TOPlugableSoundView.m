@@ -28,4 +28,11 @@
 }
 */
 
+
+- (void)setColor:(UIColor *)color
+{
+    _color = color;
+    self.backgroundColor = color;
+}
+
 @end

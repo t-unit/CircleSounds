@@ -8,7 +8,14 @@
 
 #import "TOViewController.h"
 
+#import "TOPlugableSoundController.h"
+#import "TOPlugableSoundView.h"
+#import "TOEqualizerSound.h"
+
+
 @interface TOViewController ()
+
+@property (strong, nonatomic) TOPlugableSoundController *soundController;
 
 @end
 
@@ -17,7 +24,14 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+    
+    TOEqualizerSound *sound = [[TOEqualizerSound alloc] init];
+    
+    self.soundController = [[TOPlugableSoundController alloc] initWithPlugableSound:sound
+                                                                         atPosition:CGRectMake(100, 100, 400, 400)];
+    
+    [self.view addSubview:self.soundController.soundView];
+
 }
 
 - (void)didReceiveMemoryWarning

@@ -11,5 +11,6 @@
 @interface TOPlugableSoundView : UIView
 
 @property (strong, nonatomic) UIImage *waveformImage;
+@property (strong, nonatomic) UIColor *color;
 
 @end
