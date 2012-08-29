@@ -189,18 +189,21 @@
         return;
     }
     
-    self.virtualViewRotation += sender.rotation;
-    
-    if (self.virtualViewRotation < MIN_ROTATION) {
-        self.virtualViewRotation = MIN_ROTATION;
+    if (sender.state == UIGestureRecognizerStateBegan) {
+        sender.rotation = self.virtualViewRotation;
     }
-    else if (self.virtualViewRotation > MAX_ROTATION) {
-        self.virtualViewRotation = MAX_ROTATION;
+    else {
+        self.virtualViewRotation = sender.rotation;
+        
+        if (self.virtualViewRotation < MIN_ROTATION) {
+            self.virtualViewRotation = MIN_ROTATION;
+        }
+        else if (self.virtualViewRotation > MAX_ROTATION) {
+            self.virtualViewRotation = MAX_ROTATION;
+        }
+        
+        [self updatePlaybackSpeed];
     }
-    
-    sender.rotation = 0.0;
-    
-    [self updatePlaybackSpeed];
 }
 
 
