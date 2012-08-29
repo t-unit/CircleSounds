@@ -26,6 +26,15 @@
 		D2698EBC15EE40E6008A52D7 /* TOColorInterpolator.m in Sources */ = {isa = PBXBuildFile; fileRef = D2698EB615EE40E6008A52D7 /* TOColorInterpolator.m */; };
 		D2698EBD15EE40E6008A52D7 /* TOAudioMeterView.m in Sources */ = {isa = PBXBuildFile; fileRef = D2698EB815EE40E6008A52D7 /* TOAudioMeterView.m */; };
 		D2698EBE15EE40E6008A52D7 /* NSArray+arrayByRemovingObject.m in Sources */ = {isa = PBXBuildFile; fileRef = D2698EBA15EE40E6008A52D7 /* NSArray+arrayByRemovingObject.m */; };
+		D2698ED315EE4255008A52D7 /* TOCAShortcuts.m in Sources */ = {isa = PBXBuildFile; fileRef = D2698EC215EE4255008A52D7 /* TOCAShortcuts.m */; };
+		D2698ED415EE4255008A52D7 /* NSString+OSStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = D2698EC415EE4255008A52D7 /* NSString+OSStatus.m */; };
+		D2698ED515EE4255008A52D7 /* TOAudioUnit.m in Sources */ = {isa = PBXBuildFile; fileRef = D2698EC615EE4255008A52D7 /* TOAudioUnit.m */; };
+		D2698ED615EE4255008A52D7 /* TOPlugableSound.m in Sources */ = {isa = PBXBuildFile; fileRef = D2698EC815EE4255008A52D7 /* TOPlugableSound.m */; };
+		D2698ED715EE4255008A52D7 /* TOFilePlayerSound.m in Sources */ = {isa = PBXBuildFile; fileRef = D2698ECA15EE4255008A52D7 /* TOFilePlayerSound.m */; };
+		D2698ED815EE4255008A52D7 /* TOVarispeedSound.m in Sources */ = {isa = PBXBuildFile; fileRef = D2698ECC15EE4255008A52D7 /* TOVarispeedSound.m */; };
+		D2698ED915EE4255008A52D7 /* TOReverbSound.m in Sources */ = {isa = PBXBuildFile; fileRef = D2698ECE15EE4255008A52D7 /* TOReverbSound.m */; };
+		D2698EDA15EE4255008A52D7 /* TOEqualizerSound.m in Sources */ = {isa = PBXBuildFile; fileRef = D2698ED015EE4255008A52D7 /* TOEqualizerSound.m */; };
+		D2698EDB15EE4255008A52D7 /* TOSoundDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = D2698ED215EE4255008A52D7 /* TOSoundDocument.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +79,24 @@
 		D2698EB815EE40E6008A52D7 /* TOAudioMeterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TOAudioMeterView.m; sourceTree = "<group>"; };
 		D2698EB915EE40E6008A52D7 /* NSArray+arrayByRemovingObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+arrayByRemovingObject.h"; sourceTree = "<group>"; };
 		D2698EBA15EE40E6008A52D7 /* NSArray+arrayByRemovingObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+arrayByRemovingObject.m"; sourceTree = "<group>"; };
+		D2698EC115EE4255008A52D7 /* TOCAShortcuts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TOCAShortcuts.h; sourceTree = "<group>"; };
+		D2698EC215EE4255008A52D7 /* TOCAShortcuts.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TOCAShortcuts.m; sourceTree = "<group>"; };
+		D2698EC315EE4255008A52D7 /* NSString+OSStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+OSStatus.h"; sourceTree = "<group>"; };
+		D2698EC415EE4255008A52D7 /* NSString+OSStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+OSStatus.m"; sourceTree = "<group>"; };
+		D2698EC515EE4255008A52D7 /* TOAudioUnit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TOAudioUnit.h; sourceTree = "<group>"; };
+		D2698EC615EE4255008A52D7 /* TOAudioUnit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TOAudioUnit.m; sourceTree = "<group>"; };
+		D2698EC715EE4255008A52D7 /* TOPlugableSound.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TOPlugableSound.h; sourceTree = "<group>"; };
+		D2698EC815EE4255008A52D7 /* TOPlugableSound.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TOPlugableSound.m; sourceTree = "<group>"; };
+		D2698EC915EE4255008A52D7 /* TOFilePlayerSound.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TOFilePlayerSound.h; sourceTree = "<group>"; };
+		D2698ECA15EE4255008A52D7 /* TOFilePlayerSound.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TOFilePlayerSound.m; sourceTree = "<group>"; };
+		D2698ECB15EE4255008A52D7 /* TOVarispeedSound.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TOVarispeedSound.h; sourceTree = "<group>"; };
+		D2698ECC15EE4255008A52D7 /* TOVarispeedSound.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TOVarispeedSound.m; sourceTree = "<group>"; };
+		D2698ECD15EE4255008A52D7 /* TOReverbSound.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TOReverbSound.h; sourceTree = "<group>"; };
+		D2698ECE15EE4255008A52D7 /* TOReverbSound.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TOReverbSound.m; sourceTree = "<group>"; };
+		D2698ECF15EE4255008A52D7 /* TOEqualizerSound.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TOEqualizerSound.h; sourceTree = "<group>"; };
+		D2698ED015EE4255008A52D7 /* TOEqualizerSound.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TOEqualizerSound.m; sourceTree = "<group>"; };
+		D2698ED115EE4255008A52D7 /* TOSoundDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TOSoundDocument.h; sourceTree = "<group>"; };
+		D2698ED215EE4255008A52D7 /* TOSoundDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TOSoundDocument.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,13 +156,14 @@
 		D2698E7A15EE37D3008A52D7 /* CircleSounds */ = {
 			isa = PBXGroup;
 			children = (
+				D2698EDC15EE4262008A52D7 /* Audio Layer */,
 				D2698EC015EE4105008A52D7 /* Interpolation */,
 				D2698EB715EE40E6008A52D7 /* TOAudioMeterView.h */,
 				D2698EB815EE40E6008A52D7 /* TOAudioMeterView.m */,
 				D2698EAD15EE4080008A52D7 /* TOPlugableSoundView.h */,
+				D2698EAE15EE4080008A52D7 /* TOPlugableSoundView.m */,
 				D2698EB015EE40BF008A52D7 /* TOPlugableSoundViewController.h */,
 				D2698EB115EE40BF008A52D7 /* TOPlugableSoundViewController.m */,
-				D2698EAE15EE4080008A52D7 /* TOPlugableSoundView.m */,
 				D2698E8315EE37D4008A52D7 /* TOAppDelegate.h */,
 				D2698E8415EE37D4008A52D7 /* TOAppDelegate.m */,
 				D2698E8615EE37D4008A52D7 /* MainStoryboard.storyboard */,
@@ -195,6 +223,39 @@
 				D2698EB615EE40E6008A52D7 /* TOColorInterpolator.m */,
 			);
 			name = Interpolation;
+			sourceTree = "<group>";
+		};
+		D2698EDC15EE4262008A52D7 /* Audio Layer */ = {
+			isa = PBXGroup;
+			children = (
+				D2698EC115EE4255008A52D7 /* TOCAShortcuts.h */,
+				D2698EC215EE4255008A52D7 /* TOCAShortcuts.m */,
+				D2698EC315EE4255008A52D7 /* NSString+OSStatus.h */,
+				D2698EC415EE4255008A52D7 /* NSString+OSStatus.m */,
+				D2698EDD15EE427F008A52D7 /* Plugable Sounds */,
+				D2698ED115EE4255008A52D7 /* TOSoundDocument.h */,
+				D2698ED215EE4255008A52D7 /* TOSoundDocument.m */,
+			);
+			name = "Audio Layer";
+			sourceTree = "<group>";
+		};
+		D2698EDD15EE427F008A52D7 /* Plugable Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				D2698EC515EE4255008A52D7 /* TOAudioUnit.h */,
+				D2698EC615EE4255008A52D7 /* TOAudioUnit.m */,
+				D2698EC715EE4255008A52D7 /* TOPlugableSound.h */,
+				D2698EC815EE4255008A52D7 /* TOPlugableSound.m */,
+				D2698EC915EE4255008A52D7 /* TOFilePlayerSound.h */,
+				D2698ECA15EE4255008A52D7 /* TOFilePlayerSound.m */,
+				D2698ECB15EE4255008A52D7 /* TOVarispeedSound.h */,
+				D2698ECC15EE4255008A52D7 /* TOVarispeedSound.m */,
+				D2698ECD15EE4255008A52D7 /* TOReverbSound.h */,
+				D2698ECE15EE4255008A52D7 /* TOReverbSound.m */,
+				D2698ECF15EE4255008A52D7 /* TOEqualizerSound.h */,
+				D2698ED015EE4255008A52D7 /* TOEqualizerSound.m */,
+			);
+			name = "Plugable Sounds";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -314,6 +375,15 @@
 				D2698EBC15EE40E6008A52D7 /* TOColorInterpolator.m in Sources */,
 				D2698EBD15EE40E6008A52D7 /* TOAudioMeterView.m in Sources */,
 				D2698EBE15EE40E6008A52D7 /* NSArray+arrayByRemovingObject.m in Sources */,
+				D2698ED315EE4255008A52D7 /* TOCAShortcuts.m in Sources */,
+				D2698ED415EE4255008A52D7 /* NSString+OSStatus.m in Sources */,
+				D2698ED515EE4255008A52D7 /* TOAudioUnit.m in Sources */,
+				D2698ED615EE4255008A52D7 /* TOPlugableSound.m in Sources */,
+				D2698ED715EE4255008A52D7 /* TOFilePlayerSound.m in Sources */,
+				D2698ED815EE4255008A52D7 /* TOVarispeedSound.m in Sources */,
+				D2698ED915EE4255008A52D7 /* TOReverbSound.m in Sources */,
+				D2698EDA15EE4255008A52D7 /* TOEqualizerSound.m in Sources */,
+				D2698EDB15EE4255008A52D7 /* TOSoundDocument.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
