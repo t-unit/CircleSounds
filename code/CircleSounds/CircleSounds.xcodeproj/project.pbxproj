@@ -35,6 +35,9 @@
 		D2698ED915EE4255008A52D7 /* TOReverbSound.m in Sources */ = {isa = PBXBuildFile; fileRef = D2698ECE15EE4255008A52D7 /* TOReverbSound.m */; };
 		D2698EDA15EE4255008A52D7 /* TOEqualizerSound.m in Sources */ = {isa = PBXBuildFile; fileRef = D2698ED015EE4255008A52D7 /* TOEqualizerSound.m */; };
 		D2698EDB15EE4255008A52D7 /* TOSoundDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = D2698ED215EE4255008A52D7 /* TOSoundDocument.m */; };
+		D2698EDF15EE442C008A52D7 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2698EDE15EE442C008A52D7 /* AudioToolbox.framework */; };
+		D2698EE115EE4431008A52D7 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2698EE015EE4431008A52D7 /* QuartzCore.framework */; };
+		D2698EE315EE4448008A52D7 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2698EE215EE4448008A52D7 /* AVFoundation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -97,6 +100,9 @@
 		D2698ED015EE4255008A52D7 /* TOEqualizerSound.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TOEqualizerSound.m; sourceTree = "<group>"; };
 		D2698ED115EE4255008A52D7 /* TOSoundDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TOSoundDocument.h; sourceTree = "<group>"; };
 		D2698ED215EE4255008A52D7 /* TOSoundDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TOSoundDocument.m; sourceTree = "<group>"; };
+		D2698EDE15EE442C008A52D7 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		D2698EE015EE4431008A52D7 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		D2698EE215EE4448008A52D7 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +110,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D2698EE315EE4448008A52D7 /* AVFoundation.framework in Frameworks */,
+				D2698EE115EE4431008A52D7 /* QuartzCore.framework in Frameworks */,
+				D2698EDF15EE442C008A52D7 /* AudioToolbox.framework in Frameworks */,
 				D2698E7515EE37D3008A52D7 /* UIKit.framework in Frameworks */,
 				D2698E7715EE37D3008A52D7 /* Foundation.framework in Frameworks */,
 				D2698E7915EE37D3008A52D7 /* CoreGraphics.framework in Frameworks */,
@@ -145,6 +154,9 @@
 		D2698E7315EE37D3008A52D7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D2698EE215EE4448008A52D7 /* AVFoundation.framework */,
+				D2698EE015EE4431008A52D7 /* QuartzCore.framework */,
+				D2698EDE15EE442C008A52D7 /* AudioToolbox.framework */,
 				D2698E7415EE37D3008A52D7 /* UIKit.framework */,
 				D2698E7615EE37D3008A52D7 /* Foundation.framework */,
 				D2698E7815EE37D3008A52D7 /* CoreGraphics.framework */,
