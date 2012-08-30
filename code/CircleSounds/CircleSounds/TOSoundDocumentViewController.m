@@ -14,7 +14,8 @@
 #import "TOPlugableSoundController.h"
 #import "TOPlugableSoundView.h"
 
-
+#define SOUND_VIEW_WIDTH 150
+#define SOUND_VIEW_HEIGHT 150
 
 
 @interface TOSoundDocumentViewController ()
@@ -33,13 +34,28 @@
     self.leftMeterView.mode = TOAudioMeterViewModeLandscape;
     self.rightMeterView.mode = TOAudioMeterViewModeLandscape;
     
-    
+    self.soundControllers = @[];
 	self.soundDocument = [[TOSoundDocument alloc] init];
     self.soundDocument.duration = 60;
     
     self.timeAndMeterUpdateTimer = [NSTimer timerWithTimeInterval:1.0/25.0 target:self selector:@selector(updateTimeAndMeter) userInfo:nil repeats:YES];
     [[NSRunLoop mainRunLoop] addTimer:self.timeAndMeterUpdateTimer forMode:NSDefaultRunLoopMode];
     
+    
+    // add double tap gesture for adding new sounds
+    UIView *gestureCather = [[UIView alloc] initWithFrame:self.canvas.bounds];
+    gestureCather.autoresizesSubviews = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+    [self.canvas addSubview:gestureCather];
+    
+    UITapGestureRecognizer *doubleTapGestureRecoginizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleDoubleTap:)];
+    doubleTapGestureRecoginizer.numberOfTapsRequired = 2;
+    doubleTapGestureRecoginizer.numberOfTouchesRequired = 1;
+    [gestureCather addGestureRecognizer:doubleTapGestureRecoginizer];
+}
+
+
+- (void)addNewSoundAtPosition:(CGPoint)pos
+{
     TOEqualizerSound *sound = [[TOEqualizerSound alloc] init];
     
     NSURL *soundFileURL = [[NSBundle mainBundle] URLForResource:@"08 Hope You're Feeling Better" withExtension:@"m4a"];
@@ -47,14 +63,16 @@
     
     sound.regionDuration = sound.fileDuration;
     
-    TOPlugableSoundController *soundController = [[TOPlugableSoundController alloc] initWithPlugableSound:sound atPosition:CGRectMake(0, self.canvas.bounds.size.height/2, 150, 150)];
-    self.soundControllers = @[soundController];
+    CGRect newSoundViewFrame = CGRectMake(pos.x - (SOUND_VIEW_WIDTH/2), pos.y - (SOUND_VIEW_HEIGHT/2), SOUND_VIEW_WIDTH, SOUND_VIEW_HEIGHT);
+    
+    TOPlugableSoundController *soundController = [[TOPlugableSoundController alloc] initWithPlugableSound:sound atPosition:newSoundViewFrame];
+    self.soundControllers = [self.soundControllers arrayByAddingObject:soundController];
     soundController.documentController = self;
     
     [self.soundDocument addPlugableSoundObject:sound];
     [self.canvas addSubview:soundController.soundView];
-    
 }
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -122,4 +140,13 @@
 {
     self.soundDocument.loop = self.loopSwitch.on;
 }
+
+
+- (void)handleDoubleTap:(UITapGestureRecognizer *)sender
+{
+    if (sender.state == UIGestureRecognizerStateEnded) {
+        [self addNewSoundAtPosition:[sender locationInView:self.canvas]];
+    }
+}
+
 @end
