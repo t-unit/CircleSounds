@@ -140,8 +140,10 @@
     self.soundView.frame = soundViewFrame;
     
     
-    double soundStartToDocLengthRatio = soundViewFrame.origin.y / self.documentController.canvas.frame.size.width;
+    double soundStartToDocLengthRatio = soundViewFrame.origin.x / self.documentController.canvas.frame.size.width;
     self.sound.startTime = self.documentController.soundDocument.duration * soundStartToDocLengthRatio;
+    
+    NSLog(@"start time: %f", self.sound.startTime);
 }
 
 
