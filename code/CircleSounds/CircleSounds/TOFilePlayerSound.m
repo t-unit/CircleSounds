@@ -139,7 +139,9 @@ OSStatus FilePlayerUnitRenderNotifyCallblack (void                        *inRef
 
 - (BOOL)setAudioFileURL:(NSURL *)url error:(NSError **)error
 {
+    [self willChangeValueForKey:@"audioFileURL"];
     _audioFileURL = url;
+    [self didChangeValueForKey:@"audioFileURL"];
     
     
     if (_audioFile) {

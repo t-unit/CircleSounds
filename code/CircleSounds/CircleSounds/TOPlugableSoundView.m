@@ -8,31 +8,64 @@
 
 #import "TOPlugableSoundView.h"
 
+
+@interface TOPlugableSoundView ()
+
+@property (weak, nonatomic) UIImageView *imageView;
+
+@end
+
+
 @implementation TOPlugableSoundView
 
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
+    
     if (self) {
-        // Initialization code
+        self.backgroundColor = [UIColor clearColor];
+        
+        CGRect imageViewRect = frame;
+        imageViewRect.origin.x = 0;
+        imageViewRect.origin.y = 0;
+        
+        UIImageView *imageView = [[UIImageView alloc] initWithFrame:imageViewRect];
+        imageView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+        imageView.backgroundColor = [UIColor clearColor];
+        
+        self.imageView = imageView;
+        [self addSubview:imageView];
+        
     }
     return self;
 }
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
+
+
 - (void)drawRect:(CGRect)rect
 {
-    // Drawing code
+    [self.color set];
+    [[UIBezierPath bezierPathWithOvalInRect:self.bounds] fill];
 }
-*/
+
 
 
 - (void)setColor:(UIColor *)color
 {
     _color = color;
-    self.backgroundColor = color;
+    [self setNeedsDisplay];
+}
+
+
+- (void)setWaveformImage:(UIImage *)waveformImage
+{
+    self.imageView.image = waveformImage;
+}
+
+
+- (UIImage *)waveformImage
+{
+    return self.imageView.image;
 }
 
 @end

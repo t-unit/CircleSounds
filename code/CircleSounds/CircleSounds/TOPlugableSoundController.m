@@ -10,11 +10,11 @@
 
 #import "TOEqualizerSound.h"
 #import "TOPlugableSoundView.h"
-
 #import "TOSoundDocument.h"
 #import "TOSoundDocumentViewController.h"
-
+#import "TOWaveformDrawer.h"
 #import "TOColorInterpolator.h"
+
 
 #define DEFAULT_PLAYBACK_RATE 1.0
 
@@ -42,7 +42,6 @@
 @property (assign, nonatomic) CGRect initialViewBounds; /* used for scaling. initial bounds for a single pinch gesture. */
 @property (assign, nonatomic) CGFloat initialViewWidth; /* used for scaling. global initial width. used to calculate scale. */
 @property (assign, nonatomic) double scale; /* the actual scale of the sound view */
-
 
 @property (strong, nonatomic) UIColor *playbackColorNormal;
 @property (strong, nonatomic) UIColor *playbackColorFast;
@@ -88,9 +87,43 @@
         
         
         [self setupGestureRecognizer];
+        
+        if (self.sound.audioFileURL) {
+            [self setWaveformImage];
+        }
+        
+        [self.sound addObserver:self forKeyPath:@"audioFileURL" options:0 context:NULL];
     }
     
     return self;
+}
+
+
+- (void)setWaveformImage
+{
+    // let the drawing of the waveform happen on a background thread
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+        TOWaveformDrawer *drawer = [[TOWaveformDrawer alloc] init];
+        drawer.mode = TOWaveformDrawerModeCircle;
+        drawer.waveformColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:0.5];
+        drawer.imageSize = self.soundView.bounds.size;
+        drawer.innerRadius = self.soundView.bounds.size.width * 0.3;
+        
+        UIImage *image = [drawer waveformFromImageAtURL:self.sound.audioFileURL];
+        
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.soundView.waveformImage = image;
+        });
+    });
+}
+
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+    if ([object isEqual:self.sound] && [keyPath isEqualToString:@"audioFileURL"]) {
+        [self setWaveformImage];
+    }
 }
 
 
