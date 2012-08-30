@@ -24,11 +24,14 @@
 #define MIN_ROTATION (-2*M_PI) /* in radians */
 #define MIN_ROTATION_PLAYBACK_RATE 0.25
 
+
+#define DEFAULT_GAIN 0 /* in db */
+
 #define MAX_SCALE 2.0
-#define MAX_SCALE_VOLUME 24 /* in db */
+#define MAX_SCALE_GAIN 24 /* in db */
 
 #define MIN_SCALE 0.5
-#define MIN_SCALE_VOLUME -24 /* in db */
+#define MIN_SCALE_GAIN -24 /* in db */
 
 
 
@@ -139,14 +142,18 @@
     
     double soundStartToDocLengthRatio = soundViewFrame.origin.y / self.documentController.canvas.frame.size.width;
     self.sound.startTime = self.documentController.soundDocument.duration * soundStartToDocLengthRatio;
-    
-    // TODO: update sound's start time property
 }
 
 
 - (void)updatePlaybackVolume
 {
-    // TODO: update playback volume
+    if (self.scale > 1.0) {
+        self.sound.globalGain = ((MAX_SCALE_GAIN - DEFAULT_GAIN) / (MAX_SCALE - 1)) * self.scale + (DEFAULT_GAIN - ((MAX_SCALE_GAIN - DEFAULT_GAIN) / (MAX_SCALE - 1)));
+    }
+    else
+    {
+        self.sound.globalGain = ((MIN_SCALE_GAIN - DEFAULT_GAIN) / (MIN_SCALE - 1)) * self.scale  + (DEFAULT_GAIN -((MIN_SCALE_GAIN - DEFAULT_GAIN) / (MIN_SCALE - 1)));
+    }
 }
 
 
