@@ -148,11 +148,17 @@
 - (void)updatePlaybackVolume
 {
     if (self.scale > 1.0) {
-        self.sound.globalGain = ((MAX_SCALE_GAIN - DEFAULT_GAIN) / (MAX_SCALE - 1)) * self.scale + (DEFAULT_GAIN - ((MAX_SCALE_GAIN - DEFAULT_GAIN) / (MAX_SCALE - 1)));
+        double a = ((MAX_SCALE_GAIN - DEFAULT_GAIN) / (MAX_SCALE - 1));
+        double b = DEFAULT_GAIN - a;
+        
+        self.sound.globalGain =   a * self.scale + b;
     }
     else
     {
-        self.sound.globalGain = ((MIN_SCALE_GAIN - DEFAULT_GAIN) / (MIN_SCALE - 1)) * self.scale  + (DEFAULT_GAIN -((MIN_SCALE_GAIN - DEFAULT_GAIN) / (MIN_SCALE - 1)));
+        double a = ((MIN_SCALE_GAIN - DEFAULT_GAIN) / (MIN_SCALE - 1));
+        double b = DEFAULT_GAIN - a;
+        
+        self.sound.globalGain = a * self.scale  + b;
     }
 }
 
