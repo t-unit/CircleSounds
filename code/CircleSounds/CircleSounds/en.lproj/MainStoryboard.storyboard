@@ -4,23 +4,158 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1914"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Sound Document View Controller-->
         <scene sceneID="4">
             <objects>
-                <viewController id="2" customClass="TOViewController" sceneMemberID="viewController">
+                <viewController id="2" customClass="TOSoundDocumentViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5">
-                        <rect key="frame" x="0.0" y="20" width="768" height="1004"/>
+                        <rect key="frame" x="0.0" y="20" width="1024" height="748"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" id="cKJ-FF-57J" userLabel="Canvas">
+                                <rect key="frame" x="0.0" y="80" width="1024" height="668"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" red="0.21568627450980393" green="0.21176470588235294" blue="0.25490196078431371" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                            <view contentMode="scaleToFill" id="d3f-xT-GGZ" customClass="TORoundedRectView">
+                                <rect key="frame" x="0.0" y="0.0" width="1024" height="80"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" id="b8L-B9-2Kc" customClass="TOAudioMeterView">
+                                        <rect key="frame" x="665" y="33" width="350" height="20"/>
+                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                    </view>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" text="L" adjustsFontSizeToFit="NO" autoshrinkMode="none" id="Z3S-KS-Ikb">
+                                        <rect key="frame" x="650" y="11" width="10" height="21"/>
+                                        <nil key="highlightedColor"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    </label>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" text="R" adjustsFontSizeToFit="NO" autoshrinkMode="none" id="ie7-VY-BCL">
+                                        <rect key="frame" x="649" y="32" width="13" height="21"/>
+                                        <nil key="highlightedColor"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    </label>
+                                    <view contentMode="scaleToFill" id="XGW-df-att" customClass="TOAudioMeterView">
+                                        <rect key="frame" x="665" y="11" width="350" height="20"/>
+                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                    </view>
+                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="0.0" maxValue="1" id="e1j-LY-VD7">
+                                        <rect key="frame" x="671" y="56" width="344" height="23"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="minimumTrackTintColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <color key="maximumTrackTintColor" red="0.93725490570000003" green="0.92941176889999999" blue="0.80981979930000003" alpha="1" colorSpace="calibratedRGB"/>
+                                        <connections>
+                                            <action selector="volumeSliderValueChanged:" destination="2" eventType="valueChanged" id="VMo-sx-yvd"/>
+                                        </connections>
+                                    </slider>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" text="Volume" adjustsFontSizeToFit="NO" autoshrinkMode="none" id="ijB-vH-AXK">
+                                        <rect key="frame" x="604" y="56" width="58" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <nil key="highlightedColor"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Pfv-Y9-ofH">
+                                        <rect key="frame" x="5" y="5" width="62" height="35"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" size="button"/>
+                                        <state key="normal" title="Play">
+                                            <color key="titleColor" red="0.19607843137254902" green="0.30980392156862746" blue="0.52156862745098043" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="selected" title="Pause"/>
+                                        <state key="highlighted">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="startPauseButtonPressed:" destination="2" eventType="touchUpInside" id="vf0-Am-C9S"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="eLx-6w-F1X">
+                                        <rect key="frame" x="75" y="5" width="67" height="35"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" size="button"/>
+                                        <state key="normal" title="Reset">
+                                            <color key="titleColor" red="0.1960784314" green="0.30980392159999998" blue="0.52156862749999999" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="highlighted">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="resetButtonPressed:" destination="2" eventType="touchUpInside" id="LPW-RW-BPw"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" text="0.00" textAlignment="center" adjustsFontSizeToFit="NO" autoshrinkMode="none" id="X0e-PL-5MD">
+                                        <rect key="frame" x="5" y="47" width="137" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <nil key="highlightedColor"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    </label>
+                                    <switch opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="58u-n7-Ub6">
+                                        <rect key="frame" x="299" y="7" width="79" height="27"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="onTintColor" red="0.2156862745" green="0.21176470589999999" blue="0.25490196079999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <connections>
+                                            <action selector="loopSwitchValueChanged:" destination="2" eventType="valueChanged" id="zvd-2y-aE4"/>
+                                        </connections>
+                                    </switch>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" text="looping" adjustsFontSizeToFit="NO" autoshrinkMode="none" id="aia-rm-aQ5">
+                                        <rect key="frame" x="239" y="7" width="64" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <nil key="highlightedColor"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.93725490570000003" green="0.92941176889999999" blue="0.87902030109999996" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.2156862745" green="0.21176470589999999" blue="0.25490196079999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    <connections>
+                        <outlet property="canvas" destination="cKJ-FF-57J" id="Qdo-BV-nVb"/>
+                        <outlet property="currentTimeLabel" destination="X0e-PL-5MD" id="WaT-zQ-inG"/>
+                        <outlet property="leftMeterView" destination="XGW-df-att" id="3ay-na-HHp"/>
+                        <outlet property="loopSwitch" destination="58u-n7-Ub6" id="BWr-OQ-OxF"/>
+                        <outlet property="resetButtonPressed" destination="eLx-6w-F1X" id="Lw6-rj-FHz"/>
+                        <outlet property="rightMeterView" destination="b8L-B9-2Kc" id="vnw-bw-azg"/>
+                        <outlet property="startPauseButton" destination="Pfv-Y9-ofH" id="Kvm-Pe-G1Y"/>
+                        <outlet property="volumeSlider" destination="e1j-LY-VD7" id="61l-65-4fj"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3" sceneMemberID="firstResponder"/>
             </objects>
         </scene>
     </scenes>
     <classes>
-        <class className="TOViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TOViewController.h"/>
+        <class className="TOAudioMeterView" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TOAudioMeterView.h"/>
+        </class>
+        <class className="TORoundedRectView" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TORoundedRectView.h"/>
+        </class>
+        <class className="TOSoundDocumentViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TOSoundDocumentViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="loopSwitchValueChanged:"/>
+                <relationship kind="action" name="resetButtonPressed:"/>
+                <relationship kind="action" name="startPauseButtonPressed:"/>
+                <relationship kind="action" name="volumeSliderValueChanged:"/>
+                <relationship kind="outlet" name="canvas" candidateClass="UIView"/>
+                <relationship kind="outlet" name="currentTimeLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="leftMeterView" candidateClass="TOAudioMeterView"/>
+                <relationship kind="outlet" name="loopSwitch" candidateClass="UISwitch"/>
+                <relationship kind="outlet" name="resetButtonPressed" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="rightMeterView" candidateClass="TOAudioMeterView"/>
+                <relationship kind="outlet" name="startPauseButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="volumeSlider" candidateClass="UISlider"/>
+            </relationships>
         </class>
     </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

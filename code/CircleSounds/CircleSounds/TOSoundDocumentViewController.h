@@ -9,13 +9,32 @@
 #import <UIKit/UIKit.h>
 
 @class TOSoundDocument;
+@class TOAudioMeterView;
 
 
 @interface TOSoundDocumentViewController : UIViewController
 
-@property (weak, nonatomic) IBOutlet UIView *canvas;
-
 @property (strong, nonatomic) TOSoundDocument *soundDocument;
 @property (strong, nonatomic) NSArray *soundControllers;
 
+
+
+@property (weak, nonatomic) IBOutlet UIView *canvas;
+
+@property (weak, nonatomic) IBOutlet TOAudioMeterView *leftMeterView;
+@property (weak, nonatomic) IBOutlet TOAudioMeterView *rightMeterView;
+
+- (IBAction)startPauseButtonPressed:(id)sender;
+@property (weak, nonatomic) IBOutlet UIButton *startPauseButton;
+
+- (IBAction)resetButtonPressed:(id)sender;
+@property (weak, nonatomic) IBOutlet UIButton *resetButtonPressed;
+
+@property (weak, nonatomic) IBOutlet UILabel *currentTimeLabel;
+
+- (IBAction)volumeSliderValueChanged:(id)sender;
+@property (weak, nonatomic) IBOutlet UISlider *volumeSlider;
+
+- (IBAction)loopSwitchValueChanged:(id)sender;
+@property (weak, nonatomic) IBOutlet UISwitch *loopSwitch;
 @end

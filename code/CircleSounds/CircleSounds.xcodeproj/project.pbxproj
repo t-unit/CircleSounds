@@ -14,7 +14,6 @@
 		D2698E8115EE37D3008A52D7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D2698E8015EE37D3008A52D7 /* main.m */; };
 		D2698E8515EE37D4008A52D7 /* TOAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D2698E8415EE37D4008A52D7 /* TOAppDelegate.m */; };
 		D2698E8815EE37D4008A52D7 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2698E8615EE37D4008A52D7 /* MainStoryboard.storyboard */; };
-		D2698E8B15EE37D4008A52D7 /* TOViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2698E8A15EE37D4008A52D7 /* TOViewController.m */; };
 		D2698E9315EE37D4008A52D7 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2698E9215EE37D4008A52D7 /* SenTestingKit.framework */; };
 		D2698E9415EE37D4008A52D7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2698E7415EE37D3008A52D7 /* UIKit.framework */; };
 		D2698E9515EE37D4008A52D7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2698E7615EE37D3008A52D7 /* Foundation.framework */; };
@@ -39,6 +38,8 @@
 		D2698EE115EE4431008A52D7 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2698EE015EE4431008A52D7 /* QuartzCore.framework */; };
 		D2698EE315EE4448008A52D7 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2698EE215EE4448008A52D7 /* AVFoundation.framework */; };
 		D2698EED15EE85ED008A52D7 /* TOSoundDocumentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2698EEC15EE85ED008A52D7 /* TOSoundDocumentViewController.m */; };
+		D2DA43F815EFBFDF009B8432 /* 08 Hope You're Feeling Better.m4a in Resources */ = {isa = PBXBuildFile; fileRef = D2DA43F715EFBFDF009B8432 /* 08 Hope You're Feeling Better.m4a */; };
+		D2DACC6215EFAA0E00824F5F /* TORoundedRectView.m in Sources */ = {isa = PBXBuildFile; fileRef = D2DACC6115EFAA0E00824F5F /* TORoundedRectView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,8 +64,6 @@
 		D2698E8315EE37D4008A52D7 /* TOAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TOAppDelegate.h; sourceTree = "<group>"; };
 		D2698E8415EE37D4008A52D7 /* TOAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TOAppDelegate.m; sourceTree = "<group>"; };
 		D2698E8715EE37D4008A52D7 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
-		D2698E8915EE37D4008A52D7 /* TOViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TOViewController.h; sourceTree = "<group>"; };
-		D2698E8A15EE37D4008A52D7 /* TOViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TOViewController.m; sourceTree = "<group>"; };
 		D2698E9115EE37D4008A52D7 /* CircleSoundsTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CircleSoundsTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2698E9215EE37D4008A52D7 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		D2698E9A15EE37D4008A52D7 /* CircleSoundsTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CircleSoundsTests-Info.plist"; sourceTree = "<group>"; };
@@ -106,6 +105,9 @@
 		D2698EE215EE4448008A52D7 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		D2698EEB15EE85ED008A52D7 /* TOSoundDocumentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TOSoundDocumentViewController.h; sourceTree = "<group>"; };
 		D2698EEC15EE85ED008A52D7 /* TOSoundDocumentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TOSoundDocumentViewController.m; sourceTree = "<group>"; };
+		D2DA43F715EFBFDF009B8432 /* 08 Hope You're Feeling Better.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "08 Hope You're Feeling Better.m4a"; sourceTree = "<group>"; };
+		D2DACC6015EFAA0E00824F5F /* TORoundedRectView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TORoundedRectView.h; sourceTree = "<group>"; };
+		D2DACC6115EFAA0E00824F5F /* TORoundedRectView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TORoundedRectView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -184,10 +186,10 @@
 				D2698E8315EE37D4008A52D7 /* TOAppDelegate.h */,
 				D2698E8415EE37D4008A52D7 /* TOAppDelegate.m */,
 				D2698E8615EE37D4008A52D7 /* MainStoryboard.storyboard */,
-				D2698E8915EE37D4008A52D7 /* TOViewController.h */,
-				D2698E8A15EE37D4008A52D7 /* TOViewController.m */,
 				D2698EBF15EE40EE008A52D7 /* Categories */,
 				D2698E7B15EE37D3008A52D7 /* Supporting Files */,
+				D2DACC6015EFAA0E00824F5F /* TORoundedRectView.h */,
+				D2DACC6115EFAA0E00824F5F /* TORoundedRectView.m */,
 			);
 			path = CircleSounds;
 			sourceTree = "<group>";
@@ -195,6 +197,7 @@
 		D2698E7B15EE37D3008A52D7 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				D2DA43F715EFBFDF009B8432 /* 08 Hope You're Feeling Better.m4a */,
 				D2698E7C15EE37D3008A52D7 /* CircleSounds-Info.plist */,
 				D2698E7D15EE37D3008A52D7 /* InfoPlist.strings */,
 				D2698E8015EE37D3008A52D7 /* main.m */,
@@ -349,6 +352,7 @@
 			files = (
 				D2698E7F15EE37D3008A52D7 /* InfoPlist.strings in Resources */,
 				D2698E8815EE37D4008A52D7 /* MainStoryboard.storyboard in Resources */,
+				D2DA43F815EFBFDF009B8432 /* 08 Hope You're Feeling Better.m4a in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -385,7 +389,6 @@
 			files = (
 				D2698E8115EE37D3008A52D7 /* main.m in Sources */,
 				D2698E8515EE37D4008A52D7 /* TOAppDelegate.m in Sources */,
-				D2698E8B15EE37D4008A52D7 /* TOViewController.m in Sources */,
 				D2698EAF15EE4080008A52D7 /* TOPlugableSoundView.m in Sources */,
 				D2698EB215EE40BF008A52D7 /* TOPlugableSoundController.m in Sources */,
 				D2698EBB15EE40E6008A52D7 /* TOBaseInterpolator.m in Sources */,
@@ -402,6 +405,7 @@
 				D2698EDA15EE4255008A52D7 /* TOEqualizerSound.m in Sources */,
 				D2698EDB15EE4255008A52D7 /* TOSoundDocument.m in Sources */,
 				D2698EED15EE85ED008A52D7 /* TOSoundDocumentViewController.m in Sources */,
+				D2DACC6215EFAA0E00824F5F /* TORoundedRectView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -575,6 +579,7 @@
 				D2698EA515EE37D4008A52D7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D2698EA615EE37D4008A52D7 /* Build configuration list for PBXNativeTarget "CircleSoundsTests" */ = {
 			isa = XCConfigurationList;
@@ -583,6 +588,7 @@
 				D2698EA815EE37D4008A52D7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
