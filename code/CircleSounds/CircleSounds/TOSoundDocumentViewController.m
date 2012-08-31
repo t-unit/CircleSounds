@@ -71,6 +71,8 @@
     
     [self.soundDocument addPlugableSoundObject:sound];
     [self.canvas addSubview:soundController.soundView];
+    
+    [self.canvas bringSubviewToFront:self.currentPositionView];
 }
 
 
@@ -108,8 +110,11 @@
 
 - (void)updateTimeAndMeter
 {
+    // Current Time Label
     self.currentTimeLabel.text = [NSString stringWithFormat:@"%.2f", self.soundDocument.currentPlaybackPosition];
     
+    
+    // Meter Views
     //
     // 0 == -50db
     // 1 ==   0db
@@ -133,6 +138,12 @@
     db = [self.soundDocument peakValueRight];
     value = 0.02 * db + 1;
     self.rightMeterView.peakValue = value;
+    
+    
+    // Current Position View
+    CGFloat xTranslation = self.canvas.bounds.size.width/self.soundDocument.duration*self.soundDocument.currentPlaybackPosition;
+    
+    self.currentPositionView.transform = CGAffineTransformMakeTranslation(xTranslation, 0.0f);
 }
 
 

@@ -37,4 +37,8 @@
 
 - (IBAction)loopSwitchValueChanged:(id)sender;
 @property (weak, nonatomic) IBOutlet UISwitch *loopSwitch;
+
+
+@property (weak, nonatomic) IBOutlet UIView *currentPositionView;
+
 @end

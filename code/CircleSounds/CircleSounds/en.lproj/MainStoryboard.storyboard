@@ -15,6 +15,16 @@
                             <view contentMode="scaleToFill" id="cKJ-FF-57J" userLabel="Canvas">
                                 <rect key="frame" x="0.0" y="80" width="1024" height="668"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" id="d83-Qv-3gn" userLabel="Current Position View">
+                                        <rect key="frame" x="0.0" y="0.0" width="1" height="668"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" heightSizable="YES"/>
+                                        <color key="backgroundColor" red="0.94117647059999998" green="0.50196078430000002" blue="0.066666666669999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <accessibility key="accessibilityConfiguration">
+                                            <accessibilityTraits key="traits" none="YES" notEnabled="YES"/>
+                                        </accessibility>
+                                    </view>
+                                </subviews>
                                 <color key="backgroundColor" red="0.21568627450980393" green="0.21176470588235294" blue="0.25490196078431371" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                             <view contentMode="scaleToFill" id="d3f-xT-GGZ" customClass="TORoundedRectView">
@@ -120,6 +130,7 @@
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <connections>
                         <outlet property="canvas" destination="cKJ-FF-57J" id="Qdo-BV-nVb"/>
+                        <outlet property="currentPositionView" destination="d83-Qv-3gn" id="dC0-IQ-pmV"/>
                         <outlet property="currentTimeLabel" destination="X0e-PL-5MD" id="WaT-zQ-inG"/>
                         <outlet property="leftMeterView" destination="XGW-df-att" id="3ay-na-HHp"/>
                         <outlet property="loopSwitch" destination="58u-n7-Ub6" id="BWr-OQ-OxF"/>
@@ -148,6 +159,7 @@
                 <relationship kind="action" name="startPauseButtonPressed:"/>
                 <relationship kind="action" name="volumeSliderValueChanged:"/>
                 <relationship kind="outlet" name="canvas" candidateClass="UIView"/>
+                <relationship kind="outlet" name="currentPositionView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="currentTimeLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="leftMeterView" candidateClass="TOAudioMeterView"/>
                 <relationship kind="outlet" name="loopSwitch" candidateClass="UISwitch"/>
