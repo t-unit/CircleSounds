@@ -204,8 +204,8 @@
         TOWaveformDrawer *drawer = [[TOWaveformDrawer alloc] init];
         drawer.mode = TOWaveformDrawerModeCircle;
         drawer.waveformColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:0.5];
-        drawer.imageSize = self.soundView.bounds.size;
-        drawer.innerRadius = self.soundView.bounds.size.width * 0.3;
+        drawer.imageSize = CGSizeMake(self.initialViewWidth * 1.5, self.initialViewWidth * 1.5);
+        drawer.innerRadius = self.initialViewWidth * 0.55;
         
         UIImage *image = [drawer waveformFromImageAtURL:self.sound.audioFileURL];
         

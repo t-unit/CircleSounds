@@ -1,6 +1,6 @@
 //
 //  WAColorInterpolator.h
-//  WeatherApp
+//  CircleSounds
 //
 //  Created by Tobias Ottenweller on 5/7/12.
 //  Copyright (c) Tobias Ottenweller. All rights reserved.

@@ -128,7 +128,7 @@
     }
     else {
         self.outerRadius = MIN(self.imageSize.width, self.imageSize.height) / 2.0;
-        self.base =  self.outerRadius - (self.innerRadius / 2.0);
+        self.base =  self.outerRadius - ((self.outerRadius - self.innerRadius) / 2.0);
         self.distBetweenSamples = (2 * M_PI) / (self.audioFileDuration * self.audioFileClientFormat.mSampleRate);
         self.center = CGPointMake(self.imageSize.width/2.0, self.imageSize.height/2.0);
         
