@@ -14,24 +14,27 @@
 #import "TOSoundDocumentViewController.h"
 #import "TOWaveformDrawer.h"
 #import "TOColorInterpolator.h"
+#import "TOLinearInterpolator.h"
 
 
 #define DEFAULT_PLAYBACK_RATE 1.0
+#define DEFAULT_ROTATION 0.0
 
-#define MAX_ROTATION (2*M_PI) /* in radians */
+#define MAX_ROTATION (2.0*M_PI) /* in radians */
 #define MAX_ROTATION_PLAYBACK_RATE 4.0
 
-#define MIN_ROTATION (-2*M_PI) /* in radians */
+#define MIN_ROTATION (-2.0*M_PI) /* in radians */
 #define MIN_ROTATION_PLAYBACK_RATE 0.25
 
 
-#define DEFAULT_GAIN 0 /* in db */
+#define DEFAULT_GAIN 0.0 /* in db */
+#define DEFAULT_SCALE 1.0
 
 #define MAX_SCALE 2.0
-#define MAX_SCALE_GAIN 24 /* in db */
+#define MAX_SCALE_GAIN 24.0 /* in db */
 
 #define MIN_SCALE 0.5
-#define MIN_SCALE_GAIN -24 /* in db */
+#define MIN_SCALE_GAIN -24.0 /* in db */
 
 
 
@@ -54,6 +57,88 @@
 @implementation TOPlugableSoundController
 
 
++ (double)scaleFromGlobalGain:(AudioUnitParameterValue)gain
+{
+    if (gain > DEFAULT_GAIN) {
+        return [TOLinearInterpolator yValueForX:gain
+                      inLinearFunctionWithPoint:CGPointMake(MAX_SCALE_GAIN, MAX_SCALE)
+                                       andPoint:CGPointMake(DEFAULT_GAIN, DEFAULT_SCALE)];
+    }
+    else {
+        return [TOLinearInterpolator yValueForX:gain
+                      inLinearFunctionWithPoint:CGPointMake(MIN_SCALE_GAIN, MIN_SCALE)
+                                       andPoint:CGPointMake(DEFAULT_GAIN, DEFAULT_SCALE)];
+    }
+}
+
+
++ (AudioUnitParameterValue)globalGainFromScale:(double)scale
+{
+    if (scale > DEFAULT_SCALE) {
+        return [TOLinearInterpolator yValueForX:scale
+                      inLinearFunctionWithPoint:CGPointMake(MIN_SCALE, MIN_SCALE_GAIN)
+                                       andPoint:CGPointMake(DEFAULT_SCALE, DEFAULT_GAIN)];
+    }
+    else {
+        return [TOLinearInterpolator yValueForX:scale
+                      inLinearFunctionWithPoint:CGPointMake(MAX_SCALE, MAX_SCALE_GAIN)
+                                       andPoint:CGPointMake(DEFAULT_SCALE, DEFAULT_GAIN)];
+    }
+}
+
+
++ (AudioUnitParameterValue)playbackRateFromRotation:(double)rotation
+{
+    if (rotation > DEFAULT_ROTATION) {
+        
+        return [TOLinearInterpolator yValueForX:rotation
+                      inLinearFunctionWithPoint:CGPointMake(DEFAULT_ROTATION, DEFAULT_PLAYBACK_RATE)
+                                       andPoint:CGPointMake(MAX_ROTATION, MAX_ROTATION_PLAYBACK_RATE)];
+    }
+    else {
+        
+        return [TOLinearInterpolator yValueForX:rotation
+                      inLinearFunctionWithPoint:CGPointMake(DEFAULT_ROTATION, DEFAULT_PLAYBACK_RATE)
+                                       andPoint:CGPointMake(MIN_ROTATION, MIN_ROTATION_PLAYBACK_RATE)];
+    }
+}
+
+
++ (double)rotationFromPlaybackRate:(AudioUnitParameterValue)playbackRate
+{
+
+    if (playbackRate > DEFAULT_PLAYBACK_RATE) {
+        return [TOLinearInterpolator yValueForX:playbackRate
+                      inLinearFunctionWithPoint:CGPointMake(DEFAULT_PLAYBACK_RATE, DEFAULT_ROTATION)
+                                       andPoint:CGPointMake(MAX_ROTATION_PLAYBACK_RATE, MAX_ROTATION)];
+    }
+    else {
+        return [TOLinearInterpolator yValueForX:playbackRate
+                      inLinearFunctionWithPoint:CGPointMake(DEFAULT_PLAYBACK_RATE, DEFAULT_ROTATION)
+                                       andPoint:CGPointMake(MIN_ROTATION_PLAYBACK_RATE, MIN_ROTATION)];
+    }
+}
+
+
++ (AudioUnitParameterValue)startTimeWithViewSoundViewFrame:(CGRect)soundFrame inCanvasFrame:(CGRect)canvasFrame withTotalDuration:(double)duration
+{
+    CGFloat centerX = soundFrame.origin.x + (soundFrame.size.width / 2.0f);
+    AudioUnitParameterValue startTime = duration * centerX / canvasFrame.size.width;
+    
+    return startTime;
+}
+
+
++ (CGRect)soundFrameForStartTime:(double)startTime inCanvasFrame:(CGRect)canvasFrame withTotalDuration:(double)duration usingOriginalFrame:(CGRect)soundFrame
+{
+    CGFloat newCenterX = startTime / duration * canvasFrame.size.width;
+    soundFrame.origin.x = newCenterX - (soundFrame.size.width / 2.0f);
+    
+    return soundFrame;
+}
+
+
+
 - (id)init
 {
     return nil;
@@ -61,7 +146,7 @@
 
 
 
-- (id)initWithPlugableSound:(TOEqualizerSound *)sound atPosition:(CGRect)viewFrame;
+- (id)initWithPlugableSound:(TOEqualizerSound *)sound atPosition:(CGRect)viewFrame documentController:(TOSoundDocumentViewController *)documentController;
 {
     self = [super init];
     
@@ -69,24 +154,12 @@
         NSParameterAssert(sound);
         
         _sound = sound;
-        
         _soundView = [[TOPlugableSoundView alloc] initWithFrame:viewFrame];
-        self.initialViewWidth = self.soundView.bounds.size.width;
-        self.scale = 1.0;
+        _documentController = documentController;
         
-        self.playbackColorNormal = [UIColor colorWithRed:46/255.0 green:169/255.0 blue:255/255.0 alpha:1.0];
-        self.playbackColorFast = [UIColor colorWithRed:238/255.0 green:255/255.0 blue:51/255.0 alpha:1.0];
-        self.playbackColorSlow = [UIColor colorWithRed:92/255.0 green:92/255.0 blue:91/255.0 alpha:1.0];
-        
-        
-        
-        
-        self.soundView.color = self.playbackColorNormal; // TODO: remove after proper setup code is availible!
-        
-        
-        
-        
+        [self setupViewProperties];
         [self setupGestureRecognizer];
+        
         
         if (self.sound.audioFileURL) {
             [self setWaveformImage];
@@ -96,6 +169,31 @@
     }
     
     return self;
+}
+
+
+- (void)setupViewProperties
+{
+    // playback rate & view color
+    self.playbackColorNormal = [UIColor colorWithRed:46/255.0 green:169/255.0 blue:255/255.0 alpha:1.0];
+    self.playbackColorFast = [UIColor colorWithRed:238/255.0 green:255/255.0 blue:51/255.0 alpha:1.0];
+    self.playbackColorSlow = [UIColor colorWithRed:92/255.0 green:92/255.0 blue:91/255.0 alpha:1.0];
+    
+    self.virtualViewRotation = [[self class] rotationFromPlaybackRate:self.sound.playbackRate];
+    [self updateViewColor];
+    
+    
+    // view scale & gain
+    self.initialViewWidth = self.soundView.bounds.size.width;
+    self.scale = [[self class] scaleFromGlobalGain:self.sound.globalGain];
+    
+    
+    // start time & view postion
+    self.sound.startTime = [[self class] startTimeWithViewSoundViewFrame:self.soundView.frame
+                                                           inCanvasFrame:self.documentController.canvas.frame
+                                                       withTotalDuration:self.documentController.soundDocument.duration];
+    
+    NSLog(@"start time: %f", self.sound.startTime);
 }
 
 
@@ -133,18 +231,11 @@
 }
 
 
-#pragma mark - Sound (View) manipulation
+#pragma mark - Sound (View) Property Manipulation
 
-- (void)updatePlaybackSpeed
+- (void)updateViewColor
 {
-    // angle: -2 * M_PI <--> playback speed: 0.25 <--> color: playbackColorSlow
-    // angle:         0 <--> playback speed: 1.00 <--> color: playbackColorNormal
-    // angle:  2 * M_PI <--> playback speed: 4.00 <--> color: playbackColorFast
-    
-    
-    if (self.virtualViewRotation > DEFAULT_PLAYBACK_RATE) {
-        self.sound.playbackRate = ((MAX_ROTATION_PLAYBACK_RATE - DEFAULT_PLAYBACK_RATE) / MAX_ROTATION) * self.virtualViewRotation + DEFAULT_PLAYBACK_RATE;
-        
+    if (self.virtualViewRotation > DEFAULT_ROTATION) {
         self.soundView.color = [TOColorInterpolator colorAtValue:self.sound.playbackRate
                                                betweenLowerValue:DEFAULT_PLAYBACK_RATE
                                                        withColor:self.playbackColorNormal
@@ -152,8 +243,6 @@
                                                        withColor:self.playbackColorFast];
     }
     else {
-        self.sound.playbackRate = ((MIN_ROTATION_PLAYBACK_RATE - DEFAULT_PLAYBACK_RATE) / MIN_ROTATION) * self.virtualViewRotation + DEFAULT_PLAYBACK_RATE;
-        
         self.soundView.color = [TOColorInterpolator colorAtValue:self.sound.playbackRate
                                                betweenLowerValue:MIN_ROTATION_PLAYBACK_RATE
                                                        withColor:self.playbackColorSlow
@@ -173,28 +262,12 @@
     self.soundView.frame = soundViewFrame;
     
     
-    double soundStartToDocLengthRatio = soundViewFrame.origin.x / self.documentController.canvas.frame.size.width;
-    self.sound.startTime = self.documentController.soundDocument.duration * soundStartToDocLengthRatio;
+    self.sound.startTime = [[self class] startTimeWithViewSoundViewFrame:soundViewFrame
+                                                           inCanvasFrame:self.documentController.canvas.frame
+                                                       withTotalDuration:self.documentController.soundDocument.duration];
+    
     
     NSLog(@"start time: %f", self.sound.startTime);
-}
-
-
-- (void)updatePlaybackVolume
-{
-    if (self.scale > 1.0) {
-        double a = ((MAX_SCALE_GAIN - DEFAULT_GAIN) / (MAX_SCALE - 1));
-        double b = DEFAULT_GAIN - a;
-        
-        self.sound.globalGain =   a * self.scale + b;
-    }
-    else
-    {
-        double a = ((MIN_SCALE_GAIN - DEFAULT_GAIN) / (MIN_SCALE - 1));
-        double b = DEFAULT_GAIN - a;
-        
-        self.sound.globalGain = a * self.scale  + b;
-    }
 }
 
 
@@ -202,7 +275,7 @@
 
 - (void)setupGestureRecognizer
 {
-    // rotation (playback speed / color)
+    // rotation (playback rate / color)
     UIRotationGestureRecognizer *rotationGestureRecognizer = [[UIRotationGestureRecognizer alloc] initWithTarget:self action:@selector(handleRotation:)];
     rotationGestureRecognizer.delegate = self;
     [self.soundView addGestureRecognizer:rotationGestureRecognizer];
@@ -250,7 +323,8 @@
             self.virtualViewRotation = MAX_ROTATION;
         }
         
-        [self updatePlaybackSpeed];
+        self.sound.playbackRate = [[self class] playbackRateFromRotation:self.virtualViewRotation];
+        [self updateViewColor];
     }
 }
 
@@ -282,7 +356,7 @@
         self.soundView.bounds = newBounds;
         self.scale = newScale;
         
-        [self updatePlaybackVolume];
+        self.sound.globalGain = [[self class] globalGainFromScale:self.scale];
     }
 }
 

@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface TOBaseInterpolator : NSObject
+@interface TOLinearInterpolator : NSObject
 
 + (double)yValueForX:(double)x inLinearFunctionWithPoint:(CGPoint)p1 andPoint:(CGPoint)p2;
 

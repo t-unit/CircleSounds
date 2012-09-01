@@ -6,9 +6,9 @@
 //  Copyright (c) 2012 Tobias Ottenweller. All rights reserved.
 //
 
-#import "TOBaseInterpolator.h"
+#import "TOLinearInterpolator.h"
 
-@implementation TOBaseInterpolator
+@implementation TOLinearInterpolator
 
 + (double)yValueForX:(double)x inLinearFunctionWithPoint:(CGPoint)p1 andPoint:(CGPoint)p2
 {

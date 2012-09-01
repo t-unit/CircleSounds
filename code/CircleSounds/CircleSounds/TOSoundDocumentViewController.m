@@ -65,9 +65,12 @@
     
     CGRect newSoundViewFrame = CGRectMake(pos.x - (SOUND_VIEW_WIDTH/2), pos.y - (SOUND_VIEW_HEIGHT/2), SOUND_VIEW_WIDTH, SOUND_VIEW_HEIGHT);
     
-    TOPlugableSoundController *soundController = [[TOPlugableSoundController alloc] initWithPlugableSound:sound atPosition:newSoundViewFrame];
+    TOPlugableSoundController *soundController = [[TOPlugableSoundController alloc] initWithPlugableSound:sound
+                                                                                               atPosition:newSoundViewFrame
+                                                                                       documentController:self];
+    
     self.soundControllers = [self.soundControllers arrayByAddingObject:soundController];
-    soundController.documentController = self;
+    
     
     [self.soundDocument addPlugableSoundObject:sound];
     [self.canvas addSubview:soundController.soundView];

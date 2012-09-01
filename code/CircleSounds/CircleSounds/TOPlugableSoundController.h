@@ -15,13 +15,16 @@
 
 @interface TOPlugableSoundController : NSObject
 
-- (id)initWithPlugableSound:(TOEqualizerSound *)sound atPosition:(CGRect)viewFrame;
+/**
+ The designated initializer for the sound controller. It will overwrite the 'startTime'
+ property of 'sound'. Other properties won't be changed during initialization.
+ */
+- (id)initWithPlugableSound:(TOEqualizerSound *)sound atPosition:(CGRect)viewFrame documentController:(TOSoundDocumentViewController *)documentController;
 
 
 @property (readonly, nonatomic) TOEqualizerSound *sound;
 @property (readonly, nonatomic) TOPlugableSoundView *soundView;
-
-@property (weak, nonatomic) TOSoundDocumentViewController *documentController;
+@property (readonly, nonatomic) TOSoundDocumentViewController *documentController;
 
 
 
