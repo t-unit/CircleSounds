@@ -17,6 +17,11 @@
     AudioUnitParameterValue _playbackRate;
 }
 
+
+/**
+ The playback speed of the sound. Values between 0.25 and 4 are
+ excepted. The default value is 1.0.
+ */
 @property (assign, nonatomic) AudioUnitParameterValue playbackRate;
 
 @end
