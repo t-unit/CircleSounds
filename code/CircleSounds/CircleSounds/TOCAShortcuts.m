@@ -27,7 +27,7 @@ void TOErrorHandler(OSStatus status, NSError *__autoreleasing *error, NSString *
     
     *error = [[NSError alloc] initWithDomain:@"TOAudioErrorDomain"
                                         code:status
-                                    userInfo:@{ kTOErrorInfoStringKey : errorInfo?errorInfo:[NSNull null],
+                                    userInfo:@{ kTOErrorInfoStringKey : errorInfo ? errorInfo : [NSNull null],
                                                 kTOErrorStatusStringKey : [NSString stringWithOSStatus:status] } ];
 }
 
