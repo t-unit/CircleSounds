@@ -244,7 +244,7 @@
     self.detailsPopoverController = [[UIPopoverController alloc] initWithContentViewController:detailsViewController];
     
     [self.detailsPopoverController presentPopoverFromRect:self.soundView.frame
-                                                   inView:self.soundView.superview
+                                                   inView:self.documentController.view
                                  permittedArrowDirections:UIPopoverArrowDirectionAny
                                                  animated:YES];
     

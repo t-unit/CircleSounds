@@ -6,17 +6,17 @@
 //  Copyright (c) 2012 Tobias Ottenweller. All rights reserved.
 //
 
-#import "TOReverbSound.h"
+#import "TOVarispeedSound.h"
 
 
-@interface TOEqualizerSound : TOReverbSound
+@interface TOEqualizerSound : TOVarispeedSound
 {
     TOAudioUnit *_equalizerUnit;
     
     NSArray *_bands;
     NSMutableArray *_bandGains;
     
-    AudioUnitParameterValue _globaleGain;
+    AudioUnitParameterValue _globalGain;
 }
 
 

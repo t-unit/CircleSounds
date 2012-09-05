@@ -283,6 +283,8 @@
 		D2698EDC15EE4262008A52D7 /* Audio Layer */ = {
 			isa = PBXGroup;
 			children = (
+				D2698EC515EE4255008A52D7 /* TOAudioUnit.h */,
+				D2698EC615EE4255008A52D7 /* TOAudioUnit.m */,
 				D2698EC115EE4255008A52D7 /* TOCAShortcuts.h */,
 				D2698EC215EE4255008A52D7 /* TOCAShortcuts.m */,
 				D2698EC315EE4255008A52D7 /* NSString+OSStatus.h */,
@@ -297,8 +299,6 @@
 		D2698EDD15EE427F008A52D7 /* Plugable Sounds */ = {
 			isa = PBXGroup;
 			children = (
-				D2698EC515EE4255008A52D7 /* TOAudioUnit.h */,
-				D2698EC615EE4255008A52D7 /* TOAudioUnit.m */,
 				D2698EC715EE4255008A52D7 /* TOPlugableSound.h */,
 				D2698EC815EE4255008A52D7 /* TOPlugableSound.m */,
 				D2698EC915EE4255008A52D7 /* TOFilePlayerSound.h */,
