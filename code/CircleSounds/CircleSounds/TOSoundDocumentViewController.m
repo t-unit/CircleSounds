@@ -163,4 +163,18 @@
     }
 }
 
+
+//- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+//{
+//    // The Storyboard Segue is named popover in this case:
+//    if ([segue.identifier isEqualToString:@"show"]) {
+//        UIPopoverController *popController = [(UIStoryboardPopoverSegue *)segue popoverController];
+//        
+//        popController
+//        
+//        
+//        NSLog(@"sender: %@", sender);
+//    }
+//}
+
 @end

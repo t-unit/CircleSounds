@@ -15,6 +15,7 @@
 #import "TOWaveformDrawer.h"
 #import "TOColorInterpolator.h"
 #import "TOLinearInterpolator.h"
+#import "TOSoundDetailsPopoverViewControllerDelegate.h"
 
 
 #define DEFAULT_PLAYBACK_RATE 1.0
@@ -39,7 +40,7 @@
 
 
 
-@interface TOPlugableSoundController () <UIGestureRecognizerDelegate>
+@interface TOPlugableSoundController () <UIGestureRecognizerDelegate, TOSoundDetailsPopoverViewControllerDelegate>
 
 @property (assign, nonatomic) double virtualViewRotation;
 @property (assign, nonatomic) CGRect initialViewBounds; /* used for scaling. initial bounds for a single pinch gesture. */
@@ -49,6 +50,8 @@
 @property (strong, nonatomic) UIColor *playbackColorNormal;
 @property (strong, nonatomic) UIColor *playbackColorFast;
 @property (strong, nonatomic) UIColor *playbackColorSlow;
+
+@property (strong, nonatomic) UIPopoverController *detailsPopoverController;
 
 @end
 
@@ -227,7 +230,19 @@
 
 - (void)displayDetailsSheet
 {
-    // TODO: display a details sheet
+    UIViewController *viewControllerForPopover = [self.documentController.storyboard instantiateViewControllerWithIdentifier:@"popover view controller"];
+    
+    self.detailsPopoverController = [[UIPopoverController alloc] initWithContentViewController:viewControllerForPopover];
+    
+    [self.detailsPopoverController presentPopoverFromRect:self.soundView.frame
+                                                   inView:self.soundView.superview
+                                 permittedArrowDirections:UIPopoverArrowDirectionAny
+                                                 animated:YES];
+    
+//    CGRect popupFrame = self.detailsPopoverController.contentViewController.view.superview.superview.superview.frame;
+//    popupFrame.origin.y = self.soundView.frame.origin.y + self.soundView.frame.size.height * self.scale;
+//    
+//    self.detailsPopoverController.contentViewController.view.superview.superview.superview.frame = popupFrame;
 }
 
 

@@ -4,6 +4,191 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1914"/>
     </dependencies>
     <scenes>
+        <!--Sound Details Popover View Controller-->
+        <scene sceneID="TVc-Om-wtO">
+            <objects>
+                <viewController storyboardIdentifier="popover view controller" id="EIi-1O-6gi" customClass="TOSoundDetailsPopoverViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="E5F-Zn-I6p">
+                        <rect key="frame" x="0.0" y="0.0" width="800" height="350"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="txs-WG-YNA">
+                                <rect key="frame" x="150" y="89" width="500" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <segments>
+                                    <segment title="File"/>
+                                    <segment title="EQ"/>
+                                    <segment title="Reverb"/>
+                                </segments>
+                                <connections>
+                                    <action selector="segmentedControlValueChanged:" destination="EIi-1O-6gi" eventType="valueChanged" id="mjn-J7-jzf"/>
+                                </connections>
+                            </segmentedControl>
+                            <view contentMode="scaleToFill" id="ZkW-Hh-Uhd" userLabel="Trimm View">
+                                <rect key="frame" x="5" y="5" width="790" height="75"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="kgM-LO-3Nr" userLabel="Image View - Waveform">
+                                        <rect key="frame" x="0.0" y="0.0" width="790" height="75"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    </imageView>
+                                    <view contentMode="scaleToFill" id="rWl-8Q-XCS" userLabel="Left Trimm Gesture Catcher" customClass="TOHandleView">
+                                        <rect key="frame" x="0.0" y="0.0" width="20" height="75"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    </view>
+                                    <view contentMode="scaleToFill" id="UCm-mH-dDk" userLabel="Left Overlay">
+                                        <rect key="frame" x="-800" y="0.0" width="800" height="75"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="0.098255018250000006" alpha="0.5" colorSpace="calibratedWhite"/>
+                                    </view>
+                                    <view contentMode="scaleToFill" id="OdS-ZQ-Qcc" userLabel="Right Trimm Gesture Catcher" customClass="TOHandleView">
+                                        <rect key="frame" x="770" y="0.0" width="20" height="75"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    </view>
+                                    <view contentMode="scaleToFill" id="Wpl-6I-Trc" userLabel="Right Overlay">
+                                        <rect key="frame" x="790" y="0.0" width="800" height="75"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="0.098255018248175188" alpha="0.5" colorSpace="calibratedWhite"/>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="PoT-oe-8Jd">
+                                <rect key="frame" x="640" y="287" width="140" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Remove">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="removeButtonPressed:" destination="EIi-1O-6gi" eventType="touchUpInside" id="abm-DH-Wuz"/>
+                                </connections>
+                            </button>
+                            <stepper opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" id="IBP-f4-vQ5">
+                                <rect key="frame" x="673" y="146" width="94" height="27"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <connections>
+                                    <action selector="loopCountStepperValueChanged:" destination="EIi-1O-6gi" eventType="valueChanged" id="HkS-i0-c9B"/>
+                                </connections>
+                            </stepper>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" text="Loop Count" adjustsFontSizeToFit="NO" autoshrinkMode="none" id="PUl-Iv-hOo">
+                                <rect key="frame" x="499" y="149" width="88" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="highlightedColor"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" text="1" textAlignment="center" adjustsFontSizeToFit="NO" autoshrinkMode="none" id="uKz-az-szU">
+                                <rect key="frame" x="588" y="149" width="77" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="highlightedColor"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" text="Name" adjustsFontSizeToFit="NO" autoshrinkMode="none" id="UQt-fq-lJr">
+                                <rect key="frame" x="62" y="140" width="46" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="highlightedColor"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" text="Duration" adjustsFontSizeToFit="NO" autoshrinkMode="none" id="7AJ-BG-XkR">
+                                <rect key="frame" x="43" y="198" width="65" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="highlightedColor"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" text="A beautiful Song Name" adjustsFontSizeToFit="NO" autoshrinkMode="none" id="GRe-Px-TqA">
+                                <rect key="frame" x="144" y="140" width="188" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="highlightedColor"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" text="3:14" adjustsFontSizeToFit="NO" autoshrinkMode="none" id="n9u-md-rjc">
+                                <rect key="frame" x="144" y="198" width="188" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="highlightedColor"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" text="Artist" adjustsFontSizeToFit="NO" autoshrinkMode="none" id="0Qj-iG-243">
+                                <rect key="frame" x="66" y="169" width="39" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="highlightedColor"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" text="Mr. Songwriter" adjustsFontSizeToFit="NO" autoshrinkMode="none" id="HyZ-q9-TBW">
+                                <rect key="frame" x="144" y="169" width="169" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="highlightedColor"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="kn8-BI-Y5F">
+                                <rect key="frame" x="20" y="287" width="140" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Change Sound">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="changeSoundButtonPressed:" destination="EIi-1O-6gi" eventType="touchUpInside" id="Hks-un-EcD"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Uw1-F2-vnh">
+                                <rect key="frame" x="330" y="287" width="140" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Reset all Effects">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="resetEffectsButtonPressed:" destination="EIi-1O-6gi" eventType="touchUpInside" id="Kj3-UO-b4g"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.098483122885227203" green="0.098483122885227203" blue="0.149891651459854" alpha="1" colorSpace="calibratedRGB"/>
+                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    </view>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <connections>
+                        <outlet property="leftTrimmGestureCatcher" destination="rWl-8Q-XCS" id="1cp-OR-ubG"/>
+                        <outlet property="leftTrimmOverlay" destination="UCm-mH-dDk" id="hH8-VB-ceA"/>
+                        <outlet property="loopCountLabel" destination="uKz-az-szU" id="U31-5U-fVO"/>
+                        <outlet property="rightTrimmGestureCatcher" destination="OdS-ZQ-Qcc" id="LSa-v9-jeA"/>
+                        <outlet property="rightTrimmOverlay" destination="Wpl-6I-Trc" id="1WC-mb-V8X"/>
+                        <outlet property="segmentedControl" destination="txs-WG-YNA" id="QOf-gp-WaO"/>
+                        <outlet property="songArtistLabel" destination="HyZ-q9-TBW" id="Gup-Kj-aYX"/>
+                        <outlet property="songDurationLabel" destination="n9u-md-rjc" id="gv5-Ff-dNz"/>
+                        <outlet property="songNameLabel" destination="GRe-Px-TqA" id="trO-pw-M4T"/>
+                        <outlet property="waveformImageView" destination="kgM-LO-3Nr" id="Nso-3g-FEj"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pdb-ug-1cz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1268" y="169"/>
+        </scene>
         <!--Sound Document View Controller-->
         <scene sceneID="4">
             <objects>
@@ -142,14 +327,37 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="-69" y="-40"/>
         </scene>
     </scenes>
     <classes>
         <class className="TOAudioMeterView" superclassName="UIView">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/TOAudioMeterView.h"/>
         </class>
+        <class className="TOHandleView" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TOHandleView.h"/>
+        </class>
         <class className="TORoundedRectView" superclassName="UIView">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/TORoundedRectView.h"/>
+        </class>
+        <class className="TOSoundDetailsPopoverViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TOSoundDetailsPopoverViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="loopCountStepperValueChanged:"/>
+                <relationship kind="action" name="removeButtonPressed:"/>
+                <relationship kind="action" name="resetEffectsButtonPressed:"/>
+                <relationship kind="action" name="segmentedControlValueChanged:"/>
+                <relationship kind="outlet" name="leftTrimmGestureCatcher" candidateClass="TOHandleView"/>
+                <relationship kind="outlet" name="leftTrimmOverlay" candidateClass="UIView"/>
+                <relationship kind="outlet" name="loopCountLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="rightTrimmGestureCatcher" candidateClass="TOHandleView"/>
+                <relationship kind="outlet" name="rightTrimmOverlay" candidateClass="UIView"/>
+                <relationship kind="outlet" name="segmentedControl" candidateClass="UISegmentedControl"/>
+                <relationship kind="outlet" name="songArtistLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="songDurationLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="songNameLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="waveformImageView" candidateClass="UIImageView"/>
+            </relationships>
         </class>
         <class className="TOSoundDocumentViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/TOSoundDocumentViewController.h"/>

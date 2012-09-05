@@ -18,7 +18,6 @@
 @property (strong, nonatomic) NSArray *soundControllers;
 
 
-
 @property (weak, nonatomic) IBOutlet UIView *canvas;
 
 @property (weak, nonatomic) IBOutlet TOAudioMeterView *leftMeterView;
