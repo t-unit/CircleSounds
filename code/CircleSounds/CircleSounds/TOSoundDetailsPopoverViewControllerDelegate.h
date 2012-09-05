@@ -13,6 +13,6 @@
 
 @protocol TOSoundDetailsPopoverViewControllerDelegate <NSObject>
 
-- (void)detailsController:(TOSoundDetailsPopoverViewController *)detailsController didRemoveSoundFromSoundDocument:(TOEqualizerSound *)sound;
+- (void)detailsController:(TOSoundDetailsPopoverViewController *)detailsController soundShouldBeRemovedFromDocument:(TOEqualizerSound *)sound;
 
 @end

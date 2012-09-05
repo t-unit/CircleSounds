@@ -199,7 +199,7 @@
                         <subviews>
                             <view contentMode="scaleToFill" id="cKJ-FF-57J" userLabel="Canvas">
                                 <rect key="frame" x="0.0" y="80" width="1024" height="668"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" id="d83-Qv-3gn" userLabel="Current Position View">
                                         <rect key="frame" x="0.0" y="0.0" width="1" height="668"/>
@@ -343,6 +343,7 @@
         <class className="TOSoundDetailsPopoverViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/TOSoundDetailsPopoverViewController.h"/>
             <relationships>
+                <relationship kind="action" name="changeSoundButtonPressed:"/>
                 <relationship kind="action" name="loopCountStepperValueChanged:"/>
                 <relationship kind="action" name="removeButtonPressed:"/>
                 <relationship kind="action" name="resetEffectsButtonPressed:"/>

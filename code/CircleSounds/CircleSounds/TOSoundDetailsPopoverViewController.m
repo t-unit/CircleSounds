@@ -8,6 +8,9 @@
 
 #import "TOSoundDetailsPopoverViewController.h"
 
+#import "TOSoundDetailsPopoverViewControllerDelegate.h"
+
+
 @interface TOSoundDetailsPopoverViewController ()
 
 @end
@@ -40,7 +43,9 @@
 - (IBAction)loopCountStepperValueChanged:(id)sender {
 }
 
-- (IBAction)removeButtonPressed:(id)sender {
+- (IBAction)removeButtonPressed:(id)sender
+{
+    [self.delegate detailsController:self soundShouldBeRemovedFromDocument:self.sound];
 }
 
 - (IBAction)resetEffectsButtonPressed:(id)sender {

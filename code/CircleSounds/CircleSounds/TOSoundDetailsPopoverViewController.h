@@ -10,14 +10,14 @@
 
 @class TOEqualizerSound;
 @class TOHandleView;
-@protocol TOSoundDetailsViewControllerDelegate;
+@protocol TOSoundDetailsPopoverViewControllerDelegate;
 
 
 
 @interface TOSoundDetailsPopoverViewController : UIViewController
 
 @property (strong, nonatomic) TOEqualizerSound *sound;
-@property (weak, nonatomic) id<TOSoundDetailsViewControllerDelegate> delegate;
+@property (weak, nonatomic) id<TOSoundDetailsPopoverViewControllerDelegate> delegate;
 
 
 /* Interface Builder Properties and Callbacks */

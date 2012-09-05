@@ -13,6 +13,7 @@
 #import "TOEqualizerSound.h"
 #import "TOPlugableSoundController.h"
 #import "TOPlugableSoundView.h"
+#import "NSArray+arrayByRemovingObject.h"
 
 #define SOUND_VIEW_WIDTH 150
 #define SOUND_VIEW_HEIGHT 150
@@ -58,7 +59,7 @@
 {
     TOEqualizerSound *sound = [[TOEqualizerSound alloc] init];
     
-    NSURL *soundFileURL = [[NSBundle mainBundle] URLForResource:@"08 Hope You're Feeling Better" withExtension:@"m4a"];
+    NSURL *soundFileURL = [[NSBundle mainBundle] URLForResource:@"clong-1" withExtension:@"wav"];
     [sound setAudioFileURL:soundFileURL error:nil]; // TODO: proper error handling
     
     sound.regionDuration = sound.fileDuration;
@@ -76,6 +77,17 @@
     [self.canvas addSubview:soundController.soundView];
     
     [self.canvas bringSubviewToFront:self.currentPositionView];
+}
+
+
+- (void)removeSoundController:(TOPlugableSoundController *)soundController
+{
+    NSParameterAssert(soundController);
+    
+    [self.soundDocument removePlugableSoundObject:soundController.sound];
+    [soundController.soundView removeFromSuperview];
+    
+    self.soundControllers = [self.soundControllers arrayByRemovingObject:soundController];
 }
 
 

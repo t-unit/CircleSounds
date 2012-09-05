@@ -15,6 +15,7 @@
 #import "TOWaveformDrawer.h"
 #import "TOColorInterpolator.h"
 #import "TOLinearInterpolator.h"
+#import "TOSoundDetailsPopoverViewController.h"
 #import "TOSoundDetailsPopoverViewControllerDelegate.h"
 
 
@@ -175,6 +176,12 @@
 }
 
 
+- (void)dealloc
+{
+    [self.sound removeObserver:self forKeyPath:@"audioFileURL"];
+}
+
+
 - (void)setupViewProperties
 {
     // playback rate & view color
@@ -230,9 +237,11 @@
 
 - (void)displayDetailsSheet
 {
-    UIViewController *viewControllerForPopover = [self.documentController.storyboard instantiateViewControllerWithIdentifier:@"popover view controller"];
+    TOSoundDetailsPopoverViewController *detailsViewController = [self.documentController.storyboard instantiateViewControllerWithIdentifier:@"popover view controller"];
+    detailsViewController.delegate = self;
+    detailsViewController.sound = self.sound;
     
-    self.detailsPopoverController = [[UIPopoverController alloc] initWithContentViewController:viewControllerForPopover];
+    self.detailsPopoverController = [[UIPopoverController alloc] initWithContentViewController:detailsViewController];
     
     [self.detailsPopoverController presentPopoverFromRect:self.soundView.frame
                                                    inView:self.soundView.superview
@@ -394,6 +403,15 @@
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
 {
     return YES; // enable pinching and rotating at the same time
+}
+
+
+#pragma mark - Details View Controller Delegate Methods
+
+- (void)detailsController:(TOSoundDetailsPopoverViewController *)detailsController soundShouldBeRemovedFromDocument:(TOEqualizerSound *)sound
+{
+    [self.detailsPopoverController dismissPopoverAnimated:NO];
+    [self.documentController removeSoundController:self];
 }
 
 @end
