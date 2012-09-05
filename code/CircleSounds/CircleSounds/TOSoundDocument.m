@@ -162,6 +162,15 @@ OSStatus MixerUnitRenderNoteCallack(void                        *inRefCon,
     //............................................................................
     // Set properties/parameters of the units inside the graph
     
+    // Set maximum number of buses on the mixer node
+    UInt32 numbuses = 100; // TODO: adjust this value while adding new sound to the graph!
+    TOThrowOnError(AudioUnitSetProperty(_mixerUnit->unit,
+                                        kAudioUnitProperty_ElementCount,
+                                        kAudioUnitScope_Input,
+                                        0,
+                                        &numbuses,
+                                        sizeof(UInt32)));
+    
     // Enable metering at the output of the mixer unit
     UInt32 meteringMode = 1; // enabled
     TOThrowOnError(AudioUnitSetProperty(_mixerUnit->unit,
@@ -340,11 +349,15 @@ OSStatus MixerUnitRenderNoteCallack(void                        *inRefCon,
         UInt32 mixerInputBus;
         
         if (_availibleBuses.count) {
-            mixerInputBus = [_availibleBuses[0] unsignedIntegerValue];
+            NSNumber *mixerInputBusObject = _availibleBuses[0];
+            
+            mixerInputBus = [mixerInputBusObject unsignedIntegerValue];
+            _availibleBuses = [_availibleBuses arrayByRemovingObject:mixerInputBusObject];
         }
         else {
             mixerInputBus = ++_maxBusTaken;
         }
+
         
         TOAudioUnit *sourceAU = [soundObject.audioUnits lastObject];
         TOThrowOnError(AUGraphConnectNodeInput(_graph,
@@ -411,17 +424,15 @@ OSStatus MixerUnitRenderNoteCallack(void                        *inRefCon,
         
         
         [soundObject tearDownUnits];
-        soundObject.document = nil;
+        TOThrowOnError(AUGraphUpdate(_graph, NULL));
         
+        soundObject.document = nil;
         
         // set nodes and units to NULL
         for (TOAudioUnit *au in soundObject.audioUnits) {
             memset(&(au->unit), 0, sizeof(AudioUnit));
             memset(&(au->node), 0, sizeof(AUNode));
         }
-        
-
-        TOThrowOnError(AUGraphUpdate(_graph, NULL));
     }
 }
 
