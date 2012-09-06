@@ -59,10 +59,11 @@
 {
     TOEqualizerSound *sound = [[TOEqualizerSound alloc] init];
     
-    NSURL *soundFileURL = [[NSBundle mainBundle] URLForResource:@"clong-1" withExtension:@"wav"];
+    NSURL *soundFileURL = [[NSBundle mainBundle] URLForResource:@"08 Hope You're Feeling Better" withExtension:@"m4a"];
     [sound setAudioFileURL:soundFileURL error:nil]; // TODO: proper error handling
     
     sound.regionDuration = sound.fileDuration;
+    sound.bands = @[ @32, @64, @125, @250, @500, @1000, @2000, @4000, @8000, @16000];
     
     CGRect newSoundViewFrame = CGRectMake(pos.x - (SOUND_VIEW_WIDTH/2), pos.y - (SOUND_VIEW_HEIGHT/2), SOUND_VIEW_WIDTH, SOUND_VIEW_HEIGHT);
     
