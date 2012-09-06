@@ -11,8 +11,6 @@
 #import "TOCAShortcuts.h"
 
 
-#define NORMALIZED_MAX 4000.0
-
 @interface TOWaveformDrawer ()
 
 // audio file details
@@ -27,9 +25,11 @@
                                                are drawn.
                                              */
 @property (assign, nonatomic) CGFloat distBetweenSamples; /* in radians on circle mode */
-@property (assign, nonatomic) CGFloat maxAmplitude; /* only used in rectangle mode */
+@property (assign, nonatomic) CGFloat maxAmplitudeInPoints; /* only used in rectangle mode */
 @property (assign, nonatomic) CGFloat outerRadius; /* only used in circle mode */
 @property (assign, nonatomic) CGPoint center; /* Center of the circle. Only used in circle mode */
+
+@property (assign, nonatomic) AudioSampleType peakSample; /* absolute value */
 
 @end
 
@@ -44,6 +44,9 @@
 }
 
 
+#define MIN_SAMPLE_RATE 500
+#define MAX_SAMPLE_RATE 44100
+
 - (void)setupExtAudioFileAtURL:(NSURL *)url
 {
     if (self.extAudioFile) {
@@ -55,17 +58,6 @@
     ExtAudioFileRef extFile;
     TOThrowOnError(ExtAudioFileOpenURL((__bridge CFURLRef)(url), &extFile));
     self.extAudioFile = extFile;
-    
-    
-    // set the client stream format
-    AudioStreamBasicDescription clientFormat = TOCanonicalStreamFormat(1, true);
-    clientFormat.mSampleRate = 500;
-    TOThrowOnError(ExtAudioFileSetProperty(extFile,
-                                           kExtAudioFileProperty_ClientDataFormat,
-                                           sizeof(clientFormat),
-                                           &clientFormat));
-    
-    self.audioFileClientFormat = clientFormat;
     
     
     // obtain file duration
@@ -84,13 +76,40 @@
                                         &fileDuration));
     
     self.audioFileDuration = fileDuration;
+    
+    
+    // set the client stream format
+    AudioStreamBasicDescription clientFormat = TOCanonicalStreamFormat(1, true);
+    
+    if (fileDuration > 60) {
+        clientFormat.mSampleRate = 551.25;
+    }
+    else if (fileDuration > 30) {
+        clientFormat.mSampleRate = 1102.5;
+    }
+    else if (fileDuration > 10) {
+        clientFormat.mSampleRate = 2205;
+    }
+    else {
+        clientFormat.mSampleRate = 4410;
+    }
+    
+    
+    TOThrowOnError(ExtAudioFileSetProperty(extFile,
+                                           kExtAudioFileProperty_ClientDataFormat,
+                                           sizeof(clientFormat),
+                                           &clientFormat));
+    
+    self.audioFileClientFormat = clientFormat;
+    
+    
 }
 
 
 - (CGPoint)pointInRectWithSample:(AudioSampleType)sample atPosition:(UInt64)samplePostion
 {    
     CGFloat x = samplePostion * self.distBetweenSamples;
-    CGFloat y = self.base + (sample / NORMALIZED_MAX * self.maxAmplitude);
+    CGFloat y = self.base + ((CGFloat)sample / (CGFloat)self.peakSample * (CGFloat)self.maxAmplitudeInPoints);
     
     return CGPointMake(x, y);
 }
@@ -99,7 +118,7 @@
 - (CGPoint)pointInCircletWithSample:(AudioSampleType)sample atPosition:(UInt64)samplePostion
 {
     CGFloat angle = M_PI - (samplePostion * self.distBetweenSamples);
-    CGFloat amplitude = 1/NORMALIZED_MAX * sample;
+    CGFloat amplitude =  (CGFloat)sample / (CGFloat)self.peakSample;
     
     CGPoint basePoint = CGPointMake(sinf(angle) * self.base, cosf(angle) * self.base);
     CGPoint maxPosAmplitudePoint = CGPointMake(sinf(angle) * self.outerRadius, cosf(angle) * self.outerRadius);
@@ -116,12 +135,66 @@
 
 - (UIBezierPath *)waveFormPath
 {
+    // prepare audio file reading
+    UInt32 outputBuferSize = 32 * 1024; // 32 KB
+    UInt32 sizePerPacket = self.audioFileClientFormat.mBytesPerPacket;
+    UInt32 packetsPerBuffer = outputBuferSize / sizePerPacket;
+    
+    void *outputBuffer = malloc(sizeof(UInt8) * outputBuferSize);
+    UInt32 filePacketPosition = 0; // In bytes
+    UInt64 samplePos = 0;
+    
+    
+    NSMutableArray *samplesArray = [[NSMutableArray alloc] init];
+    AudioSampleType peakSample = 0;
+    
+    // read from the audio file
+    while (1) {
+        AudioBufferList audioLPCMData;
+        audioLPCMData.mNumberBuffers = 1;
+        audioLPCMData.mBuffers[0].mNumberChannels = self.audioFileClientFormat.mChannelsPerFrame;
+        audioLPCMData.mBuffers[0].mDataByteSize = outputBuferSize;
+        audioLPCMData.mBuffers[0].mData = outputBuffer;
+        
+        UInt32 frameCount = packetsPerBuffer;
+        TOThrowOnError(ExtAudioFileRead(self.extAudioFile,
+                                        &frameCount,
+                                        &audioLPCMData));
+        
+        if (frameCount == 0) {
+            break; // finished reading file
+        }
+        
+        
+        AudioSampleType *samples = audioLPCMData.mBuffers[0].mData;
+        UInt32 numSamples = audioLPCMData.mBuffers[0].mDataByteSize / sizeof(AudioSampleType);
+        
+        
+        for (UInt32 i=0; i<numSamples; i++) {
+            AudioSampleType sample = samples[i];
+            
+            [samplesArray addObject:@(sample)];
+             
+            if (fabs(sample) > peakSample) {
+                peakSample = fabs(sample);
+            }
+            
+            samplePos++;
+        }
+        
+        filePacketPosition += (frameCount * self.audioFileClientFormat.mBytesPerPacket);
+    }
+    
+    free(outputBuffer);
+    self.peakSample = peakSample;
+    
+    
     // calculate/setup drawing variables
     UIBezierPath *waveformPath = [[UIBezierPath alloc] init];
     
     if (self.mode == TOWaveformDrawerModeRectangle) {
         self.base = self.imageSize.height/2.0;
-        self.maxAmplitude = self.base;
+        self.maxAmplitudeInPoints = self.base;
         self.distBetweenSamples = self.imageSize.width / (self.audioFileDuration * self.audioFileClientFormat.mSampleRate);
         
         [waveformPath moveToPoint:CGPointMake(0, self.base)];
@@ -135,57 +208,21 @@
         [waveformPath moveToPoint:CGPointMake(self.center.x, self.center.y - self.base)];
     }
     
+    samplePos = 0;
     
-    // prepare audio file reading
-    UInt32 outputBuferSize = 32 * 1024; // 32 KB
-    UInt32 sizePerPacket = self.audioFileClientFormat.mBytesPerPacket;
-    UInt32 packetsPerBuffer = outputBuferSize / sizePerPacket;
-    
-    void *outputBuffer = malloc(sizeof(UInt8) * outputBuferSize);
-    UInt32 filePacketPosition = 0; // In bytes
-    UInt64 samplePos = 0;
-    
-    
-    // read from the audio file
-    while (1) {
-        AudioBufferList convertedData;
-        convertedData.mNumberBuffers = 1;
-        convertedData.mBuffers[0].mNumberChannels = self.audioFileClientFormat.mChannelsPerFrame;
-        convertedData.mBuffers[0].mDataByteSize = outputBuferSize;
-        convertedData.mBuffers[0].mData = outputBuffer;
+    for (NSNumber *sample in samplesArray) {
+        CGPoint p;
         
-        UInt32 frameCount = packetsPerBuffer;
-        TOThrowOnError(ExtAudioFileRead(self.extAudioFile,
-                                        &frameCount,
-                                        &convertedData));
-        
-        if (frameCount == 0) {
-            break; // finished reading file
+        if (self.mode == TOWaveformDrawerModeRectangle) {
+            p = [self pointInRectWithSample:[sample doubleValue] atPosition:samplePos];
+        }
+        else {
+            p = [self pointInCircletWithSample:[sample doubleValue] atPosition:samplePos];
         }
         
-        
-        AudioSampleType *samples = convertedData.mBuffers[0].mData;
-        UInt32 numSamples = convertedData.mBuffers[0].mDataByteSize / sizeof(AudioSampleType);
-        
-        for (UInt32 i=0; i<numSamples; i++) {
-            AudioSampleType sample = samples[i];
-            CGPoint p;
-            
-            if (self.mode == TOWaveformDrawerModeRectangle) {
-                p = [self pointInRectWithSample:sample atPosition:samplePos];
-            }
-            else {
-                p = [self pointInCircletWithSample:sample atPosition:samplePos];
-            }
-            
-            [waveformPath addLineToPoint:p];
-            samplePos++;
-        }
-        
-        filePacketPosition += (frameCount * self.audioFileClientFormat.mBytesPerPacket);
+        [waveformPath addLineToPoint:p];
+        samplePos++;
     }
-    
-    free(outputBuffer);
     
     return waveformPath;
 }
