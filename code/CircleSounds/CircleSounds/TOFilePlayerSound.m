@@ -342,7 +342,7 @@ OSStatus FilePlayerUnitRenderNotifyCallblack (void                        *inRef
 	rgn.mCompletionProc = NULL;
 	rgn.mCompletionProcUserData = NULL;
 	rgn.mAudioFile = _audioFile;
-	rgn.mLoopCount = _loopCount;
+	rgn.mLoopCount = _loopCount -1;
 	rgn.mStartFrame = startFrame;
 	rgn.mFramesToPlay = framesToPlay;
     
