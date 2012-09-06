@@ -61,6 +61,7 @@ OSStatus FilePlayerUnitRenderNotifyCallblack (void                        *inRef
         _filePlayerUnit->description = TOAudioComponentDescription(kAudioUnitType_Generator, kAudioUnitSubType_AudioFilePlayer);
         
         _currentFilePlayerUnitRenderSampleTime = NAN;
+        _loopCount = 1;
         
         _audioUnits = [_audioUnits arrayByAddingObject:_filePlayerUnit];
     }
@@ -206,7 +207,32 @@ OSStatus FilePlayerUnitRenderNotifyCallblack (void                        *inRef
     }
     
     
+    [self readAudioFileProperties];
     return YES;
+}
+
+
+- (void)readAudioFileProperties
+{
+    UInt32 dictionarySize = 0;
+    TOThrowOnError(AudioFileGetPropertyInfo(_audioFile,
+                                            kAudioFilePropertyInfoDictionary,
+                                            &dictionarySize,
+                                            0));
+    
+    CFDictionaryRef dictionaryRef;
+    TOThrowOnError(AudioFileGetProperty(_audioFile,
+                                        kAudioFilePropertyInfoDictionary,
+                                        &dictionarySize,
+                                        &dictionaryRef));
+    
+    
+    NSDictionary *dictionary = (__bridge NSDictionary *)(dictionaryRef);
+    
+    _fileSongName = dictionary[@kAFInfoDictionary_Title];
+    _fileSongArtist = dictionary[@kAFInfoDictionary_Artist];
+    
+    CFRelease(dictionaryRef);
 }
 
 

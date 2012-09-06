@@ -40,6 +40,14 @@
 @property (readonly, nonatomic) Float64 fileDuration;
 
 
+/*
+ Properties read from the ID3-tag of the audio file.
+ Might return nil.
+ **/
+@property (readonly, nonatomic) NSString *fileSongName;
+@property (readonly, nonatomic) NSString *fileSongArtist;
+
+
 /**
  Start in seconds of the region of the file selected. 
  */
