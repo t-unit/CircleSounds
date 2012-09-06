@@ -30,14 +30,11 @@
 @property (weak, nonatomic) IBOutlet UIView *rightTrimmOverlay;
 
 
-@property (weak, nonatomic) IBOutlet UISegmentedControl *segmentedControl;
-- (IBAction)segmentedControlValueChanged:(id)sender;
-
-
 @property (weak, nonatomic) IBOutlet UILabel *songNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *songArtistLabel;
 @property (weak, nonatomic) IBOutlet UILabel *songDurationLabel;
 
+@property (weak, nonatomic) IBOutlet UIStepper *loopCountStepper;
 @property (weak, nonatomic) IBOutlet UILabel *loopCountLabel;
 - (IBAction)loopCountStepperValueChanged:(id)sender;
 
@@ -46,4 +43,6 @@
 - (IBAction)resetEffectsButtonPressed:(id)sender;
 - (IBAction)changeSoundButtonPressed:(id)sender;
 
+@property (weak, nonatomic) IBOutlet UIView *equalizerCanvas;
+- (IBAction)eqSliderValueChanged:(UISlider *)sender;
 @end

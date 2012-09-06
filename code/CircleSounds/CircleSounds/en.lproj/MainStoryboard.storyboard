@@ -21,7 +21,7 @@
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     </imageView>
                                     <view contentMode="scaleToFill" id="rWl-8Q-XCS" userLabel="Left Trimm Gesture Catcher" customClass="TOHandleView">
-                                        <rect key="frame" x="0.0" y="0.0" width="20" height="75"/>
+                                        <rect key="frame" x="-4" y="0.0" width="20" height="75"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </view>
@@ -31,7 +31,7 @@
                                         <color key="backgroundColor" white="0.098255018250000006" alpha="0.5" colorSpace="calibratedWhite"/>
                                     </view>
                                     <view contentMode="scaleToFill" id="OdS-ZQ-Qcc" userLabel="Right Trimm Gesture Catcher" customClass="TOHandleView">
-                                        <rect key="frame" x="770" y="0.0" width="20" height="75"/>
+                                        <rect key="frame" x="774" y="0.0" width="20" height="75"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </view>
@@ -135,7 +135,7 @@
                                 <rect key="frame" x="8" y="181" width="280" height="66"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <stepper opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" id="IBP-f4-vQ5">
+                                    <stepper opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minimumValue="1" maximumValue="100" id="IBP-f4-vQ5">
                                         <rect key="frame" x="166" y="25" width="94" height="27"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <connections>
@@ -159,121 +159,151 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="0.14999999999999999" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </view>
-                            <view contentMode="scaleToFill" id="6Kb-H8-o4f">
+                            <view tag="-1" contentMode="scaleToFill" id="6Kb-H8-o4f">
                                 <rect key="frame" x="305" y="123" width="475" height="182"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" id="DGw-Kw-o2u">
+                                    <slider opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="-96" maxValue="24" id="DGw-Kw-o2u">
                                         <rect key="frame" x="278" y="20" width="179" height="23"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <connections>
+                                            <action selector="eqSliderValueChanged:" destination="EIi-1O-6gi" eventType="valueChanged" id="ddi-Q4-29F"/>
+                                        </connections>
                                     </slider>
-                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" id="uBc-jn-9mp">
+                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="-96" maxValue="24" id="uBc-jn-9mp">
                                         <rect key="frame" x="38" y="20" width="179" height="23"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <connections>
+                                            <action selector="eqSliderValueChanged:" destination="EIi-1O-6gi" eventType="valueChanged" id="Y92-ul-B7a"/>
+                                        </connections>
                                     </slider>
-                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" id="QhT-rH-zkA">
+                                    <slider opaque="NO" tag="7" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="-96" maxValue="24" id="QhT-rH-zkA">
                                         <rect key="frame" x="278" y="80" width="179" height="23"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <connections>
+                                            <action selector="eqSliderValueChanged:" destination="EIi-1O-6gi" eventType="valueChanged" id="tFz-lr-bMF"/>
+                                        </connections>
                                     </slider>
-                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" id="mgY-ha-lHJ">
+                                    <slider opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="-96" maxValue="24" id="mgY-ha-lHJ">
                                         <rect key="frame" x="38" y="80" width="179" height="23"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <connections>
+                                            <action selector="eqSliderValueChanged:" destination="EIi-1O-6gi" eventType="valueChanged" id="bIK-Qf-jac"/>
+                                        </connections>
                                     </slider>
-                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" id="eFY-go-cOB">
+                                    <slider opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="-96" maxValue="24" id="eFY-go-cOB">
                                         <rect key="frame" x="38" y="110" width="179" height="23"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <connections>
+                                            <action selector="eqSliderValueChanged:" destination="EIi-1O-6gi" eventType="valueChanged" id="6gw-bb-peQ"/>
+                                        </connections>
                                     </slider>
-                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" id="6Fo-Pg-i8G">
+                                    <slider opaque="NO" tag="8" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="-96" maxValue="24" id="6Fo-Pg-i8G">
                                         <rect key="frame" x="278" y="110" width="179" height="23"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <connections>
+                                            <action selector="eqSliderValueChanged:" destination="EIi-1O-6gi" eventType="valueChanged" id="6Q7-CZ-SGJ"/>
+                                        </connections>
                                     </slider>
-                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" id="Rab-eE-tgd">
+                                    <slider opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="-96" maxValue="24" id="Rab-eE-tgd">
                                         <rect key="frame" x="38" y="50" width="179" height="23"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <connections>
+                                            <action selector="eqSliderValueChanged:" destination="EIi-1O-6gi" eventType="valueChanged" id="lDM-0n-lKe"/>
+                                        </connections>
                                     </slider>
-                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" id="apg-jY-nRh">
+                                    <slider opaque="NO" tag="9" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="-96" maxValue="24" id="apg-jY-nRh">
                                         <rect key="frame" x="278" y="140" width="179" height="23"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <connections>
+                                            <action selector="eqSliderValueChanged:" destination="EIi-1O-6gi" eventType="valueChanged" id="FDE-lj-viX"/>
+                                        </connections>
                                     </slider>
-                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" id="4bc-0c-x70">
+                                    <slider opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="-96" maxValue="24" id="4bc-0c-x70">
                                         <rect key="frame" x="278" y="50" width="179" height="23"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <connections>
+                                            <action selector="eqSliderValueChanged:" destination="EIi-1O-6gi" eventType="valueChanged" id="Ut3-tZ-NUD"/>
+                                        </connections>
                                     </slider>
-                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" id="f6O-96-GK3">
+                                    <slider opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="-96" maxValue="24" id="f6O-96-GK3">
                                         <rect key="frame" x="38" y="140" width="179" height="23"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <connections>
+                                            <action selector="eqSliderValueChanged:" destination="EIi-1O-6gi" eventType="valueChanged" id="2I0-XR-mum"/>
+                                        </connections>
                                     </slider>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" text="32" adjustsFontSizeToFit="NO" autoshrinkMode="none" id="o2D-JG-D2c">
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="-1" contentMode="left" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" text="32" adjustsFontSizeToFit="NO" autoshrinkMode="none" id="o2D-JG-D2c">
                                         <rect key="frame" x="16" y="21" width="19" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <nil key="highlightedColor"/>
                                         <color key="textColor" red="0.81420110889999997" green="0.81420110889999997" blue="0.81420110889999997" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     </label>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" text="64" adjustsFontSizeToFit="NO" autoshrinkMode="none" id="BYI-tE-tEH">
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="-1" contentMode="left" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" text="64" adjustsFontSizeToFit="NO" autoshrinkMode="none" id="BYI-tE-tEH">
                                         <rect key="frame" x="16" y="51" width="19" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <nil key="highlightedColor"/>
                                         <color key="textColor" red="0.81420110889999997" green="0.81420110889999997" blue="0.81420110889999997" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     </label>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" text="125" adjustsFontSizeToFit="NO" autoshrinkMode="none" id="CHv-uv-D0z">
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="-1" contentMode="left" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" text="125" adjustsFontSizeToFit="NO" autoshrinkMode="none" id="CHv-uv-D0z">
                                         <rect key="frame" x="11" y="81" width="24" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <nil key="highlightedColor"/>
                                         <color key="textColor" red="0.81420110889999997" green="0.81420110889999997" blue="0.81420110889999997" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     </label>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" text="250" adjustsFontSizeToFit="NO" autoshrinkMode="none" id="Kg8-oh-Tic">
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="-1" contentMode="left" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" text="250" adjustsFontSizeToFit="NO" autoshrinkMode="none" id="Kg8-oh-Tic">
                                         <rect key="frame" x="11" y="110" width="24" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <nil key="highlightedColor"/>
                                         <color key="textColor" red="0.81420110889999997" green="0.81420110889999997" blue="0.81420110889999997" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     </label>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" text="500" adjustsFontSizeToFit="NO" autoshrinkMode="none" id="Hgi-0Z-fB8">
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="-1" contentMode="left" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" text="500" adjustsFontSizeToFit="NO" autoshrinkMode="none" id="Hgi-0Z-fB8">
                                         <rect key="frame" x="11" y="140" width="24" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <nil key="highlightedColor"/>
                                         <color key="textColor" red="0.81420110889999997" green="0.81420110889999997" blue="0.81420110889999997" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     </label>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" text="16k" adjustsFontSizeToFit="NO" autoshrinkMode="none" id="yRg-pH-DcF">
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="-1" contentMode="left" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" text="16k" adjustsFontSizeToFit="NO" autoshrinkMode="none" id="yRg-pH-DcF">
                                         <rect key="frame" x="249" y="141" width="23" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <nil key="highlightedColor"/>
                                         <color key="textColor" red="0.81420110889999997" green="0.81420110889999997" blue="0.81420110889999997" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     </label>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" text="8k" adjustsFontSizeToFit="NO" autoshrinkMode="none" id="wZG-sT-e0Q">
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="-1" contentMode="left" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" text="8k" adjustsFontSizeToFit="NO" autoshrinkMode="none" id="wZG-sT-e0Q">
                                         <rect key="frame" x="253" y="110" width="19" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <nil key="highlightedColor"/>
                                         <color key="textColor" red="0.81420110889999997" green="0.81420110889999997" blue="0.81420110889999997" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     </label>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" text="4k" adjustsFontSizeToFit="NO" autoshrinkMode="none" id="aDO-71-a5i">
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="-1" contentMode="left" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" text="4k" adjustsFontSizeToFit="NO" autoshrinkMode="none" id="aDO-71-a5i">
                                         <rect key="frame" x="253" y="80" width="19" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <nil key="highlightedColor"/>
                                         <color key="textColor" red="0.81420110889999997" green="0.81420110889999997" blue="0.81420110889999997" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     </label>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" text="2k" adjustsFontSizeToFit="NO" autoshrinkMode="none" id="P97-hN-3aK">
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="-1" contentMode="left" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" text="2k" adjustsFontSizeToFit="NO" autoshrinkMode="none" id="P97-hN-3aK">
                                         <rect key="frame" x="253" y="50" width="19" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <nil key="highlightedColor"/>
                                         <color key="textColor" red="0.81420110889999997" green="0.81420110889999997" blue="0.81420110889999997" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     </label>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" text="1k" adjustsFontSizeToFit="NO" autoshrinkMode="none" id="f0w-WM-v8b">
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="-1" contentMode="left" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" text="1k" adjustsFontSizeToFit="NO" autoshrinkMode="none" id="f0w-WM-v8b">
                                         <rect key="frame" x="253" y="20" width="19" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <nil key="highlightedColor"/>
                                         <color key="textColor" red="0.81420110889999997" green="0.81420110889999997" blue="0.81420110889999997" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     </label>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" text="EQUALIZER" adjustsFontSizeToFit="NO" autoshrinkMode="none" id="I7C-Ew-4hK">
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="-1" contentMode="left" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" text="EQUALIZER" adjustsFontSizeToFit="NO" autoshrinkMode="none" id="I7C-Ew-4hK">
                                         <rect key="frame" x="2" y="-1" width="97" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <nil key="highlightedColor"/>
@@ -293,9 +323,11 @@
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <connections>
+                        <outlet property="equalizerCanvas" destination="6Kb-H8-o4f" id="DCy-iS-etl"/>
                         <outlet property="leftTrimmGestureCatcher" destination="rWl-8Q-XCS" id="1cp-OR-ubG"/>
                         <outlet property="leftTrimmOverlay" destination="UCm-mH-dDk" id="hH8-VB-ceA"/>
                         <outlet property="loopCountLabel" destination="uKz-az-szU" id="U31-5U-fVO"/>
+                        <outlet property="loopCountStepper" destination="IBP-f4-vQ5" id="kXf-Gv-Q4k"/>
                         <outlet property="rightTrimmGestureCatcher" destination="OdS-ZQ-Qcc" id="LSa-v9-jeA"/>
                         <outlet property="rightTrimmOverlay" destination="Wpl-6I-Trc" id="1WC-mb-V8X"/>
                         <outlet property="songArtistLabel" destination="HyZ-q9-TBW" id="Gup-Kj-aYX"/>
@@ -463,16 +495,17 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/TOSoundDetailsPopoverViewController.h"/>
             <relationships>
                 <relationship kind="action" name="changeSoundButtonPressed:"/>
+                <relationship kind="action" name="eqSliderValueChanged:" candidateClass="UISlider"/>
                 <relationship kind="action" name="loopCountStepperValueChanged:"/>
                 <relationship kind="action" name="removeButtonPressed:"/>
                 <relationship kind="action" name="resetEffectsButtonPressed:"/>
-                <relationship kind="action" name="segmentedControlValueChanged:"/>
+                <relationship kind="outlet" name="equalizerCanvas" candidateClass="UIView"/>
                 <relationship kind="outlet" name="leftTrimmGestureCatcher" candidateClass="TOHandleView"/>
                 <relationship kind="outlet" name="leftTrimmOverlay" candidateClass="UIView"/>
                 <relationship kind="outlet" name="loopCountLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="loopCountStepper" candidateClass="UIStepper"/>
                 <relationship kind="outlet" name="rightTrimmGestureCatcher" candidateClass="TOHandleView"/>
                 <relationship kind="outlet" name="rightTrimmOverlay" candidateClass="UIView"/>
-                <relationship kind="outlet" name="segmentedControl" candidateClass="UISegmentedControl"/>
                 <relationship kind="outlet" name="songArtistLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="songDurationLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="songNameLabel" candidateClass="UILabel"/>
