@@ -10,6 +10,7 @@
 
 #import "TOSoundDetailsPopoverViewControllerDelegate.h"
 #import "TOEqualizerSound.h"
+#import "TOWaveformDrawer.h"
 
 
 @interface TOSoundDetailsPopoverViewController ()
@@ -34,7 +35,28 @@
         slider.value = [self.sound gainForBandAtPosition:i];
     }
     
+    [self setWaveformImage];
 }
+
+
+- (void)setWaveformImage
+{
+    // let the drawing of the waveform happen on a background thread
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+        TOWaveformDrawer *drawer = [[TOWaveformDrawer alloc] init];
+        drawer.mode = TOWaveformDrawerModeRectangle;
+        drawer.waveformColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:1];
+        drawer.imageSize = self.waveformImageView.bounds.size;
+        
+        UIImage *image = [drawer waveformFromImageAtURL:self.sound.audioFileURL];
+        
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.waveformImageView.image = image;
+        });
+    });
+}
+
 
 - (void)didReceiveMemoryWarning
 {
