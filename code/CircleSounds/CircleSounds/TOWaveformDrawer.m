@@ -244,7 +244,7 @@
     
 
     // draw the path
-    CGContextSetLineWidth(context, 0.1);
+    CGContextSetLineWidth(context, .5);
     CGContextSetStrokeColorWithColor(context, self.waveformColor.CGColor);
     CGContextAddPath(context, path.CGPath);
     CGContextDrawPath(context, kCGPathStroke);
