@@ -242,8 +242,9 @@
     detailsViewController.sound = self.sound;
     
     self.detailsPopoverController = [[UIPopoverController alloc] initWithContentViewController:detailsViewController];
+    CGRect popoverRect = CGRectMake(self.soundView.frame.origin.x + self.soundView.frame.size.width/2, self.soundView.frame.origin.y + self.soundView.frame.size.height, 1, 1);
     
-    [self.detailsPopoverController presentPopoverFromRect:self.soundView.frame
+    [self.detailsPopoverController presentPopoverFromRect:popoverRect
                                                    inView:self.documentController.view
                                  permittedArrowDirections:UIPopoverArrowDirectionAny
                                                  animated:YES];
