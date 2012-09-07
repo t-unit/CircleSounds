@@ -31,6 +31,8 @@
 
 - (void)setViewPropertiesUsingSound
 {
+    [self setWaveformImage];
+    
     self.loopCountLabel.text = [NSString stringWithFormat:@"%ld", self.sound.loopCount];
     self.loopCountStepper.value = self.sound.loopCount;
     self.songArtistLabel.text = self.sound.fileSongArtist;
@@ -43,7 +45,21 @@
         slider.value = [self.sound gainForBandAtPosition:i];
     }
     
-    [self setWaveformImage];
+    double startToDurationRatio = self.sound.regionStart / self.sound.fileDuration;
+    double translation = startToDurationRatio * self.waveformImageView.frame.size.width;
+    
+    self.leftTrimmGestureCatcher.transform = CGAffineTransformTranslate(self.leftTrimmGestureCatcher.transform, translation, 0);
+    self.leftTrimmOverlay.transform = self.leftTrimmGestureCatcher.transform;
+    
+    
+    double endToDurtionRatio = (self.sound.regionStart + self.sound.regionDuration) / self.sound.fileDuration;
+    
+    NSLog(@"ratio: %f endTime: %f", endToDurtionRatio, self.sound.regionStart + self.sound.regionDuration);
+    
+    translation = -(self.waveformImageView.frame.size.width * (-endToDurtionRatio + 1));
+    
+    self.rightTrimmGestureCatcher.transform = CGAffineTransformTranslate(self.rightTrimmGestureCatcher.transform, translation, 0);
+    self.rightTrimmOverlay.transform = self.rightTrimmGestureCatcher.transform;
 }
 
 
@@ -118,7 +134,9 @@
         case UIGestureRecognizerStateEnded:
         case UIGestureRecognizerStateCancelled:
         {
-            // TODO: apply the changes to the sound object
+            double startToDurationRatio = self.leftTrimmGestureCatcher.transform.tx / self.waveformImageView.frame.size.width;
+            self.sound.regionStart = self.sound.fileDuration * startToDurationRatio;
+            
             break;
         }
             
@@ -171,7 +189,13 @@
         case UIGestureRecognizerStateEnded:
         case UIGestureRecognizerStateCancelled:
         {
-            // TODO: apply the changes to the sound object
+            double endToDurationRatio = -(((1-self.rightTrimmGestureCatcher.transform.tx) / self.waveformImageView.frame.size.width) - 1);
+            double endTime = self.sound.fileDuration * endToDurationRatio;
+            
+            self.sound.regionDuration = endTime - self.sound.regionStart;
+            
+            NSLog(@"ratio: %f endTime: %f", endToDurationRatio, endTime);
+
             break;
         }
             
