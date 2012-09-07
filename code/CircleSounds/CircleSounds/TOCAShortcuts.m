@@ -42,7 +42,6 @@ void TOThrowOnError(OSStatus status)
 }
 
 
-
 AudioStreamBasicDescription TOCanonicalStreamFormat(UInt32 nChannels, bool interleaved)
 {
     AudioStreamBasicDescription asbd;
