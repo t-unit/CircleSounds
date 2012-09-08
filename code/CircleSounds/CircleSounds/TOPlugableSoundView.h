@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
+/**
+ A circle representation of an audio file.
+ */
 @interface TOPlugableSoundView : UIView
 
 @property (strong, nonatomic) UIImage *waveformImage;
