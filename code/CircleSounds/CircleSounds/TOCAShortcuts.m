@@ -145,18 +145,64 @@ void TOPrintASBD(AudioStreamBasicDescription asbd)
     bcopy (&formatID, formatIDString, 4);
     formatIDString[4] = '\0';
 
-    printf("  Sample Rate:         %10.0f\n",   asbd.mSampleRate);
-    printf("  Format ID:           %10s\n",     formatIDString);
-    printf("  Format Flags:        %10lX\n",    asbd.mFormatFlags);
-    printf("  Bytes per Packet:    %10ld\n",    asbd.mBytesPerPacket);
-    printf("  Frames per Packet:   %10ld\n",    asbd.mFramesPerPacket);
-    printf("  Bytes per Frame:     %10ld\n",    asbd.mBytesPerFrame);
-    printf("  Channels per Frame:  %10ld\n",    asbd.mChannelsPerFrame);
-    printf("  Bits per Channel:    %10ld\n",    asbd.mBitsPerChannel);
+    printf("Sample Rate:         %10.0f\n",   asbd.mSampleRate);
+    printf("Format ID:           %10s\n",     formatIDString);
+    printf("Format Flags:        %10lX\n",    asbd.mFormatFlags);
+    printf("Bytes per Packet:    %10ld\n",    asbd.mBytesPerPacket);
+    printf("Frames per Packet:   %10ld\n",    asbd.mFramesPerPacket);
+    printf("Bytes per Frame:     %10ld\n",    asbd.mBytesPerFrame);
+    printf("Channels per Frame:  %10ld\n",    asbd.mChannelsPerFrame);
+    printf("Bits per Channel:    %10ld\n",    asbd.mBitsPerChannel);
 }
 
-                                          
-                                   
+
+NSDictionary *TOMetadataForAudioFileURL(NSURL *url)
+{
+    AudioFileID audioFile;
+    OSStatus error = noErr;
+    
+    
+    error = AudioFileOpenURL((__bridge CFURLRef)url,
+                             kAudioFileReadPermission,
+                             0,
+                             &audioFile);
+    
+    if (error != noErr) {
+        return nil;
+    }
+    
+    
+    UInt32 dictionarySize = 0;
+    error = AudioFileGetPropertyInfo(audioFile,
+                                     kAudioFilePropertyInfoDictionary,
+                                     &dictionarySize,
+                                     0);
+    
+    if (error != noErr) {
+        AudioFileClose(audioFile);
+        return nil;
+    }
+    
+    
+    CFDictionaryRef dictonary;
+    error = AudioFileGetProperty(audioFile,
+                                 kAudioFilePropertyInfoDictionary,
+                                 &dictionarySize,
+                                 &dictonary);
+    
+    if (error != noErr) {
+        AudioFileClose(audioFile);
+        return nil;
+    }
+    
+    AudioFileClose(audioFile);
+    
+    
+    return (__bridge NSDictionary *)(dictonary);
+}
+
+
+
                             
                             
                             

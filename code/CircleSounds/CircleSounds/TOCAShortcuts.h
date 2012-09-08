@@ -9,55 +9,45 @@
 #import <Foundation/Foundation.h>
 #import <AudioToolbox/AudioToolbox.h>
 
+
+///---------------------------------------------------------------------------------------
+/// Error Handling
+///---------------------------------------------------------------------------------------
+
 extern NSString *kTOErrorInfoStringKey;
 extern NSString *kTOErrorStatusStringKey;
 
-#define kOutputBus 0
-#define kInputBus 1
 
-
-///---------------------------------------------------------------------------------------
-/// @name Error Handling
-///---------------------------------------------------------------------------------------
-
-
-/** Error handling wraper for functions returning OSStatus.
- 
+/** 
+ Error handling wraper for functions returning OSStatus.
  The function will create an NSError object if 'status' is anything else but 'noErr'.
  
- @param status The status which should be checked for any error.
+ 'error' should be a pointer of pointer of a NSError object. The error object should be 
+ nil when supplied. If status is not 'noErr' an NSError will be created contain two value 
+ pairs inside the 'userInfo' dictionary:
  
- @param error A pointer of pointer of a NSError object. The error object should be nil
-        when supplied. If status is not 'noErr' an NSError will be created contain two 
-        value pairs inside the 'userInfo' dictionary:
+    - 'kTOErrorInfoStringKey': the supplied errorInfo string
+    - 'kTOErrorStatusStringKey': a string representation of the error code
  
- - 'kTOErrorInfoStringKey': the supplied errorInfo string
- - 'kTOErrorStatusStringKey': a string representation of the error code
+ This function will raise an exeception if error is nil.
  
-        The supplied pointer must not be nil.
- 
- @param errorInfo String object used for additional information about the operation where 
-        the error occured. Supplying 'nil' is OK.
- 
- @exception This function will raise an exeception if error is nil.
+ 'errorInfo' needs to be a string object used for additional information about the 
+ operation where the error occured. Supplying 'nil' is OK.
 */
 void TOErrorHandler(OSStatus status, NSError *__autoreleasing *error, NSString *errorInfo);
 
 
 
-/** Exception throwing handler for function returning OSStatus.
- 
+/** 
+ Exception throwing handler for function returning OSStatus.
  The function will throw an NSException if status is anything else then noErr.
- 
- @param status The status which should be checked for any error.
- @exception NSException Thrown if the given status is not 'noErr'.
 */
 void TOThrowOnError(OSStatus status);
 
 
 
 ///---------------------------------------------------------------------------------------
-/// @name Convinience Audio Object Creation
+/// Convinience Audio Object Creation
 ///---------------------------------------------------------------------------------------
 
 
@@ -75,31 +65,56 @@ AudioStreamBasicDescription TOCanonicalAUGraphStreamFormat(UInt32 nChannels, boo
 
 
 /**
- @function TOAudioComponentDescription
- 
- @abstract Creates a AudioComponentDescription based on 'componentType' and 
-           'componentSubType'. 'componentManufacturer' will be assumed to 
-           be 'kAudioUnitManufacturer_Apple'. Both 'componentFlagsMask' and 
-           'componentFlags' will be assumed '0'.
+ Creates a AudioComponentDescription based on 'componentType' and 'componentSubType'. 
+ 'componentManufacturer' will be assumed to be 'kAudioUnitManufacturer_Apple'. Both 
+ 'componentFlagsMask' and 'componentFlags' will be assumed '0'.
 */
 AudioComponentDescription TOAudioComponentDescription(OSType componentType, OSType componentSubType);
 
 
 
-
+/**
+ Creates a new Audio Unit using 'inComponentDesc'. An audio component can be obtained by supplying
+ a pointer. But supplying 'NULL' is OK.
+ */
 OSStatus TOAudioUnitNewInstanceWithDescription(AudioComponentDescription inComponentDesc, AudioComponent *outComponent, AudioUnit *outAudioUnit);
 
 
 OSStatus TOAudioUnitNewInstance(OSType inComponentType, OSType inComponentSubType, AudioUnit *outAudioUnit);
+
 
 OSStatus TOAUGraphAddNode(OSType inComponentType, OSType inComponentSubType, AUGraph inGraph, AUNode *outNode);
 
 
 
 ///---------------------------------------------------------------------------------------
-/// @name Printing Functions
+/// Printing Functions
 ///---------------------------------------------------------------------------------------
+
+
 void TOPrintASBD(AudioStreamBasicDescription asbd);
+
+
+
+///---------------------------------------------------------------------------------------
+/// Convinience Audio File Funtions
+///---------------------------------------------------------------------------------------
+
+
+/**
+ Reads metadata from an audio file using the AudioFile API.
+ See documentation of 'kAudioFilePropertyInfoDictionary' for
+ availible keys inside the returned dictionary.
+ 
+ This function will return 'nil if the supplied URL does
+ not point to a valid audio file or if any other error 
+ occures.
+ */
+NSDictionary *TOMetadataForAudioFileURL(NSURL *url);
+
+
+
+
 
 
 
