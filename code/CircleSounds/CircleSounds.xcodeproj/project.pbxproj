@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		D222E16315F4EC0E004D5AE9 /* TOSoundDetailsPopoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D222E16215F4EC0E004D5AE9 /* TOSoundDetailsPopoverViewController.m */; };
+		D234233715FB7B0A004D8244 /* TOReplaceSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = D234233615FB7B0A004D8244 /* TOReplaceSegue.m */; };
 		D2361F1E15F642A400406A18 /* TOHandleView.m in Sources */ = {isa = PBXBuildFile; fileRef = D2361F1D15F642A400406A18 /* TOHandleView.m */; };
 		D2698E7515EE37D3008A52D7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2698E7415EE37D3008A52D7 /* UIKit.framework */; };
 		D2698E7715EE37D3008A52D7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2698E7615EE37D3008A52D7 /* Foundation.framework */; };
@@ -65,6 +66,8 @@
 		D222E16115F4EC0E004D5AE9 /* TOSoundDetailsPopoverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TOSoundDetailsPopoverViewController.h; sourceTree = "<group>"; };
 		D222E16215F4EC0E004D5AE9 /* TOSoundDetailsPopoverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TOSoundDetailsPopoverViewController.m; sourceTree = "<group>"; };
 		D222E16515F516F3004D5AE9 /* TOSoundDetailsPopoverViewControllerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TOSoundDetailsPopoverViewControllerDelegate.h; sourceTree = "<group>"; };
+		D234233515FB7B0A004D8244 /* TOReplaceSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TOReplaceSegue.h; sourceTree = "<group>"; };
+		D234233615FB7B0A004D8244 /* TOReplaceSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TOReplaceSegue.m; sourceTree = "<group>"; };
 		D2361F1C15F642A400406A18 /* TOHandleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TOHandleView.h; sourceTree = "<group>"; };
 		D2361F1D15F642A400406A18 /* TOHandleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TOHandleView.m; sourceTree = "<group>"; };
 		D2698E7015EE37D3008A52D7 /* CircleSounds.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CircleSounds.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -219,6 +222,8 @@
 				D2DACC6115EFAA0E00824F5F /* TORoundedRectView.m */,
 				D2361F1C15F642A400406A18 /* TOHandleView.h */,
 				D2361F1D15F642A400406A18 /* TOHandleView.m */,
+				D234233515FB7B0A004D8244 /* TOReplaceSegue.h */,
+				D234233615FB7B0A004D8244 /* TOReplaceSegue.m */,
 			);
 			path = CircleSounds;
 			sourceTree = "<group>";
@@ -450,6 +455,7 @@
 				D2DA440015EFE407009B8432 /* TOWaveformDrawer.m in Sources */,
 				D222E16315F4EC0E004D5AE9 /* TOSoundDetailsPopoverViewController.m in Sources */,
 				D2361F1E15F642A400406A18 /* TOHandleView.m in Sources */,
+				D234233715FB7B0A004D8244 /* TOReplaceSegue.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

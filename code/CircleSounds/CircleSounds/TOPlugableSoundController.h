@@ -22,6 +22,10 @@
 - (id)initWithPlugableSound:(TOEqualizerSound *)sound atPosition:(CGRect)viewFrame documentController:(TOSoundDocumentViewController *)documentController;
 
 
+- (void)displayDetailsPopover;
+- (void)displayAudioFileChooserPopover;
+
+
 @property (readonly, nonatomic) TOEqualizerSound *sound;
 @property (readonly, nonatomic) TOPlugableSoundView *soundView;
 @property (readonly, nonatomic) TOSoundDocumentViewController *documentController;

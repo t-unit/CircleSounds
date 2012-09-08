@@ -53,6 +53,7 @@
 @property (strong, nonatomic) UIColor *playbackColorSlow;
 
 @property (strong, nonatomic) UIPopoverController *detailsPopoverController;
+@property (strong, nonatomic) UIPopoverController *fileChooserPopoverController;
 
 @end
 
@@ -202,8 +203,6 @@
     self.sound.startTime = [[self class] startTimeWithViewSoundViewFrame:self.soundView.frame
                                                            inCanvasFrame:self.documentController.canvas.frame
                                                        withTotalDuration:self.documentController.soundDocument.duration];
-    
-    NSLog(@"start time: %f", self.sound.startTime);
 }
 
 
@@ -235,7 +234,7 @@
 }
 
 
-- (void)displayDetailsSheet
+- (void)displayDetailsPopover
 {
     TOSoundDetailsPopoverViewController *detailsViewController = [self.documentController.storyboard instantiateViewControllerWithIdentifier:@"popover view controller"];
     detailsViewController.delegate = self;
@@ -248,11 +247,21 @@
                                                    inView:self.documentController.view
                                  permittedArrowDirections:UIPopoverArrowDirectionAny
                                                  animated:YES];
+}
+
+
+- (void)displayAudioFileChooserPopover
+{
+    UIViewController *audioFileChooserViewController = [self.documentController.storyboard instantiateViewControllerWithIdentifier:@"sound audio file view controller"];
     
-//    CGRect popupFrame = self.detailsPopoverController.contentViewController.view.superview.superview.superview.frame;
-//    popupFrame.origin.y = self.soundView.frame.origin.y + self.soundView.frame.size.height * self.scale;
-//    
-//    self.detailsPopoverController.contentViewController.view.superview.superview.superview.frame = popupFrame;
+    self.fileChooserPopoverController = [[UIPopoverController alloc] initWithContentViewController:audioFileChooserViewController];
+    CGRect popoverRect = CGRectMake(self.soundView.frame.origin.x + self.soundView.frame.size.width/2, self.soundView.frame.origin.y + self.soundView.frame.size.height, 1, 1);
+    
+    [self.fileChooserPopoverController presentPopoverFromRect:popoverRect
+                                                       inView:self.documentController.view
+                                     permittedArrowDirections:UIPopoverArrowDirectionAny
+                                                     animated:YES];
+    
 }
 
 
@@ -290,9 +299,6 @@
     self.sound.startTime = [[self class] startTimeWithViewSoundViewFrame:soundViewFrame
                                                            inCanvasFrame:self.documentController.canvas.frame
                                                        withTotalDuration:self.documentController.soundDocument.duration];
-    
-    
-    NSLog(@"start time: %f", self.sound.startTime);
 }
 
 
@@ -357,7 +363,7 @@
 - (void)handleTap:(UITapGestureRecognizer *)sender
 {
     if (sender.state == UIGestureRecognizerStateEnded) {
-        [self displayDetailsSheet];
+        [self displayDetailsPopover];
     }
 }
 

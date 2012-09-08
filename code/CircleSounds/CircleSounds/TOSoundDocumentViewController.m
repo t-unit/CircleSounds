@@ -78,6 +78,8 @@
     [self.canvas addSubview:soundController.soundView];
     
     [self.canvas bringSubviewToFront:self.currentPositionView];
+    
+    [soundController displayAudioFileChooserPopover];
 }
 
 
