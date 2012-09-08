@@ -268,6 +268,8 @@
 		D2698EBF15EE40EE008A52D7 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				D2698EC315EE4255008A52D7 /* NSString+OSStatus.h */,
+				D2698EC415EE4255008A52D7 /* NSString+OSStatus.m */,
 				D2698EB915EE40E6008A52D7 /* NSArray+arrayByRemovingObject.h */,
 				D2698EBA15EE40E6008A52D7 /* NSArray+arrayByRemovingObject.m */,
 			);
@@ -292,8 +294,6 @@
 				D2698EC615EE4255008A52D7 /* TOAudioUnit.m */,
 				D2698EC115EE4255008A52D7 /* TOCAShortcuts.h */,
 				D2698EC215EE4255008A52D7 /* TOCAShortcuts.m */,
-				D2698EC315EE4255008A52D7 /* NSString+OSStatus.h */,
-				D2698EC415EE4255008A52D7 /* NSString+OSStatus.m */,
 				D2698EDD15EE427F008A52D7 /* Plugable Sounds */,
 				D2698ED115EE4255008A52D7 /* TOSoundDocument.h */,
 				D2698ED215EE4255008A52D7 /* TOSoundDocument.m */,

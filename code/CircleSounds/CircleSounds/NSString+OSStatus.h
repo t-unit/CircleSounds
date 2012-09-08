@@ -10,17 +10,12 @@
 
 @interface NSString (OSStatus)
 
-/*!
-@method     stringWithOSStatus:
+/**
+ Class Method creating a NSString object using a OSStatus value. 
+ Returns a NSString either with the decimal value or a 4 character represenation ofthe supplied status.
  
-@abstract   Returns a NSString either with the decimal value or a 4 character 
-            represenation ofthe supplied status.
- 
-@param      status
-                The status code used to create a new NSString object.
- 
-@discussion This method is based on the CheckError function of Chris Adamson 
-            and Kevin Avila (availible at http://www.informit.com/content/images/9780321636843/instructorresources/9780321636843_learning-core-audio-xcode4-projects.zip ).
+ This method is based on the CheckError function of Chris Adamson and Kevin Avila 
+ (availible at http://www.informit.com/content/images/9780321636843/instructorresources/9780321636843_learning-core-audio-xcode4-projects.zip ).
 */
 + (NSString *)stringWithOSStatus:(OSStatus)status;
 
