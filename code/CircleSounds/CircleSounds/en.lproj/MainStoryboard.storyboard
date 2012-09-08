@@ -67,7 +67,7 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" textLabel="aJf-Ov-NGN" style="IBUITableViewCellStyleDefault" id="66k-qD-fpe">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="AudioFileChooserTableViewCellIdentifier" textLabel="aJf-Ov-NGN" detailTextLabel="nRd-Qw-0pU" style="IBUITableViewCellStyleSubtitle" id="66k-qD-fpe">
                                         <rect key="frame" x="0.0" y="22" width="540" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -75,11 +75,18 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" text="Title" adjustsFontSizeToFit="NO" autoshrinkMode="none" id="aJf-Ov-NGN">
-                                                    <rect key="frame" x="10" y="0.0" width="520" height="43"/>
+                                                    <rect key="frame" x="10" y="2" width="38" height="22"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                                </label>
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" text="Subtitle" adjustsFontSizeToFit="NO" autoshrinkMode="none" id="nRd-Qw-0pU">
+                                                    <rect key="frame" x="10" y="24" width="47" height="18"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="textColor" red="0.50196078431372548" green="0.50196078431372548" blue="0.50196078431372548" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 </label>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -733,74 +740,6 @@
             <point key="canvasLocation" x="-137" y="-756"/>
         </scene>
     </scenes>
-    <classes>
-        <class className="TOAudioFileChooserViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TOAudioFileChooserViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
-            </relationships>
-        </class>
-        <class className="TOAudioMeterView" superclassName="UIView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TOAudioMeterView.h"/>
-        </class>
-        <class className="TOHandleView" superclassName="UIView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TOHandleView.h"/>
-        </class>
-        <class className="TORecordingViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TORecordingViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="monitorSwitchValueChanged:"/>
-                <relationship kind="action" name="recButtonTouchUpInside:"/>
-                <relationship kind="outlet" name="leftAudioMeter" candidateClass="TOAudioMeterView"/>
-                <relationship kind="outlet" name="monintorSwitch" candidateClass="UISwitch"/>
-                <relationship kind="outlet" name="recButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="recentRecordingsTableView" candidateClass="UITableView"/>
-                <relationship kind="outlet" name="rightAudioMeter" candidateClass="TOAudioMeterView"/>
-            </relationships>
-        </class>
-        <class className="TORoundedRectView" superclassName="UIView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TORoundedRectView.h"/>
-        </class>
-        <class className="TOSoundDetailsPopoverViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TOSoundDetailsPopoverViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="changeSoundButtonPressed:"/>
-                <relationship kind="action" name="eqSliderValueChanged:" candidateClass="UISlider"/>
-                <relationship kind="action" name="loopCountStepperValueChanged:"/>
-                <relationship kind="action" name="removeButtonPressed:"/>
-                <relationship kind="action" name="resetEffectsButtonPressed:"/>
-                <relationship kind="outlet" name="equalizerCanvas" candidateClass="UIView"/>
-                <relationship kind="outlet" name="leftTrimmGestureCatcher" candidateClass="TOHandleView"/>
-                <relationship kind="outlet" name="leftTrimmOverlay" candidateClass="UIView"/>
-                <relationship kind="outlet" name="loopCountLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="loopCountStepper" candidateClass="UIStepper"/>
-                <relationship kind="outlet" name="rightTrimmGestureCatcher" candidateClass="TOHandleView"/>
-                <relationship kind="outlet" name="rightTrimmOverlay" candidateClass="UIView"/>
-                <relationship kind="outlet" name="songArtistLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="songDurationLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="songNameLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="waveformImageView" candidateClass="UIImageView"/>
-            </relationships>
-        </class>
-        <class className="TOSoundDocumentViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TOSoundDocumentViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="loopSwitchValueChanged:"/>
-                <relationship kind="action" name="resetButtonPressed:"/>
-                <relationship kind="action" name="startPauseButtonPressed:"/>
-                <relationship kind="action" name="volumeSliderValueChanged:"/>
-                <relationship kind="outlet" name="canvas" candidateClass="UIView"/>
-                <relationship kind="outlet" name="currentPositionView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="currentTimeLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="leftMeterView" candidateClass="TOAudioMeterView"/>
-                <relationship kind="outlet" name="loopSwitch" candidateClass="UISwitch"/>
-                <relationship kind="outlet" name="resetButtonPressed" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="rightMeterView" candidateClass="TOAudioMeterView"/>
-                <relationship kind="outlet" name="startPauseButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="volumeSlider" candidateClass="UISlider"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>
         <simulatedOrientationMetrics key="orientation"/>

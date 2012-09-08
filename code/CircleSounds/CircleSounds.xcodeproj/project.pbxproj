@@ -204,14 +204,9 @@
 		D2698E7A15EE37D3008A52D7 /* CircleSounds */ = {
 			isa = PBXGroup;
 			children = (
-				D2DA43FE15EFE407009B8432 /* TOWaveformDrawer.h */,
-				D2DA43FF15EFE407009B8432 /* TOWaveformDrawer.m */,
-				D2698EDC15EE4262008A52D7 /* Audio Layer */,
+				D2DC571515FBAD070003AA50 /* Views & Drawing */,
+				D2698EDC15EE4262008A52D7 /* Core Audio Wrapper */,
 				D2698EC015EE4105008A52D7 /* Interpolation */,
-				D2698EB715EE40E6008A52D7 /* TOAudioMeterView.h */,
-				D2698EB815EE40E6008A52D7 /* TOAudioMeterView.m */,
-				D2698EAD15EE4080008A52D7 /* TOPlugableSoundView.h */,
-				D2698EAE15EE4080008A52D7 /* TOPlugableSoundView.m */,
 				D2698EB015EE40BF008A52D7 /* TOPlugableSoundController.h */,
 				D2698EB115EE40BF008A52D7 /* TOPlugableSoundController.m */,
 				D2698EEB15EE85ED008A52D7 /* TOSoundDocumentViewController.h */,
@@ -228,12 +223,7 @@
 				D2698E8615EE37D4008A52D7 /* MainStoryboard.storyboard */,
 				D2698EBF15EE40EE008A52D7 /* Categories */,
 				D2698E7B15EE37D3008A52D7 /* Supporting Files */,
-				D2DACC6015EFAA0E00824F5F /* TORoundedRectView.h */,
-				D2DACC6115EFAA0E00824F5F /* TORoundedRectView.m */,
-				D2361F1C15F642A400406A18 /* TOHandleView.h */,
-				D2361F1D15F642A400406A18 /* TOHandleView.m */,
-				D234233515FB7B0A004D8244 /* TOReplaceSegue.h */,
-				D234233615FB7B0A004D8244 /* TOReplaceSegue.m */,
+				D2DC571615FBAD390003AA50 /* Segues */,
 			);
 			path = CircleSounds;
 			sourceTree = "<group>";
@@ -295,7 +285,7 @@
 			name = Interpolation;
 			sourceTree = "<group>";
 		};
-		D2698EDC15EE4262008A52D7 /* Audio Layer */ = {
+		D2698EDC15EE4262008A52D7 /* Core Audio Wrapper */ = {
 			isa = PBXGroup;
 			children = (
 				D2698EC515EE4255008A52D7 /* TOAudioUnit.h */,
@@ -308,7 +298,7 @@
 				D2698ED115EE4255008A52D7 /* TOSoundDocument.h */,
 				D2698ED215EE4255008A52D7 /* TOSoundDocument.m */,
 			);
-			name = "Audio Layer";
+			name = "Core Audio Wrapper";
 			sourceTree = "<group>";
 		};
 		D2698EDD15EE427F008A52D7 /* Plugable Sounds */ = {
@@ -326,6 +316,32 @@
 				D2698ED015EE4255008A52D7 /* TOEqualizerSound.m */,
 			);
 			name = "Plugable Sounds";
+			sourceTree = "<group>";
+		};
+		D2DC571515FBAD070003AA50 /* Views & Drawing */ = {
+			isa = PBXGroup;
+			children = (
+				D2DACC6015EFAA0E00824F5F /* TORoundedRectView.h */,
+				D2DACC6115EFAA0E00824F5F /* TORoundedRectView.m */,
+				D2361F1C15F642A400406A18 /* TOHandleView.h */,
+				D2361F1D15F642A400406A18 /* TOHandleView.m */,
+				D2DA43FE15EFE407009B8432 /* TOWaveformDrawer.h */,
+				D2DA43FF15EFE407009B8432 /* TOWaveformDrawer.m */,
+				D2698EB715EE40E6008A52D7 /* TOAudioMeterView.h */,
+				D2698EB815EE40E6008A52D7 /* TOAudioMeterView.m */,
+				D2698EAD15EE4080008A52D7 /* TOPlugableSoundView.h */,
+				D2698EAE15EE4080008A52D7 /* TOPlugableSoundView.m */,
+			);
+			name = "Views & Drawing";
+			sourceTree = "<group>";
+		};
+		D2DC571615FBAD390003AA50 /* Segues */ = {
+			isa = PBXGroup;
+			children = (
+				D234233515FB7B0A004D8244 /* TOReplaceSegue.h */,
+				D234233615FB7B0A004D8244 /* TOReplaceSegue.m */,
+			);
+			name = Segues;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
