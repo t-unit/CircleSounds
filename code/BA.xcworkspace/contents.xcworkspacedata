@@ -2,12 +2,39 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:CircleSounds/CircleSounds.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "group:FakeHeaderProject/HeaderProject.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:FilePlayMixerMeter/FilePlayMixerMeter.xcodeproj">
    </FileRef>
    <FileRef
-      location = "container:RecordPlayThrough/RecordPlayThrough.xcodeproj">
+      location = "group:CircleSoundPrototype/CircleSoundPrototype.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:EqualizerTest/EqualizerTest.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:FilePlayerTest/FilePlayerTest.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:NewTimePitchTest/NewTimePitchTest.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:RecordPlayThrough/RecordPlayThrough.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:SubGraphTest/SubGraphTest.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:ReverbTest/ReverbTest.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:VarispeedTest/VarispeedTest.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:WaveformViewer/WaveformViewer.xcodeproj">
    </FileRef>
 </Workspace>

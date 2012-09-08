@@ -52,6 +52,7 @@
 		D2DACC6215EFAA0E00824F5F /* TORoundedRectView.m in Sources */ = {isa = PBXBuildFile; fileRef = D2DACC6115EFAA0E00824F5F /* TORoundedRectView.m */; };
 		D2DC571015FBA2DE0003AA50 /* TORecordingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2DC570F15FBA2DE0003AA50 /* TORecordingViewController.m */; };
 		D2DC571415FBA2E90003AA50 /* TOAudioFileChooserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2DC571315FBA2E90003AA50 /* TOAudioFileChooserViewController.m */; };
+		D2DC578C15FBD5710003AA50 /* TORecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = D2DC578B15FBD5710003AA50 /* TORecorder.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -139,6 +140,8 @@
 		D2DC570F15FBA2DE0003AA50 /* TORecordingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TORecordingViewController.m; sourceTree = "<group>"; };
 		D2DC571215FBA2E90003AA50 /* TOAudioFileChooserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TOAudioFileChooserViewController.h; sourceTree = "<group>"; };
 		D2DC571315FBA2E90003AA50 /* TOAudioFileChooserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TOAudioFileChooserViewController.m; sourceTree = "<group>"; };
+		D2DC578A15FBD5710003AA50 /* TORecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TORecorder.h; sourceTree = "<group>"; };
+		D2DC578B15FBD5710003AA50 /* TORecorder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TORecorder.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -290,6 +293,8 @@
 		D2698EDC15EE4262008A52D7 /* Core Audio Wrapper */ = {
 			isa = PBXGroup;
 			children = (
+				D2DC578A15FBD5710003AA50 /* TORecorder.h */,
+				D2DC578B15FBD5710003AA50 /* TORecorder.m */,
 				D2698EC515EE4255008A52D7 /* TOAudioUnit.h */,
 				D2698EC615EE4255008A52D7 /* TOAudioUnit.m */,
 				D2698EC115EE4255008A52D7 /* TOCAShortcuts.h */,
@@ -484,6 +489,7 @@
 				D234233715FB7B0A004D8244 /* TOReplaceSegue.m in Sources */,
 				D2DC571015FBA2DE0003AA50 /* TORecordingViewController.m in Sources */,
 				D2DC571415FBA2E90003AA50 /* TOAudioFileChooserViewController.m in Sources */,
+				D2DC578C15FBD5710003AA50 /* TORecorder.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
