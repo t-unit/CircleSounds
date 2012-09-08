@@ -19,9 +19,12 @@
     UIViewController *parentViewController = sourceViewController.parentViewController;
     
     
+    // get rid of the old view controller
     [sourceViewController removeFromParentViewController];
     [sourceViewController.view removeFromSuperview];
     
+    
+    // add the new view controller
     [parentViewController addChildViewController:destinationViewController];
     [parentViewController.view addSubview:destinationViewController.view];
 
