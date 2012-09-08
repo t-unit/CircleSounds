@@ -282,10 +282,10 @@ static OSStatus recorderCallback(void                       *inRefCon,
     _numChannels = [[AVAudioSession sharedInstance] inputNumberOfChannels];
     
     if (self.numChannels == 1) {
-        _asbd = TOCanonicalMonoLPCM();
+        _asbd = TOCanonicalStreamFormat(1, false);
     }
     else {
-        _asbd = TOCanonicalStereoLPCM();
+        _asbd = TOCanonicalStreamFormat(2, false);
     }
     
     
