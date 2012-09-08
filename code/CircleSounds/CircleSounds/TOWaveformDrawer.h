@@ -33,7 +33,7 @@ typedef enum TOWaveformDrawerMode : NSInteger
 /**
  Method creating an image representation of an audio file found at 'url'.
  It supports files containing any number of channels but downsamples
- all files to mono.
+ all audio data to mono.
  The url must not be nil. It also needs to point to a valid audio file URL.
  An exception will be thrown otherwise.
  

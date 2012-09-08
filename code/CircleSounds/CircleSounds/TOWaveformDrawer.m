@@ -44,9 +44,6 @@
 }
 
 
-#define MIN_SAMPLE_RATE 500
-#define MAX_SAMPLE_RATE 44100
-
 - (void)setupExtAudioFileAtURL:(NSURL *)url
 {
     if (self.extAudioFile) {
