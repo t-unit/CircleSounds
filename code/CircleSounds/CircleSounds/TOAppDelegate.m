@@ -43,4 +43,30 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
+- (NSURL *)recordingsDirectory
+{
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    
+    NSURL *documentDirectory = [[fileManager URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
+    NSURL *recodingDirectory = [documentDirectory URLByAppendingPathComponent:@"Recordings" isDirectory:YES];
+    
+    if (![fileManager fileExistsAtPath:recodingDirectory.path]) {
+        
+        NSError *error;
+        BOOL success = [fileManager createDirectoryAtURL:recodingDirectory
+                              withIntermediateDirectories:YES
+                                               attributes:nil
+                                                    error:&error];
+        
+#if DEBUG
+        if (error || !success) {
+            NSLog(@"creating recording directory failed! (%@)", error);
+        }
+#endif
+    }
+    
+    return recodingDirectory;
+}
+
+
 @end
