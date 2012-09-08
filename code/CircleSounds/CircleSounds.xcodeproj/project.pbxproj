@@ -142,6 +142,7 @@
 		D2DC571315FBA2E90003AA50 /* TOAudioFileChooserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TOAudioFileChooserViewController.m; sourceTree = "<group>"; };
 		D2DC578A15FBD5710003AA50 /* TORecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TORecorder.h; sourceTree = "<group>"; };
 		D2DC578B15FBD5710003AA50 /* TORecorder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TORecorder.m; sourceTree = "<group>"; };
+		D2DC578E15FBD6AC0003AA50 /* TORecorderDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TORecorderDelegate.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -295,6 +296,7 @@
 			children = (
 				D2DC578A15FBD5710003AA50 /* TORecorder.h */,
 				D2DC578B15FBD5710003AA50 /* TORecorder.m */,
+				D2DC578E15FBD6AC0003AA50 /* TORecorderDelegate.h */,
 				D2698EC515EE4255008A52D7 /* TOAudioUnit.h */,
 				D2698EC615EE4255008A52D7 /* TOAudioUnit.m */,
 				D2698EC115EE4255008A52D7 /* TOCAShortcuts.h */,
