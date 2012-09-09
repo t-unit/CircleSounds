@@ -22,6 +22,7 @@
     // get rid of the old view controller
     [sourceViewController removeFromParentViewController];
     [sourceViewController.view removeFromSuperview];
+    [sourceViewController viewDidDisappear:YES];
     
     
     // add the new view controller
@@ -29,6 +30,7 @@
     [parentViewController.view addSubview:destinationViewController.view];
 
     destinationViewController.view.frame = parentViewController.view.frame;
+    [destinationViewController viewDidAppear:YES];
 }
 
 @end
