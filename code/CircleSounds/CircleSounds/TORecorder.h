@@ -72,7 +72,8 @@
 
 /**
  Needs to be called before any 'startRecording' and 'prepareForRecordingWithFileURL:error:'
- can be called. Enables monitoring.
+ can be called. Enables monitoring. Calling this method will set the correct audio session
+ for recording!
  */
 - (void)setUp;
 

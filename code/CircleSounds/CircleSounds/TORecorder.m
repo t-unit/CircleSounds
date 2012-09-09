@@ -179,6 +179,45 @@ static OSStatus recorderCallback(void                       *inRefCon,
 {
     [self tearDown];
 }
+
+
+- (void)setAudioSessionActive
+{
+    NSError *error = nil;
+    AVAudioSession *session = [AVAudioSession sharedInstance];
+    
+    
+    [session setCategory:AVAudioSessionCategoryPlayback error:&error];
+    [session setActive:YES error:&error];
+    
+    [session setPreferredSampleRate:_asbd.mSampleRate error:&error];
+    [[AVAudioSession sharedInstance] setPreferredIOBufferDuration:1024.0/_asbd.mSampleRate error:&error];
+    
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(handleAudioInterruption:)
+                                                 name:AVAudioSessionInterruptionNotification
+                                               object:session];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(handleAudioRouteChange:)
+                                                 name:AVAudioSessionRouteChangeNotification
+                                               object:session];
+    
+}
+
+
+- (void)handleAudioInterruption:(NSNotification *)note
+{
+    
+}
+
+
+- (void)handleAudioRouteChange:(NSNotification *)note
+{
+    
+}
+
     
 
 - (void)setIsRecording:(BOOL)isRecording
@@ -288,15 +327,13 @@ static OSStatus recorderCallback(void                       *inRefCon,
         _asbd = TOCanonicalStreamFormat(2, false);
     }
     
+    [self setAudioSessionActive];
+    
     
     // allocate memory for peak an average samples
     _avgSamples = malloc(sizeof(AudioSampleType) * _numChannels);
     _peakSamples = malloc(sizeof(AudioSampleType) * _numChannels);
     
-
-    // Refer to iOS developer library : Audio Session Programming Guide set preferred buffer duration to 1024 / sample rate
-    [[AVAudioSession sharedInstance] setPreferredSampleRate:_asbd.mSampleRate error:nil];
-    [[AVAudioSession sharedInstance] setPreferredIOBufferDuration:1024.0/_asbd.mSampleRate error:nil];
     
     
     // Get the RIO unit
