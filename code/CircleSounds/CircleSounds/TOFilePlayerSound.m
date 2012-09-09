@@ -385,9 +385,6 @@ OSStatus FilePlayerUnitRenderNotifyCallblack (void                        *inRef
 	startTime.mSampleTime = sampleStartTime;
     
     
-    printf("sample start time: %f\n", sampleStartTime);
-    
-    
     TOThrowOnError(AudioUnitSetProperty(_filePlayerUnit->unit,
                                         kAudioUnitProperty_ScheduleStartTimeStamp,
                                         kAudioUnitScope_Global,
