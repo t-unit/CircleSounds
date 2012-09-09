@@ -207,12 +207,17 @@ OSStatus FilePlayerUnitRenderNotifyCallblack (void                        *inRef
     }
     
     
-    [self readAudioFileProperties];
+    if (_filePlayerUnitFullyInitialized) {
+        [self applyFileChanges];
+    }
+    
+    [self readAudioMetaData];
+    
     return YES;
 }
 
 
-- (void)readAudioFileProperties
+- (void)readAudioMetaData
 {
     UInt32 dictionarySize = 0;
     TOThrowOnError(AudioFileGetPropertyInfo(_audioFile,
@@ -297,13 +302,12 @@ OSStatus FilePlayerUnitRenderNotifyCallblack (void                        *inRef
 - (void)applySchedulingChanges
 {
     if (isnan(_currentFilePlayerUnitRenderSampleTime)) {
-#if DEBUG
-        NSLog(@"%@ invalid sample time. Scheduling not possible!", self);
-#endif
         return;
     }
     
-    
+    if (!_audioFile) {
+        return;
+    }
     
     
     TOThrowOnError(AudioUnitReset(_filePlayerUnit->unit,
