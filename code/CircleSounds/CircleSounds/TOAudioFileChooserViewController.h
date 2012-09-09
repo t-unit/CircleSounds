@@ -8,6 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+
+/**
+ Displays all availible sounds to the user to select a new
+ one for the given equalized sound object.
+ */
 @interface TOAudioFileChooserViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;

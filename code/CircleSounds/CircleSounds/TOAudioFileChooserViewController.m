@@ -7,7 +7,9 @@
 //
 
 #import "TOAudioFileChooserViewController.h"
-#import "TOAppDelegate.h"
+#import "TOAudioFileManager.h"
+#import "TORecordingViewController.h"
+#import "TOCAShortcuts.h"
 
 
 @interface TOAudioFileChooserViewController ()
@@ -24,40 +26,8 @@
 {
     [super viewDidLoad];
 
-    
-    // look for availible recordings
-    TOAppDelegate *appDelegate = (TOAppDelegate *)[[UIApplication sharedApplication] delegate];
-    NSError *error;
-    
-    NSArray *recordings = [[NSFileManager defaultManager] contentsOfDirectoryAtURL:appDelegate.recordingsDirectory
-                                                        includingPropertiesForKeys:@[]
-                                                                           options:NSDirectoryEnumerationSkipsHiddenFiles
-                                                                             error:&error];
-    
-    if (!recordings || error) {
-        self.recordings = @[]; // no recordings are availible
-    }
-    else {
-        self.recordings = recordings;
-    }
-    
-    
-    // create the supplied sounds array
-    // TODO: find a better way for gettting the urls
-    self.suppliedSounds = @[[[NSBundle mainBundle] URLForResource:@"clong-1" withExtension:@"wav"],
-                            [[NSBundle mainBundle] URLForResource:@"clong-2" withExtension:@"wav"],
-                            [[NSBundle mainBundle] URLForResource:@"electric-drill-2" withExtension:@"wav"],
-                            [[NSBundle mainBundle] URLForResource:@"freezer-hum-1" withExtension:@"wav"],
-                            [[NSBundle mainBundle] URLForResource:@"grass-trimmer-1" withExtension:@"wav"],
-                            [[NSBundle mainBundle] URLForResource:@"hammering-1" withExtension:@"wav"],
-                            [[NSBundle mainBundle] URLForResource:@"08 Hope You're Feeling Better" withExtension:@"m4a"]];
-}
-
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    self.recordings = [TOAudioFileManager allRecordingsURLs];
+    self.suppliedSounds = [TOAudioFileManager allSuppliedSoundsURLs];
 }
 
 
@@ -79,14 +49,33 @@
     static NSString *CellIdentifier = @"AudioFileChooserTableViewCellIdentifier";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
+    NSURL *audioFileURL;
+    
+    
     if (indexPath.section == 0 && self.recordings.count) { // Recordings
-        cell.textLabel.text = [self.recordings[indexPath.row] lastPathComponent];
-        cell.detailTextLabel.text = @"Duration: ??:??"; // TODO: display duration
+        audioFileURL = self.recordings[indexPath.row];
     }
     else { // Sounds
-        cell.textLabel.text = [self.suppliedSounds[indexPath.row] lastPathComponent]; // TODO: display artist and title
-        cell.detailTextLabel.text = @"Duration: ??:??"; // TODO: display duration
+        audioFileURL = self.suppliedSounds[indexPath.row];
     }
+    
+    NSDictionary *metadata = TOMetadataForAudioFileURL(audioFileURL);
+    
+    double duration = [metadata[@kAFInfoDictionary_ApproximateDurationInSeconds] doubleValue];
+    NSString *artist = metadata[@kAFInfoDictionary_Artist];
+    NSString *title = metadata[@kAFInfoDictionary_Title];
+    
+    
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"Duration: %d:%02d", (int)duration/60, (int)duration%60];
+    
+    
+    if (artist.length && title.length) {
+        cell.textLabel.text = [NSString stringWithFormat:@"%@ – %@", artist, title];
+    }
+    else { // no artist or title information availible -> display the file name
+        cell.textLabel.text = [self.suppliedSounds[indexPath.row] lastPathComponent];
+    }
+
     
     return cell;
 }
@@ -119,6 +108,11 @@
 
 
 # pragma mark - Table View Delegate Methods
+
+- (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+}
 
 
 @end
