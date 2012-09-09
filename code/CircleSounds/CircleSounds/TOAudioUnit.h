@@ -12,7 +12,7 @@
 
 /**
  A object wrapper around a audio unit, its corresponding node and its audio component description.
- Might be used like a struct, but makes it possilbe to add objects of the class to Foundation
+ Might be used like a struct, but makes it possible to add objects of the class to Foundation
  collection objects.
  */
 @interface TOAudioUnit : NSObject
