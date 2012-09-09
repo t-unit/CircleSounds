@@ -187,7 +187,7 @@ static OSStatus recorderCallback(void                       *inRefCon,
     AVAudioSession *session = [AVAudioSession sharedInstance];
     
     
-    [session setCategory:AVAudioSessionCategoryPlayback error:&error];
+    [session setCategory:AVAudioSessionCategoryPlayAndRecord error:&error];
     [session setActive:YES error:&error];
     
     [session setPreferredSampleRate:_asbd.mSampleRate error:&error];
