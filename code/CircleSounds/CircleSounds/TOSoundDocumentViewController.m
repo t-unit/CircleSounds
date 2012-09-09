@@ -14,12 +14,14 @@
 #import "TOPlugableSoundController.h"
 #import "TOPlugableSoundView.h"
 #import "NSArray+arrayByRemovingObject.h"
+#import "TOSoundDocumentDelegate.h"
+
 
 #define SOUND_VIEW_WIDTH 150
 #define SOUND_VIEW_HEIGHT 150
 
 
-@interface TOSoundDocumentViewController ()
+@interface TOSoundDocumentViewController () <TOSoundDocumentDelegate>
 
 @property (strong, nonatomic) NSTimer *timeAndMeterUpdateTimer;
 
@@ -38,6 +40,7 @@
     self.soundControllers = @[];
 	self.soundDocument = [[TOSoundDocument alloc] init];
     self.soundDocument.duration = 60;
+    self.soundDocument.delegate = self;
     
     self.timeAndMeterUpdateTimer = [NSTimer timerWithTimeInterval:1.0/25.0 target:self selector:@selector(updateTimeAndMeter) userInfo:nil repeats:YES];
     [[NSRunLoop mainRunLoop] addTimer:self.timeAndMeterUpdateTimer forMode:NSDefaultRunLoopMode];
@@ -105,11 +108,9 @@
 {
     if (self.soundDocument.isRunning) {
         [self.soundDocument pause];
-        self.startPauseButton.selected = NO;
     }
     else {
         [self.soundDocument start];
-        self.startPauseButton.selected = YES;
     }
 }
 
@@ -179,17 +180,17 @@
 }
 
 
-//- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-//{
-//    // The Storyboard Segue is named popover in this case:
-//    if ([segue.identifier isEqualToString:@"show"]) {
-//        UIPopoverController *popController = [(UIStoryboardPopoverSegue *)segue popoverController];
-//        
-//        popController
-//        
-//        
-//        NSLog(@"sender: %@", sender);
-//    }
-//}
+#pragma mark - Sound Document Delegate Methods
+
+- (void)soundDocumentDidStartPlayback:(TOSoundDocument *)sender
+{
+    self.startPauseButton.selected = YES;
+}
+
+
+- (void)soundDocumentDidPausePlayback:(TOSoundDocument *)sender
+{
+    self.startPauseButton.selected = NO;
+}
 
 @end
