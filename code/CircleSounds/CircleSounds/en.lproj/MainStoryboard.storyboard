@@ -216,27 +216,27 @@
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" indicatorStyle="white" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="MKG-gu-P2h">
-                                <rect key="frame" x="20" y="164" width="250" height="427"/>
+                                <rect key="frame" x="-1" y="164" width="307" height="427"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="separatorColor" white="1" alpha="0.40000000000000002" colorSpace="calibratedWhite"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="RecordingViewControllerTableViewCellIdentifier" textLabel="Y4F-9G-RVy" detailTextLabel="dZU-Jf-F7I" style="IBUITableViewCellStyleSubtitle" id="k5M-Ut-uqX">
-                                        <rect key="frame" x="0.0" y="22" width="250" height="44"/>
+                                        <rect key="frame" x="0.0" y="22" width="307" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="250" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="307" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" text="Title" adjustsFontSizeToFit="NO" autoshrinkMode="none" id="Y4F-9G-RVy">
-                                                    <rect key="frame" x="10" y="2" width="38" height="22"/>
+                                                    <rect key="frame" x="10" y="3" width="31" height="19"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                                 </label>
                                                 <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" text="Subtitle" adjustsFontSizeToFit="NO" autoshrinkMode="none" id="dZU-Jf-F7I">
-                                                    <rect key="frame" x="10" y="24" width="47" height="18"/>
+                                                    <rect key="frame" x="10" y="22" width="47" height="18"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <color key="textColor" red="0.78431372549019607" green="0.78431372549019607" blue="0.78431372549019607" alpha="1" colorSpace="calibratedRGB"/>
@@ -254,7 +254,7 @@
                                 </connections>
                             </tableView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" text="Recent Recordings" adjustsFontSizeToFit="NO" autoshrinkMode="none" id="7Wj-jB-paY">
-                                <rect key="frame" x="20" y="135" width="250" height="21"/>
+                                <rect key="frame" x="8" y="135" width="250" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="highlightedColor"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
@@ -267,10 +267,12 @@
                     <connections>
                         <outlet property="gainSlider" destination="gdc-6T-Dc5" id="Py2-eu-Nf5"/>
                         <outlet property="leftAudioMeter" destination="XRm-wl-gB5" id="ssQ-Aw-rFY"/>
+                        <outlet property="leftAudioMeterLabel" destination="tRZ-Az-4tJ" id="HKB-1d-kvt"/>
                         <outlet property="monintorSwitch" destination="zBc-X1-7ni" id="Xpx-T3-oYe"/>
                         <outlet property="recButton" destination="SAB-6t-2oi" id="rVA-tn-c5c"/>
                         <outlet property="recentRecordingsTableView" destination="MKG-gu-P2h" id="ZDp-24-O4J"/>
                         <outlet property="rightAudioMeter" destination="BpJ-RG-xTq" id="QMD-Pd-b2o"/>
+                        <outlet property="rightAudioMeterLabel" destination="bvJ-8N-wc7" id="5Qo-Cu-jP7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6iY-sE-JN6" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -776,10 +778,12 @@
                 <relationship kind="action" name="recButtonTouchUpInside:"/>
                 <relationship kind="outlet" name="gainSlider" candidateClass="UISlider"/>
                 <relationship kind="outlet" name="leftAudioMeter" candidateClass="TOAudioMeterView"/>
+                <relationship kind="outlet" name="leftAudioMeterLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="monintorSwitch" candidateClass="UISwitch"/>
                 <relationship kind="outlet" name="recButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="recentRecordingsTableView" candidateClass="UITableView"/>
                 <relationship kind="outlet" name="rightAudioMeter" candidateClass="TOAudioMeterView"/>
+                <relationship kind="outlet" name="rightAudioMeterLabel" candidateClass="UILabel"/>
             </relationships>
         </class>
         <class className="TORoundedRectView" superclassName="UIView">

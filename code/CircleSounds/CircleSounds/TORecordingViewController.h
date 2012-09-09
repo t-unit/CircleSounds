@@ -37,4 +37,6 @@
 @property (weak, nonatomic) IBOutlet TOAudioMeterView *leftAudioMeter;
 @property (weak, nonatomic) IBOutlet TOAudioMeterView *rightAudioMeter;
 
+@property (weak, nonatomic) IBOutlet UILabel *leftAudioMeterLabel;
+@property (weak, nonatomic) IBOutlet UILabel *rightAudioMeterLabel;
 @end
