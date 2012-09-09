@@ -75,7 +75,7 @@
         cell.textLabel.text = [NSString stringWithFormat:@"%@ – %@", artist, title];
     }
     else { // no artist or title information availible -> display the file name
-        cell.textLabel.text = [self.suppliedSounds[indexPath.row] lastPathComponent];
+        cell.textLabel.text = [audioFileURL lastPathComponent];
     }
 
     
