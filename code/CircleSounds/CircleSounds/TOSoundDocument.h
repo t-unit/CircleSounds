@@ -11,6 +11,7 @@
 
 @class TOPlugableSound;
 @class TOAudioUnit;
+@protocol TOSoundDocumentDelegate;
 
 
 @interface TOSoundDocument : NSObject
@@ -33,6 +34,8 @@
     
     Float64 _mixerOutputSampleRate;
 }
+
+@property (weak, nonatomic) id<TOSoundDocumentDelegate> delegate;
 
 @property (readonly, nonatomic) NSTimeInterval currentPlaybackPosition; // in seconds
 @property (readwrite, nonatomic) NSTimeInterval duration; // in seconds

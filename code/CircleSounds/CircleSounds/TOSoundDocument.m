@@ -13,8 +13,10 @@
 #import "TOCAShortcuts.h"
 #import "TOPlugableSound.h"
 #import "NSArray+arrayByRemovingObject.h"
+#import "TOSoundDocumentDelegate.h"
 
 #define PREFERRED_GRAPH_SAMPLE_RATE 44100.0
+
 
 @interface TOSoundDocument ()
 
@@ -255,6 +257,10 @@ OSStatus MixerUnitRenderNoteCallack(void                        *inRefCon,
         if (!isRunning) {
             [self setAudioSessionActive];
             TOThrowOnError(AUGraphStart(_graph));
+            
+            if ([self.delegate respondsToSelector:@selector(soundDocumentDidStartPlayback:)]) {
+                [self.delegate soundDocumentDidStartPlayback:self];
+            }
         }
     }
 }
@@ -269,8 +275,11 @@ OSStatus MixerUnitRenderNoteCallack(void                        *inRefCon,
         
         if (isRunning) {
             TOThrowOnError(AUGraphStop(_graph));
-            
             _prePausePlaybackPosition = _currentPlaybackPosition;
+            
+            if ([self.delegate respondsToSelector:@selector(soundDocumentDidPausePlayback:)]) {
+                [self.delegate soundDocumentDidPausePlayback:self];
+            }
         }
     }
 }
@@ -297,6 +306,11 @@ OSStatus MixerUnitRenderNoteCallack(void                        *inRefCon,
     
     for (TOPlugableSound *sound in self.plugableSounds) {
         [sound handleDocumentReset];
+    }
+
+
+    if ([self.delegate respondsToSelector:@selector(soundDocumentGotReset:)]) {
+        [self.delegate soundDocumentGotReset:self];
     }
 }
 
@@ -372,6 +386,11 @@ OSStatus MixerUnitRenderNoteCallack(void                        *inRefCon,
         TOThrowOnError(AUGraphUpdate(_graph, NULL));
         
         [soundObject setupFinished];
+        
+        
+        if ([self.delegate respondsToSelector:@selector(soundDocument:didAddNewSound:)]) {
+            [self.delegate soundDocument:self didAddNewSound:soundObject];
+        }
     }
     
 #if DEBUG
@@ -433,6 +452,11 @@ OSStatus MixerUnitRenderNoteCallack(void                        *inRefCon,
         for (TOAudioUnit *au in soundObject.audioUnits) {
             memset(&(au->unit), 0, sizeof(AudioUnit));
             memset(&(au->node), 0, sizeof(AUNode));
+        }
+        
+        
+        if ([self.delegate respondsToSelector:@selector(soundDocument:didRemoveSound:)]) {
+            [self.delegate soundDocument:self didRemoveSound:soundObject];
         }
     }
 }

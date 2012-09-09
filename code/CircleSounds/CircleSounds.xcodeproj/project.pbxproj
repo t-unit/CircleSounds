@@ -71,6 +71,7 @@
 		D220DD5F15FC8EC200696CA2 /* TOSoundFileChangingViewControllerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TOSoundFileChangingViewControllerDelegate.h; sourceTree = "<group>"; };
 		D220DD6115FC930500696CA2 /* TOAudioFileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TOAudioFileManager.h; sourceTree = "<group>"; };
 		D220DD6215FC930500696CA2 /* TOAudioFileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TOAudioFileManager.m; sourceTree = "<group>"; };
+		D220DD6415FCAA5300696CA2 /* TOSoundDocumentDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TOSoundDocumentDelegate.h; sourceTree = "<group>"; };
 		D222E16115F4EC0E004D5AE9 /* TOSoundDetailsPopoverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TOSoundDetailsPopoverViewController.h; sourceTree = "<group>"; };
 		D222E16215F4EC0E004D5AE9 /* TOSoundDetailsPopoverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TOSoundDetailsPopoverViewController.m; sourceTree = "<group>"; };
 		D222E16515F516F3004D5AE9 /* TOSoundDetailsPopoverViewControllerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TOSoundDetailsPopoverViewControllerDelegate.h; sourceTree = "<group>"; };
@@ -316,6 +317,7 @@
 				D2698EDD15EE427F008A52D7 /* Plugable Sounds */,
 				D2698ED115EE4255008A52D7 /* TOSoundDocument.h */,
 				D2698ED215EE4255008A52D7 /* TOSoundDocument.m */,
+				D220DD6415FCAA5300696CA2 /* TOSoundDocumentDelegate.h */,
 			);
 			name = "Core Audio Wrapper";
 			sourceTree = "<group>";
