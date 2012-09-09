@@ -7,14 +7,27 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TORecorderDelegate.h"
 
 @class TOAudioMeterView;
 
 
+/**
+ Allows to record audio via a TORecoder object an setting this audio
+ as the sound  of an equalizer sound object.
+ */
 @interface TORecordingViewController : UIViewController <UITableViewDataSource, UITableViewDataSource>
 
+@property (strong, nonatomic) TORecorder *recorder;
+
+
+/* Interface Builder */
 @property (weak, nonatomic) IBOutlet UISwitch *monintorSwitch;
 - (IBAction)monitorSwitchValueChanged:(id)sender;
+
+@property (weak, nonatomic) IBOutlet UISlider *gainSlider;
+- (IBAction)gainSliderValueChanged:(id)sender;
+
 
 @property (weak, nonatomic) IBOutlet UIButton *recButton;
 - (IBAction)recButtonTouchUpInside:(id)sender;
