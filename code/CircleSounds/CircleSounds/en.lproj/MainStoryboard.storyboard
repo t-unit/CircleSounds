@@ -4,10 +4,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1914"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Sound File Changing View Controller-->
         <scene sceneID="rjI-46-DTZ">
             <objects>
-                <viewController storyboardIdentifier="sound audio file view controller" id="Bha-XM-bxf" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="sound audio file view controller" id="Bha-XM-bxf" customClass="TOSoundFileChangingViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Fzl-wc-BJn">
                         <rect key="frame" x="0.0" y="0.0" width="540" height="620"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -56,7 +56,7 @@
                                                 <segment title="Record"/>
                                             </segments>
                                             <connections>
-                                                <segue destination="13U-VM-Ch1" kind="custom" customClass="TOReplaceSegue" id="i97-GN-MiE"/>
+                                                <segue destination="13U-VM-Ch1" kind="custom" identifier="files to record" customClass="TOReplaceSegue" id="i97-GN-MiE"/>
                                             </connections>
                                         </segmentedControl>
                                     </navigationItem>
@@ -134,7 +134,7 @@
                                                 <segment title="Record"/>
                                             </segments>
                                             <connections>
-                                                <segue destination="PWf-jx-aZm" kind="custom" customClass="TOReplaceSegue" id="OIb-OQ-SnD"/>
+                                                <segue destination="PWf-jx-aZm" kind="custom" identifier="record to files" customClass="TOReplaceSegue" id="OIb-OQ-SnD"/>
                                             </connections>
                                         </segmentedControl>
                                     </navigationItem>
@@ -207,7 +207,7 @@
                                 <color key="separatorColor" white="1" alpha="0.40000000000000002" colorSpace="calibratedWhite"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" textLabel="Y4F-9G-RVy" detailTextLabel="dZU-Jf-F7I" style="IBUITableViewCellStyleSubtitle" id="k5M-Ut-uqX">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="RecordingViewControllerTableViewCellIdentifier" textLabel="Y4F-9G-RVy" detailTextLabel="dZU-Jf-F7I" style="IBUITableViewCellStyleSubtitle" id="k5M-Ut-uqX">
                                         <rect key="frame" x="0.0" y="22" width="250" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
