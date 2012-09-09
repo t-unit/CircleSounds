@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D220DD6315FC930500696CA2 /* TOAudioFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D220DD6215FC930500696CA2 /* TOAudioFileManager.m */; };
 		D222E16315F4EC0E004D5AE9 /* TOSoundDetailsPopoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D222E16215F4EC0E004D5AE9 /* TOSoundDetailsPopoverViewController.m */; };
 		D234233715FB7B0A004D8244 /* TOReplaceSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = D234233615FB7B0A004D8244 /* TOReplaceSegue.m */; };
 		D2361F1E15F642A400406A18 /* TOHandleView.m in Sources */ = {isa = PBXBuildFile; fileRef = D2361F1D15F642A400406A18 /* TOHandleView.m */; };
@@ -53,6 +54,7 @@
 		D2DC571015FBA2DE0003AA50 /* TORecordingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2DC570F15FBA2DE0003AA50 /* TORecordingViewController.m */; };
 		D2DC571415FBA2E90003AA50 /* TOAudioFileChooserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2DC571315FBA2E90003AA50 /* TOAudioFileChooserViewController.m */; };
 		D2DC578C15FBD5710003AA50 /* TORecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = D2DC578B15FBD5710003AA50 /* TORecorder.m */; };
+		D2DC57C315FBF1460003AA50 /* TOSoundFileChangingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2DC57C215FBF1460003AA50 /* TOSoundFileChangingViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +68,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D220DD5F15FC8EC200696CA2 /* TOSoundFileChangingViewControllerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TOSoundFileChangingViewControllerDelegate.h; sourceTree = "<group>"; };
+		D220DD6115FC930500696CA2 /* TOAudioFileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TOAudioFileManager.h; sourceTree = "<group>"; };
+		D220DD6215FC930500696CA2 /* TOAudioFileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TOAudioFileManager.m; sourceTree = "<group>"; };
 		D222E16115F4EC0E004D5AE9 /* TOSoundDetailsPopoverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TOSoundDetailsPopoverViewController.h; sourceTree = "<group>"; };
 		D222E16215F4EC0E004D5AE9 /* TOSoundDetailsPopoverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TOSoundDetailsPopoverViewController.m; sourceTree = "<group>"; };
 		D222E16515F516F3004D5AE9 /* TOSoundDetailsPopoverViewControllerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TOSoundDetailsPopoverViewControllerDelegate.h; sourceTree = "<group>"; };
@@ -143,6 +148,8 @@
 		D2DC578A15FBD5710003AA50 /* TORecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TORecorder.h; sourceTree = "<group>"; };
 		D2DC578B15FBD5710003AA50 /* TORecorder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TORecorder.m; sourceTree = "<group>"; };
 		D2DC578E15FBD6AC0003AA50 /* TORecorderDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TORecorderDelegate.h; sourceTree = "<group>"; };
+		D2DC57C115FBF1460003AA50 /* TOSoundFileChangingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TOSoundFileChangingViewController.h; sourceTree = "<group>"; };
+		D2DC57C215FBF1460003AA50 /* TOSoundFileChangingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TOSoundFileChangingViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -218,12 +225,17 @@
 				D222E16115F4EC0E004D5AE9 /* TOSoundDetailsPopoverViewController.h */,
 				D222E16215F4EC0E004D5AE9 /* TOSoundDetailsPopoverViewController.m */,
 				D222E16515F516F3004D5AE9 /* TOSoundDetailsPopoverViewControllerDelegate.h */,
+				D2DC57C115FBF1460003AA50 /* TOSoundFileChangingViewController.h */,
+				D2DC57C215FBF1460003AA50 /* TOSoundFileChangingViewController.m */,
+				D220DD5F15FC8EC200696CA2 /* TOSoundFileChangingViewControllerDelegate.h */,
 				D2DC570E15FBA2DE0003AA50 /* TORecordingViewController.h */,
 				D2DC570F15FBA2DE0003AA50 /* TORecordingViewController.m */,
 				D2DC571215FBA2E90003AA50 /* TOAudioFileChooserViewController.h */,
 				D2DC571315FBA2E90003AA50 /* TOAudioFileChooserViewController.m */,
 				D2698E8315EE37D4008A52D7 /* TOAppDelegate.h */,
 				D2698E8415EE37D4008A52D7 /* TOAppDelegate.m */,
+				D220DD6115FC930500696CA2 /* TOAudioFileManager.h */,
+				D220DD6215FC930500696CA2 /* TOAudioFileManager.m */,
 				D2698E8615EE37D4008A52D7 /* MainStoryboard.storyboard */,
 				D2698EBF15EE40EE008A52D7 /* Categories */,
 				D2698E7B15EE37D3008A52D7 /* Supporting Files */,
@@ -492,6 +504,8 @@
 				D2DC571015FBA2DE0003AA50 /* TORecordingViewController.m in Sources */,
 				D2DC571415FBA2E90003AA50 /* TOAudioFileChooserViewController.m in Sources */,
 				D2DC578C15FBD5710003AA50 /* TORecorder.m in Sources */,
+				D2DC57C315FBF1460003AA50 /* TOSoundFileChangingViewController.m in Sources */,
+				D220DD6315FC930500696CA2 /* TOAudioFileManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
