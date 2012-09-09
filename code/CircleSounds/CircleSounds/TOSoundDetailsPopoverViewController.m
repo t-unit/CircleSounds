@@ -31,7 +31,10 @@
 
 - (void)setViewPropertiesUsingSound
 {
-    [self setWaveformImage];
+    if (self.sound.audioFileURL) {
+        [self setWaveformImage];
+    }
+    
     
     self.loopCountLabel.text = [NSString stringWithFormat:@"%ld", self.sound.loopCount];
     self.loopCountStepper.value = self.sound.loopCount;
@@ -53,8 +56,6 @@
     
     
     double endToDurtionRatio = (self.sound.regionStart + self.sound.regionDuration) / self.sound.fileDuration;
-    
-    NSLog(@"ratio: %f endTime: %f", endToDurtionRatio, self.sound.regionStart + self.sound.regionDuration);
     
     translation = -(self.waveformImageView.frame.size.width * (-endToDurtionRatio + 1));
     

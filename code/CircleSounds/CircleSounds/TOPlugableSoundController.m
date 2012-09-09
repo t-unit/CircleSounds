@@ -17,6 +17,8 @@
 #import "TOLinearInterpolator.h"
 #import "TOSoundDetailsPopoverViewController.h"
 #import "TOSoundDetailsPopoverViewControllerDelegate.h"
+#import "TOSoundFileChangingViewController.h"
+#import "TOSoundFileChangingViewControllerDelegate.h"
 
 
 #define DEFAULT_PLAYBACK_RATE 1.0
@@ -41,7 +43,7 @@
 
 
 
-@interface TOPlugableSoundController () <UIGestureRecognizerDelegate, TOSoundDetailsPopoverViewControllerDelegate>
+@interface TOPlugableSoundController () <UIGestureRecognizerDelegate, TOSoundDetailsPopoverViewControllerDelegate, TOSoundFileChangingViewControllerDelegate>
 
 @property (assign, nonatomic) double virtualViewRotation;
 @property (assign, nonatomic) CGRect initialViewBounds; /* used for scaling. initial bounds for a single pinch gesture. */
@@ -234,6 +236,8 @@
 }
 
 
+#pragma mark - Popover handling
+
 - (void)displayDetailsPopover
 {
     TOSoundDetailsPopoverViewController *detailsViewController = [self.documentController.storyboard instantiateViewControllerWithIdentifier:@"popover view controller"];
@@ -252,7 +256,9 @@
 
 - (void)displayAudioFileChooserPopover
 {
-    UIViewController *audioFileChooserViewController = [self.documentController.storyboard instantiateViewControllerWithIdentifier:@"sound audio file view controller"];
+    TOSoundFileChangingViewController *audioFileChooserViewController = [self.documentController.storyboard instantiateViewControllerWithIdentifier:@"sound audio file view controller"];
+    audioFileChooserViewController.delegate = self;
+    audioFileChooserViewController.sound = self.sound;
     
     self.fileChooserPopoverController = [[UIPopoverController alloc] initWithContentViewController:audioFileChooserViewController];
     CGRect popoverRect = CGRectMake(self.soundView.frame.origin.x + self.soundView.frame.size.width/2, self.soundView.frame.origin.y + self.soundView.frame.size.height, 1, 1);
@@ -419,6 +425,14 @@
 {
     [self.detailsPopoverController dismissPopoverAnimated:NO];
     [self.documentController removeSoundController:self];
+}
+
+
+#pragma mark - Sound File Changing View Cotnroller Delegate Methods
+
+- (void)soundFileChangingViewControllerDidChangeSoundFile:(TOSoundFileChangingViewController *)sender
+{
+    [self.fileChooserPopoverController dismissPopoverAnimated:NO];
 }
 
 @end

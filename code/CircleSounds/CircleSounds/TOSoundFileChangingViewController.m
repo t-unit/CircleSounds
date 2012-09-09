@@ -7,7 +7,9 @@
 //
 
 #import "TOSoundFileChangingViewController.h"
-#import "TOAudioFileChooserViewController.h"
+
+#import "TOSoundDetailsPopoverViewControllerDelegate.h"
+#import "TOEqualizerSound.h"
 
 
 @interface TOSoundFileChangingViewController ()
@@ -17,24 +19,24 @@
 
 @implementation TOSoundFileChangingViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (void)handleAudioFileChangingWithURL:(NSURL *)audioFileURL
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
+    NSError *error;
+    BOOL success = [self.sound setAudioFileURL:audioFileURL error:&error];
+    
+    if (!success || error) {
+        [[[UIAlertView alloc] initWithTitle:@"There was a problem with the selected sound!"
+                                   message:[NSString stringWithFormat:@"Please choose a different sound.\n%@ (%@)", error.userInfo[kTOErrorInfoStringKey], error.userInfo[kTOErrorStatusStringKey]]
+                                  delegate:nil
+                         cancelButtonTitle:@"OK"
+                         otherButtonTitles:nil] show];
     }
-    return self;
-}
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    else {
+        self.sound.regionStart = 0;
+        self.sound.regionDuration = self.sound.fileDuration;
+        
+        [self.delegate soundFileChangingViewControllerDidChangeSoundFile:self];
+    }
 }
 
 @end

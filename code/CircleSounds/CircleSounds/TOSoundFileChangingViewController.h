@@ -21,4 +21,11 @@
 @property (strong, nonatomic) TOEqualizerSound *sound;
 @property (weak, nonatomic) id<TOSoundFileChangingViewControllerDelegate> delegate;
 
+
+/**
+ Should only be called by child view controllers of this controller.
+ Exhanges the audio file of the 'sound' property and inform the delegate.
+ */
+- (void)handleAudioFileChangingWithURL:(NSURL *)audioFileURL;
+
 @end

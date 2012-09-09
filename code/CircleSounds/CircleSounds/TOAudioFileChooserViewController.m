@@ -7,9 +7,11 @@
 //
 
 #import "TOAudioFileChooserViewController.h"
+
 #import "TOAudioFileManager.h"
 #import "TORecordingViewController.h"
 #import "TOCAShortcuts.h"
+#import "TOSoundFileChangingViewController.h"
 
 
 @interface TOAudioFileChooserViewController ()
@@ -109,8 +111,19 @@
 
 # pragma mark - Table View Delegate Methods
 
-- (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    NSURL *newSoundURL;
+    
+    if (indexPath.section == 0 && self.recordings.count) { // recordings
+        newSoundURL = self.recordings[indexPath.row];
+    }
+    else { // sounds
+        newSoundURL = self.suppliedSounds[indexPath.row];
+    }
+    
+    TOSoundFileChangingViewController *sfcvc = (TOSoundFileChangingViewController *)self.parentViewController;
+    [sfcvc handleAudioFileChangingWithURL:newSoundURL];
     
 }
 
