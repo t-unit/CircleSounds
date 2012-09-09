@@ -82,7 +82,7 @@
     }
     
     [self.recorder tearDown];
-    
+    [self.audioMeterUpdateTimer invalidate];
     
     TOSoundFileChangingViewController *sfcvc = (TOSoundFileChangingViewController *)self.parentViewController;
     
