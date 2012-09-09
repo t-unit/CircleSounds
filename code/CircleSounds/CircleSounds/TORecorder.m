@@ -315,6 +315,7 @@ static OSStatus recorderCallback(void                       *inRefCon,
         return;
     }
     
+    [self setAudioSessionActive];
     self.gain = 1.0;
     
     // Set up ASBD
@@ -326,8 +327,6 @@ static OSStatus recorderCallback(void                       *inRefCon,
     else {
         _asbd = TOCanonicalStreamFormat(2, false);
     }
-    
-    [self setAudioSessionActive];
     
     
     // allocate memory for peak an average samples
