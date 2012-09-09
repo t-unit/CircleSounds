@@ -205,7 +205,7 @@ OSStatus MixerUnitRenderNoteCallack(void                        *inRefCon,
 
 #pragma mark - Audio Session
 
-- (void)setupAudioSession
+- (void)setAudioSessionActive
 {
     NSError *error = nil;
     AVAudioSession *session = [AVAudioSession sharedInstance];
@@ -253,6 +253,7 @@ OSStatus MixerUnitRenderNoteCallack(void                        *inRefCon,
         TOThrowOnError(AUGraphIsRunning(_graph, &isRunning));
         
         if (!isRunning) {
+            [self setAudioSessionActive];
             TOThrowOnError(AUGraphStart(_graph));
         }
     }
