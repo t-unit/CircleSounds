@@ -35,7 +35,6 @@
 		D2698ED615EE4255008A52D7 /* TOPlugableSound.m in Sources */ = {isa = PBXBuildFile; fileRef = D2698EC815EE4255008A52D7 /* TOPlugableSound.m */; };
 		D2698ED715EE4255008A52D7 /* TOFilePlayerSound.m in Sources */ = {isa = PBXBuildFile; fileRef = D2698ECA15EE4255008A52D7 /* TOFilePlayerSound.m */; };
 		D2698ED815EE4255008A52D7 /* TOVarispeedSound.m in Sources */ = {isa = PBXBuildFile; fileRef = D2698ECC15EE4255008A52D7 /* TOVarispeedSound.m */; };
-		D2698ED915EE4255008A52D7 /* TOReverbSound.m in Sources */ = {isa = PBXBuildFile; fileRef = D2698ECE15EE4255008A52D7 /* TOReverbSound.m */; };
 		D2698EDA15EE4255008A52D7 /* TOEqualizerSound.m in Sources */ = {isa = PBXBuildFile; fileRef = D2698ED015EE4255008A52D7 /* TOEqualizerSound.m */; };
 		D2698EDB15EE4255008A52D7 /* TOSoundDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = D2698ED215EE4255008A52D7 /* TOSoundDocument.m */; };
 		D2698EDF15EE442C008A52D7 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2698EDE15EE442C008A52D7 /* AudioToolbox.framework */; };
@@ -120,8 +119,6 @@
 		D2698ECA15EE4255008A52D7 /* TOFilePlayerSound.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TOFilePlayerSound.m; sourceTree = "<group>"; };
 		D2698ECB15EE4255008A52D7 /* TOVarispeedSound.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TOVarispeedSound.h; sourceTree = "<group>"; };
 		D2698ECC15EE4255008A52D7 /* TOVarispeedSound.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TOVarispeedSound.m; sourceTree = "<group>"; };
-		D2698ECD15EE4255008A52D7 /* TOReverbSound.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TOReverbSound.h; sourceTree = "<group>"; };
-		D2698ECE15EE4255008A52D7 /* TOReverbSound.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TOReverbSound.m; sourceTree = "<group>"; };
 		D2698ECF15EE4255008A52D7 /* TOEqualizerSound.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TOEqualizerSound.h; sourceTree = "<group>"; };
 		D2698ED015EE4255008A52D7 /* TOEqualizerSound.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TOEqualizerSound.m; sourceTree = "<group>"; };
 		D2698ED115EE4255008A52D7 /* TOSoundDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TOSoundDocument.h; sourceTree = "<group>"; };
@@ -331,8 +328,6 @@
 				D2698ECA15EE4255008A52D7 /* TOFilePlayerSound.m */,
 				D2698ECB15EE4255008A52D7 /* TOVarispeedSound.h */,
 				D2698ECC15EE4255008A52D7 /* TOVarispeedSound.m */,
-				D2698ECD15EE4255008A52D7 /* TOReverbSound.h */,
-				D2698ECE15EE4255008A52D7 /* TOReverbSound.m */,
 				D2698ECF15EE4255008A52D7 /* TOEqualizerSound.h */,
 				D2698ED015EE4255008A52D7 /* TOEqualizerSound.m */,
 			);
@@ -494,7 +489,6 @@
 				D2698ED615EE4255008A52D7 /* TOPlugableSound.m in Sources */,
 				D2698ED715EE4255008A52D7 /* TOFilePlayerSound.m in Sources */,
 				D2698ED815EE4255008A52D7 /* TOVarispeedSound.m in Sources */,
-				D2698ED915EE4255008A52D7 /* TOReverbSound.m in Sources */,
 				D2698EDA15EE4255008A52D7 /* TOEqualizerSound.m in Sources */,
 				D2698EDB15EE4255008A52D7 /* TOSoundDocument.m in Sources */,
 				D2698EED15EE85ED008A52D7 /* TOSoundDocumentViewController.m in Sources */,
