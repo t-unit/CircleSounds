@@ -13,10 +13,15 @@
 
 - (NSArray *)arrayByRemovingObject:(id)anObject
 {
-    NSMutableArray *newArray = [self mutableCopy];
-    [newArray removeObject:anObject];
+    if (![self containsObject:anObject]) {
+        return [self copy];
+    }
     
-    return [newArray copy];
+    
+    NSMutableArray *mutableSelf = [self mutableCopy];
+    [mutableSelf removeObject:anObject];
+    
+    return [mutableSelf copy]; // return an immutalbe array
 }
 
 @end
