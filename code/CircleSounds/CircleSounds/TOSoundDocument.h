@@ -23,7 +23,7 @@
     
 
     UInt32 _maxBusTaken; /* -1 if no bus is in use */
-    NSArray *_availibleBuses; /* number of buses ready for reuse */
+    NSSet *_availibleBuses; /* number of buses ready for reuse */
     
     
     Float64 _startSampleTime; /* NaN before set to correct value */

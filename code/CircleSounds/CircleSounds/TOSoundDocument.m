@@ -12,8 +12,10 @@
 #import "TOAudioUnit.h"
 #import "TOCAShortcuts.h"
 #import "TOPlugableSound.h"
-#import "NSArray+arrayByRemovingObject.h"
 #import "TOSoundDocumentDelegate.h"
+#import "NSSet+setByRemovingObject.h"
+#import "NSArray+arrayByRemovingObject.h"
+
 
 #define PREFERRED_GRAPH_SAMPLE_RATE 44100.0
 
@@ -38,7 +40,7 @@
     
     if (self) {
         _plugableSounds = @[];
-        _availibleBuses = @[];
+        _availibleBuses = [NSSet set];
         
         _maxBusTaken = -1;
         
@@ -364,10 +366,10 @@ OSStatus MixerUnitRenderNoteCallack(void                        *inRefCon,
         UInt32 mixerInputBus;
         
         if (_availibleBuses.count) {
-            NSNumber *mixerInputBusObject = _availibleBuses[0];
+            NSNumber *mixerInputBusObject = [_availibleBuses anyObject];
             
             mixerInputBus = [mixerInputBusObject unsignedIntegerValue];
-            _availibleBuses = [_availibleBuses arrayByRemovingObject:mixerInputBusObject];
+            _availibleBuses = [_availibleBuses setByRemovingObject:mixerInputBusObject];
         }
         else {
             mixerInputBus = ++_maxBusTaken;
@@ -387,11 +389,16 @@ OSStatus MixerUnitRenderNoteCallack(void                        *inRefCon,
         
         [soundObject setupFinished];
         
-        
-        if ([self.delegate respondsToSelector:@selector(soundDocument:didAddNewSound:)]) {
-            [self.delegate soundDocument:self didAddNewSound:soundObject];
-        }
+#if DEBUG
+        NSLog(@"New Sound (%@) added at mixer bus: %ld", soundObject, mixerInputBus);
+#endif
     }
+    
+    
+    if ([self.delegate respondsToSelector:@selector(soundDocument:didAddNewSound:)]) {
+        [self.delegate soundDocument:self didAddNewSound:soundObject];
+    }
+    
     
 #if DEBUG
     CAShow(_graph);
@@ -433,7 +440,7 @@ OSStatus MixerUnitRenderNoteCallack(void                        *inRefCon,
                                                   _mixerUnit->node,
                                                   mixerBus));
         
-        _availibleBuses = [_availibleBuses arrayByAddingObject:@(mixerBus)];
+        _availibleBuses = [_availibleBuses setByAddingObject:@(mixerBus)];
         _plugableSounds = [self.plugableSounds arrayByRemovingObject:soundObject];
         
         
@@ -455,9 +462,13 @@ OSStatus MixerUnitRenderNoteCallack(void                        *inRefCon,
         }
         
         
-        if ([self.delegate respondsToSelector:@selector(soundDocument:didRemoveSound:)]) {
-            [self.delegate soundDocument:self didRemoveSound:soundObject];
-        }
+#if DEBUG
+        NSLog(@"Removed Sound (%@) at mixer bus: %ld", soundObject, mixerBus);
+#endif
+    }
+    
+    if ([self.delegate respondsToSelector:@selector(soundDocument:didRemoveSound:)]) {
+        [self.delegate soundDocument:self didRemoveSound:soundObject];
     }
 }
 
