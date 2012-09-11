@@ -626,8 +626,13 @@
                         <subviews>
                             <view contentMode="scaleToFill" id="cKJ-FF-57J" userLabel="Canvas">
                                 <rect key="frame" x="0.0" y="80" width="1024" height="668"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <subviews>
+                                    <view contentMode="scaleToFill" id="pma-5x-BZ5">
+                                        <rect key="frame" x="0.0" y="0.0" width="1024" height="668"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    </view>
                                     <view contentMode="scaleToFill" id="d83-Qv-3gn" userLabel="Current Position View">
                                         <rect key="frame" x="0.0" y="0.0" width="1" height="668"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" heightSizable="YES"/>
@@ -741,6 +746,7 @@
                     </view>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <connections>
+                        <outlet property="addSoundGestureCatcher" destination="pma-5x-BZ5" id="knE-Hy-jEp"/>
                         <outlet property="canvas" destination="cKJ-FF-57J" id="Qdo-BV-nVb"/>
                         <outlet property="currentPositionView" destination="d83-Qv-3gn" id="dC0-IQ-pmV"/>
                         <outlet property="currentTimeLabel" destination="X0e-PL-5MD" id="WaT-zQ-inG"/>
@@ -822,6 +828,7 @@
                 <relationship kind="outlet" name="currentTimeLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="leftMeterView" candidateClass="TOAudioMeterView"/>
                 <relationship kind="outlet" name="loopSwitch" candidateClass="UISwitch"/>
+                <relationship kind="outlet" name="newSoundGestureCatcher" candidateClass="UIView"/>
                 <relationship kind="outlet" name="resetButtonPressed" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="rightMeterView" candidateClass="TOAudioMeterView"/>
                 <relationship kind="outlet" name="startPauseButton" candidateClass="UIButton"/>

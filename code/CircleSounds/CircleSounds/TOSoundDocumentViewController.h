@@ -43,5 +43,6 @@
 
 
 @property (weak, nonatomic) IBOutlet UIView *currentPositionView;
+@property (weak, nonatomic) IBOutlet UIView *addSoundGestureCatcher;
 
 @end

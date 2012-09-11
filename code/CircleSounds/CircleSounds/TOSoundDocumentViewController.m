@@ -45,16 +45,17 @@
     self.timeAndMeterUpdateTimer = [NSTimer timerWithTimeInterval:1.0/25.0 target:self selector:@selector(updateTimeAndMeter) userInfo:nil repeats:YES];
     [[NSRunLoop mainRunLoop] addTimer:self.timeAndMeterUpdateTimer forMode:NSDefaultRunLoopMode];
     
-    
-    // add double tap gesture for adding new sounds
-    UIView *gestureCather = [[UIView alloc] initWithFrame:self.canvas.bounds];
-    gestureCather.autoresizesSubviews = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-    [self.canvas addSubview:gestureCather];
-    
+    [self enableGestureRecognition];
+}
+
+
+- (void)enableGestureRecognition
+{
     UITapGestureRecognizer *doubleTapGestureRecoginizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleDoubleTap:)];
     doubleTapGestureRecoginizer.numberOfTapsRequired = 2;
     doubleTapGestureRecoginizer.numberOfTouchesRequired = 1;
-    [gestureCather addGestureRecognizer:doubleTapGestureRecoginizer];
+    
+    [self.addSoundGestureCatcher addGestureRecognizer:doubleTapGestureRecoginizer];
 }
 
 
