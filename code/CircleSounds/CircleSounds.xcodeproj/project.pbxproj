@@ -41,6 +41,7 @@
 		D2698EE115EE4431008A52D7 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2698EE015EE4431008A52D7 /* QuartzCore.framework */; };
 		D2698EE315EE4448008A52D7 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2698EE215EE4448008A52D7 /* AVFoundation.framework */; };
 		D2698EED15EE85ED008A52D7 /* TOSoundDocumentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2698EEC15EE85ED008A52D7 /* TOSoundDocumentViewController.m */; };
+		D2859C6615FF59CA00878C99 /* NSSet+setByRemovingObject.m in Sources */ = {isa = PBXBuildFile; fileRef = D2859C6515FF59CA00878C99 /* NSSet+setByRemovingObject.m */; };
 		D28BCDAA15F7861700893B57 /* clong-1.wav in Resources */ = {isa = PBXBuildFile; fileRef = D28BCDA415F7861700893B57 /* clong-1.wav */; };
 		D28BCDAB15F7861700893B57 /* clong-2.wav in Resources */ = {isa = PBXBuildFile; fileRef = D28BCDA515F7861700893B57 /* clong-2.wav */; };
 		D28BCDAC15F7861700893B57 /* electric-drill-2.wav in Resources */ = {isa = PBXBuildFile; fileRef = D28BCDA615F7861700893B57 /* electric-drill-2.wav */; };
@@ -128,6 +129,8 @@
 		D2698EE215EE4448008A52D7 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		D2698EEB15EE85ED008A52D7 /* TOSoundDocumentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TOSoundDocumentViewController.h; sourceTree = "<group>"; };
 		D2698EEC15EE85ED008A52D7 /* TOSoundDocumentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TOSoundDocumentViewController.m; sourceTree = "<group>"; };
+		D2859C6415FF59CA00878C99 /* NSSet+setByRemovingObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSSet+setByRemovingObject.h"; sourceTree = "<group>"; };
+		D2859C6515FF59CA00878C99 /* NSSet+setByRemovingObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSSet+setByRemovingObject.m"; sourceTree = "<group>"; };
 		D28BCDA415F7861700893B57 /* clong-1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "clong-1.wav"; sourceTree = "<group>"; };
 		D28BCDA515F7861700893B57 /* clong-2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "clong-2.wav"; sourceTree = "<group>"; };
 		D28BCDA615F7861700893B57 /* electric-drill-2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "electric-drill-2.wav"; sourceTree = "<group>"; };
@@ -286,6 +289,8 @@
 				D2698EC415EE4255008A52D7 /* NSString+OSStatus.m */,
 				D2698EB915EE40E6008A52D7 /* NSArray+arrayByRemovingObject.h */,
 				D2698EBA15EE40E6008A52D7 /* NSArray+arrayByRemovingObject.m */,
+				D2859C6415FF59CA00878C99 /* NSSet+setByRemovingObject.h */,
+				D2859C6515FF59CA00878C99 /* NSSet+setByRemovingObject.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -502,6 +507,7 @@
 				D2DC578C15FBD5710003AA50 /* TORecorder.m in Sources */,
 				D2DC57C315FBF1460003AA50 /* TOSoundFileChangingViewController.m in Sources */,
 				D220DD6315FC930500696CA2 /* TOAudioFileManager.m in Sources */,
+				D2859C6615FF59CA00878C99 /* NSSet+setByRemovingObject.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
