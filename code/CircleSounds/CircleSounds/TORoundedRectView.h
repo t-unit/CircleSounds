@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 
-#define TO_ROUND_RECT_VIEW_CORNER_RADIUS 5.0
+#define ROUND_RECT_VIEW_CORNER_RADIUS 5.0
 
 
 /**

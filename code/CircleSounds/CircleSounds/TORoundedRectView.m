@@ -39,7 +39,7 @@
 - (void)commonInit
 {
     self.layer.masksToBounds = YES;
-    self.layer.cornerRadius = TO_ROUND_RECT_VIEW_CORNER_RADIUS;
+    self.layer.cornerRadius = ROUND_RECT_VIEW_CORNER_RADIUS;
 }
 
 @end
