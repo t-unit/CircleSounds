@@ -9,6 +9,9 @@
 #import "TOFilePlayerSound.h"
 
 
+/**
+ Wrapper for the 'kAudioUnitSubType_Varispeed' audio unit.
+ */
 @interface TOVarispeedSound : TOFilePlayerSound
 {
     TOAudioUnit *_varispeedUnit;

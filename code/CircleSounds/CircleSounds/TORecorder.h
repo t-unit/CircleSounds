@@ -2,7 +2,7 @@
 //  TORecorder.h
 //  RecordPlayThrough
 //
-//  Created by Tobias Ottenweller on 08.07.12.
+//  Created by Tobias Ottenweller on 08.08.12.
 //  Copyright (c) 2012 Tobias Ottenweller. All rights reserved.
 //
 
@@ -11,6 +11,9 @@
 @protocol TORecorderDelegate;
 
 
+/**
+ A class for recording and monitoring audio input.
+ */
 @interface TORecorder : NSObject
 
 /**

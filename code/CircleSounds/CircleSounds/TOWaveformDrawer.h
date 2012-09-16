@@ -15,6 +15,10 @@ typedef enum TOWaveformDrawerMode : NSInteger
 } TOWaveformDrawerMode;
 
 
+/**
+ A class for generating waveform images from audio files.
+ See the ExtAudioFile API for possible audio file formats.
+ */
 @interface TOWaveformDrawer : NSObject
 
 @property (assign, nonatomic) TOWaveformDrawerMode mode;

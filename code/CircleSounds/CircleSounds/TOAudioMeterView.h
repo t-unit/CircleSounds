@@ -17,6 +17,10 @@ typedef enum TOAudioMeterViewMode : NSInteger
 
 
 
+/**
+ A view for the visualitation of the current
+ average and peak power of an audio stream.
+ */
 @interface TOAudioMeterView : UIView
 
 /**

@@ -8,6 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+
+/**
+ A simple view displaying two bars (the handle) 
+ indicating possilbe user interaction.
+ */
 @interface TOHandleView : UIView
 
 @end

@@ -8,7 +8,9 @@
 
 #import "TOVarispeedSound.h"
 
-
+/**
+ Wrapper for the 'kAudioUnitSubType_NBandEQ' unit.
+ */
 @interface TOEqualizerSound : TOVarispeedSound
 {
     TOAudioUnit *_equalizerUnit;

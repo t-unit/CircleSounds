@@ -9,6 +9,9 @@
 #import "TOPlugableSound.h"
 
 
+/**
+ Wrapper for the 'kAudioUnitSubType_AudioFilePlayer' audio unit.
+ */
 @interface TOFilePlayerSound : TOPlugableSound
 {
     TOAudioUnit *_filePlayerUnit;
