@@ -226,7 +226,7 @@
 
 # pragma mark - Table View Delegate Methods
 
-- (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     TOSoundFileChangingViewController *sfcvc = (TOSoundFileChangingViewController *)self.parentViewController;
     [sfcvc handleAudioFileChangingWithURL:self.recordings[indexPath.row]];
