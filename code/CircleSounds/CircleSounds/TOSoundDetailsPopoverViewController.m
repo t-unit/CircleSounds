@@ -40,7 +40,7 @@
     self.loopCountStepper.value = self.sound.loopCount;
     self.songArtistLabel.text = self.sound.fileSongArtist;
     self.songNameLabel.text = self.sound.fileSongName;
-    self.songDurationLabel.text = [NSString stringWithFormat:@"%d:%d", (int)self.sound.duration/60, (int)self.sound.duration%60];
+    self.songDurationLabel.text = [NSString stringWithFormat:@"%d:%02d", (int)self.sound.duration/60, (int)self.sound.duration%60];
     
     
     for (NSUInteger i=0; i<self.sound.bands.count; i++) {

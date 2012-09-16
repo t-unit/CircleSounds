@@ -609,12 +609,12 @@
 		D2698EA415EE37D4008A52D7 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Tobias Ottenweller (W38FWQTSU3)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CircleSounds/CircleSounds-Prefix.pch";
 				INFOPLIST_FILE = "CircleSounds/CircleSounds-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "3206E088-1516-4CF6-95CF-2FCCE719C36A";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -622,12 +622,12 @@
 		D2698EA515EE37D4008A52D7 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Tobias Ottenweller (W38FWQTSU3)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CircleSounds/CircleSounds-Prefix.pch";
 				INFOPLIST_FILE = "CircleSounds/CircleSounds-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "3206E088-1516-4CF6-95CF-2FCCE719C36A";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
