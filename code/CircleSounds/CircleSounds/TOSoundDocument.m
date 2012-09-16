@@ -167,7 +167,7 @@ OSStatus MixerUnitRenderNoteCallack(void                        *inRefCon,
     // Set properties/parameters of the units inside the graph
     
     // Set maximum number of buses on the mixer node
-    UInt32 numbuses = 100; // TODO: adjust this value while adding new sound to the graph!
+    UInt32 numbuses = 0; // the value will be adjusted while adding and removing sounds
     TOThrowOnError(AudioUnitSetProperty(_mixerUnit->unit,
                                         kAudioUnitProperty_ElementCount,
                                         kAudioUnitScope_Input,
@@ -373,6 +373,15 @@ OSStatus MixerUnitRenderNoteCallack(void                        *inRefCon,
         }
         else {
             mixerInputBus = ++_maxBusTaken;
+            
+            // Set number of buses on the mixer node
+            UInt32 numbuses = _maxBusTaken + 1;
+            TOThrowOnError(AudioUnitSetProperty(_mixerUnit->unit,
+                                                kAudioUnitProperty_ElementCount,
+                                                kAudioUnitScope_Input,
+                                                0,
+                                                &numbuses,
+                                                sizeof(UInt32)));
         }
 
         
