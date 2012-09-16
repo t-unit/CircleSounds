@@ -14,6 +14,13 @@
 @protocol TOSoundDocumentDelegate;
 
 
+
+/**
+ A Collection of Plugable Sound object.
+ This class handles playback of the sounds.
+ It is unsing a Audio Processing Graph to 
+ manage the sounds.
+ */
 @interface TOSoundDocument : NSObject
 {
     AUGraph _graph;
