@@ -244,6 +244,7 @@
 
 - (IBAction)changeSoundButtonPressed:(id)sender
 {
+    [self.delegate detailsControllerChangeSoundFileButtonPressed:self];
 }
 
 

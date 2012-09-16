@@ -14,5 +14,6 @@
 @protocol TOSoundDetailsPopoverViewControllerDelegate <NSObject>
 
 - (void)detailsController:(TOSoundDetailsPopoverViewController *)detailsController soundShouldBeRemovedFromDocument:(TOEqualizerSound *)sound;
+- (void)detailsControllerChangeSoundFileButtonPressed:(TOSoundDetailsPopoverViewController *)detailsController;
 
 @end

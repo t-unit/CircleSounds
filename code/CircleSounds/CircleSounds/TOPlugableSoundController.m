@@ -428,6 +428,13 @@
 }
 
 
+- (void)detailsControllerChangeSoundFileButtonPressed:(TOSoundDetailsPopoverViewController *)detailsController
+{
+    [self.detailsPopoverController dismissPopoverAnimated:NO];
+    [self displayAudioFileChooserPopover];
+}
+
+
 #pragma mark - Sound File Changing View Cotnroller Delegate Methods
 
 - (void)soundFileChangingViewControllerDidChangeSoundFile:(TOSoundFileChangingViewController *)sender
