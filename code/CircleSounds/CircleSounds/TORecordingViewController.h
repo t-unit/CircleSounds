@@ -16,7 +16,7 @@
  Allows to record audio via a TORecoder object an setting this audio
  as the sound  of an equalizer sound object.
  */
-@interface TORecordingViewController : UIViewController <UITableViewDataSource, UITableViewDataSource>
+@interface TORecordingViewController : UIViewController <UITableViewDataSource, UITableViewDataSource, TORecorderDelegate>
 
 @property (strong, nonatomic) TORecorder *recorder;
 

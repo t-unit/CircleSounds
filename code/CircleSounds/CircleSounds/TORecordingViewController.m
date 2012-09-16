@@ -17,7 +17,7 @@
 
 
 
-@interface TORecordingViewController ()
+@interface TORecordingViewController () 
 
 @property (assign, nonatomic) BOOL restartDocumentWhenDisapearing;
 @property (strong, nonatomic) NSArray *recordings; // contains NSURL objects pointing to the recordings
@@ -34,6 +34,7 @@
     
     self.recordings = [TOAudioFileManager allRecordingsURLs];
     self.recorder = [[TORecorder alloc] init];
+    self.recorder.delegate = self;
 }
 
 
@@ -220,12 +221,6 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 1;
-}
-
-
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-{
-    return nil;
 }
 
 
