@@ -30,6 +30,4 @@
 @property (readonly, nonatomic) TOPlugableSoundView *soundView;
 @property (readonly, nonatomic) TOSoundDocumentViewController *documentController;
 
-
-
 @end
