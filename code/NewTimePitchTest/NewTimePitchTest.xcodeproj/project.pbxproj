@@ -288,10 +288,14 @@
 		D23188A815E250F700F37106 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer: Tobias Ottenweller (LK3J7QWLMR)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Tobias Ottenweller (W38FWQTSU3)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "NewTimePitchTest/NewTimePitchTest-Prefix.pch";
 				INFOPLIST_FILE = "NewTimePitchTest/NewTimePitchTest-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "1EAE7E2A-64FF-4B4C-9471-51A502E5595B";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "3206E088-1516-4CF6-95CF-2FCCE719C36A";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -299,10 +303,14 @@
 		D23188A915E250F700F37106 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer: Tobias Ottenweller (LK3J7QWLMR)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Tobias Ottenweller (W38FWQTSU3)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "NewTimePitchTest/NewTimePitchTest-Prefix.pch";
 				INFOPLIST_FILE = "NewTimePitchTest/NewTimePitchTest-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "1EAE7E2A-64FF-4B4C-9471-51A502E5595B";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "3206E088-1516-4CF6-95CF-2FCCE719C36A";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -326,6 +334,7 @@
 				D23188A915E250F700F37106 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

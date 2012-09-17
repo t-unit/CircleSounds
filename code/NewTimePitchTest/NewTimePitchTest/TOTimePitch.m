@@ -10,8 +10,8 @@
 #import "TOCAShortcuts.h"
 
 
-#define USE_CONVERTER 1
-#define USE_SILENT_AUDIO_FILE 0
+#define USE_CONVERTER 0
+#define USE_SILENT_AUDIO_FILE 1
 
 
 @implementation TOTimePitch
