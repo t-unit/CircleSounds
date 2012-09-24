@@ -188,10 +188,20 @@ static OSStatus recorderCallback(void                       *inRefCon,
     
     
     [session setCategory:AVAudioSessionCategoryPlayAndRecord error:&error];
+    
+    // TODO: error handling
+    
     [session setActive:YES error:&error];
     
+    // TODO: error handling
+    
     [session setPreferredSampleRate:_asbd.mSampleRate error:&error];
+    
+    // TODO: error handling
+    
     [[AVAudioSession sharedInstance] setPreferredIOBufferDuration:1024.0/_asbd.mSampleRate error:&error];
+    
+    // TODO: error handling
     
     
     [[NSNotificationCenter defaultCenter] addObserver:self
