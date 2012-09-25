@@ -11,16 +11,7 @@
 
 
 @implementation TOViewController
-@synthesize label32;
-@synthesize label64;
-@synthesize label125;
-@synthesize label250;
-@synthesize label500;
-@synthesize label1k;
-@synthesize label2k;
-@synthesize label4k;
-@synthesize label8k;
-@synthesize label16k;
+
 
 - (void)viewDidLoad
 {
@@ -107,6 +98,14 @@
     [self updateLabels];
 }
 
+
+- (IBAction)gainSliderValueChanged:(id)sender
+{
+    [self.eq setGlobalGain:self.gainSlider.value];
+    [self updateLabels];
+}
+
+
 - (void)updateLabels
 {
     self.label32.text = [NSString stringWithFormat:@"%f", [self.eq gainForBandAtPosition:0]];
@@ -119,6 +118,8 @@
     self.label4k.text = [NSString stringWithFormat:@"%f", [self.eq gainForBandAtPosition:7]];
     self.label8k.text = [NSString stringWithFormat:@"%f", [self.eq gainForBandAtPosition:8]];
     self.label16k.text = [NSString stringWithFormat:@"%f", [self.eq gainForBandAtPosition:9]];
+    
+    self.gainLabel.text = [NSString stringWithFormat:@"%f", [self.eq globalGain]];
 }
 @end
 

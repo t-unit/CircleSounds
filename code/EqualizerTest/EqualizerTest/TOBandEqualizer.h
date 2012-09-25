@@ -50,6 +50,7 @@
 - (AudioUnitParameterValue)gainForBandAtPosition:(NSUInteger)bandPosition;
 - (void)setGain:(AudioUnitParameterValue)gain forBandAtPosition:(NSUInteger)bandPosition;
 
+
 @property (readwrite, nonatomic) AudioUnitParameterValue globalGain;
 
 @end

@@ -124,6 +124,8 @@
 
 - (void)viewDidUnload {
     [self setGainSlider:nil];
+    [self setGainLabel:nil];
+    [self setGainSlider:nil];
     [super viewDidUnload];
 }
 @end

@@ -59,10 +59,10 @@
                                     &eqNode));
     
     // file to eq converter unit
-//    TOThrowOnError(TOAUGraphAddNode(kAudioUnitType_FormatConverter,
-//                                    kAudioUnitSubType_AUConverter,
-//                                    graph,
-//                                    &file2eqConverterNode));
+    TOThrowOnError(TOAUGraphAddNode(kAudioUnitType_FormatConverter,
+                                    kAudioUnitSubType_AUConverter,
+                                    graph,
+                                    &file2eqConverterNode));
     
     // eq to rio converter unit
     TOThrowOnError(TOAUGraphAddNode(kAudioUnitType_FormatConverter,
@@ -96,10 +96,10 @@
                                    NULL,
                                    &rioUnit));
     
-//    TOThrowOnError(AUGraphNodeInfo(graph,
-//                                   file2eqConverterNode,
-//                                   NULL,
-//                                   &file2eqConverterUnit));
+    TOThrowOnError(AUGraphNodeInfo(graph,
+                                   file2eqConverterNode,
+                                   NULL,
+                                   &file2eqConverterUnit));
     
     TOThrowOnError(AUGraphNodeInfo(graph,
                                    eq2rioConverterNode,
@@ -129,58 +129,73 @@
                                         &propSize));
     
     
-//    AudioStreamBasicDescription effectFormat;
-//    propSize = sizeof(effectFormat);
-//    
-//    TOThrowOnError(AudioUnitGetProperty(equalizerUnit,
-//                                        kAudioUnitProperty_StreamFormat,
-//                                        kAudioUnitScope_Input,
-//                                        0,
-//                                        &effectFormat,
-//                                        &propSize));
+    AudioStreamBasicDescription effectInputFormat;
+    propSize = sizeof(effectInputFormat);
     
-    AudioStreamBasicDescription rioFormat = TOCanonicalAUGraphStreamFormat(2, false);
-//    propSize = sizeof(rioFormat);
-//    
-//    TOThrowOnError(AudioUnitGetProperty(rioUnit,
-//                                        kAudioUnitProperty_StreamFormat,
-//                                        kAudioUnitScope_Input,
-//                                        1,
-//                                        &rioFormat,
-//                                        &propSize));
+    TOThrowOnError(AudioUnitGetProperty(equalizerUnit,
+                                        kAudioUnitProperty_StreamFormat,
+                                        kAudioUnitScope_Input,
+                                        0,
+                                        &effectInputFormat,
+                                        &propSize));
+    
+    AudioStreamBasicDescription effectOutputFormat;
+    propSize = sizeof(effectOutputFormat);
+    
+    TOThrowOnError(AudioUnitGetProperty(equalizerUnit,
+                                        kAudioUnitProperty_StreamFormat,
+                                        kAudioUnitScope_Input,
+                                        0,
+                                        &effectOutputFormat,
+                                        &propSize));
     
     
     
-    TOPrintASBD(filePlayerFormat);
-    printf("\n**************************************\n\n");
+    AudioStreamBasicDescription rioFormat;
+    propSize = sizeof(rioFormat);
+    
+    TOThrowOnError(AudioUnitGetProperty(rioUnit,
+                                        kAudioUnitProperty_StreamFormat,
+                                        kAudioUnitScope_Input,
+                                        1,
+                                        &rioFormat,
+                                        &propSize));
+    rioFormat.mSampleRate = 44100.0;
+    
+    
+//    printf("file player output format\n");
+//    TOPrintASBD(filePlayerFormat);
+//    printf("\n**************************************\n\n");
+//    printf("eq input format\n");
 //    TOPrintASBD(effectFormat);
-    printf("\n**************************************\n\n");
+//    printf("\n**************************************\n\n");
+    printf("rio input format\n");
     TOPrintASBD(rioFormat);
 
     
     
-//    TOThrowOnError(AudioUnitSetProperty(file2eqConverterUnit,
-//                                        kAudioUnitProperty_StreamFormat,
-//                                        kAudioUnitScope_Input,
-//                                        0,
-//                                        &filePlayerFormat,
-//                                        sizeof(filePlayerFormat)));
-//    
-//    
-//    TOThrowOnError(AudioUnitSetProperty(file2eqConverterUnit,
-//                                        kAudioUnitProperty_StreamFormat,
-//                                        kAudioUnitScope_Output,
-//                                        0,
-//                                        &effectFormat,
-//                                        sizeof(effectFormat)));
-    
-    
-    TOThrowOnError(AudioUnitSetProperty(equalizerUnit,
+    TOThrowOnError(AudioUnitSetProperty(file2eqConverterUnit,
                                         kAudioUnitProperty_StreamFormat,
                                         kAudioUnitScope_Input,
                                         0,
                                         &filePlayerFormat,
                                         sizeof(filePlayerFormat)));
+    
+    
+    TOThrowOnError(AudioUnitSetProperty(file2eqConverterUnit,
+                                        kAudioUnitProperty_StreamFormat,
+                                        kAudioUnitScope_Output,
+                                        0,
+                                        &effectInputFormat,
+                                        sizeof(effectInputFormat)));
+    
+    
+//    TOThrowOnError(AudioUnitSetProperty(equalizerUnit,
+//                                        kAudioUnitProperty_StreamFormat,
+//                                        kAudioUnitScope_Input,
+//                                        0,
+//                                        &filePlayerFormat,
+//                                        sizeof(filePlayerFormat)));
 //
 //    
 //    TOThrowOnError(AudioUnitSetProperty(equalizerUnit,
@@ -195,8 +210,8 @@
                                         kAudioUnitProperty_StreamFormat,
                                         kAudioUnitScope_Input,
                                         0,
-                                        &filePlayerFormat,
-                                        sizeof(filePlayerFormat)));
+                                        &effectOutputFormat,
+                                        sizeof(effectOutputFormat)));
     
     
     TOThrowOnError(AudioUnitSetProperty(eq2rioConverterUnit,
@@ -222,14 +237,14 @@
     TOThrowOnError(AUGraphConnectNodeInput(graph,
                                            filePlayerNode,          // source node
                                            0,                       // source bus
-                                           eqNode,    // destination node
+                                           file2eqConverterNode,    // destination node
                                            0));                     // destination bus
     
-//    TOThrowOnError(AUGraphConnectNodeInput(graph,
-//                                           file2eqConverterNode,
-//                                           0,
-//                                           eqNode,
-//                                           0));
+    TOThrowOnError(AUGraphConnectNodeInput(graph,
+                                           file2eqConverterNode,
+                                           0,
+                                           eqNode,
+                                           0));
     
     TOThrowOnError(AUGraphConnectNodeInput(graph,
                                            eqNode,
@@ -392,26 +407,19 @@
         
         
         // setting the bypassBand paramter does work!
-//        TOThrowOnError(AudioUnitSetParameter(equalizerUnit,
-//                                             kAUNBandEQParam_BypassBand+i,
-//                                             kAudioUnitScope_Global,
-//                                             0,
-//                                             1,
-//                                             0));
-//        
+        TOThrowOnError(AudioUnitSetParameter(equalizerUnit,
+                                             kAUNBandEQParam_BypassBand+i,
+                                             kAudioUnitScope_Global,
+                                             0,
+                                             0,
+                                             0));
+
         TOThrowOnError(AudioUnitSetParameter(equalizerUnit,
                                              kAUNBandEQParam_FilterType+i,
                                              kAudioUnitScope_Global,
                                              0,
                                              kAUNBandEQFilterType_Parametric,
                                              0));
-//
-//        TOThrowOnError(AudioUnitSetParameter(equalizerUnit,
-//                                             kAUNBandEQParam_Bandwidth+i,
-//                                             kAudioUnitScope_Global,
-//                                             0,
-//                                             5.0,
-//                                             0));
     }
 }
 
@@ -441,6 +449,33 @@
                                          0,
                                          gain,
                                          0));
+    
+    NSLog(@"gain for band %d is now %f", bandPosition, [self gainForBandAtPosition:bandPosition]);
+}
+
+
+- (void)setGlobalGain:(AudioUnitParameterValue)globalGain
+{
+    TOThrowOnError(AudioUnitSetParameter(equalizerUnit,
+                                         kAUNBandEQParam_GlobalGain,
+                                         kAudioUnitScope_Global,
+                                         0,
+                                         globalGain,
+                                         0));
+}
+
+
+- (AudioUnitParameterValue)globalGain
+{
+    AudioUnitParameterValue gain;
+    
+    TOThrowOnError(AudioUnitGetParameter(equalizerUnit,
+                                         kAUNBandEQParam_GlobalGain,
+                                         kAudioUnitScope_Global,
+                                         0,
+                                         &gain));
+    
+    return gain;
 }
 
 

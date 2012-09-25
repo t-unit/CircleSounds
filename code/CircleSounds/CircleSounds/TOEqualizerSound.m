@@ -108,6 +108,8 @@
     [self setNumBands:_bands.count];
     
     for (NSUInteger i=0; i<_bands.count; i++) {
+        
+        // set the frequency
         TOThrowOnError(AudioUnitSetParameter(_equalizerUnit->unit,
                                              kAUNBandEQParam_Frequency+i,
                                              kAudioUnitScope_Global,
@@ -115,29 +117,21 @@
                                              (AudioUnitParameterValue)[_bands[i] floatValue],
                                              0));
         
+        // enable the band
+        TOThrowOnError(AudioUnitSetParameter(_equalizerUnit->unit,
+                                             kAUNBandEQParam_BypassBand+i,
+                                             kAudioUnitScope_Global,
+                                             0,
+                                             0,
+                                             0));
         
-        // setting the bypassBand paramter does work!
-        //        TOThrowOnError(AudioUnitSetParameter(equalizerUnit,
-        //                                             kAUNBandEQParam_BypassBand+i,
-        //                                             kAudioUnitScope_Global,
-        //                                             0,
-        //                                             1,
-        //                                             0));
-        //
-        
+        // set the filter type
         TOThrowOnError(AudioUnitSetParameter(_equalizerUnit->unit,
                                              kAUNBandEQParam_FilterType+i,
                                              kAudioUnitScope_Global,
                                              0,
                                              kAUNBandEQFilterType_Parametric,
                                              0));
-        //
-        //        TOThrowOnError(AudioUnitSetParameter(equalizerUnit,
-        //                                             kAUNBandEQParam_Bandwidth+i,
-        //                                             kAudioUnitScope_Global,
-        //                                             0,
-        //                                             5.0,
-        //                                             0));
     }
     
     

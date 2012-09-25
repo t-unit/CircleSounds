@@ -270,10 +270,12 @@
 		D2AC1CE515DFC183007C7203 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer: Tobias Ottenweller (W38FWQTSU3)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "EqualizerTest/EqualizerTest-Prefix.pch";
 				INFOPLIST_FILE = "EqualizerTest/EqualizerTest-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "3206E088-1516-4CF6-95CF-2FCCE719C36A";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -281,10 +283,12 @@
 		D2AC1CE615DFC183007C7203 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer: Tobias Ottenweller (W38FWQTSU3)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "EqualizerTest/EqualizerTest-Prefix.pch";
 				INFOPLIST_FILE = "EqualizerTest/EqualizerTest-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "3206E088-1516-4CF6-95CF-2FCCE719C36A";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

@@ -46,6 +46,9 @@
 @property (weak, nonatomic) IBOutlet UISlider *gainSlider16k;
 - (IBAction)gainSlider16kValueChanged:(id)sender;
 
+@property (weak, nonatomic) IBOutlet UISlider *gainSlider;
+- (IBAction)gainSliderValueChanged:(id)sender;
+
 @property (weak, nonatomic) IBOutlet UILabel *label32;
 @property (weak, nonatomic) IBOutlet UILabel *label64;
 @property (weak, nonatomic) IBOutlet UILabel *label125;
@@ -56,5 +59,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *label4k;
 @property (weak, nonatomic) IBOutlet UILabel *label8k;
 @property (weak, nonatomic) IBOutlet UILabel *label16k;
+@property (weak, nonatomic) IBOutlet UILabel *gainLabel;
 
 @end
