@@ -10,13 +10,15 @@
 		D26FDD8615DE6DA9008F255E /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D26FDD8315DE6DA9008F255E /* AudioToolbox.framework */; };
 		D26FDD8715DE6DA9008F255E /* AudioUnit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D26FDD8415DE6DA9008F255E /* AudioUnit.framework */; };
 		D26FDD8815DE6DA9008F255E /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D26FDD8515DE6DA9008F255E /* CoreAudio.framework */; };
+		D2E959261615DE3000E9B15A /* CoreMIDI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2E959251615DE3000E9B15A /* CoreMIDI.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		D26FDD8315DE6DA9008F255E /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		D26FDD8415DE6DA9008F255E /* AudioUnit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioUnit.framework; path = System/Library/Frameworks/AudioUnit.framework; sourceTree = SDKROOT; };
 		D26FDD8515DE6DA9008F255E /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
-		D26FDD8A15DE6DC0008F255E /* HeaderProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = HeaderProject.app; path = "/Volumes/Data HD/Users/tobi/Documents/Uni/Bachelor Arbeit/code/FakeHeaderProject/build/Release-iphoneos/HeaderProject.app"; sourceTree = "<absolute>"; };
+		D2E9591B1614802E00E9B15A /* HeaderProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HeaderProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D2E959251615DE3000E9B15A /* CoreMIDI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMIDI.framework; path = System/Library/Frameworks/CoreMIDI.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -24,6 +26,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D2E959261615DE3000E9B15A /* CoreMIDI.framework in Frameworks */,
 				D26FDD8615DE6DA9008F255E /* AudioToolbox.framework in Frameworks */,
 				D26FDD8715DE6DA9008F255E /* AudioUnit.framework in Frameworks */,
 				D26FDD8815DE6DA9008F255E /* CoreAudio.framework in Frameworks */,
@@ -36,9 +39,11 @@
 		D26FDD5315DE6D6E008F255E = {
 			isa = PBXGroup;
 			children = (
+				D2E959251615DE3000E9B15A /* CoreMIDI.framework */,
 				D26FDD8315DE6DA9008F255E /* AudioToolbox.framework */,
 				D26FDD8415DE6DA9008F255E /* AudioUnit.framework */,
 				D26FDD8515DE6DA9008F255E /* CoreAudio.framework */,
+				D2E9591B1614802E00E9B15A /* HeaderProject.app */,
 			);
 			sourceTree = "<group>";
 		};
@@ -59,7 +64,7 @@
 			);
 			name = HeaderProject;
 			productName = FakeHeaderProject;
-			productReference = D26FDD8A15DE6DC0008F255E /* HeaderProject.app */;
+			productReference = D2E9591B1614802E00E9B15A /* HeaderProject.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
