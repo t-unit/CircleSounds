@@ -188,20 +188,28 @@ static OSStatus recorderCallback(void                       *inRefCon,
     
     
     [session setCategory:AVAudioSessionCategoryPlayAndRecord error:&error];
-    
-    // TODO: error handling
+
+    if (error) {
+       @throw [[NSException alloc] initWithName:NSGenericException reason:error.domain userInfo:@{ NSUnderlyingErrorKey : error }];
+    }
     
     [session setActive:YES error:&error];
     
-    // TODO: error handling
+    if (error) {
+        @throw [[NSException alloc] initWithName:NSGenericException reason:error.domain userInfo:@{ NSUnderlyingErrorKey : error }];
+    }
     
     [session setPreferredSampleRate:_asbd.mSampleRate error:&error];
     
-    // TODO: error handling
+    if (error) {
+        @throw [[NSException alloc] initWithName:NSGenericException reason:error.domain userInfo:@{ NSUnderlyingErrorKey : error }];
+    }
     
     [[AVAudioSession sharedInstance] setPreferredIOBufferDuration:1024.0/_asbd.mSampleRate error:&error];
     
-    // TODO: error handling
+    if (error) {
+        @throw [[NSException alloc] initWithName:NSGenericException reason:error.domain userInfo:@{ NSUnderlyingErrorKey : error }];
+    }
     
     
     [[NSNotificationCenter defaultCenter] addObserver:self
