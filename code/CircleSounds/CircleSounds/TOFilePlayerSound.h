@@ -45,7 +45,7 @@
 
 /*
  Properties read from the ID3-tag of the audio file.
- Might return nil.
+ Might return nil if information is not availible.
  **/
 @property (readonly, nonatomic) NSString *fileSongName;
 @property (readonly, nonatomic) NSString *fileSongArtist;

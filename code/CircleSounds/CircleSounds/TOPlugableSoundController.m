@@ -220,7 +220,7 @@
         
         UIImage *image = [drawer waveformFromImageAtURL:self.sound.audioFileURL];
         
-        
+        // setting the image must happen on the main thread
         dispatch_async(dispatch_get_main_queue(), ^{
             self.soundView.waveformImage = image;
         });

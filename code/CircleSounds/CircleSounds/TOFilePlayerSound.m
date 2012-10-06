@@ -340,7 +340,7 @@ OSStatus FilePlayerUnitRenderNotifyCallblack (void                        *inRef
     
     
     ScheduledAudioFileRegion rgn;
-	memset (&rgn.mTimeStamp, 0, sizeof(rgn.mTimeStamp));
+	memset(&rgn.mTimeStamp, 0, sizeof(rgn.mTimeStamp));
 	rgn.mTimeStamp.mFlags = kAudioTimeStampSampleTimeValid;
 	rgn.mTimeStamp.mSampleTime = 0;
 	rgn.mCompletionProc = NULL;
@@ -384,7 +384,7 @@ OSStatus FilePlayerUnitRenderNotifyCallblack (void                        *inRef
     
     
     AudioTimeStamp startTime;
-	memset (&startTime, 0, sizeof(startTime));
+	memset(&startTime, 0, sizeof(startTime));
 	startTime.mFlags = kAudioTimeStampSampleTimeValid;
 	startTime.mSampleTime = sampleStartTime;
     
