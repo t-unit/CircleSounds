@@ -12,7 +12,10 @@
 
 + (UIColor *)colorAtValue:(float)value betweenLowerValue:(float)lowerValue withColor:(UIColor *)lowerColor andHigherValue:(float)higherValue withColor:(UIColor *)higherColor
 {
-    // make sure not to return any garbage colors
+    NSParameterAssert(lowerColor);
+    NSParameterAssert(higherColor);
+    
+    // make sure not to return any garbage colors (invalid values for red, green or blue)
     if (value <= lowerValue) {
         return lowerColor;
     }
