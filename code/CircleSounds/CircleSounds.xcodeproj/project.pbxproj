@@ -217,7 +217,7 @@
 			isa = PBXGroup;
 			children = (
 				D2DC571515FBAD070003AA50 /* Views & Drawing */,
-				D2698EDC15EE4262008A52D7 /* Core Audio Wrapper */,
+				D2698EDC15EE4262008A52D7 /* Core Audio */,
 				D2698EC015EE4105008A52D7 /* Interpolation */,
 				D2698EB015EE40BF008A52D7 /* TOPlugableSoundController.h */,
 				D2698EB115EE40BF008A52D7 /* TOPlugableSoundController.m */,
@@ -306,7 +306,7 @@
 			name = Interpolation;
 			sourceTree = "<group>";
 		};
-		D2698EDC15EE4262008A52D7 /* Core Audio Wrapper */ = {
+		D2698EDC15EE4262008A52D7 /* Core Audio */ = {
 			isa = PBXGroup;
 			children = (
 				D2698EC115EE4255008A52D7 /* TOCAShortcuts.h */,
@@ -321,7 +321,7 @@
 				D2698ED215EE4255008A52D7 /* TOSoundDocument.m */,
 				D220DD6415FCAA5300696CA2 /* TOSoundDocumentDelegate.h */,
 			);
-			name = "Core Audio Wrapper";
+			name = "Core Audio";
 			sourceTree = "<group>";
 		};
 		D2698EDD15EE427F008A52D7 /* Plugable Sounds */ = {
