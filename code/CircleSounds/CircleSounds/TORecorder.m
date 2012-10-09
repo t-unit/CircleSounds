@@ -29,12 +29,12 @@
     BOOL _isRecording;
     BOOL _monitoringInput;
     
-    AudioSampleType *_peakSamples;
+    AudioSampleType *_peakSamples; // an array of peak samples. big enough to hold a sample for each channel.
     double *_avgSamples; // using double here even though the real value is SInt16. a double makes it possible to
                          // calculate _avgSamples by not allocating memory during calculation. During calcualtion
                          // this variable contains the sum of all samples!
     
-    BOOL _sampleUpdateNeeded; // new values for '_peakSamples' & '_avgSamples' will be calculate when set to 'NO'
+    BOOL _sampleUpdateNeeded; // new values for '_peakSamples' & '_avgSamples' will be calculate when set to 'YES'
 }
 
 @property (assign, atomic) BOOL isReadyForRecording;

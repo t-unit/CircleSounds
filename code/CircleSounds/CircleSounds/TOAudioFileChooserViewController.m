@@ -61,7 +61,7 @@
         audioFileURL = self.suppliedSounds[indexPath.row];
     }
     
-    NSDictionary *metadata = TOMetadataForAudioFileURL(audioFileURL);
+    NSDictionary *metadata = TOMetadataForAudioFileAtURL(audioFileURL);
     
     double duration = [metadata[@kAFInfoDictionary_ApproximateDurationInSeconds] doubleValue];
     NSString *artist = metadata[@kAFInfoDictionary_Artist];

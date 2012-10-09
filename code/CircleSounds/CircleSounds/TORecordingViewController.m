@@ -209,7 +209,7 @@
     cell.textLabel.text = [self.recordings[indexPath.row] lastPathComponent];
     
     
-    NSDictionary *metadata = TOMetadataForAudioFileURL(self.recordings[indexPath.row]);
+    NSDictionary *metadata = TOMetadataForAudioFileAtURL(self.recordings[indexPath.row]);
     
     double duration = [metadata[@kAFInfoDictionary_ApproximateDurationInSeconds] doubleValue];
     cell.detailTextLabel.text = [NSString stringWithFormat:@"Duration: %d:%02d", (int)duration/60, (int)duration%60];

@@ -70,7 +70,7 @@ AudioStreamBasicDescription TOCanonicalStreamFormat(UInt32 nChannels, bool inter
 AudioStreamBasicDescription TOCanonicalAUGraphStreamFormat(UInt32 nChannels, bool interleaved)
 {
     AudioStreamBasicDescription asbd;
-    memset (&asbd, 0, sizeof (asbd));
+    memset(&asbd, 0, sizeof (asbd));
     
     asbd.mFormatID = kAudioFormatLinearPCM;
 #if CA_PREFER_FIXED_POINT
@@ -156,7 +156,7 @@ void TOPrintASBD(AudioStreamBasicDescription asbd)
 }
 
 
-NSDictionary *TOMetadataForAudioFileURL(NSURL *url)
+NSDictionary *TOMetadataForAudioFileAtURL(NSURL *url)
 {
     AudioFileID audioFile;
     OSStatus error = noErr;

@@ -84,9 +84,16 @@ AudioComponentDescription TOAudioComponentDescription(OSType componentType, OSTy
 OSStatus TOAudioUnitNewInstanceWithDescription(AudioComponentDescription inComponentDesc, AudioComponent *outComponent, AudioUnit *outAudioUnit);
 
 
+/**
+ Create a new instance of an audio units using the supplied type and subtype.
+ */
 OSStatus TOAudioUnitNewInstance(OSType inComponentType, OSType inComponentSubType, AudioUnit *outAudioUnit);
 
 
+/**
+ Creates a new Audio Units by adding it to the supplied audio processing graph. The node representation
+ of the unit can be optained.
+ */
 OSStatus TOAUGraphAddNode(OSType inComponentType, OSType inComponentSubType, AUGraph inGraph, AUNode *outNode);
 
 
@@ -114,7 +121,7 @@ void TOPrintASBD(AudioStreamBasicDescription asbd);
  not point to a valid audio file or if any other error 
  occures.
  */
-NSDictionary *TOMetadataForAudioFileURL(NSURL *url);
+NSDictionary *TOMetadataForAudioFileAtURL(NSURL *url);
 
 
 
