@@ -8,6 +8,11 @@
 
 #import "TOPlugableSound.h"
 
+#import <AudioToolbox/AudioToolbox.h>
+
+#import "TOAudioUnit.h"
+#import "TOCAShortcuts.h"
+
 
 /**
  Wrapper for the 'kAudioUnitSubType_AudioFilePlayer' audio unit.

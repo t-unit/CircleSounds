@@ -22,6 +22,10 @@
 @implementation TOFilePlayerSound
 
 
+/**
+ Gets called every time the file player units did render some samples.
+ Updates the sample time of this call to allow scheduling of sounds.
+ */
 OSStatus FilePlayerUnitRenderNotifyCallblack (void                        *inRefCon,
                                               AudioUnitRenderActionFlags  *ioActionFlags,
                                               const AudioTimeStamp        *inTimeStamp,
@@ -346,7 +350,7 @@ OSStatus FilePlayerUnitRenderNotifyCallblack (void                        *inRef
 	rgn.mCompletionProc = NULL;
 	rgn.mCompletionProcUserData = NULL;
 	rgn.mAudioFile = _audioFile;
-	rgn.mLoopCount = _loopCount -1;
+	rgn.mLoopCount = _loopCount - 1;
 	rgn.mStartFrame = startFrame;
 	rgn.mFramesToPlay = framesToPlay;
     
@@ -375,10 +379,10 @@ OSStatus FilePlayerUnitRenderNotifyCallblack (void                        *inRef
     Float64 sampleStartTime;
     
     
-    if (timeOffset > 0.0) {
+    if (timeOffset > 0.0) { // start time is in the future
         sampleStartTime = _currentFilePlayerUnitRenderSampleTime + timeOffset * _filePlayerUnitOutputSampleRate;
     }
-    else {
+    else { // the sound should have already started playing
         sampleStartTime = -1.0;
     }
     

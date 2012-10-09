@@ -476,9 +476,14 @@ OSStatus MixerUnitRenderNoteCallack(void                        *inRefCon,
 #endif
     }
     
+    // inform the delegate about the changes
     if ([self.delegate respondsToSelector:@selector(soundDocument:didRemoveSound:)]) {
         [self.delegate soundDocument:self didRemoveSound:soundObject];
     }
+    
+#if DEBUG
+    CAShow(_graph);
+#endif
 }
 
 

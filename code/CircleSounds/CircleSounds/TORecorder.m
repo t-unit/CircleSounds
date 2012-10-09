@@ -17,28 +17,10 @@
 
 @interface TORecorder ()
 {
-    AudioUnit _rioUnit;
-    AudioStreamBasicDescription _asbd;
 
-    AudioFileID _audioFile;
-    SInt64 _numPacketsWritten;
-    
-    NSInteger _numChannels;
-    double _gain;
-    
-    BOOL _isRecording;
-    BOOL _monitoringInput;
-    
-    AudioSampleType *_peakSamples; // an array of peak samples. big enough to hold a sample for each channel.
-    double *_avgSamples; // using double here even though the real value is SInt16. a double makes it possible to
-                         // calculate _avgSamples by not allocating memory during calculation. During calcualtion
-                         // this variable contains the sum of all samples!
-    
-    BOOL _sampleUpdateNeeded; // new values for '_peakSamples' & '_avgSamples' will be calculate when set to 'YES'
 }
 
-@property (assign, atomic) BOOL isReadyForRecording;
-@property (assign, atomic) BOOL isSetUp;
+
 
 @end
 
@@ -246,7 +228,7 @@ static OSStatus recorderCallback(void                       *inRefCon,
 
 - (double)peakPowerForChannel:(NSInteger)channelNumber
 {
-    if (channelNumber > self.numChannels || !self.isSetUp) {
+    if (channelNumber > self.numChannels || !_isSetUp) {
         return 0.0;
     }
     
@@ -259,7 +241,7 @@ static OSStatus recorderCallback(void                       *inRefCon,
 
 - (double)averagePowerForChannel:(NSInteger)channelNumber
 {
-    if (channelNumber > self.numChannels || !self.isSetUp) {
+    if (channelNumber > self.numChannels || !_isSetUp) {
         return 0.0;
     }
     
@@ -274,7 +256,7 @@ static OSStatus recorderCallback(void                       *inRefCon,
 {
     NSParameterAssert(url);
     
-    if (!self.isSetUp) {
+    if (!_isSetUp) {
         if (error) {
             *error = [NSError errorWithDomain:@"TORecorderErrorDomain" code:0 userInfo:nil];
         }
@@ -295,7 +277,7 @@ static OSStatus recorderCallback(void                       *inRefCon,
     
     
     self->_url = url;
-    self.isReadyForRecording = YES;
+    _isReadyForRecording = YES;
     
     return YES;
 }
@@ -303,7 +285,7 @@ static OSStatus recorderCallback(void                       *inRefCon,
 
 - (BOOL)startRecording
 {
-    if (!self.isReadyForRecording) {
+    if (!_isReadyForRecording) {
         return NO;
     }
 
@@ -318,7 +300,7 @@ static OSStatus recorderCallback(void                       *inRefCon,
 {
     if (self.isRecording) {
         self.isRecording = NO;
-        self.isReadyForRecording = NO;
+        _isReadyForRecording = NO;
         
         TOThrowOnError(AudioFileClose(_audioFile));
         
@@ -329,7 +311,7 @@ static OSStatus recorderCallback(void                       *inRefCon,
 
 - (void)setUp
 {
-    if (self.isSetUp) {
+    if (_isSetUp) {
         return;
     }
     
@@ -400,15 +382,15 @@ static OSStatus recorderCallback(void                       *inRefCon,
     TOThrowOnError(AudioOutputUnitStart(_rioUnit));
     
     
-    self.isSetUp = YES;
+    _isSetUp = YES;
 }
 
 
 - (void)tearDown
 {
-    if (self.isSetUp) {
+    if (_isSetUp) {
         [self stopRecording];
-        self.isSetUp = NO;
+        _isSetUp = NO;
         
         TOThrowOnError(AudioOutputUnitStop(_rioUnit));
         TOThrowOnError(AudioUnitUninitialize(_rioUnit));

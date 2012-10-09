@@ -7,9 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <AudioToolbox/AudioToolbox.h>
-#import "TOCAShortcuts.h"
-#import "TOAudioUnit.h"
 
 @class TOSoundDocument;
 
@@ -60,8 +57,6 @@
  Called after the sound object has been added to the graph
  */
 - (void)setupFinished;
-
-
 
 
 /**

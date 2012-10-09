@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <AudioToolbox/AudioToolbox.h>
 
 @protocol TORecorderDelegate;
 
@@ -15,6 +16,29 @@
  A class for recording and monitoring audio input.
  */
 @interface TORecorder : NSObject
+{
+    AudioUnit _rioUnit;
+    AudioStreamBasicDescription _asbd;
+    
+    AudioFileID _audioFile;
+    SInt64 _numPacketsWritten;
+    
+    NSInteger _numChannels;
+    double _gain;
+    
+    BOOL _isRecording;
+    BOOL _monitoringInput;
+    
+    BOOL _isReadyForRecording;
+    BOOL _isSetUp;
+    
+    AudioSampleType *_peakSamples; // an array of peak samples. big enough to hold a sample for each channel.
+    double *_avgSamples; // using double here even though the real value is SInt16. a double makes it possible to
+                         // calculate _avgSamples by not allocating memory during calculation. During calcualtion
+                         // this variable contains the sum of all samples!
+    
+    BOOL _sampleUpdateNeeded; // new values for '_peakSamples' & '_avgSamples' will be calculate when set to 'YES'
+}
 
 /**
  Boolean defining wether current signals from the input should be played via output.
