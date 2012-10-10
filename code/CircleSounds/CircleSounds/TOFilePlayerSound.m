@@ -25,6 +25,7 @@
 /**
  Gets called every time the file player units did render some samples.
  Updates the sample time of this call to allow scheduling of sounds.
+ Will be called on a real time audio thread.
  */
 OSStatus FilePlayerUnitRenderNotifyCallblack (void                        *inRefCon,
                                               AudioUnitRenderActionFlags  *ioActionFlags,
@@ -41,6 +42,7 @@ OSStatus FilePlayerUnitRenderNotifyCallblack (void                        *inRef
         if (isnan(filePlayer->_currentFilePlayerUnitRenderSampleTime)) {
             filePlayer->_currentFilePlayerUnitRenderSampleTime = inTimeStamp->mSampleTime;
             
+            // do the heavy work on the main thread
             dispatch_async(dispatch_get_main_queue(), ^{
                 if (filePlayer->_audioFile) {
                     [filePlayer applySchedulingChanges];
@@ -371,7 +373,7 @@ OSStatus FilePlayerUnitRenderNotifyCallblack (void                        *inRef
     // start time
     
     Float64 timeOffset = _startTime - currentTime; /* in seconds */
-    Float64 sampleStartTime;
+    Float64 sampleStartTime; /* in samples */
     
     
     if (timeOffset > 0.0) { // start time is in the future
