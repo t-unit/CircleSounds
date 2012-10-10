@@ -56,6 +56,10 @@
 
 @property (readonly, nonatomic) NSArray *plugableSounds;
 
+
+/**
+ Add or remove plugable sound to/from the document atomicly.
+ */
 - (void)addPlugableSoundObject:(TOPlugableSound *)soundObject;
 - (void)removePlugableSoundObject:(TOPlugableSound *)soundObject;
 
@@ -77,8 +81,8 @@
 
 
 /**
- Linear Gain. Set to values beween 0 and 1. 
- Default Value is 1.
+ Linear Gain for the input of the output unit. Use to set the output volume.
+ Set to values beween 0 and 1. Default Value is 1.
  */
 @property (assign, nonatomic) AudioUnitParameterValue volume;
 

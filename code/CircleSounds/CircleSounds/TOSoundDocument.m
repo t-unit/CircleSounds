@@ -394,7 +394,7 @@ OSStatus MixerUnitRenderNoteCallack(void                        *inRefCon,
         soundObject.document = self;
         [soundObject setupUnits];
         
-        TOThrowOnError(AUGraphUpdate(_graph, NULL));
+        TOThrowOnError(AUGraphUpdate(_graph, NULL)); // make the changes happen
         
         [soundObject setupFinished];
         
@@ -403,7 +403,7 @@ OSStatus MixerUnitRenderNoteCallack(void                        *inRefCon,
 #endif
     }
     
-    
+    // inform the delegate
     if ([self.delegate respondsToSelector:@selector(soundDocument:didAddNewSound:)]) {
         [self.delegate soundDocument:self didAddNewSound:soundObject];
     }
