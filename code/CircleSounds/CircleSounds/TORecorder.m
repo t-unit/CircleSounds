@@ -15,17 +15,6 @@
 #import "TORecorderDelegate.h"
 
 
-@interface TORecorder ()
-{
-
-}
-
-
-
-@end
-
-
-
 @implementation TORecorder
 
 

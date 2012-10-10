@@ -63,11 +63,10 @@ OSStatus FilePlayerUnitRenderNotifyCallblack (void                        *inRef
     if (self) {
         _filePlayerUnit = [[TOAudioUnit alloc] init];
         _filePlayerUnit->description = TOAudioComponentDescription(kAudioUnitType_Generator, kAudioUnitSubType_AudioFilePlayer);
+        _audioUnits = [_audioUnits arrayByAddingObject:_filePlayerUnit];
         
         _currentFilePlayerUnitRenderSampleTime = NAN;
         _loopCount = 1;
-        
-        _audioUnits = [_audioUnits arrayByAddingObject:_filePlayerUnit];
     }
     
     return self;
@@ -305,15 +304,11 @@ OSStatus FilePlayerUnitRenderNotifyCallblack (void                        *inRef
 
 - (void)applySchedulingChanges
 {
-    if (isnan(_currentFilePlayerUnitRenderSampleTime)) {
+    if (isnan(_currentFilePlayerUnitRenderSampleTime) || !_audioFile) {
         return;
     }
     
-    if (!_audioFile) {
-        return;
-    }
-    
-    
+    // unschedule previous audio file regions
     TOThrowOnError(AudioUnitReset(_filePlayerUnit->unit,
                                   kAudioUnitScope_Input,
                                   0));
@@ -362,6 +357,7 @@ OSStatus FilePlayerUnitRenderNotifyCallblack (void                        *inRef
                                         &rgn,
                                         sizeof(rgn)));
     
+    // load a certain amount of audio data into memory
     UInt32 defaultVal = 0;
 	TOThrowOnError(AudioUnitSetProperty(_filePlayerUnit->unit,
                                         kAudioUnitProperty_ScheduledFilePrime,
@@ -369,8 +365,7 @@ OSStatus FilePlayerUnitRenderNotifyCallblack (void                        *inRef
                                         0,
                                         &defaultVal,
                                         sizeof(defaultVal)));
-    
-    
+
     
     //............................................................................
     // start time
