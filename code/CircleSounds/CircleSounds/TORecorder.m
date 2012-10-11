@@ -79,9 +79,16 @@ static inline void calculateAvgAndPeakSamples(TORecorder *ioRecorder, AudioBuffe
     }
 }
 
-
+/**
+ Apply gain to the values inside ioData.
+ NOTE: assumes AudioSampleType values inside ioData
+ */
 static inline void applyGain(TORecorder *inRecorder, AudioBufferList *ioData)
 {
+    if (inRecorder->_gain == 1.0) {
+        return; // nothing to do
+    }
+    
     for (UInt32 i=0; i<ioData->mNumberBuffers; i++) {
         
         UInt32 numSamples = ioData->mBuffers[i].mDataByteSize / sizeof(AudioSampleType);
