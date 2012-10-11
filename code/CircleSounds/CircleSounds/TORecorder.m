@@ -105,7 +105,7 @@ static inline void applyGain(TORecorder *inRecorder, AudioBufferList *ioData)
  This callback is called when the audioUnit needs new data to play through the
  speakers.
  */
-static OSStatus recorderCallback(void                       *inRefCon,
+static OSStatus RecorderCallback(void                       *inRefCon,
                                  AudioUnitRenderActionFlags *ioActionFlags,
                                  const AudioTimeStamp       *inTimeStamp,
                                  UInt32                      inBusNumber,
@@ -363,7 +363,7 @@ static OSStatus recorderCallback(void                       *inRefCon,
     
 	// Set up callback
 	AURenderCallbackStruct callbackStruct;
-	callbackStruct.inputProc = recorderCallback;
+	callbackStruct.inputProc = RecorderCallback;
 	callbackStruct.inputProcRefCon = (__bridge void *)(self);
     
 	TOThrowOnError(AudioUnitSetProperty(_rioUnit,
