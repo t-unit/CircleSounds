@@ -333,10 +333,16 @@ OSStatus MixerUnitRenderNoteCallack(void                        *inRefCon,
 
 - (void)addPlugableSoundObject:(TOPlugableSound *)soundObject
 {
+    if (soundObject.document) {
+        @throw [[NSException alloc] initWithName:NSInternalInconsistencyException
+                                          reason:@"A plugable sound cannot be part of more than one document once at a time"
+                                        userInfo:nil];
+    }
+    
     @synchronized(self) {
         _plugableSounds = [_plugableSounds arrayByAddingObject:soundObject];
         
-        // add node to the graph and get the unit back
+        // add nodes to the graph and get the units back
         for (TOAudioUnit *au in soundObject.audioUnits) {
             TOThrowOnError(AUGraphAddNode(_graph,
                                           &(au->description),
