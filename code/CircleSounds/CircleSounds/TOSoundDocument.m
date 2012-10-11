@@ -331,6 +331,32 @@ OSStatus MixerUnitRenderNoteCallack(void                        *inRefCon,
 
 # pragma mark - Plugable Sounds Handling
 
+- (UInt32)mixerInputBusForNewPlugableSound
+{
+    UInt32 mixerInputBus;
+    
+    if (_availibleBuses.count) {
+        NSNumber *mixerInputBusObject = [_availibleBuses anyObject];
+        
+        mixerInputBus = [mixerInputBusObject unsignedIntegerValue];
+        _availibleBuses = [_availibleBuses setByRemovingObject:mixerInputBusObject];
+    }
+    else {
+        mixerInputBus = ++_maxBusTaken;
+        
+        // Set number of buses on the mixer node
+        UInt32 numbuses = _maxBusTaken + 1;
+        TOThrowOnError(AudioUnitSetProperty(_mixerUnit->unit,
+                                            kAudioUnitProperty_ElementCount,
+                                            kAudioUnitScope_Input,
+                                            0,
+                                            &numbuses,
+                                            sizeof(UInt32)));
+    }
+    
+    return mixerInputBus;
+}
+
 - (void)addPlugableSoundObject:(TOPlugableSound *)soundObject
 {
     if (soundObject.document) {
@@ -369,28 +395,8 @@ OSStatus MixerUnitRenderNoteCallack(void                        *inRefCon,
         
         
         // connect the last AU inside the sound object to the mixer unit;
-        UInt32 mixerInputBus;
-        
-        if (_availibleBuses.count) {
-            NSNumber *mixerInputBusObject = [_availibleBuses anyObject];
-            
-            mixerInputBus = [mixerInputBusObject unsignedIntegerValue];
-            _availibleBuses = [_availibleBuses setByRemovingObject:mixerInputBusObject];
-        }
-        else {
-            mixerInputBus = ++_maxBusTaken;
-            
-            // Set number of buses on the mixer node
-            UInt32 numbuses = _maxBusTaken + 1;
-            TOThrowOnError(AudioUnitSetProperty(_mixerUnit->unit,
-                                                kAudioUnitProperty_ElementCount,
-                                                kAudioUnitScope_Input,
-                                                0,
-                                                &numbuses,
-                                                sizeof(UInt32)));
-        }
+        UInt32 mixerInputBus = [self mixerInputBusForNewPlugableSound];
 
-        
         TOAudioUnit *sourceAU = [soundObject.audioUnits lastObject];
         TOThrowOnError(AUGraphConnectNodeInput(_graph,
                                                sourceAU->node,
