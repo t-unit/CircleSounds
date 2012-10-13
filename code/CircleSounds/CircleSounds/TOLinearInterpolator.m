@@ -13,7 +13,7 @@
 + (double)yValueForX:(double)x inLinearFunctionWithPoint:(CGPoint)p1 andPoint:(CGPoint)p2
 {
     if (p1.x == p2.x) { // prevent NaNs while calculating 'm'
-        return p1.y;
+        return p1.y; // at this point should be exact the same value as p2.y
     }
     
     // m = (y2 - y1) / (x2 - x1)
