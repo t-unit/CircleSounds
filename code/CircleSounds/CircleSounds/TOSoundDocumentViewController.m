@@ -11,7 +11,7 @@
 #import "TOSoundDocument.h"
 #import "TOAudioMeterView.h"
 #import "TOEqualizerSound.h"
-#import "TOPlugableSoundController.h"
+#import "TOEqualizerSoundController.h"
 #import "TOPlugableSoundView.h"
 #import "NSArray+arrayByRemovingObject.h"
 #import "TOSoundDocumentDelegate.h"
@@ -66,7 +66,7 @@
     
     CGRect newSoundViewFrame = CGRectMake(pos.x - (SOUND_VIEW_WIDTH/2), pos.y - (SOUND_VIEW_HEIGHT/2), SOUND_VIEW_WIDTH, SOUND_VIEW_HEIGHT);
     
-    TOPlugableSoundController *soundController = [[TOPlugableSoundController alloc] initWithPlugableSound:sound
+    TOEqualizerSoundController *soundController = [[TOEqualizerSoundController alloc] initWithPlugableSound:sound
                                                                                                atPosition:newSoundViewFrame
                                                                                        documentController:self];
     
@@ -82,7 +82,7 @@
 }
 
 
-- (void)removeSoundController:(TOPlugableSoundController *)soundController
+- (void)removeSoundController:(TOEqualizerSoundController *)soundController
 {
     NSParameterAssert(soundController);
     

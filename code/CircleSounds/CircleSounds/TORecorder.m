@@ -326,7 +326,7 @@ static OSStatus RecorderCallback(void                       *inRefCon,
     
     
     // allocate memory for peak an average samples
-    _avgSamples = malloc(sizeof(AudioSampleType) * _numChannels);
+    _avgSamples = malloc(sizeof(double) * _numChannels);
     _peakSamples = malloc(sizeof(AudioSampleType) * _numChannels);
     
     

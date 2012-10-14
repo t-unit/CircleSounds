@@ -10,7 +10,7 @@
 
 @class TOSoundDocument;
 @class TOAudioMeterView;
-@class TOPlugableSoundController;
+@class TOEqualizerSoundController;
 
 
 @interface TOSoundDocumentViewController : UIViewController
@@ -19,7 +19,7 @@
 @property (strong, nonatomic) NSArray *soundControllers;
 
 - (void)addNewSoundAtPosition:(CGPoint)pos;
-- (void)removeSoundController:(TOPlugableSoundController *)soundController;
+- (void)removeSoundController:(TOEqualizerSoundController *)soundController;
 
 
 @property (weak, nonatomic) IBOutlet UIView *canvas;

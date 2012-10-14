@@ -24,7 +24,7 @@
 		D2698E9D15EE37D4008A52D7 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D2698E9B15EE37D4008A52D7 /* InfoPlist.strings */; };
 		D2698EA015EE37D4008A52D7 /* CircleSoundsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D2698E9F15EE37D4008A52D7 /* CircleSoundsTests.m */; };
 		D2698EAF15EE4080008A52D7 /* TOPlugableSoundView.m in Sources */ = {isa = PBXBuildFile; fileRef = D2698EAE15EE4080008A52D7 /* TOPlugableSoundView.m */; };
-		D2698EB215EE40BF008A52D7 /* TOPlugableSoundController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2698EB115EE40BF008A52D7 /* TOPlugableSoundController.m */; };
+		D2698EB215EE40BF008A52D7 /* TOEqualizerSoundController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2698EB115EE40BF008A52D7 /* TOEqualizerSoundController.m */; };
 		D2698EBB15EE40E6008A52D7 /* TOLinearInterpolator.m in Sources */ = {isa = PBXBuildFile; fileRef = D2698EB415EE40E6008A52D7 /* TOLinearInterpolator.m */; };
 		D2698EBC15EE40E6008A52D7 /* TOColorInterpolator.m in Sources */ = {isa = PBXBuildFile; fileRef = D2698EB615EE40E6008A52D7 /* TOColorInterpolator.m */; };
 		D2698EBD15EE40E6008A52D7 /* TOAudioMeterView.m in Sources */ = {isa = PBXBuildFile; fileRef = D2698EB815EE40E6008A52D7 /* TOAudioMeterView.m */; };
@@ -98,8 +98,8 @@
 		D2698E9F15EE37D4008A52D7 /* CircleSoundsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CircleSoundsTests.m; sourceTree = "<group>"; };
 		D2698EAD15EE4080008A52D7 /* TOPlugableSoundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TOPlugableSoundView.h; sourceTree = "<group>"; };
 		D2698EAE15EE4080008A52D7 /* TOPlugableSoundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TOPlugableSoundView.m; sourceTree = "<group>"; };
-		D2698EB015EE40BF008A52D7 /* TOPlugableSoundController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TOPlugableSoundController.h; sourceTree = "<group>"; };
-		D2698EB115EE40BF008A52D7 /* TOPlugableSoundController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TOPlugableSoundController.m; sourceTree = "<group>"; };
+		D2698EB015EE40BF008A52D7 /* TOEqualizerSoundController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TOEqualizerSoundController.h; sourceTree = "<group>"; };
+		D2698EB115EE40BF008A52D7 /* TOEqualizerSoundController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TOEqualizerSoundController.m; sourceTree = "<group>"; };
 		D2698EB315EE40E6008A52D7 /* TOLinearInterpolator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TOLinearInterpolator.h; sourceTree = "<group>"; };
 		D2698EB415EE40E6008A52D7 /* TOLinearInterpolator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TOLinearInterpolator.m; sourceTree = "<group>"; };
 		D2698EB515EE40E6008A52D7 /* TOColorInterpolator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TOColorInterpolator.h; sourceTree = "<group>"; };
@@ -219,8 +219,8 @@
 				D2DC571515FBAD070003AA50 /* Views & Drawing */,
 				D2698EDC15EE4262008A52D7 /* Core Audio */,
 				D2698EC015EE4105008A52D7 /* Interpolation */,
-				D2698EB015EE40BF008A52D7 /* TOPlugableSoundController.h */,
-				D2698EB115EE40BF008A52D7 /* TOPlugableSoundController.m */,
+				D2698EB015EE40BF008A52D7 /* TOEqualizerSoundController.h */,
+				D2698EB115EE40BF008A52D7 /* TOEqualizerSoundController.m */,
 				D2698EEB15EE85ED008A52D7 /* TOSoundDocumentViewController.h */,
 				D2698EEC15EE85ED008A52D7 /* TOSoundDocumentViewController.m */,
 				D222E16115F4EC0E004D5AE9 /* TOSoundDetailsPopoverViewController.h */,
@@ -483,7 +483,7 @@
 				D2698E8115EE37D3008A52D7 /* main.m in Sources */,
 				D2698E8515EE37D4008A52D7 /* TOAppDelegate.m in Sources */,
 				D2698EAF15EE4080008A52D7 /* TOPlugableSoundView.m in Sources */,
-				D2698EB215EE40BF008A52D7 /* TOPlugableSoundController.m in Sources */,
+				D2698EB215EE40BF008A52D7 /* TOEqualizerSoundController.m in Sources */,
 				D2698EBB15EE40E6008A52D7 /* TOLinearInterpolator.m in Sources */,
 				D2698EBC15EE40E6008A52D7 /* TOColorInterpolator.m in Sources */,
 				D2698EBD15EE40E6008A52D7 /* TOAudioMeterView.m in Sources */,

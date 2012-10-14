@@ -157,7 +157,7 @@ void TOPrintASBD(AudioStreamBasicDescription asbd)
 
 
 NSDictionary *TOMetadataForAudioFileAtURL(NSURL *url)
-{
+{ 
     AudioFileID audioFile;
     OSStatus error = noErr;
     
@@ -192,13 +192,16 @@ NSDictionary *TOMetadataForAudioFileAtURL(NSURL *url)
     
     if (error != noErr) {
         AudioFileClose(audioFile);
+        CFRelease(dictonary);
         return nil;
     }
     
     AudioFileClose(audioFile);
     
+    NSDictionary *retVal = (NSDictionary *)CFBridgingRelease(dictonary);
+//    CFRelease(dictonary);
     
-    return (__bridge NSDictionary *)(dictonary);
+    return retVal;
 }
 
 

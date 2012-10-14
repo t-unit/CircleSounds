@@ -24,7 +24,7 @@
 
 /**
  Gets called every time the file player units did render some samples.
- Updates the sample time of this call to allow scheduling of sounds.
+ Updates the sample time of this object to allow scheduling of sounds.
  Will be called on a real time audio thread.
  */
 OSStatus FilePlayerUnitRenderNotifyCallblack (void                        *inRefCon,
@@ -237,7 +237,7 @@ OSStatus FilePlayerUnitRenderNotifyCallblack (void                        *inRef
                                         &dictionaryRef));
     
     
-    NSDictionary *dictionary = (__bridge NSDictionary *)(dictionaryRef);
+    __weak NSDictionary *dictionary = (__bridge NSDictionary *)(dictionaryRef);
     
     _fileSongName = dictionary[@kAFInfoDictionary_Title];
     _fileSongArtist = dictionary[@kAFInfoDictionary_Artist];

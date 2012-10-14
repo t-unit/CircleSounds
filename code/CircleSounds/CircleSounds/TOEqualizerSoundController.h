@@ -1,5 +1,5 @@
 //
-//  TOPlugableSoundViewController.h
+//  TOEqualizerSoundController.h
 //  CircleSounds
 //
 //  Created by Tobias Ottenweller on 29.08.12.
@@ -13,11 +13,15 @@
 @class TOSoundDocumentViewController;
 
 
-@interface TOPlugableSoundController : NSObject
+@interface TOEqualizerSoundController : NSObject
+{
+    __weak TOSoundDocumentViewController *_documentController;
+}
 
 /**
  The designated initializer for the sound controller. It will overwrite the 'startTime'
  property of 'sound'. Other properties won't be changed during initialization.
+ Won't retain documentController.
  */
 - (id)initWithPlugableSound:(TOEqualizerSound *)sound atPosition:(CGRect)viewFrame documentController:(TOSoundDocumentViewController *)documentController;
 

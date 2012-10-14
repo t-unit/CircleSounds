@@ -1,12 +1,12 @@
 //
-//  TOPlugableSoundViewController.m
+//  TOEqualizerSoundController.m
 //  CircleSounds
 //
 //  Created by Tobias Ottenweller on 29.08.12.
 //  Copyright (c) 2012 Tobias Ottenweller. All rights reserved.
 //
 
-#import "TOPlugableSoundController.h"
+#import "TOEqualizerSoundController.h"
 
 #import "TOEqualizerSound.h"
 #import "TOPlugableSoundView.h"
@@ -43,7 +43,7 @@
 
 
 
-@interface TOPlugableSoundController () <UIGestureRecognizerDelegate, TOSoundDetailsPopoverViewControllerDelegate, TOSoundFileChangingViewControllerDelegate>
+@interface TOEqualizerSoundController () <UIGestureRecognizerDelegate, TOSoundDetailsPopoverViewControllerDelegate, TOSoundFileChangingViewControllerDelegate>
 
 @property (assign, nonatomic) double virtualViewRotation;
 @property (assign, nonatomic) CGRect initialViewBounds; /* used for scaling. initial bounds for a single pinch gesture. */
@@ -61,7 +61,7 @@
 
 
 
-@implementation TOPlugableSoundController
+@implementation TOEqualizerSoundController
 
 
 + (double)scaleFromGlobalGain:(AudioUnitParameterValue)gain
