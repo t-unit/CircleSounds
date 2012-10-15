@@ -146,7 +146,7 @@
     }
     
     
-    for (; i<self.meterElements.count; i++) {
+    for (++i; i<self.meterElements.count; i++) {
         [[self.meterElements objectAtIndex:i] setOpacity:0.0];
     }
 }

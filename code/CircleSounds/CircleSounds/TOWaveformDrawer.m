@@ -98,8 +98,6 @@
                                            &clientFormat));
     
     self.audioFileClientFormat = clientFormat;
-    
-    
 }
 
 
