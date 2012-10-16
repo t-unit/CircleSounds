@@ -49,7 +49,7 @@
 
 
 /**
- Should the document restart replaying after it reached 'duration'?
+ Should the document restart playing after it reached 'duration'?
  */
 @property (readwrite, nonatomic) BOOL loop;
 
