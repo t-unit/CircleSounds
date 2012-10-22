@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		D220DD6315FC930500696CA2 /* TOAudioFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D220DD6215FC930500696CA2 /* TOAudioFileManager.m */; };
 		D222E16315F4EC0E004D5AE9 /* TOSoundDetailsPopoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D222E16215F4EC0E004D5AE9 /* TOSoundDetailsPopoverViewController.m */; };
+		D22F4F001635AE3600E17335 /* TOFilePlayerSoundTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D22F4EFF1635AE3600E17335 /* TOFilePlayerSoundTests.m */; };
+		D22F4F041635AE4D00E17335 /* TOVarispeedSoundTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D22F4F031635AE4D00E17335 /* TOVarispeedSoundTests.m */; };
+		D22F4F071635AE5900E17335 /* TOEqualizerSoundTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D22F4F061635AE5900E17335 /* TOEqualizerSoundTests.m */; };
+		D22F4F0A1635AE6500E17335 /* TOSoundDocumentTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D22F4F091635AE6500E17335 /* TOSoundDocumentTests.m */; };
 		D234233715FB7B0A004D8244 /* TOReplaceSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = D234233615FB7B0A004D8244 /* TOReplaceSegue.m */; };
 		D2361F1E15F642A400406A18 /* TOHandleView.m in Sources */ = {isa = PBXBuildFile; fileRef = D2361F1D15F642A400406A18 /* TOHandleView.m */; };
 		D2698E7515EE37D3008A52D7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2698E7415EE37D3008A52D7 /* UIKit.framework */; };
@@ -76,6 +80,14 @@
 		D222E16115F4EC0E004D5AE9 /* TOSoundDetailsPopoverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TOSoundDetailsPopoverViewController.h; sourceTree = "<group>"; };
 		D222E16215F4EC0E004D5AE9 /* TOSoundDetailsPopoverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TOSoundDetailsPopoverViewController.m; sourceTree = "<group>"; };
 		D222E16515F516F3004D5AE9 /* TOSoundDetailsPopoverViewControllerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TOSoundDetailsPopoverViewControllerDelegate.h; sourceTree = "<group>"; };
+		D22F4EFE1635AE3600E17335 /* TOFilePlayerSoundTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TOFilePlayerSoundTests.h; sourceTree = "<group>"; };
+		D22F4EFF1635AE3600E17335 /* TOFilePlayerSoundTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TOFilePlayerSoundTests.m; sourceTree = "<group>"; };
+		D22F4F021635AE4D00E17335 /* TOVarispeedSoundTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TOVarispeedSoundTests.h; sourceTree = "<group>"; };
+		D22F4F031635AE4D00E17335 /* TOVarispeedSoundTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TOVarispeedSoundTests.m; sourceTree = "<group>"; };
+		D22F4F051635AE5900E17335 /* TOEqualizerSoundTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TOEqualizerSoundTests.h; sourceTree = "<group>"; };
+		D22F4F061635AE5900E17335 /* TOEqualizerSoundTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TOEqualizerSoundTests.m; sourceTree = "<group>"; };
+		D22F4F081635AE6500E17335 /* TOSoundDocumentTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TOSoundDocumentTests.h; sourceTree = "<group>"; };
+		D22F4F091635AE6500E17335 /* TOSoundDocumentTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TOSoundDocumentTests.m; sourceTree = "<group>"; };
 		D234233515FB7B0A004D8244 /* TOReplaceSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TOReplaceSegue.h; sourceTree = "<group>"; };
 		D234233615FB7B0A004D8244 /* TOReplaceSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TOReplaceSegue.m; sourceTree = "<group>"; };
 		D2361F1C15F642A400406A18 /* TOHandleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TOHandleView.h; sourceTree = "<group>"; };
@@ -270,6 +282,14 @@
 			children = (
 				D2AF006416357A3D00D63C87 /* TOCAShortcutsTests.h */,
 				D2AF006516357A3D00D63C87 /* TOCAShortcutsTests.m */,
+				D22F4EFE1635AE3600E17335 /* TOFilePlayerSoundTests.h */,
+				D22F4EFF1635AE3600E17335 /* TOFilePlayerSoundTests.m */,
+				D22F4F021635AE4D00E17335 /* TOVarispeedSoundTests.h */,
+				D22F4F031635AE4D00E17335 /* TOVarispeedSoundTests.m */,
+				D22F4F051635AE5900E17335 /* TOEqualizerSoundTests.h */,
+				D22F4F061635AE5900E17335 /* TOEqualizerSoundTests.m */,
+				D22F4F081635AE6500E17335 /* TOSoundDocumentTests.h */,
+				D22F4F091635AE6500E17335 /* TOSoundDocumentTests.m */,
 				D2698E9915EE37D4008A52D7 /* Supporting Files */,
 			);
 			path = CircleSoundsTests;
@@ -518,6 +538,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				D2AF006616357A3D00D63C87 /* TOCAShortcutsTests.m in Sources */,
+				D22F4F001635AE3600E17335 /* TOFilePlayerSoundTests.m in Sources */,
+				D22F4F041635AE4D00E17335 /* TOVarispeedSoundTests.m in Sources */,
+				D22F4F071635AE5900E17335 /* TOEqualizerSoundTests.m in Sources */,
+				D22F4F0A1635AE6500E17335 /* TOSoundDocumentTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
