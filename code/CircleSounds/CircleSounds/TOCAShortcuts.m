@@ -13,22 +13,21 @@ NSString *kTOErrorInfoStringKey = @"kTOErrorInfoStringKey";
 NSString *kTOErrorStatusStringKey = @"kTOErrorStatusStringKey";
 
 
-void TOErrorHandler(OSStatus status, NSError *__autoreleasing *error, NSString *errorInfo)
+BOOL TOErrorHandler(OSStatus status, NSError *__autoreleasing *error, NSString *errorInfo)
 {
-    if (!error) {
-        @throw [NSException exceptionWithName:NSInternalInconsistencyException
-                                       reason:@"point to error is nil"
-                                     userInfo:nil];
-    }
-    
     if (status == noErr) {
-        return;
+        return YES;
     }
     
-    *error = [[NSError alloc] initWithDomain:@"TOAudioErrorDomain"
-                                        code:status
-                                    userInfo:@{ kTOErrorInfoStringKey : errorInfo ? errorInfo : [NSNull null],
-                                                kTOErrorStatusStringKey : [NSString stringWithOSStatus:status] } ];
+    if (error) {
+        *error = [[NSError alloc] initWithDomain:@"TOAudioErrorDomain"
+                                            code:status
+                                        userInfo:@{ kTOErrorInfoStringKey : errorInfo ? errorInfo : [NSNull null],
+                                                    kTOErrorStatusStringKey : [NSString stringWithOSStatus:status] } ];
+    }
+    
+    
+    return NO;
 }
 
 

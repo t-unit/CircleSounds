@@ -40,13 +40,11 @@ extern NSString *kTOErrorStatusStringKey;
  @param status The status which should be checked for any error.
  
  @param error A pointer of pointer of a NSError object. The error object should be nil
-        when supplied. If status is not 'noErr' an NSError will be created contain two 
+        when supplied. If status is not 'noErr' an NSError will be created containong two 
         value pairs inside the 'userInfo' dictionary:
  
  - 'kTOErrorInfoStringKey': the supplied errorInfo string
  - 'kTOErrorStatusStringKey': a string representation of the error code
- 
-        The supplied pointer must not be nil.
  
  @param errorInfo String object used for additional information about the operation where 
         the error occured. Supplying 'nil' is OK.

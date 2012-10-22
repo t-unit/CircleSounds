@@ -38,7 +38,7 @@ extern NSString *kTOErrorStatusStringKey;
  'errorInfo' needs to be a string object used for additional information about the 
  operation where the error occured. Supplying 'nil' is OK.
 */
-void TOErrorHandler(OSStatus status, NSError *__autoreleasing *error, NSString *errorInfo);
+BOOL TOErrorHandler(OSStatus status, NSError *__autoreleasing *error, NSString *errorInfo);
 
 
 

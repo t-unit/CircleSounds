@@ -22,7 +22,6 @@
 		D2698E9415EE37D4008A52D7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2698E7415EE37D3008A52D7 /* UIKit.framework */; };
 		D2698E9515EE37D4008A52D7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2698E7615EE37D3008A52D7 /* Foundation.framework */; };
 		D2698E9D15EE37D4008A52D7 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D2698E9B15EE37D4008A52D7 /* InfoPlist.strings */; };
-		D2698EA015EE37D4008A52D7 /* CircleSoundsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D2698E9F15EE37D4008A52D7 /* CircleSoundsTests.m */; };
 		D2698EAF15EE4080008A52D7 /* TOPlugableSoundView.m in Sources */ = {isa = PBXBuildFile; fileRef = D2698EAE15EE4080008A52D7 /* TOPlugableSoundView.m */; };
 		D2698EB215EE40BF008A52D7 /* TOEqualizerSoundController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2698EB115EE40BF008A52D7 /* TOEqualizerSoundController.m */; };
 		D2698EBB15EE40E6008A52D7 /* TOLinearInterpolator.m in Sources */ = {isa = PBXBuildFile; fileRef = D2698EB415EE40E6008A52D7 /* TOLinearInterpolator.m */; };
@@ -42,12 +41,14 @@
 		D2698EE315EE4448008A52D7 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2698EE215EE4448008A52D7 /* AVFoundation.framework */; };
 		D2698EED15EE85ED008A52D7 /* TOSoundDocumentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2698EEC15EE85ED008A52D7 /* TOSoundDocumentViewController.m */; };
 		D2859C6615FF59CA00878C99 /* NSSet+setByRemovingObject.m in Sources */ = {isa = PBXBuildFile; fileRef = D2859C6515FF59CA00878C99 /* NSSet+setByRemovingObject.m */; };
+		D28B17CE163597220019F8A2 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2698EDE15EE442C008A52D7 /* AudioToolbox.framework */; };
 		D28BCDAA15F7861700893B57 /* clong-1.wav in Resources */ = {isa = PBXBuildFile; fileRef = D28BCDA415F7861700893B57 /* clong-1.wav */; };
 		D28BCDAB15F7861700893B57 /* clong-2.wav in Resources */ = {isa = PBXBuildFile; fileRef = D28BCDA515F7861700893B57 /* clong-2.wav */; };
 		D28BCDAC15F7861700893B57 /* electric-drill-2.wav in Resources */ = {isa = PBXBuildFile; fileRef = D28BCDA615F7861700893B57 /* electric-drill-2.wav */; };
 		D28BCDAD15F7861700893B57 /* freezer-hum-1.wav in Resources */ = {isa = PBXBuildFile; fileRef = D28BCDA715F7861700893B57 /* freezer-hum-1.wav */; };
 		D28BCDAE15F7861700893B57 /* grass-trimmer-1.wav in Resources */ = {isa = PBXBuildFile; fileRef = D28BCDA815F7861700893B57 /* grass-trimmer-1.wav */; };
 		D28BCDAF15F7861700893B57 /* hammering-1.wav in Resources */ = {isa = PBXBuildFile; fileRef = D28BCDA915F7861700893B57 /* hammering-1.wav */; };
+		D2AF006616357A3D00D63C87 /* TOCAShortcutsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D2AF006516357A3D00D63C87 /* TOCAShortcutsTests.m */; };
 		D2DA43F815EFBFDF009B8432 /* 08 Hope You're Feeling Better.m4a in Resources */ = {isa = PBXBuildFile; fileRef = D2DA43F715EFBFDF009B8432 /* 08 Hope You're Feeling Better.m4a */; };
 		D2DA440015EFE407009B8432 /* TOWaveformDrawer.m in Sources */ = {isa = PBXBuildFile; fileRef = D2DA43FF15EFE407009B8432 /* TOWaveformDrawer.m */; };
 		D2DACC6215EFAA0E00824F5F /* TORoundedRectView.m in Sources */ = {isa = PBXBuildFile; fileRef = D2DACC6115EFAA0E00824F5F /* TORoundedRectView.m */; };
@@ -94,8 +95,6 @@
 		D2698E9215EE37D4008A52D7 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		D2698E9A15EE37D4008A52D7 /* CircleSoundsTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CircleSoundsTests-Info.plist"; sourceTree = "<group>"; };
 		D2698E9C15EE37D4008A52D7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		D2698E9E15EE37D4008A52D7 /* CircleSoundsTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CircleSoundsTests.h; sourceTree = "<group>"; };
-		D2698E9F15EE37D4008A52D7 /* CircleSoundsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CircleSoundsTests.m; sourceTree = "<group>"; };
 		D2698EAD15EE4080008A52D7 /* TOPlugableSoundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TOPlugableSoundView.h; sourceTree = "<group>"; };
 		D2698EAE15EE4080008A52D7 /* TOPlugableSoundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TOPlugableSoundView.m; sourceTree = "<group>"; };
 		D2698EB015EE40BF008A52D7 /* TOEqualizerSoundController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TOEqualizerSoundController.h; sourceTree = "<group>"; };
@@ -137,6 +136,8 @@
 		D28BCDA715F7861700893B57 /* freezer-hum-1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "freezer-hum-1.wav"; sourceTree = "<group>"; };
 		D28BCDA815F7861700893B57 /* grass-trimmer-1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "grass-trimmer-1.wav"; sourceTree = "<group>"; };
 		D28BCDA915F7861700893B57 /* hammering-1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "hammering-1.wav"; sourceTree = "<group>"; };
+		D2AF006416357A3D00D63C87 /* TOCAShortcutsTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TOCAShortcutsTests.h; sourceTree = "<group>"; };
+		D2AF006516357A3D00D63C87 /* TOCAShortcutsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TOCAShortcutsTests.m; sourceTree = "<group>"; };
 		D2DA43F715EFBFDF009B8432 /* 08 Hope You're Feeling Better.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "08 Hope You're Feeling Better.m4a"; sourceTree = "<group>"; };
 		D2DA43FE15EFE407009B8432 /* TOWaveformDrawer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TOWaveformDrawer.h; sourceTree = "<group>"; };
 		D2DA43FF15EFE407009B8432 /* TOWaveformDrawer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TOWaveformDrawer.m; sourceTree = "<group>"; };
@@ -171,6 +172,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D28B17CE163597220019F8A2 /* AudioToolbox.framework in Frameworks */,
 				D2698E9315EE37D4008A52D7 /* SenTestingKit.framework in Frameworks */,
 				D2698E9415EE37D4008A52D7 /* UIKit.framework in Frameworks */,
 				D2698E9515EE37D4008A52D7 /* Foundation.framework in Frameworks */,
@@ -266,8 +268,8 @@
 		D2698E9815EE37D4008A52D7 /* CircleSoundsTests */ = {
 			isa = PBXGroup;
 			children = (
-				D2698E9E15EE37D4008A52D7 /* CircleSoundsTests.h */,
-				D2698E9F15EE37D4008A52D7 /* CircleSoundsTests.m */,
+				D2AF006416357A3D00D63C87 /* TOCAShortcutsTests.h */,
+				D2AF006516357A3D00D63C87 /* TOCAShortcutsTests.m */,
 				D2698E9915EE37D4008A52D7 /* Supporting Files */,
 			);
 			path = CircleSoundsTests;
@@ -515,7 +517,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D2698EA015EE37D4008A52D7 /* CircleSoundsTests.m in Sources */,
+				D2AF006616357A3D00D63C87 /* TOCAShortcutsTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
