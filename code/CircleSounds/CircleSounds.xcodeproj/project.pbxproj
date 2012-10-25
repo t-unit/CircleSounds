@@ -13,6 +13,7 @@
 		D22F4F041635AE4D00E17335 /* TOVarispeedSoundTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D22F4F031635AE4D00E17335 /* TOVarispeedSoundTests.m */; };
 		D22F4F071635AE5900E17335 /* TOEqualizerSoundTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D22F4F061635AE5900E17335 /* TOEqualizerSoundTests.m */; };
 		D22F4F0A1635AE6500E17335 /* TOSoundDocumentTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D22F4F091635AE6500E17335 /* TOSoundDocumentTests.m */; };
+		D22F4F0B1635E4C200E17335 /* clong-1.wav in Resources */ = {isa = PBXBuildFile; fileRef = D28BCDA415F7861700893B57 /* clong-1.wav */; };
 		D234233715FB7B0A004D8244 /* TOReplaceSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = D234233615FB7B0A004D8244 /* TOReplaceSegue.m */; };
 		D2361F1E15F642A400406A18 /* TOHandleView.m in Sources */ = {isa = PBXBuildFile; fileRef = D2361F1D15F642A400406A18 /* TOHandleView.m */; };
 		D2698E7515EE37D3008A52D7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2698E7415EE37D3008A52D7 /* UIKit.framework */; };
@@ -476,6 +477,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D2698E9D15EE37D4008A52D7 /* InfoPlist.strings in Resources */,
+				D22F4F0B1635E4C200E17335 /* clong-1.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -172,6 +172,7 @@ OSStatus FilePlayerUnitRenderNotifyCallblack (void                        *inRef
             *error = intError;
         }
         
+        _audioFileURL = nil;
         return NO;
     }
     
@@ -191,6 +192,7 @@ OSStatus FilePlayerUnitRenderNotifyCallblack (void                        *inRef
             *error = intError;
         }
         
+        _audioFileURL = nil;
         return NO;
     }
     
@@ -208,6 +210,7 @@ OSStatus FilePlayerUnitRenderNotifyCallblack (void                        *inRef
             *error = intError;
         }
         
+        _audioFileURL = nil;
         return NO;
     }
     
