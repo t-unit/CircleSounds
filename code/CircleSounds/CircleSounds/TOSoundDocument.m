@@ -60,9 +60,9 @@
 {
     [self pause];
     
-    TOThrowOnError(AUGraphClose(_graph));
-    TOThrowOnError(AUGraphUninitialize(_graph));
-    TOThrowOnError(DisposeAUGraph(_graph));
+    AUGraphClose(_graph);
+    AUGraphUninitialize(_graph);
+    DisposeAUGraph(_graph);
 }
 
 

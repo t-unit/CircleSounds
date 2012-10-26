@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D203F41F163B2E2F00910E37 /* TOMocVarispeedSound.m in Sources */ = {isa = PBXBuildFile; fileRef = D203F41E163B2E2F00910E37 /* TOMocVarispeedSound.m */; };
 		D220DD6315FC930500696CA2 /* TOAudioFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D220DD6215FC930500696CA2 /* TOAudioFileManager.m */; };
 		D222E16315F4EC0E004D5AE9 /* TOSoundDetailsPopoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D222E16215F4EC0E004D5AE9 /* TOSoundDetailsPopoverViewController.m */; };
 		D22F4F001635AE3600E17335 /* TOFilePlayerSoundTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D22F4EFF1635AE3600E17335 /* TOFilePlayerSoundTests.m */; };
@@ -61,6 +62,7 @@
 		D2DC571415FBA2E90003AA50 /* TOAudioFileChooserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2DC571315FBA2E90003AA50 /* TOAudioFileChooserViewController.m */; };
 		D2DC578C15FBD5710003AA50 /* TORecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = D2DC578B15FBD5710003AA50 /* TORecorder.m */; };
 		D2DC57C315FBF1460003AA50 /* TOSoundFileChangingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2DC57C215FBF1460003AA50 /* TOSoundFileChangingViewController.m */; };
+		D2DFC211163B2A9700F1CAAF /* TOMocFilePlayerSound.m in Sources */ = {isa = PBXBuildFile; fileRef = D2DFC210163B2A9700F1CAAF /* TOMocFilePlayerSound.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,6 +76,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D203F41D163B2E2F00910E37 /* TOMocVarispeedSound.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TOMocVarispeedSound.h; sourceTree = "<group>"; };
+		D203F41E163B2E2F00910E37 /* TOMocVarispeedSound.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TOMocVarispeedSound.m; sourceTree = "<group>"; };
 		D220DD5F15FC8EC200696CA2 /* TOSoundFileChangingViewControllerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TOSoundFileChangingViewControllerDelegate.h; sourceTree = "<group>"; };
 		D220DD6115FC930500696CA2 /* TOAudioFileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TOAudioFileManager.h; sourceTree = "<group>"; };
 		D220DD6215FC930500696CA2 /* TOAudioFileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TOAudioFileManager.m; sourceTree = "<group>"; };
@@ -165,6 +169,8 @@
 		D2DC578E15FBD6AC0003AA50 /* TORecorderDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TORecorderDelegate.h; sourceTree = "<group>"; };
 		D2DC57C115FBF1460003AA50 /* TOSoundFileChangingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TOSoundFileChangingViewController.h; sourceTree = "<group>"; };
 		D2DC57C215FBF1460003AA50 /* TOSoundFileChangingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TOSoundFileChangingViewController.m; sourceTree = "<group>"; };
+		D2DFC20F163B2A9700F1CAAF /* TOMocFilePlayerSound.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TOMocFilePlayerSound.h; sourceTree = "<group>"; };
+		D2DFC210163B2A9700F1CAAF /* TOMocFilePlayerSound.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TOMocFilePlayerSound.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -292,6 +298,10 @@
 				D22F4F081635AE6500E17335 /* TOSoundDocumentTests.h */,
 				D22F4F091635AE6500E17335 /* TOSoundDocumentTests.m */,
 				D2698E9915EE37D4008A52D7 /* Supporting Files */,
+				D2DFC20F163B2A9700F1CAAF /* TOMocFilePlayerSound.h */,
+				D2DFC210163B2A9700F1CAAF /* TOMocFilePlayerSound.m */,
+				D203F41D163B2E2F00910E37 /* TOMocVarispeedSound.h */,
+				D203F41E163B2E2F00910E37 /* TOMocVarispeedSound.m */,
 			);
 			path = CircleSoundsTests;
 			sourceTree = "<group>";
@@ -544,6 +554,8 @@
 				D22F4F041635AE4D00E17335 /* TOVarispeedSoundTests.m in Sources */,
 				D22F4F071635AE5900E17335 /* TOEqualizerSoundTests.m in Sources */,
 				D22F4F0A1635AE6500E17335 /* TOSoundDocumentTests.m in Sources */,
+				D2DFC211163B2A9700F1CAAF /* TOMocFilePlayerSound.m in Sources */,
+				D203F41F163B2E2F00910E37 /* TOMocVarispeedSound.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -7,6 +7,8 @@
 //
 
 #import "TOFilePlayerSoundTests.h"
+#import "TOSoundDocument.h"
+
 
 @implementation TOFilePlayerSoundTests
 
@@ -14,7 +16,7 @@
 {
     [super setUp];
     
-    sound = [[TOFilePlayerSound alloc] init];
+    sound = [[TOMocFilePlayerSound alloc] init];
 }
 
 
@@ -43,6 +45,7 @@
     STAssertNil(error, @"there should not be an error object if we supply a valid audio file URL");
     STAssertTrue(success, @"setAudioFileURL should return 'YES' if we supply a valid audio file URL");
     STAssertEqualObjects(validURL, [sound audioFileURL], @"getting the audio file URL should return the same URL  that has been set earlier");
+    STAssertTrue([sound audioFile] != NULL, @"the audio file id should not be NULL after an URL has been set");
     
     success = [sound setAudioFileURL:invalidURL error:&error];
     STAssertNotNil(error, @"there should be an error object when setting a invalid audio file 'URL'");
@@ -50,6 +53,7 @@
     STAssertFalse([invalidURL isEqual:[sound audioFileURL]], @"a invalid audio file 'URL' should not be used internally");
     
 }
+
 
 - (void)testFileDuration
 {
@@ -59,5 +63,14 @@
     STAssertFalse(0 == [sound fileDuration], @"with no audio file set the sound object should return '0' as file duration");
 }
 
+
+- (void)testAudioUnitCreation
+{
+    TOSoundDocument *document = [[TOSoundDocument alloc] init];
+    [self setAudioFileURL];
+    
+    [document addPlugableSoundObject:sound];
+    STAssertNotNil(sound.filePlayerUnit, @"after the plugable sound has been added to the document it should have been initialized");
+}
 
 @end

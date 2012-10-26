@@ -7,11 +7,11 @@
 //
 
 #import <SenTestingKit/SenTestingKit.h>
-#import "TOFilePlayerSound.h"
+#import "TOMocFilePlayerSound.h"
 
 @interface TOFilePlayerSoundTests : SenTestCase
 {
-    TOFilePlayerSound *sound;
+    TOMocFilePlayerSound *sound;
 }
 
 @end

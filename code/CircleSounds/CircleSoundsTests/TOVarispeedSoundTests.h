@@ -7,7 +7,11 @@
 //
 
 #import <SenTestingKit/SenTestingKit.h>
+#import "TOMocVarispeedSound.h"
 
 @interface TOVarispeedSoundTests : SenTestCase
+{
+    TOMocVarispeedSound *sound;
+}
 
 @end
