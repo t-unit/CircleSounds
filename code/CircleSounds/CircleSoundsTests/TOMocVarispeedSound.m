@@ -23,4 +23,16 @@
 }
 
 
+- (TOAudioUnit *)varispeedUnit
+{
+    return _varispeedUnit;
+}
+
+
+- (void)setVarispeedUnit:(TOAudioUnit *)varispeedUnit
+{
+    _varispeedUnit = varispeedUnit;
+}
+
+
 @end

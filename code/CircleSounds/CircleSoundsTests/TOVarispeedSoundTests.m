@@ -7,6 +7,8 @@
 //
 
 #import "TOVarispeedSoundTests.h"
+#import "TOSoundDocument.h"
+
 
 @implementation TOVarispeedSoundTests
 
@@ -42,7 +44,21 @@
     
     [sound setPlaybackRate:2.0];
     STAssertEquals(sound.actualStartTime, 2.0, @"if the playback speed is 2.0 the startime should be start time times two");
+    
+    [sound setPlaybackRate:0.25];
+    STAssertEquals(sound.actualStartTime, 0.25, @"if the playback speed is 0.25 the startime should be start time should be 0.25");
 }
 
+
+- (void)testAudioUnitCreation
+{
+    TOSoundDocument *document = [[TOSoundDocument alloc] init];
+    [self setAudioFileURL];
+    
+    [document addPlugableSoundObject:sound];
+    STAssertNotNil(sound.varispeedUnit, @"after the plugable sound has been added to the document it should have been initialized");
+    
+    STAssertTrue([sound.audioUnits containsObject:sound.varispeedUnit], @"the created audio unit should be inside the audio unit array");
+}
 
 @end

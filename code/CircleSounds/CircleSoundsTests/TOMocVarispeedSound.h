@@ -10,6 +10,7 @@
 
 @interface TOMocVarispeedSound : TOVarispeedSound
 
+@property (strong, nonatomic) TOAudioUnit *varispeedUnit;
 @property (assign, nonatomic) NSTimeInterval actualStartTime;
 
 @end
