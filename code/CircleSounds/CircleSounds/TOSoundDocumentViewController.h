@@ -22,6 +22,7 @@
 - (void)removeSoundController:(TOEqualizerSoundController *)soundController;
 
 
+/* Interface Builder Properties and Callbacks */
 @property (weak, nonatomic) IBOutlet UIView *canvas;
 
 @property (weak, nonatomic) IBOutlet TOAudioMeterView *leftMeterView;
@@ -40,7 +41,6 @@
 
 - (IBAction)loopSwitchValueChanged:(id)sender;
 @property (weak, nonatomic) IBOutlet UISwitch *loopSwitch;
-
 
 @property (weak, nonatomic) IBOutlet UIView *currentPositionView;
 @property (weak, nonatomic) IBOutlet UIView *addSoundGestureCatcher;
