@@ -73,7 +73,7 @@
         drawer.waveformColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.8];
         drawer.imageSize = self.waveformImageView.bounds.size;
         
-        UIImage *image = [drawer waveformFromImageAtURL:self.sound.audioFileURL];
+        UIImage *image = [drawer waveformFromAudioFileAtURL:self.sound.audioFileURL];
         
         
         dispatch_async(dispatch_get_main_queue(), ^{

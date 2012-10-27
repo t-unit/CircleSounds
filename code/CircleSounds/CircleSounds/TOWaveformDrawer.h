@@ -43,6 +43,6 @@ typedef enum TOWaveformDrawerMode : NSInteger
  
  Calling this method can be fairy expensive!
  */
-- (UIImage *)waveformFromImageAtURL:(NSURL *)url;
+- (UIImage *)waveformFromAudioFileAtURL:(NSURL *)url;
 
 @end

@@ -218,7 +218,7 @@
         drawer.imageSize = CGSizeMake(self.initialViewWidth * 1.5, self.initialViewWidth * 1.5);
         drawer.innerRadius = self.initialViewWidth * 0.40;
         
-        UIImage *image = [drawer waveformFromImageAtURL:self.sound.audioFileURL];
+        UIImage *image = [drawer waveformFromAudioFileAtURL:self.sound.audioFileURL];
         
         // setting the image must happen on the main thread
         dispatch_async(dispatch_get_main_queue(), ^{

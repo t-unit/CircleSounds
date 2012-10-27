@@ -223,7 +223,7 @@
 }
 
 
-- (UIImage *)waveformFromImageAtURL:(NSURL *)url
+- (UIImage *)waveformFromAudioFileAtURL:(NSURL *)url
 {
     NSParameterAssert(url);
     

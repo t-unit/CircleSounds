@@ -43,6 +43,6 @@
 @property (weak, nonatomic) IBOutlet UISwitch *loopSwitch;
 
 @property (weak, nonatomic) IBOutlet UIView *currentPositionView;
-@property (weak, nonatomic) IBOutlet UIView *addSoundGestureCatcher;
+@property (weak, nonatomic) IBOutlet UIView *addSoundGestureCatcherView;
 
 @end

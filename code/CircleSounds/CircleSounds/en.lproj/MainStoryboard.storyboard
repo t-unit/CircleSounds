@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2840" systemVersion="12B19" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="2">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2843" systemVersion="12C60" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="2">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1926"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1929"/>
     </dependencies>
     <scenes>
         <!--Sound File Changing View Controller-->
@@ -753,7 +753,7 @@
                     </view>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <connections>
-                        <outlet property="addSoundGestureCatcher" destination="pma-5x-BZ5" id="knE-Hy-jEp"/>
+                        <outlet property="addSoundGestureCatcherView" destination="pma-5x-BZ5" id="aDM-1i-YkZ"/>
                         <outlet property="canvas" destination="cKJ-FF-57J" id="Qdo-BV-nVb"/>
                         <outlet property="currentPositionView" destination="d83-Qv-3gn" id="dC0-IQ-pmV"/>
                         <outlet property="currentTimeLabel" destination="X0e-PL-5MD" id="WaT-zQ-inG"/>

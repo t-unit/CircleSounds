@@ -55,7 +55,7 @@
     doubleTapGestureRecoginizer.numberOfTapsRequired = 2;
     doubleTapGestureRecoginizer.numberOfTouchesRequired = 1;
     
-    [self.addSoundGestureCatcher addGestureRecognizer:doubleTapGestureRecoginizer];
+    [self.addSoundGestureCatcherView addGestureRecognizer:doubleTapGestureRecoginizer];
 }
 
 
