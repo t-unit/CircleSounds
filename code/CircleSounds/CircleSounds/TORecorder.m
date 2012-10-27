@@ -188,26 +188,13 @@ static OSStatus RecorderCallback(void                       *inRefCon,
                                              selector:@selector(handleAudioInterruption:)
                                                  name:AVAudioSessionInterruptionNotification
                                                object:session];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(handleAudioRouteChange:)
-                                                 name:AVAudioSessionRouteChangeNotification
-                                               object:session];
-    
 }
 
 
 - (void)handleAudioInterruption:(NSNotification *)note
 {
-    
+    [self stopRecording];
 }
-
-
-- (void)handleAudioRouteChange:(NSNotification *)note
-{
-    
-}
-
     
 
 - (void)setIsRecording:(BOOL)isRecording

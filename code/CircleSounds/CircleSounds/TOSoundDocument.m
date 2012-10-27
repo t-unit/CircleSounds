@@ -236,13 +236,13 @@ OSStatus MixerUnitRenderNoteCallack(void                        *inRefCon,
 
 - (void)handleAudioInterruption:(NSNotification *)note
 {
-    
+    [self pause];
 }
 
 
 - (void)handleAudioRouteChange:(NSNotification *)note
 {
-    
+    [self pause];
 }
 
 
