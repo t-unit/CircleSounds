@@ -53,21 +53,6 @@
 }
 
 
-//- (UInt32)numBands
-//{
-//    UInt32 numBands;
-//    UInt32 propSize = sizeof(numBands);
-//    TOThrowOnError(AudioUnitGetProperty(_equalizerUnit->unit,
-//                                        kAUNBandEQProperty_NumberOfBands,
-//                                        kAudioUnitScope_Global,
-//                                        0,
-//                                        &numBands,
-//                                        &propSize));
-//    
-//    return numBands;
-//}
-
-
 - (void)setNumBands:(UInt32)numBands
 {
     TOThrowOnError(AudioUnitSetProperty(_equalizerUnit->unit,

@@ -7,7 +7,11 @@
 //
 
 #import <SenTestingKit/SenTestingKit.h>
+#import "TOMocEqualizerSound.h"
 
 @interface TOEqualizerSoundTests : SenTestCase
+{
+    TOMocEqualizerSound *sound;
+}
 
 @end
