@@ -40,7 +40,6 @@
     
     if (self) {
         _plugableSounds = @[];
-        _availibleBuses = [NSSet set];
         
         _maxBusTaken = -1;
         
@@ -333,29 +332,54 @@ OSStatus MixerUnitRenderNoteCallack(void                        *inRefCon,
 
 - (UInt32)mixerInputBusForNewPlugableSound
 {
-    UInt32 mixerInputBus;
-    
-    if (_availibleBuses.count) {
-        NSNumber *mixerInputBusObject = [_availibleBuses anyObject];
+    UInt32 mixerInputBus = ++_maxBusTaken;
         
-        mixerInputBus = [mixerInputBusObject unsignedIntegerValue];
-        _availibleBuses = [_availibleBuses setByRemovingObject:mixerInputBusObject];
-    }
-    else {
-        mixerInputBus = ++_maxBusTaken;
-        
-        // Set number of buses on the mixer node
-        UInt32 numbuses = _maxBusTaken + 1;
-        TOThrowOnError(AudioUnitSetProperty(_mixerUnit->unit,
-                                            kAudioUnitProperty_ElementCount,
-                                            kAudioUnitScope_Input,
-                                            0,
-                                            &numbuses,
-                                            sizeof(UInt32)));
-    }
+    // Set number of buses on the mixer node
+    UInt32 numbuses = _maxBusTaken + 1;
+    TOThrowOnError(AudioUnitSetProperty(_mixerUnit->unit,
+                                        kAudioUnitProperty_ElementCount,
+                                        kAudioUnitScope_Input,
+                                        0,
+                                        &numbuses,
+                                        sizeof(UInt32)));
     
     return mixerInputBus;
 }
+
+
+- (UInt32)mixerInputBusForPlugableSound:(TOPlugableSound *)plugableSound
+{
+    TOAudioUnit *lastAudioUnit = [plugableSound.audioUnits lastObject];
+    
+    UInt32 numInteractions;
+    TOThrowOnError(AUGraphCountNodeInteractions(_graph,
+                                                lastAudioUnit->node,
+                                                &numInteractions));
+    
+    AUNodeInteraction *lastAudioUnitInteractions = (AUNodeInteraction *)malloc(sizeof(AUNodeInteraction) * numInteractions);
+    
+    
+    
+    TOThrowOnError(AUGraphGetNodeInteractions(_graph,
+                                              lastAudioUnit->node,
+                                              &numInteractions,
+                                              lastAudioUnitInteractions));
+    
+    
+    UInt32 mixerBus;
+    for (UInt32 i=0; i<numInteractions; i++) {
+        AUNodeInteraction interaction = lastAudioUnitInteractions[i];
+        
+        if (interaction.nodeInteraction.connection.destNode == _mixerUnit->node) {
+            mixerBus = interaction.nodeInteraction.connection.destInputNumber;
+            break;
+        }
+    }
+    
+    free(lastAudioUnitInteractions);
+    return mixerBus;
+}
+
 
 - (void)addPlugableSoundObject:(TOPlugableSound *)soundObject
 {
@@ -431,11 +455,15 @@ OSStatus MixerUnitRenderNoteCallack(void                        *inRefCon,
 - (void)removePlugableSoundObject:(TOPlugableSound *)soundObject
 {
     @synchronized(self) {
+        
         if (![self.plugableSounds containsObject:soundObject]) {
             return;
         }
         
+        
+        //
         // disconnect all the nodes from the graph
+        //
         for (NSInteger i=1; i<soundObject.audioUnits.count; i++) {
             TOAudioUnit *destAU = soundObject.audioUnits[i];
             
@@ -445,27 +473,60 @@ OSStatus MixerUnitRenderNoteCallack(void                        *inRefCon,
         }
         
         
+        //
         // disconnect the last AU inside the sound object from the mixer unit;
-        TOAudioUnit *lastAU = [soundObject.audioUnits lastObject];
-        AUNodeInteraction lastAUInteraction;
-        UInt32 numInteractions = 1;
-        
-        TOThrowOnError(AUGraphGetNodeInteractions(_graph,
-                                                  lastAU->node,
-                                                  &numInteractions,
-                                                  &lastAUInteraction));
-        
-        UInt32 mixerBus = lastAUInteraction.nodeInteraction.connection.destInputNumber;
+        //
+        UInt32 mixerBus = [self mixerInputBusForPlugableSound:soundObject];
         
         TOThrowOnError(AUGraphDisconnectNodeInput(_graph,
                                                   _mixerUnit->node,
                                                   mixerBus));
         
-        _availibleBuses = [_availibleBuses setByAddingObject:@(mixerBus)];
         _plugableSounds = [self.plugableSounds arrayByRemovingObject:soundObject];
         
         
+        //
+        // rearange the mixer input
+        //
+        TOAudioUnit *maxBusUnit;
+        SInt64 maxBusNum = -1;
+        
+        for (TOPlugableSound *s in self.plugableSounds) {
+            UInt32 mixerBus = [self mixerInputBusForPlugableSound:s];
+            
+            if (mixerBus > maxBusNum) {
+                maxBusUnit = [s.audioUnits lastObject];
+                maxBusNum = mixerBus;
+            }
+        }
+
+        
+        if (maxBusNum != -1) {
+            TOThrowOnError(AUGraphDisconnectNodeInput(_graph,
+                                                      _mixerUnit->node,
+                                                      maxBusNum));
+            
+            TOThrowOnError(AUGraphConnectNodeInput(_graph,
+                                                   maxBusUnit->node,
+                                                   0,
+                                                   _mixerUnit->node,
+                                                   mixerBus));
+        }
+        
+        // set the new number of input buses of the mixer unit
+        TOThrowOnError(AudioUnitSetProperty(_mixerUnit->unit,
+                                            kAudioUnitProperty_ElementCount,
+                                            kAudioUnitScope_Input,
+                                            0,
+                                            &_maxBusTaken,
+                                            sizeof(UInt32)));
+        
+        _maxBusTaken--;
+        
+        
+        //
         // remove nodes from the graph
+        //
         for (TOAudioUnit *au in soundObject.audioUnits) {
             TOThrowOnError(AUGraphRemoveNode(_graph, au->node));
         }
@@ -488,7 +549,10 @@ OSStatus MixerUnitRenderNoteCallack(void                        *inRefCon,
 #endif
     }
     
+    
+    //
     // inform the delegate about the changes
+    //
     if ([self.delegate respondsToSelector:@selector(soundDocument:didRemoveSound:)]) {
         [self.delegate soundDocument:self didRemoveSound:soundObject];
     }
