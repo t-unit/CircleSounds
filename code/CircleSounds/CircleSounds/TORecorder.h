@@ -20,8 +20,7 @@
     AudioUnit _rioUnit;
     AudioStreamBasicDescription _asbd;
     
-    AudioFileID _audioFile;
-    SInt64 _numPacketsWritten;
+    ExtAudioFileRef _audioFile;
     
     NSInteger _numChannels;
     double _gain;

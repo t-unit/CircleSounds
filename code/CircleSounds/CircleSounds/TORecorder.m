@@ -20,18 +20,12 @@
 
 static inline OSStatus writeBufferToFile(TORecorder *recorder, AudioBufferList *ioData)
 {
-    UInt32 numPackets = ioData->mBuffers[0].mDataByteSize / recorder->_asbd.mBytesPerPacket;
-    
-    OSStatus status = AudioFileWritePackets(recorder->_audioFile,
-                                            false,
-                                            ioData->mBuffers[0].mDataByteSize,
-                                            NULL,
-                                            recorder->_numPacketsWritten,
-                                            &numPackets,
-                                            ioData->mBuffers[0].mData);
-    
-    recorder->_numPacketsWritten += numPackets;
-    
+    UInt32 numFrames = ioData->mBuffers[0].mDataByteSize / recorder->_asbd.mBytesPerFrame;
+
+    OSStatus status = ExtAudioFileWriteAsync(recorder->_audioFile,
+                                             numFrames,
+                                             ioData);
+
     return status;
 }
 
@@ -263,11 +257,12 @@ static OSStatus RecorderCallback(void                       *inRefCon,
     NSError *intError;
     
     // set up output file
-    TOErrorHandler(AudioFileCreateWithURL((__bridge CFURLRef)url,
-                                           kAudioFileWAVEType,
-                                           &_asbd,
-                                           kAudioFileWritePermission,
-                                           &_audioFile),
+    TOErrorHandler(ExtAudioFileCreateWithURL((__bridge CFURLRef)url,
+                                             kAudioFileWAVEType,
+                                             &_asbd,
+                                             NULL,
+                                             kAudioFileWritePermission,
+                                             &_audioFile),
                    &intError,
                    @"Setting up output audio file failed!");
     
@@ -284,6 +279,9 @@ static OSStatus RecorderCallback(void                       *inRefCon,
     if (!_isReadyForRecording) {
         return NO;
     }
+    
+    // prime writing to disk (this will allocate buffers etc.)
+    TOThrowOnError(ExtAudioFileWriteAsync(_audioFile, 0, NULL));
 
     self.isRecording = YES;
     [self.delegate recorderDidStartRecording:self];
@@ -298,7 +296,7 @@ static OSStatus RecorderCallback(void                       *inRefCon,
         self.isRecording = NO;
         _isReadyForRecording = NO;
         
-        TOThrowOnError(AudioFileClose(_audioFile));
+        TOThrowOnError(ExtAudioFileDispose(_audioFile));
         
         [self.delegate recorderDidStopRecording:self];
     }
