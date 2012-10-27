@@ -8,12 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
+#import "TOSoundDocumentDelegate.h"
+
 @class TOSoundDocument;
 @class TOAudioMeterView;
 @class TOEqualizerSoundController;
 
 
-@interface TOSoundDocumentViewController : UIViewController
+@interface TOSoundDocumentViewController : UIViewController <TOSoundDocumentDelegate>
 
 @property (strong, nonatomic) TOSoundDocument *soundDocument;
 @property (strong, nonatomic) NSArray *soundControllers;

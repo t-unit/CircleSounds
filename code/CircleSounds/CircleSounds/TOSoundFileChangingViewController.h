@@ -24,7 +24,7 @@
 
 /**
  Should only be called by child view controllers of this controller.
- Exhanges the audio file of the 'sound' property and inform the delegate.
+ Exhanges the audio file of the 'sound' property and informs the delegate.
  */
 - (void)handleAudioFileChangingWithURL:(NSURL *)audioFileURL;
 

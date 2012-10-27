@@ -8,12 +8,15 @@
 
 #import <Foundation/Foundation.h>
 
+#import "TOSoundDetailsPopoverViewControllerDelegate.h"
+#import "TOSoundFileChangingViewControllerDelegate.h"
+
 @class TOPlugableSoundView;
 @class TOEqualizerSound;
 @class TOSoundDocumentViewController;
 
 
-@interface TOEqualizerSoundController : NSObject
+@interface TOEqualizerSoundController : NSObject <UIGestureRecognizerDelegate, TOSoundDetailsPopoverViewControllerDelegate, TOSoundFileChangingViewControllerDelegate>
 {
     __weak TOSoundDocumentViewController *_documentController;
 }

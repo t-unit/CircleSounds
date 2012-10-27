@@ -16,9 +16,7 @@
 #import "TOColorInterpolator.h"
 #import "TOLinearInterpolator.h"
 #import "TOSoundDetailsPopoverViewController.h"
-#import "TOSoundDetailsPopoverViewControllerDelegate.h"
 #import "TOSoundFileChangingViewController.h"
-#import "TOSoundFileChangingViewControllerDelegate.h"
 
 
 #define DEFAULT_PLAYBACK_RATE 1.0

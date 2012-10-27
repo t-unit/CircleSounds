@@ -14,14 +14,13 @@
 #import "TOEqualizerSoundController.h"
 #import "TOPlugableSoundView.h"
 #import "NSArray+arrayByRemovingObject.h"
-#import "TOSoundDocumentDelegate.h"
 
 
 #define SOUND_VIEW_WIDTH 150
 #define SOUND_VIEW_HEIGHT 150
 
 
-@interface TOSoundDocumentViewController () <TOSoundDocumentDelegate>
+@interface TOSoundDocumentViewController () 
 
 @property (strong, nonatomic) NSTimer *timeAndMeterUpdateTimer;
 
