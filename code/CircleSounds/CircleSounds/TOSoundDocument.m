@@ -358,8 +358,6 @@ OSStatus MixerUnitRenderNoteCallack(void                        *inRefCon,
     
     AUNodeInteraction *lastAudioUnitInteractions = (AUNodeInteraction *)malloc(sizeof(AUNodeInteraction) * numInteractions);
     
-    
-    
     TOThrowOnError(AUGraphGetNodeInteractions(_graph,
                                               lastAudioUnit->node,
                                               &numInteractions,
