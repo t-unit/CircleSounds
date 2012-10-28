@@ -71,6 +71,7 @@
     
     [document addPlugableSoundObject:sound];
     STAssertNotNil(sound.filePlayerUnit, @"after the plugable sound has been added to the document it should have been initialized");
+    STAssertFalse(sound.filePlayerUnit->unit == NULL, @"the actual audio unit should not be NULL");
     
     STAssertTrue([sound.audioUnits containsObject:sound.filePlayerUnit], @"the created audio unit should be inside the audio unit array");
 }

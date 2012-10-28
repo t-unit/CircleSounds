@@ -7,7 +7,11 @@
 //
 
 #import <SenTestingKit/SenTestingKit.h>
+#import "TOMocSoundDocument.h"
 
 @interface TOSoundDocumentTests : SenTestCase
+{
+    TOMocSoundDocument *document;
+}
 
 @end
