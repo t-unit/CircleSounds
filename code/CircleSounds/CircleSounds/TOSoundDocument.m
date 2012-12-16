@@ -364,7 +364,7 @@ OSStatus MixerUnitRenderNoteCallack(void                        *inRefCon,
                                               lastAudioUnitInteractions));
     
     
-    UInt32 mixerBus;
+    UInt32 mixerBus = 0;
     for (UInt32 i=0; i<numInteractions; i++) {
         AUNodeInteraction interaction = lastAudioUnitInteractions[i];
         
