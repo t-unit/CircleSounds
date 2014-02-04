@@ -36,7 +36,7 @@ void TOThrowOnError(OSStatus status)
 {
     if (status != noErr) {
         @throw [NSException exceptionWithName:@"TOAudioErrorException"
-                                       reason:[NSString stringWithFormat:@"Status is not 'noErr'! Status is %@ (%ld).", [NSString stringWithOSStatus:status], status]
+                                       reason:[NSString stringWithFormat:@"Status is not 'noErr'! Status is %@ (%ld).", [NSString stringWithOSStatus:status], (unsigned long)status]
                                      userInfo:nil];
     }
 }
