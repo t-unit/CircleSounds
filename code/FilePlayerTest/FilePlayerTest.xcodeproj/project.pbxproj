@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		D2148D3B15E4DCA5000A20D2 /* TOCAShortcuts.m in Sources */ = {isa = PBXBuildFile; fileRef = D2148D3815E4DCA5000A20D2 /* TOCAShortcuts.m */; };
 		D2148D3C15E4DCA5000A20D2 /* NSString+OSStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = D2148D3A15E4DCA5000A20D2 /* NSString+OSStatus.m */; };
+		D21A4DAA18A13D510057CBF9 /* pump_im.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D21A4DA818A13D510057CBF9 /* pump_im.mp3 */; };
+		D21A4DAB18A13D510057CBF9 /* Scirocco.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D21A4DA918A13D510057CBF9 /* Scirocco.mp3 */; };
 		D21F0DDC15E4E10500DFC68C /* TOAudioUnit.m in Sources */ = {isa = PBXBuildFile; fileRef = D21F0DDB15E4E10500DFC68C /* TOAudioUnit.m */; };
 		D235AC4815E3780400976D01 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D235AC4715E3780400976D01 /* UIKit.framework */; };
 		D235AC4A15E3780400976D01 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D235AC4915E3780400976D01 /* Foundation.framework */; };
@@ -21,7 +23,6 @@
 		D235AC6515E3780F00976D01 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D235AC6415E3780F00976D01 /* AudioToolbox.framework */; };
 		D235AC6715E3781600976D01 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D235AC6615E3781600976D01 /* AVFoundation.framework */; };
 		D235AC6A15E3787300976D01 /* TOAudioFilePlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = D235AC6915E3787300976D01 /* TOAudioFilePlayer.m */; };
-		D235AC7A15E398CD00976D01 /* guitarStereo.caf in Resources */ = {isa = PBXBuildFile; fileRef = D235AC7915E398CD00976D01 /* guitarStereo.caf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +30,8 @@
 		D2148D3815E4DCA5000A20D2 /* TOCAShortcuts.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TOCAShortcuts.m; sourceTree = "<group>"; };
 		D2148D3915E4DCA5000A20D2 /* NSString+OSStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+OSStatus.h"; sourceTree = "<group>"; };
 		D2148D3A15E4DCA5000A20D2 /* NSString+OSStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+OSStatus.m"; sourceTree = "<group>"; };
+		D21A4DA818A13D510057CBF9 /* pump_im.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = pump_im.mp3; path = ../../../sounds/pump_im.mp3; sourceTree = "<group>"; };
+		D21A4DA918A13D510057CBF9 /* Scirocco.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = Scirocco.mp3; path = ../../../sounds/Scirocco.mp3; sourceTree = "<group>"; };
 		D21F0DDA15E4E10500DFC68C /* TOAudioUnit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TOAudioUnit.h; sourceTree = "<group>"; };
 		D21F0DDB15E4E10500DFC68C /* TOAudioUnit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TOAudioUnit.m; sourceTree = "<group>"; };
 		D235AC4315E3780400976D01 /* FilePlayerTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FilePlayerTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -48,7 +51,6 @@
 		D235AC6615E3781600976D01 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		D235AC6815E3787300976D01 /* TOAudioFilePlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TOAudioFilePlayer.h; sourceTree = "<group>"; };
 		D235AC6915E3787300976D01 /* TOAudioFilePlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TOAudioFilePlayer.m; sourceTree = "<group>"; };
-		D235AC7915E398CD00976D01 /* guitarStereo.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = guitarStereo.caf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,7 +130,8 @@
 		D235AC4E15E3780400976D01 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				D235AC7915E398CD00976D01 /* guitarStereo.caf */,
+				D21A4DA818A13D510057CBF9 /* pump_im.mp3 */,
+				D21A4DA918A13D510057CBF9 /* Scirocco.mp3 */,
 				D235AC4F15E3780400976D01 /* FilePlayerTest-Info.plist */,
 				D235AC5015E3780400976D01 /* InfoPlist.strings */,
 				D235AC5315E3780400976D01 /* main.m */,
@@ -164,7 +167,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = TO;
-				LastUpgradeCheck = 0450;
+				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "Tobias Ottenweller";
 			};
 			buildConfigurationList = D235AC3D15E3780400976D01 /* Build configuration list for PBXProject "FilePlayerTest" */;
@@ -189,9 +192,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D21A4DAA18A13D510057CBF9 /* pump_im.mp3 in Resources */,
 				D235AC5215E3780400976D01 /* InfoPlist.strings in Resources */,
 				D235AC5B15E3780400976D01 /* MainStoryboard.storyboard in Resources */,
-				D235AC7A15E398CD00976D01 /* guitarStereo.caf in Resources */,
+				D21A4DAB18A13D510057CBF9 /* Scirocco.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -256,6 +260,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
 			};

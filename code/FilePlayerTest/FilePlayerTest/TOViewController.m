@@ -19,7 +19,7 @@
     [super viewDidLoad];
     self.audioFilePlayer = [[TOAudioFilePlayer alloc] init];
     
-    self.audioFilePlayer.audioFileURL = [[NSBundle mainBundle] URLForResource:@"guitarStereo" withExtension:@"caf"];
+    self.audioFilePlayer.audioFileURL = [[NSBundle mainBundle] URLForResource:@"pump_im" withExtension:@"mp3"];
     self.audioFilePlayer.regionStart = 0;
     self.audioFilePlayer.regionDuration = 1000;
     
