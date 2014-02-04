@@ -170,7 +170,7 @@
 
 - (void)initializePlayerUnit
 {
-    NSURL *songURL = [[NSBundle mainBundle] URLForResource:@"guitarStereo" withExtension:@"caf"];
+    NSURL *songURL = [[NSBundle mainBundle] URLForResource:@"pump_im" withExtension:@"mp3"];
     TOThrowOnError(AudioFileOpenURL((__bridge CFURLRef)(songURL), kAudioFileReadPermission, 0, &audioFile));
     
     TOThrowOnError(AudioUnitSetProperty(filePlayerUnit,
