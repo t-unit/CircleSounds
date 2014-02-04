@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		D203F41F163B2E2F00910E37 /* TOMocVarispeedSound.m in Sources */ = {isa = PBXBuildFile; fileRef = D203F41E163B2E2F00910E37 /* TOMocVarispeedSound.m */; };
 		D21A0075163BF53D005CA5FE /* TOMocEqualizerSound.m in Sources */ = {isa = PBXBuildFile; fileRef = D21A0074163BF53D005CA5FE /* TOMocEqualizerSound.m */; };
+		D21A4DB218A13E060057CBF9 /* pump_im.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D21A4DB018A13E060057CBF9 /* pump_im.mp3 */; };
+		D21A4DB318A13E060057CBF9 /* Scirocco.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D21A4DB118A13E060057CBF9 /* Scirocco.mp3 */; };
 		D220DD6315FC930500696CA2 /* TOAudioFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D220DD6215FC930500696CA2 /* TOAudioFileManager.m */; };
 		D222E16315F4EC0E004D5AE9 /* TOSoundDetailsPopoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D222E16215F4EC0E004D5AE9 /* TOSoundDetailsPopoverViewController.m */; };
 		D225BA71163D896D004675EA /* TOMocSoundDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = D225BA70163D896D004675EA /* TOMocSoundDocument.m */; };
@@ -16,7 +18,6 @@
 		D22F4F041635AE4D00E17335 /* TOVarispeedSoundTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D22F4F031635AE4D00E17335 /* TOVarispeedSoundTests.m */; };
 		D22F4F071635AE5900E17335 /* TOEqualizerSoundTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D22F4F061635AE5900E17335 /* TOEqualizerSoundTests.m */; };
 		D22F4F0A1635AE6500E17335 /* TOSoundDocumentTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D22F4F091635AE6500E17335 /* TOSoundDocumentTests.m */; };
-		D22F4F0B1635E4C200E17335 /* clong-1.wav in Resources */ = {isa = PBXBuildFile; fileRef = D28BCDA415F7861700893B57 /* clong-1.wav */; };
 		D234233715FB7B0A004D8244 /* TOReplaceSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = D234233615FB7B0A004D8244 /* TOReplaceSegue.m */; };
 		D2361F1E15F642A400406A18 /* TOHandleView.m in Sources */ = {isa = PBXBuildFile; fileRef = D2361F1D15F642A400406A18 /* TOHandleView.m */; };
 		D2698E7515EE37D3008A52D7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2698E7415EE37D3008A52D7 /* UIKit.framework */; };
@@ -49,14 +50,7 @@
 		D2698EE315EE4448008A52D7 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2698EE215EE4448008A52D7 /* AVFoundation.framework */; };
 		D2698EED15EE85ED008A52D7 /* TOSoundDocumentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2698EEC15EE85ED008A52D7 /* TOSoundDocumentViewController.m */; };
 		D28B17CE163597220019F8A2 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2698EDE15EE442C008A52D7 /* AudioToolbox.framework */; };
-		D28BCDAA15F7861700893B57 /* clong-1.wav in Resources */ = {isa = PBXBuildFile; fileRef = D28BCDA415F7861700893B57 /* clong-1.wav */; };
-		D28BCDAB15F7861700893B57 /* clong-2.wav in Resources */ = {isa = PBXBuildFile; fileRef = D28BCDA515F7861700893B57 /* clong-2.wav */; };
-		D28BCDAC15F7861700893B57 /* electric-drill-2.wav in Resources */ = {isa = PBXBuildFile; fileRef = D28BCDA615F7861700893B57 /* electric-drill-2.wav */; };
-		D28BCDAD15F7861700893B57 /* freezer-hum-1.wav in Resources */ = {isa = PBXBuildFile; fileRef = D28BCDA715F7861700893B57 /* freezer-hum-1.wav */; };
-		D28BCDAE15F7861700893B57 /* grass-trimmer-1.wav in Resources */ = {isa = PBXBuildFile; fileRef = D28BCDA815F7861700893B57 /* grass-trimmer-1.wav */; };
-		D28BCDAF15F7861700893B57 /* hammering-1.wav in Resources */ = {isa = PBXBuildFile; fileRef = D28BCDA915F7861700893B57 /* hammering-1.wav */; };
 		D2AF006616357A3D00D63C87 /* TOCAShortcutsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D2AF006516357A3D00D63C87 /* TOCAShortcutsTests.m */; };
-		D2DA43F815EFBFDF009B8432 /* 08 Hope You're Feeling Better.m4a in Resources */ = {isa = PBXBuildFile; fileRef = D2DA43F715EFBFDF009B8432 /* 08 Hope You're Feeling Better.m4a */; };
 		D2DA440015EFE407009B8432 /* TOWaveformDrawer.m in Sources */ = {isa = PBXBuildFile; fileRef = D2DA43FF15EFE407009B8432 /* TOWaveformDrawer.m */; };
 		D2DACC6215EFAA0E00824F5F /* TORoundedRectView.m in Sources */ = {isa = PBXBuildFile; fileRef = D2DACC6115EFAA0E00824F5F /* TORoundedRectView.m */; };
 		D2DC571015FBA2DE0003AA50 /* TORecordingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2DC570F15FBA2DE0003AA50 /* TORecordingViewController.m */; };
@@ -81,6 +75,8 @@
 		D203F41E163B2E2F00910E37 /* TOMocVarispeedSound.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TOMocVarispeedSound.m; sourceTree = "<group>"; };
 		D21A0073163BF53D005CA5FE /* TOMocEqualizerSound.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TOMocEqualizerSound.h; sourceTree = "<group>"; };
 		D21A0074163BF53D005CA5FE /* TOMocEqualizerSound.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TOMocEqualizerSound.m; sourceTree = "<group>"; };
+		D21A4DB018A13E060057CBF9 /* pump_im.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = pump_im.mp3; path = ../../../sounds/pump_im.mp3; sourceTree = "<group>"; };
+		D21A4DB118A13E060057CBF9 /* Scirocco.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = Scirocco.mp3; path = ../../../sounds/Scirocco.mp3; sourceTree = "<group>"; };
 		D220DD5F15FC8EC200696CA2 /* TOSoundFileChangingViewControllerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TOSoundFileChangingViewControllerDelegate.h; sourceTree = "<group>"; };
 		D220DD6115FC930500696CA2 /* TOAudioFileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TOAudioFileManager.h; sourceTree = "<group>"; };
 		D220DD6215FC930500696CA2 /* TOAudioFileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TOAudioFileManager.m; sourceTree = "<group>"; };
@@ -150,15 +146,8 @@
 		D2698EE215EE4448008A52D7 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		D2698EEB15EE85ED008A52D7 /* TOSoundDocumentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TOSoundDocumentViewController.h; sourceTree = "<group>"; };
 		D2698EEC15EE85ED008A52D7 /* TOSoundDocumentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TOSoundDocumentViewController.m; sourceTree = "<group>"; };
-		D28BCDA415F7861700893B57 /* clong-1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "clong-1.wav"; sourceTree = "<group>"; };
-		D28BCDA515F7861700893B57 /* clong-2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "clong-2.wav"; sourceTree = "<group>"; };
-		D28BCDA615F7861700893B57 /* electric-drill-2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "electric-drill-2.wav"; sourceTree = "<group>"; };
-		D28BCDA715F7861700893B57 /* freezer-hum-1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "freezer-hum-1.wav"; sourceTree = "<group>"; };
-		D28BCDA815F7861700893B57 /* grass-trimmer-1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "grass-trimmer-1.wav"; sourceTree = "<group>"; };
-		D28BCDA915F7861700893B57 /* hammering-1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "hammering-1.wav"; sourceTree = "<group>"; };
 		D2AF006416357A3D00D63C87 /* TOCAShortcutsTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TOCAShortcutsTests.h; sourceTree = "<group>"; };
 		D2AF006516357A3D00D63C87 /* TOCAShortcutsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TOCAShortcutsTests.m; sourceTree = "<group>"; };
-		D2DA43F715EFBFDF009B8432 /* 08 Hope You're Feeling Better.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "08 Hope You're Feeling Better.m4a"; sourceTree = "<group>"; };
 		D2DA43FE15EFE407009B8432 /* TOWaveformDrawer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TOWaveformDrawer.h; sourceTree = "<group>"; };
 		D2DA43FF15EFE407009B8432 /* TOWaveformDrawer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TOWaveformDrawer.m; sourceTree = "<group>"; };
 		D2DACC6015EFAA0E00824F5F /* TORoundedRectView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TORoundedRectView.h; sourceTree = "<group>"; };
@@ -272,13 +261,8 @@
 		D2698E7B15EE37D3008A52D7 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				D28BCDA415F7861700893B57 /* clong-1.wav */,
-				D28BCDA515F7861700893B57 /* clong-2.wav */,
-				D28BCDA615F7861700893B57 /* electric-drill-2.wav */,
-				D28BCDA715F7861700893B57 /* freezer-hum-1.wav */,
-				D28BCDA815F7861700893B57 /* grass-trimmer-1.wav */,
-				D28BCDA915F7861700893B57 /* hammering-1.wav */,
-				D2DA43F715EFBFDF009B8432 /* 08 Hope You're Feeling Better.m4a */,
+				D21A4DB018A13E060057CBF9 /* pump_im.mp3 */,
+				D21A4DB118A13E060057CBF9 /* Scirocco.mp3 */,
 				D2698E7C15EE37D3008A52D7 /* CircleSounds-Info.plist */,
 				D2698E7D15EE37D3008A52D7 /* InfoPlist.strings */,
 				D2698E8015EE37D3008A52D7 /* main.m */,
@@ -481,14 +465,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				D2698E7F15EE37D3008A52D7 /* InfoPlist.strings in Resources */,
+				D21A4DB218A13E060057CBF9 /* pump_im.mp3 in Resources */,
 				D2698E8815EE37D4008A52D7 /* MainStoryboard.storyboard in Resources */,
-				D2DA43F815EFBFDF009B8432 /* 08 Hope You're Feeling Better.m4a in Resources */,
-				D28BCDAA15F7861700893B57 /* clong-1.wav in Resources */,
-				D28BCDAB15F7861700893B57 /* clong-2.wav in Resources */,
-				D28BCDAC15F7861700893B57 /* electric-drill-2.wav in Resources */,
-				D28BCDAD15F7861700893B57 /* freezer-hum-1.wav in Resources */,
-				D28BCDAE15F7861700893B57 /* grass-trimmer-1.wav in Resources */,
-				D28BCDAF15F7861700893B57 /* hammering-1.wav in Resources */,
+				D21A4DB318A13E060057CBF9 /* Scirocco.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -497,7 +476,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				D2698E9D15EE37D4008A52D7 /* InfoPlist.strings in Resources */,
-				D22F4F0B1635E4C200E17335 /* clong-1.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
