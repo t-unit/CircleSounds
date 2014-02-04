@@ -19,8 +19,8 @@
 		D244675115EBCEE2003D47F6 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D244675015EBCEE2003D47F6 /* AudioToolbox.framework */; };
 		D244675E15EBCF9B003D47F6 /* TOCAShortcuts.m in Sources */ = {isa = PBXBuildFile; fileRef = D244675B15EBCF9B003D47F6 /* TOCAShortcuts.m */; };
 		D244675F15EBCF9B003D47F6 /* NSString+OSStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = D244675D15EBCF9B003D47F6 /* NSString+OSStatus.m */; };
-		D26C577B15EBE04200B65CD0 /* 07 Fair.m4a in Resources */ = {isa = PBXBuildFile; fileRef = D26C577A15EBE04200B65CD0 /* 07 Fair.m4a */; };
-		D26C577E15EBEC0E00B65CD0 /* 24 Eine Sultanine.m4a in Resources */ = {isa = PBXBuildFile; fileRef = D26C577D15EBEC0E00B65CD0 /* 24 Eine Sultanine.m4a */; };
+		D2EBC42B18A1391500CCF68D /* pump_im.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D2EBC42918A1391500CCF68D /* pump_im.mp3 */; };
+		D2EBC42C18A1391500CCF68D /* Scirocco.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D2EBC42A18A1391500CCF68D /* Scirocco.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,8 +44,8 @@
 		D244675B15EBCF9B003D47F6 /* TOCAShortcuts.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TOCAShortcuts.m; sourceTree = "<group>"; };
 		D244675C15EBCF9B003D47F6 /* NSString+OSStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+OSStatus.h"; sourceTree = "<group>"; };
 		D244675D15EBCF9B003D47F6 /* NSString+OSStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+OSStatus.m"; sourceTree = "<group>"; };
-		D26C577A15EBE04200B65CD0 /* 07 Fair.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "07 Fair.m4a"; sourceTree = "<group>"; };
-		D26C577D15EBEC0E00B65CD0 /* 24 Eine Sultanine.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "24 Eine Sultanine.m4a"; sourceTree = "<group>"; };
+		D2EBC42918A1391500CCF68D /* pump_im.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = pump_im.mp3; path = ../../../sounds/pump_im.mp3; sourceTree = "<group>"; };
+		D2EBC42A18A1391500CCF68D /* Scirocco.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = Scirocco.mp3; path = ../../../sounds/Scirocco.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,8 +113,8 @@
 		D244672815EB9D5E003D47F6 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				D26C577D15EBEC0E00B65CD0 /* 24 Eine Sultanine.m4a */,
-				D26C577A15EBE04200B65CD0 /* 07 Fair.m4a */,
+				D2EBC42918A1391500CCF68D /* pump_im.mp3 */,
+				D2EBC42A18A1391500CCF68D /* Scirocco.mp3 */,
 				D244672915EB9D5E003D47F6 /* WaveformViewer-Info.plist */,
 				D244672A15EB9D5E003D47F6 /* InfoPlist.strings */,
 				D244672D15EB9D5E003D47F6 /* main.m */,
@@ -176,9 +176,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				D244672C15EB9D5E003D47F6 /* InfoPlist.strings in Resources */,
+				D2EBC42B18A1391500CCF68D /* pump_im.mp3 in Resources */,
 				D244673515EB9D5E003D47F6 /* MainStoryboard.storyboard in Resources */,
-				D26C577B15EBE04200B65CD0 /* 07 Fair.m4a in Resources */,
-				D26C577E15EBEC0E00B65CD0 /* 24 Eine Sultanine.m4a in Resources */,
+				D2EBC42C18A1391500CCF68D /* Scirocco.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

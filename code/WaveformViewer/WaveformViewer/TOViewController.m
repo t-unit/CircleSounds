@@ -23,8 +23,8 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
-//    NSURL *audioFileURL = [[NSBundle mainBundle] URLForResource:@"24 Eine Sultanine" withExtension:@"m4a"];
-        NSURL *audioFileURL = [[NSBundle mainBundle] URLForResource:@"07 Fair" withExtension:@"m4a"];
+//    NSURL *audioFileURL = [[NSBundle mainBundle] URLForResource:@"Scirocco" withExtension:@"mp3"];
+        NSURL *audioFileURL = [[NSBundle mainBundle] URLForResource:@"pump_im" withExtension:@"mp3"];
     
     
     TOWaveformDrawer *drawer = [[TOWaveformDrawer alloc] init];
