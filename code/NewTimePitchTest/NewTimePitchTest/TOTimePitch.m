@@ -260,9 +260,9 @@
 - (void)initializePlayerUnit
 {
 #if USE_SILENT_AUDIO_FILE
-    NSURL *songURL = [[NSBundle mainBundle] URLForResource:@"guitarStereo_silent" withExtension:@"caf"];
+    NSURL *songURL = [[NSBundle mainBundle] URLForResource:@"pump_im" withExtension:@"mp3"];
 #else
-    NSURL *songURL = [[NSBundle mainBundle] URLForResource:@"guitarStereo" withExtension:@"caf"];
+    NSURL *songURL = [[NSBundle mainBundle] URLForResource:@"Scirocco" withExtension:@"mp3"];
 #endif
     
     
