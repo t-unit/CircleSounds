@@ -5,9 +5,6 @@
       location = "group:CircleSounds/CircleSounds.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:FakeHeaderProject/HeaderProject.xcodeproj">
-   </FileRef>
-   <FileRef
       location = "group:FilePlayMixerMeter/FilePlayMixerMeter.xcodeproj">
    </FileRef>
    <FileRef
