@@ -36,7 +36,7 @@
     }
     
     
-    self.loopCountLabel.text = [NSString stringWithFormat:@"%ld", self.sound.loopCount];
+    self.loopCountLabel.text = [NSString stringWithFormat:@"%u", (unsigned int)self.sound.loopCount];
     self.loopCountStepper.value = self.sound.loopCount;
     self.songArtistLabel.text = self.sound.fileSongArtist;
     self.songNameLabel.text = self.sound.fileSongName;
@@ -213,7 +213,7 @@
 - (IBAction)loopCountStepperValueChanged:(id)sender
 {
     self.sound.loopCount = self.loopCountStepper.value;
-    self.loopCountLabel.text = [NSString stringWithFormat:@"%ld", self.sound.loopCount];
+    self.loopCountLabel.text = [NSString stringWithFormat:@"%u", (unsigned int)self.sound.loopCount];
 }
 
 
@@ -226,7 +226,7 @@
 - (IBAction)resetEffectsButtonPressed:(id)sender
 {
     self.sound.loopCount = 1;
-    self.loopCountLabel.text = [NSString stringWithFormat:@"%ld", self.sound.loopCount];
+    self.loopCountLabel.text = [NSString stringWithFormat:@"%u", (unsigned int)self.sound.loopCount];
     self.loopCountStepper.value = self.sound.loopCount;
     
     self.sound.globalGain = 0;

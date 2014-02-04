@@ -11,7 +11,7 @@
 
 /**
  A simple view displaying two bars (the handle) 
- indicating possilbe user interaction.
+ indicating possible user interaction.
  */
 @interface TOHandleView : UIView
 

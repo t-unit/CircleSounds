@@ -113,7 +113,7 @@
         NSURL *fileURLWithNumber = fileURL;
         
         while ([[NSFileManager defaultManager] fileExistsAtPath:fileURLWithNumber.path]) {
-            fileURLWithNumber = [fileURL URLByAppendingPathExtension:[NSString stringWithFormat:@" – %d", number]];
+            fileURLWithNumber = [fileURL URLByAppendingPathExtension:[NSString stringWithFormat:@" – %lu", (unsigned long)number]];
             number++;
         }
         

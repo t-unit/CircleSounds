@@ -433,7 +433,7 @@ OSStatus MixerUnitRenderNoteCallack(void                        *inRefCon,
         [soundObject setupFinished];
         
 #if DEBUG
-        NSLog(@"New Sound (%@) added at mixer bus: %ld", soundObject, mixerInputBus);
+        NSLog(@"New Sound (%@) added at mixer bus: %u", soundObject, (unsigned int)mixerInputBus);
 #endif
     }
     
@@ -543,7 +543,7 @@ OSStatus MixerUnitRenderNoteCallack(void                        *inRefCon,
         
         
 #if DEBUG
-        NSLog(@"Removed Sound (%@) at mixer bus: %ld", soundObject, mixerBus);
+        NSLog(@"Removed Sound (%@) at mixer bus: %u", soundObject, (unsigned int)mixerBus);
 #endif
     }
     

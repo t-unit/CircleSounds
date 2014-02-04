@@ -186,9 +186,9 @@
 - (void)setupViewProperties
 {
     // playback rate & view color
-    self.playbackColorNormal = [UIColor colorWithRed:46/255.0 green:169/255.0 blue:255/255.0 alpha:1.0];
-    self.playbackColorFast = [UIColor colorWithRed:238/255.0 green:255/255.0 blue:51/255.0 alpha:1.0];
-    self.playbackColorSlow = [UIColor colorWithRed:92/255.0 green:92/255.0 blue:91/255.0 alpha:1.0];
+    self.playbackColorNormal = [UIColor colorWithRed:0.180 green:0.663 blue:1.000 alpha:1.000];
+    self.playbackColorFast = [UIColor colorWithRed:0.933 green:1.000 blue:0.200 alpha:1.000];
+    self.playbackColorSlow = [UIColor colorWithRed:0.361 green:0.361 blue:0.357 alpha:1.000];
     
     self.virtualViewRotation = [[self class] rotationFromPlaybackRate:self.sound.playbackRate];
     [self updateViewColor];

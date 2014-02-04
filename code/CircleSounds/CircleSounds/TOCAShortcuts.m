@@ -35,7 +35,7 @@ void TOThrowOnError(OSStatus status)
 {
     if (status != noErr) {
         @throw [NSException exceptionWithName:@"TOAudioErrorException"
-                                       reason:[NSString stringWithFormat:@"Status is not 'noErr'! Status is %@ (%ld).", [NSString stringWithOSStatus:status], status]
+                                       reason:[NSString stringWithFormat:@"Status is not 'noErr'! Status is %@ (%d).", [NSString stringWithOSStatus:status], (int)status]
                                      userInfo:nil];
     }
 }
@@ -146,12 +146,12 @@ void TOPrintASBD(AudioStreamBasicDescription asbd)
 
     printf("Sample Rate:         %10.0f\n",   asbd.mSampleRate);
     printf("Format ID:           %10s\n",     formatIDString);
-    printf("Format Flags:        %10lX\n",    asbd.mFormatFlags);
-    printf("Bytes per Packet:    %10ld\n",    asbd.mBytesPerPacket);
-    printf("Frames per Packet:   %10ld\n",    asbd.mFramesPerPacket);
-    printf("Bytes per Frame:     %10ld\n",    asbd.mBytesPerFrame);
-    printf("Channels per Frame:  %10ld\n",    asbd.mChannelsPerFrame);
-    printf("Bits per Channel:    %10ld\n",    asbd.mBitsPerChannel);
+    printf("Format Flags:        %10X\n",    (unsigned int)asbd.mFormatFlags);
+    printf("Bytes per Packet:    %10u\n",    (unsigned int)asbd.mBytesPerPacket);
+    printf("Frames per Packet:   %10u\n",    (unsigned int)asbd.mFramesPerPacket);
+    printf("Bytes per Frame:     %10u\n",    (unsigned int)asbd.mBytesPerFrame);
+    printf("Channels per Frame:  %10u\n",    (unsigned int)asbd.mChannelsPerFrame);
+    printf("Bits per Channel:    %10u\n",    (unsigned int)asbd.mBitsPerChannel);
 }
 
 
