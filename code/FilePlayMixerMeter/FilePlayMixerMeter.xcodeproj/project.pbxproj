@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		D22C37B915DC4742004A1C63 /* nyan.m4a in Resources */ = {isa = PBXBuildFile; fileRef = D22C37B815DC4742004A1C63 /* nyan.m4a */; };
+		D21A4DA618A13CBB0057CBF9 /* pump_im.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D21A4DA418A13CBB0057CBF9 /* pump_im.mp3 */; };
+		D21A4DA718A13CBB0057CBF9 /* Scirocco.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D21A4DA518A13CBB0057CBF9 /* Scirocco.mp3 */; };
 		D22C37C415DC4B2C004A1C63 /* TOBaseInterpolator.m in Sources */ = {isa = PBXBuildFile; fileRef = D22C37BF15DC4B2C004A1C63 /* TOBaseInterpolator.m */; };
 		D22C37C515DC4B2C004A1C63 /* TOColorInterpolator.m in Sources */ = {isa = PBXBuildFile; fileRef = D22C37C115DC4B2C004A1C63 /* TOColorInterpolator.m */; };
 		D22C37C615DC4B2C004A1C63 /* TOAudioMeterView.m in Sources */ = {isa = PBXBuildFile; fileRef = D22C37C315DC4B2C004A1C63 /* TOAudioMeterView.m */; };
@@ -28,7 +29,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		D22C37B815DC4742004A1C63 /* nyan.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = nyan.m4a; sourceTree = "<group>"; };
+		D21A4DA418A13CBB0057CBF9 /* pump_im.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = pump_im.mp3; path = ../../../sounds/pump_im.mp3; sourceTree = "<group>"; };
+		D21A4DA518A13CBB0057CBF9 /* Scirocco.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = Scirocco.mp3; path = ../../../sounds/Scirocco.mp3; sourceTree = "<group>"; };
 		D22C37BE15DC4B2C004A1C63 /* TOBaseInterpolator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TOBaseInterpolator.h; sourceTree = "<group>"; };
 		D22C37BF15DC4B2C004A1C63 /* TOBaseInterpolator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TOBaseInterpolator.m; sourceTree = "<group>"; };
 		D22C37C015DC4B2C004A1C63 /* TOColorInterpolator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TOColorInterpolator.h; sourceTree = "<group>"; };
@@ -134,7 +136,8 @@
 		D27EE23715DBAD77000E2E96 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				D22C37B815DC4742004A1C63 /* nyan.m4a */,
+				D21A4DA418A13CBB0057CBF9 /* pump_im.mp3 */,
+				D21A4DA518A13CBB0057CBF9 /* Scirocco.mp3 */,
 				D27EE23815DBAD77000E2E96 /* FilePlayMixerMeter-Info.plist */,
 				D27EE23915DBAD77000E2E96 /* InfoPlist.strings */,
 				D27EE23C15DBAD77000E2E96 /* main.m */,
@@ -170,7 +173,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = TO;
-				LastUpgradeCheck = 0450;
+				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "Tobias Ottenweller";
 			};
 			buildConfigurationList = D27EE22615DBAD77000E2E96 /* Build configuration list for PBXProject "FilePlayMixerMeter" */;
@@ -196,8 +199,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				D27EE23B15DBAD77000E2E96 /* InfoPlist.strings in Resources */,
+				D21A4DA618A13CBB0057CBF9 /* pump_im.mp3 in Resources */,
 				D27EE24415DBAD77000E2E96 /* MainStoryboard.storyboard in Resources */,
-				D22C37B915DC4742004A1C63 /* nyan.m4a in Resources */,
+				D21A4DA718A13CBB0057CBF9 /* Scirocco.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -264,7 +268,8 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				ONLY_ACTIVE_ARCH = YES;
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
@@ -285,7 +290,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
@@ -301,7 +306,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "FilePlayMixerMeter/FilePlayMixerMeter-Prefix.pch";
 				INFOPLIST_FILE = "FilePlayMixerMeter/FilePlayMixerMeter-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
@@ -317,7 +322,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "FilePlayMixerMeter/FilePlayMixerMeter-Prefix.pch";
 				INFOPLIST_FILE = "FilePlayMixerMeter/FilePlayMixerMeter-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;

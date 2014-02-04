@@ -167,7 +167,7 @@ void AudioFileCompletionCallback(void *userData, ScheduledAudioFileRegion *fileR
     }
     
     
-    NSURL *nyanURL = [[NSBundle mainBundle] URLForResource:@"nyan" withExtension:@"m4a"];
+    NSURL *nyanURL = [[NSBundle mainBundle] URLForResource:@"Scirocco" withExtension:@"mp3"];
     TOThrowOnError(AudioFileOpenURL((__bridge CFURLRef)(nyanURL), kAudioFileReadPermission, 0, &audioFile));
     
     TOThrowOnError(AudioUnitSetProperty(filePlayerUnit,
