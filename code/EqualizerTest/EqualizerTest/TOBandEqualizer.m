@@ -276,7 +276,7 @@
 
 - (void)initializePlayerUnit
 {
-    NSURL *songURL = [[NSBundle mainBundle] URLForResource:@"song" withExtension:@"m4a"];
+    NSURL *songURL = [[NSBundle mainBundle] URLForResource:@"Scirocco" withExtension:@"mp3"];
     TOThrowOnError(AudioFileOpenURL((__bridge CFURLRef)(songURL), kAudioFileReadPermission, 0, &audioFile));
     
     TOThrowOnError(AudioUnitSetProperty(filePlayerUnit,

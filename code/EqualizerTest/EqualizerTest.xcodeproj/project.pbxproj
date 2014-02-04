@@ -7,8 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D21A4DAE18A13D9C0057CBF9 /* pump_im.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D21A4DAC18A13D9C0057CBF9 /* pump_im.mp3 */; };
+		D21A4DAF18A13D9C0057CBF9 /* Scirocco.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D21A4DAD18A13D9C0057CBF9 /* Scirocco.mp3 */; };
 		D23394FF15DFDCE0002C24F3 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D23394FE15DFDCE0002C24F3 /* AudioToolbox.framework */; };
-		D233950415DFDD09002C24F3 /* song.m4a in Resources */ = {isa = PBXBuildFile; fileRef = D233950315DFDD09002C24F3 /* song.m4a */; };
 		D259476D15E03D8600E33CC5 /* TOCAShortcuts.m in Sources */ = {isa = PBXBuildFile; fileRef = D259476A15E03D8600E33CC5 /* TOCAShortcuts.m */; };
 		D259476E15E03D8600E33CC5 /* NSString+OSStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = D259476C15E03D8600E33CC5 /* NSString+OSStatus.m */; };
 		D2AC1CCB15DFC183007C7203 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2AC1CCA15DFC183007C7203 /* UIKit.framework */; };
@@ -23,8 +24,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D21A4DAC18A13D9C0057CBF9 /* pump_im.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = pump_im.mp3; path = ../../../sounds/pump_im.mp3; sourceTree = "<group>"; };
+		D21A4DAD18A13D9C0057CBF9 /* Scirocco.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = Scirocco.mp3; path = ../../../sounds/Scirocco.mp3; sourceTree = "<group>"; };
 		D23394FE15DFDCE0002C24F3 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
-		D233950315DFDD09002C24F3 /* song.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = song.m4a; sourceTree = "<group>"; };
 		D259476915E03D8600E33CC5 /* TOCAShortcuts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TOCAShortcuts.h; sourceTree = "<group>"; };
 		D259476A15E03D8600E33CC5 /* TOCAShortcuts.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TOCAShortcuts.m; sourceTree = "<group>"; };
 		D259476B15E03D8600E33CC5 /* NSString+OSStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+OSStatus.h"; sourceTree = "<group>"; };
@@ -111,7 +113,8 @@
 		D2AC1CD115DFC183007C7203 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				D233950315DFDD09002C24F3 /* song.m4a */,
+				D21A4DAC18A13D9C0057CBF9 /* pump_im.mp3 */,
+				D21A4DAD18A13D9C0057CBF9 /* Scirocco.mp3 */,
 				D2AC1CD215DFC183007C7203 /* EqualizerTest-Info.plist */,
 				D2AC1CD315DFC183007C7203 /* InfoPlist.strings */,
 				D2AC1CD615DFC183007C7203 /* main.m */,
@@ -172,9 +175,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D21A4DAE18A13D9C0057CBF9 /* pump_im.mp3 in Resources */,
 				D2AC1CD515DFC183007C7203 /* InfoPlist.strings in Resources */,
 				D2AC1CDE15DFC183007C7203 /* MainStoryboard.storyboard in Resources */,
-				D233950415DFDD09002C24F3 /* song.m4a in Resources */,
+				D21A4DAF18A13D9C0057CBF9 /* Scirocco.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
