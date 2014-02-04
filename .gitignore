@@ -10,6 +10,7 @@ build/*
 *.perspective
 *.perspectivev3
 *.pbxuser
+*.xccheckout
 xcuserdata
 
 # svn & cvs
