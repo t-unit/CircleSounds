@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D21A4DB618A13E860057CBF9 /* pump_im.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D21A4DB418A13E860057CBF9 /* pump_im.mp3 */; };
+		D21A4DB718A13E860057CBF9 /* Scirocco.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D21A4DB518A13E860057CBF9 /* Scirocco.mp3 */; };
 		D21F0DB615E4DF5100DFC68C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D21F0DB515E4DF5100DFC68C /* UIKit.framework */; };
 		D21F0DB815E4DF5100DFC68C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D21F0DB715E4DF5100DFC68C /* Foundation.framework */; };
 		D21F0DBA15E4DF5100DFC68C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D21F0DB915E4DF5100DFC68C /* CoreGraphics.framework */; };
@@ -27,7 +29,6 @@
 		D25C76BC15EA747700F4B162 /* TOColorInterpolator.m in Sources */ = {isa = PBXBuildFile; fileRef = D25C76B815EA747700F4B162 /* TOColorInterpolator.m */; };
 		D25C76BD15EA747700F4B162 /* TOAudioMeterView.m in Sources */ = {isa = PBXBuildFile; fileRef = D25C76BA15EA747700F4B162 /* TOAudioMeterView.m */; };
 		D25C76C015EA748900F4B162 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D25C76BF15EA748900F4B162 /* QuartzCore.framework */; };
-		D26F8A8715E684D20063FF0F /* 06 Birkenholzkompott.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D26F8A8615E684D20063FF0F /* 06 Birkenholzkompott.mp3 */; };
 		D26F8A8E15E695EA0063FF0F /* TOReverbSound.m in Sources */ = {isa = PBXBuildFile; fileRef = D26F8A8D15E695EA0063FF0F /* TOReverbSound.m */; };
 		D26F8A9515E6960D0063FF0F /* TOEqualizerSound.m in Sources */ = {isa = PBXBuildFile; fileRef = D26F8A9415E6960D0063FF0F /* TOEqualizerSound.m */; };
 		D2E8279515E62270000B3144 /* TOVarispeedSound.m in Sources */ = {isa = PBXBuildFile; fileRef = D2E8279415E62270000B3144 /* TOVarispeedSound.m */; };
@@ -35,6 +36,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D21A4DB418A13E860057CBF9 /* pump_im.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = pump_im.mp3; path = ../../../sounds/pump_im.mp3; sourceTree = "<group>"; };
+		D21A4DB518A13E860057CBF9 /* Scirocco.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = Scirocco.mp3; path = ../../../sounds/Scirocco.mp3; sourceTree = "<group>"; };
 		D21F0DB115E4DF5100DFC68C /* CircleSoundPrototype.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CircleSoundPrototype.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D21F0DB515E4DF5100DFC68C /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		D21F0DB715E4DF5100DFC68C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -69,7 +72,6 @@
 		D25C76B915EA747700F4B162 /* TOAudioMeterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TOAudioMeterView.h; sourceTree = "<group>"; };
 		D25C76BA15EA747700F4B162 /* TOAudioMeterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TOAudioMeterView.m; sourceTree = "<group>"; };
 		D25C76BF15EA748900F4B162 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		D26F8A8615E684D20063FF0F /* 06 Birkenholzkompott.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "06 Birkenholzkompott.mp3"; sourceTree = "<group>"; };
 		D26F8A8C15E695EA0063FF0F /* TOReverbSound.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TOReverbSound.h; sourceTree = "<group>"; };
 		D26F8A8D15E695EA0063FF0F /* TOReverbSound.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TOReverbSound.m; sourceTree = "<group>"; };
 		D26F8A9315E6960D0063FF0F /* TOEqualizerSound.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TOEqualizerSound.h; sourceTree = "<group>"; };
@@ -152,7 +154,8 @@
 		D21F0DBC15E4DF5100DFC68C /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				D26F8A8615E684D20063FF0F /* 06 Birkenholzkompott.mp3 */,
+				D21A4DB418A13E860057CBF9 /* pump_im.mp3 */,
+				D21A4DB518A13E860057CBF9 /* Scirocco.mp3 */,
 				D21F0DBD15E4DF5100DFC68C /* CircleSoundPrototype-Info.plist */,
 				D21F0DBE15E4DF5100DFC68C /* InfoPlist.strings */,
 				D21F0DC115E4DF5100DFC68C /* main.m */,
@@ -229,7 +232,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = TO;
-				LastUpgradeCheck = 0450;
+				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "Tobias Ottenweller";
 			};
 			buildConfigurationList = D21F0DAB15E4DF5100DFC68C /* Build configuration list for PBXProject "CircleSoundPrototype" */;
@@ -255,8 +258,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				D21F0DC015E4DF5100DFC68C /* InfoPlist.strings in Resources */,
+				D21A4DB618A13E860057CBF9 /* pump_im.mp3 in Resources */,
 				D21F0DC915E4DF5100DFC68C /* MainStoryboard.storyboard in Resources */,
-				D26F8A8715E684D20063FF0F /* 06 Birkenholzkompott.mp3 in Resources */,
+				D21A4DB718A13E860057CBF9 /* Scirocco.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -330,6 +334,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
 			};

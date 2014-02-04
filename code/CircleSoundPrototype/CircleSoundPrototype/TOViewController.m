@@ -38,7 +38,7 @@
     [[NSRunLoop mainRunLoop] addTimer:self.timeAndMeterUpdateTimer forMode:NSDefaultRunLoopMode];
     
     TOEqualizerSound *eqSound = [[TOEqualizerSound alloc] init];
-    NSURL *fileURL = [[NSBundle mainBundle] URLForResource:@"06 Birkenholzkompott" withExtension:@"mp3"];
+    NSURL *fileURL = [[NSBundle mainBundle] URLForResource:@"pump_im" withExtension:@"mp3"];
     [eqSound setAudioFileURL:fileURL error:nil];
     
     eqSound.regionDuration = 60;
